@@ -1,0 +1,278 @@
+openjdk version "21.0.12.1" 2026-08-18 LTS
+OpenJDK Runtime Environment Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS)
+OpenJDK 64-Bit Server VM Temurin-21.0.12.1+1 (build 21.0.12.1+1-LTS, mixed mode)
+INFO  Using log config file: jar:file:/home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Framework/Generic/lib/Generic.jar!/generic.log4j.xml (LoggingInitialization)  
+INFO  Using log file: /home/jkm/.config/ghidra/ghidra_12.1.4_PUBLIC/application.log (LoggingInitialization)  
+INFO  Loading user preferences: /home/jkm/.config/ghidra/ghidra_12.1.4_PUBLIC/preferences (Preferences)  
+INFO  Searching for classes... (ClassSearcher)  
+INFO  Class search complete (629 ms) (ClassSearcher)  
+INFO  Initializing SSL Context (DefaultSSLContextInitializer)  
+INFO  Initializing Random Number Generator... (SecureRandomFactory)  
+INFO  Random Number Generator initialization complete: NativePRNGNonBlocking (SecureRandomFactory)  
+INFO  Trust manager disabled, cacerts have not been set (DefaultTrustManagerFactory)  
+INFO  Headless startup complete (1366 ms) (AnalyzeHeadless)  
+INFO  Class searcher loaded 59 extension points (20 false positives) (ClassSearcher)  
+INFO  HEADLESS Script Paths:
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Processors/DATA/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Features/VersionTracking/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Debug/Debugger/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Features/FileFormats/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Features/BytePatterns/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Features/PDB/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Features/DecompilerDependent/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Processors/JVM/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Features/GnuDemangler/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Features/SystemEmulation/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Features/Base/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Features/Decompiler/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Processors/Atmel/ghidra_scripts
+    /home/jkm/htop/tools/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Debug/Debugger-rmi-trace/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Features/SwiftDemangler/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Features/PyGhidra/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Features/WildcardAssembler/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Processors/PIC/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Features/BSim/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Features/FunctionID/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Features/MicrosoftCodeAnalyzer/ghidra_scripts
+    /home/jkm/tools/ghidra_12.1.4_PUBLIC/Ghidra/Processors/8051/ghidra_scripts (HeadlessAnalyzer)  
+INFO  HEADLESS: execution starts (HeadlessAnalyzer)  
+INFO  Opening existing project: /home/jkm/tools/ghidra-projects/htop/htop (HeadlessAnalyzer)  
+INFO  Opening project: /home/jkm/tools/ghidra-projects/htop/htop (HeadlessProject)  
+INFO  REPORT: Processing input files:  (HeadlessAnalyzer)  
+INFO       project: /home/jkm/tools/ghidra-projects/htop/htop (HeadlessAnalyzer)  
+INFO  IMPORTING: file:///home/jkm/htop/debug/htop (HeadlessAnalyzer)  
+INFO  Using Loader: Executable and Linking Format (ELF) (ProgramLoader)  
+INFO  Using Language/Compiler: x86:LE:64:default:gcc (ProgramLoader)  
+INFO  Using Library Search Path: [., /bin, /lib, /lib64, /lib/x86_64-linux-gnu, /lib/aarch64-linux-gnu, /usr/bin, /usr/lib, /usr/X11R6/bin, /usr/X11R6/lib, /usr/java/packages/lib, /usr/lib64] (ProgramLoader)  
+INFO  Additional info:
+Loading file:///home/jkm/htop/debug/htop?MD5=023b48f04f2b3687373d37164b5b5beb...
+Setting block .init_array to read-only
+Setting block .fini_array to read-only
+Setting block .data.rel.ro to read-only
+Setting block .dynamic to read-only
+------------------------------------------------
+
+Linking the External Programs of 'htop' to imported libraries...
+  [libncursesw.so.6] -> not found in project
+  [libtinfo.so.6] -> not found in project
+  [libm.so.6] -> not found in project
+  [libnl-3.so.200] -> not found in project
+  [libnl-genl-3.so.200] -> not found in project
+  [libc.so.6] -> not found in project
+------------------------------------------------
+
+Resolving External Symbols of [/htop] - 198 unresolved symbols, no external libraries configured - skipping
+ (ProgramLoader)  
+INFO  IMPORTING: Loaded 0 additional files (HeadlessAnalyzer)  
+INFO  /htop: file deleted (jkm) (LocalFileSystem)  
+INFO  Deleted local file htop (GhidraFileData)  
+WARN  REPORT: Removed conflicting program file from project: /htop (HeadlessAnalyzer)  
+INFO  REPORT: Execute script: PreAnalysis.java  (HeadlessAnalyzer)  
+INFO  SCRIPT: /home/jkm/htop/tools/ghidra_scripts/PreAnalysis.java (HeadlessAnalyzer)  
+INFO  ANALYZING all memory and code: file:///home/jkm/htop/debug/htop (HeadlessAnalyzer)  
+INFO  DWARF external debug information found: ExternalDebugInfo [filename=044ee7403a7eaa2ca8614c0e027b8f2dcb2d3f.debug, crc=250389588, hash=dd044ee7403a7eaa2ca8614c0e027b8f2dcb2d3f, objectType=DEBUGINFO, extra=null] (ExternalDebugFileSectionProvider)  
+INFO  DWARF External Debug File: found: /home/jkm/htop/debug/044ee7403a7eaa2ca8614c0e027b8f2dcb2d3f.debug (ExternalDebugFileSectionProvider)  
+INFO  Unable to copy external debug file symbol ElfComment[0]@.comment::00000000 (ExternalDebugFileSymbolImporter)  
+INFO  Unable to copy external debug file symbol htop.c.0d0015f2@.debug_info::000554bf (ExternalDebugFileSymbolImporter)  
+INFO  Unable to copy external debug file symbol Action.c.f2f98a33@.debug_info::00055557 (ExternalDebugFileSymbolImporter)  
+INFO  Unable to copy external debug file symbol Affinity.c.361c12a3@.debug_info::00058a5e (ExternalDebugFileSymbolImporter)  
+INFO  Unable to copy external debug file symbol AffinityPanel.c.27547cb7@.debug_info::0005a0b5 (ExternalDebugFileSymbolImporter)  
+INFO  Unable to copy external debug file symbol AvailableColumnsPanel.c.73ab7f6d@.debug_info::0005b9eb (ExternalDebugFileSymbolImporter)  
+INFO  Unable to copy external debug file symbol AvailableMetersPanel.c.25044d85@.debug_info::0005d2b0 (ExternalDebugFileSymbolImporter)  
+INFO  Unable to copy external debug file symbol BatteryMeter.c.a1d823e7@.debug_info::0005f0ec (ExternalDebugFileSymbolImporter)  
+INFO  Unable to copy external debug file symbol CategoriesPanel.c.cf50b83b@.debug_info::00060640 (ExternalDebugFileSymbolImporter)  
+INFO  Unable to copy external debug file symbol ClockMeter.c.597486d0@.debug_info::00062392 (ExternalDebugFileSymbolImporter)  
+INFO  Unable to copy external debug file symbol ColorsPanel.c.c9373c0c@.debug_info::00063978 (ExternalDebugFileSymbolImporter)  
+INFO  Unable to copy external debug file symbol ColumnsPanel.c.7d3330fc@.debug_info::00064ca8 (ExternalDebugFileSymbolImporter)  
+INFO  Unable to copy external debug file symbol CommandLine.c.7ccae899@.debug_info::00065fe9 (ExternalDebugFileSymbolImporter)  
+INFO  Unable to copy external debug file symbol CommandScreen.c.357ffddd@.debug_info::000682a0 (ExternalDebugFileSymbolImporter)  
+INFO  Unable to copy external debug file symbol Compat.c.5fcd00cc@.debug_info::000695ea (ExternalDebugFileSymbolImporter)  
+INFO  Unable to copy external debug file symbol CPUMeter.c.1cdada55@.debug_info::00069c06 (ExternalDebugFileSymbolImporter)  
+INFO  Unable to copy external debug file symbol CRT.c.3e83f361@.debug_info::0006bab2 (ExternalDebugFileSymbolImporter)  
+INFO  Unable to copy external debug file symbol DateMeter.c.46ea4b30@.debug_info::0006e1d8 (ExternalDebugFileSymbolImporter)  
+INFO  Unable to copy external debug file symbol DateTimeMeter.c.aefba6f0@.debug_info::0006f7ca (ExternalDebugFileSymbolImporter)  
+INFO  Unable to copy external debug file symbol DiskIOMeter.c.cee255a9@.debug_info::00070dbc (ExternalDebugFileSymbolImporter)  
+INFO  Copied 603/274/20/1095 func/data/fail/total symbols from external debug file (ExternalDebugFileSymbolImporter)  
+INFO  Added 213678 source map entries (DWARFImporter)  
+INFO  DWARF ver[5], 546 compUnits, 40366 DIES, import - total elapsed: 2116ms (DWARFImportSummary)  
+INFO  DWARF data type import - elapsed: 323ms (DWARFImportSummary)  
+INFO  DWARF func & symbol import - elapsed: 631ms (DWARFImportSummary)  
+INFO  DWARF types imported: 1089 (DWARFImportSummary)  
+INFO  DWARF enums from macros - elapsed: 1ms (DWARFImportSummary)  
+INFO  DWARF compile dirs: [/usr/src/htop-3.3.0-4build1] (DWARFImportSummary)  
+INFO  DWARF producers: [GNU C99 13.2.0 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -g -O2 -std=c99 -fno-omit-frame-pointer -flto -ffat-lto-objects -fstack-protector-strong -fcf-protection=full -fasynchronous-unwind-tables -fstack-protector-strong -fstack-clash-protection, GNU GIMPLE 13.2.0 -mno-omit-leaf-frame-pointer -mtune=generic -march=x86-64 -g -g -O2 -O2 -fno-openmp -fno-openacc -fPIC -fcf-protection=full -fasynchronous-unwind-tables -fno-omit-frame-pointer -fstack-protector-strong -fstack-clash-protection -fcf-protection=full -ffat-lto-objects -fltrans] (DWARFImportSummary)  
+INFO  DWARF source languages: [DW_LANG_C99] (DWARFImportSummary)  
+INFO  DWARF compUnit: <artificial> (DWARFImportSummary)  
+INFO  DWARF compUnit: <artificial> (DWARFImportSummary)  
+INFO  DWARF compUnit: <artificial> (DWARFImportSummary)  
+INFO  DWARF compUnit: <artificial> (DWARFImportSummary)  
+INFO  DWARF compUnit: htop.c (DWARFImportSummary)  
+INFO  DWARF compUnit: Action.c (DWARFImportSummary)  
+INFO  DWARF compUnit: Affinity.c (DWARFImportSummary)  
+INFO  DWARF compUnit: AffinityPanel.c (DWARFImportSummary)  
+INFO  DWARF compUnit: AvailableColumnsPanel.c (DWARFImportSummary)  
+INFO  DWARF compUnit: AvailableMetersPanel.c (DWARFImportSummary)  
+INFO  DWARF compUnit: BatteryMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: CategoriesPanel.c (DWARFImportSummary)  
+INFO  DWARF compUnit: ClockMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: ColorsPanel.c (DWARFImportSummary)  
+INFO  DWARF compUnit: ColumnsPanel.c (DWARFImportSummary)  
+INFO  DWARF compUnit: CommandLine.c (DWARFImportSummary)  
+INFO  DWARF compUnit: CommandScreen.c (DWARFImportSummary)  
+INFO  DWARF compUnit: Compat.c (DWARFImportSummary)  
+INFO  DWARF compUnit: CPUMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: CRT.c (DWARFImportSummary)  
+INFO  DWARF compUnit: DateMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: DateTimeMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: DiskIOMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: DisplayOptionsPanel.c (DWARFImportSummary)  
+INFO  DWARF compUnit: DynamicColumn.c (DWARFImportSummary)  
+INFO  DWARF compUnit: DynamicMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: DynamicScreen.c (DWARFImportSummary)  
+INFO  DWARF compUnit: EnvScreen.c (DWARFImportSummary)  
+INFO  DWARF compUnit: FileDescriptorMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: FunctionBar.c (DWARFImportSummary)  
+INFO  DWARF compUnit: Hashtable.c (DWARFImportSummary)  
+INFO  DWARF compUnit: Header.c (DWARFImportSummary)  
+INFO  DWARF compUnit: HeaderOptionsPanel.c (DWARFImportSummary)  
+INFO  DWARF compUnit: HostnameMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: IncSet.c (DWARFImportSummary)  
+INFO  DWARF compUnit: InfoScreen.c (DWARFImportSummary)  
+INFO  DWARF compUnit: ListItem.c (DWARFImportSummary)  
+INFO  DWARF compUnit: LoadAverageMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: Machine.c (DWARFImportSummary)  
+INFO  DWARF compUnit: MainPanel.c (DWARFImportSummary)  
+INFO  DWARF compUnit: MemoryMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: MemorySwapMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: Meter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: MetersPanel.c (DWARFImportSummary)  
+INFO  DWARF compUnit: NetworkIOMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: Object.c (DWARFImportSummary)  
+INFO  DWARF compUnit: OpenFilesScreen.c (DWARFImportSummary)  
+INFO  DWARF compUnit: OptionItem.c (DWARFImportSummary)  
+INFO  DWARF compUnit: Panel.c (DWARFImportSummary)  
+INFO  DWARF compUnit: Process.c (DWARFImportSummary)  
+INFO  DWARF compUnit: ProcessLocksScreen.c (DWARFImportSummary)  
+INFO  DWARF compUnit: ProcessTable.c (DWARFImportSummary)  
+INFO  DWARF compUnit: Row.c (DWARFImportSummary)  
+INFO  DWARF compUnit: RichString.c (DWARFImportSummary)  
+INFO  DWARF compUnit: Scheduling.c (DWARFImportSummary)  
+INFO  DWARF compUnit: ScreenManager.c (DWARFImportSummary)  
+INFO  DWARF compUnit: ScreensPanel.c (DWARFImportSummary)  
+INFO  DWARF compUnit: ScreenTabsPanel.c (DWARFImportSummary)  
+INFO  DWARF compUnit: Settings.c (DWARFImportSummary)  
+INFO  DWARF compUnit: SignalsPanel.c (DWARFImportSummary)  
+INFO  DWARF compUnit: SwapMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: SysArchMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: Table.c (DWARFImportSummary)  
+INFO  DWARF compUnit: TasksMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: TraceScreen.c (DWARFImportSummary)  
+INFO  DWARF compUnit: UptimeMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: UsersTable.c (DWARFImportSummary)  
+INFO  DWARF compUnit: Vector.c (DWARFImportSummary)  
+INFO  DWARF compUnit: XUtils.c (DWARFImportSummary)  
+INFO  DWARF compUnit: generic/gettime.c (DWARFImportSummary)  
+INFO  DWARF compUnit: generic/hostname.c (DWARFImportSummary)  
+INFO  DWARF compUnit: generic/uname.c (DWARFImportSummary)  
+INFO  DWARF compUnit: linux/CGroupUtils.c (DWARFImportSummary)  
+INFO  DWARF compUnit: linux/HugePageMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: linux/IOPriorityPanel.c (DWARFImportSummary)  
+INFO  DWARF compUnit: linux/LibSensors.c (DWARFImportSummary)  
+INFO  DWARF compUnit: linux/LinuxMachine.c (DWARFImportSummary)  
+INFO  DWARF compUnit: linux/LinuxProcess.c (DWARFImportSummary)  
+INFO  DWARF compUnit: linux/LinuxProcessTable.c (DWARFImportSummary)  
+INFO  DWARF compUnit: linux/Platform.c (DWARFImportSummary)  
+INFO  DWARF compUnit: linux/PressureStallMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: linux/SELinuxMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: linux/SystemdMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: linux/ZramMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: zfs/ZfsArcMeter.c (DWARFImportSummary)  
+INFO  DWARF compUnit: zfs/ZfsCompressedArcMeter.c (DWARFImportSummary)  
+ERROR DWARF data type remappings (DWARF data type definitions that changed meaning in different compile units): (DWARFImportSummary)  
+ERROR   Data type -> changed to -> Data Type (DWARFImportSummary)  
+ERROR   /int -> /wchar_t (DWARFImportSummary)  
+ERROR DWARF un-recoverable expressions: (DWARFImportSummary)  
+ERROR   DW_OP_reg17 -> 5 (DWARFImportSummary)  
+ERROR   DW_OP_reg9 -> 2 (DWARFImportSummary)  
+ERROR   DW_OP_reg14 -> 1 (DWARFImportSummary)  
+ERROR   DW_OP_reg10 -> 1 (DWARFImportSummary)  
+ERROR   DW_OP_addr; DW_OP_stack_value -> 2 (DWARFImportSummary)  
+ERROR   DW_OP_reg5 -> 546 (DWARFImportSummary)  
+ERROR   DW_OP_reg1 -> 123 (DWARFImportSummary)  
+ERROR   DW_OP_reg18 -> 1 (DWARFImportSummary)  
+ERROR   DW_OP_lit0; DW_OP_stack_value -> 2 (DWARFImportSummary)  
+ERROR   DW_OP_reg2 -> 52 (DWARFImportSummary)  
+ERROR   DW_OP_reg8 -> 18 (DWARFImportSummary)  
+ERROR   DW_OP_reg11 -> 1 (DWARFImportSummary)  
+ERROR   DW_OP_reg4 -> 306 (DWARFImportSummary)  
+INFO  hit non-returning function, restarting decompiler switch analyzer later (DecompilerSwitchAnalyzer)  
+INFO  Packed database cache: /var/tmp/jkm-ghidra/packed-db-cache (PackedDatabaseCache)  
+INFO  Applied data type archive: generic_clib_64 (ApplyDataArchiveAnalyzer)  
+INFO  -----------------------------------------------------
+    ASCII Strings                              0.226 secs
+    Apply Data Archives                        0.101 secs
+    Call Convention ID                         3.099 secs
+    Call-Fixup Installer                       0.160 secs
+    Create Address Tables                      0.064 secs
+    Create Function                            0.026 secs
+    DWARF                                      2.664 secs
+    Data Reference                             0.056 secs
+    Decompiler Switch Analysis                 0.110 secs
+    Decompiler Switch Analysis - One Time      2.697 secs
+    Demangler GNU                              0.050 secs
+    Disassemble Entry Points                   0.972 secs
+    ELF Scalar Operand References              0.262 secs
+    Embedded Media                             0.005 secs
+    External Entry References                  0.003 secs
+    Function ID                                0.247 secs
+    Function Start Pre Search                  0.010 secs
+    Function Start Search                      0.035 secs
+    Function Start Search After Code           0.015 secs
+    Function Start Search After Data           0.011 secs
+    GCC Exception Handlers                     0.188 secs
+    Non-Returning Functions - Discovered       0.099 secs
+    Non-Returning Functions - Known            0.006 secs
+    Reference                                  0.109 secs
+    Shared Return Calls                        0.104 secs
+    Stack                                      0.871 secs
+    Subroutine References                      0.050 secs
+    Subroutine References - One Time           0.000 secs
+    x86 Constant Reference Analyzer            1.070 secs
+-----------------------------------------------------
+     Total Time   13 secs
+-----------------------------------------------------
+ (AutoAnalysisManager)  
+INFO  REPORT: Analysis succeeded for file: file:///home/jkm/htop/debug/htop (HeadlessAnalyzer)  
+INFO  REPORT: Execute script: ApplyFixes.java  (HeadlessAnalyzer)  
+INFO  SCRIPT: /home/jkm/htop/tools/ghidra_scripts/ApplyFixes.java (HeadlessAnalyzer)  
+INFO  ApplyFixes.java> type /stdlib.h/functions/__compar_fn_t: Existing function definition "__compar_fn_t" may not be replaced with "__compar_fn_t" (GhidraScript)  
+INFO  ApplyFixes.java> type /signal.h/functions/__sighandler_t: Existing function definition "__sighandler_t" may not be replaced with "__sighandler_t" (GhidraScript)  
+INFO  ApplyFixes.java> type /DWARF/Platform.c/Platform_Battery_getSysData/lexical_block_0/anon_enum_32: Datatype to replace is not contained in this datatype manager. (GhidraScript)  
+INFO  ApplyFixes.java> type /DWARF/IncSet.h/anon_unknown.dwarf_2122/anon_enum_32: Datatype to replace is not contained in this datatype manager. (GhidraScript)  
+INFO  ApplyFixes.java> type /DWARF/Meter.h/anon_unknown.dwarf_62ca/anon_enum_32: Datatype to replace is not contained in this datatype manager. (GhidraScript)  
+INFO  ApplyFixes.java> type /DWARF/ctype.h/anon_unknown.dwarf_35e1/anon_enum_32: Datatype to replace is not contained in this datatype manager. (GhidraScript)  
+INFO  ApplyFixes.java> type /DWARF/ctype.h/anon_unknown.dwarf_57d3/anon_enum_32: Datatype to replace is not contained in this datatype manager. (GhidraScript)  
+INFO  ApplyFixes.java> type /DWARF/dirent.h/anon_unknown.dwarf_95b5/anon_enum_32: Datatype to replace is not contained in this datatype manager. (GhidraScript)  
+INFO  ApplyFixes.java> type /DWARF/langinfo.h/anon_enum_32: Datatype to replace is not contained in this datatype manager. (GhidraScript)  
+INFO  ApplyFixes.java> types merged 121, renamed 142 (GhidraScript)  
+INFO  ApplyFixes.java> padding bytes named 645 (GhidraScript)  
+INFO  ApplyFixes.java> retyped this-parameters 339 (GhidraScript)  
+INFO  ApplyFixes.java> deleted 2 versioned import labels (GhidraScript)  
+INFO  ApplyFixes.java> renamed 119 symbols (GhidraScript)  
+INFO  ApplyFixes.java> extern prototypes 81 (GhidraScript)  
+INFO  ApplyFixes.java> format overrides 336, not constant 0 (GhidraScript)  
+INFO  ApplyFixes.java> indirect call overrides 169 (5 calls with float/vararg/full signatures kept) (GhidraScript)  
+INFO  REPORT: Execute script: ExportC.java '/home/jkm/htop/raw'  (HeadlessAnalyzer)  
+INFO  SCRIPT: /home/jkm/htop/tools/ghidra_scripts/ExportC.java (HeadlessAnalyzer)  
+INFO  ExportC.java> pass0 sized 13 globals (GhidraScript)  
+INFO  ExportC.java> pass1 created 4 global types (GhidraScript)  
+INFO  ExportC.java> .rodata 00147000 30225 (GhidraScript)  
+INFO  ExportC.java> .data.rel.ro 00155c00 19200 (GhidraScript)  
+INFO  ExportC.java> .data 0015b000 4216 (GhidraScript)  
+INFO  ExportC.java> .bss 0015c080 6272 (GhidraScript)  
+INFO  ANALYZING changes made by post scripts: file:///home/jkm/htop/debug/htop (HeadlessAnalyzer)  
+INFO  REPORT: Post-analysis succeeded for file: file:///home/jkm/htop/debug/htop (HeadlessAnalyzer)  
+INFO  /htop: file created (jkm) (LocalFileSystem)  
+INFO  REPORT: Save succeeded for: /htop (htop:/htop) (HeadlessAnalyzer)  
+INFO  REPORT: Import succeeded (HeadlessAnalyzer)  

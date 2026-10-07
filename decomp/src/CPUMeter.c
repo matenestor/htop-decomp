@@ -1,4 +1,18 @@
 #include "htop.h"
+#include "CPUHistory.h"
+
+/* number of cores a multi-CPU meter shows: LeftCPUs* the first half, RightCPUs* the second */
+static int CPUMeter_coreCount(const Meter *this, uint cpus)
+{
+  char kind = ((const MeterClass *)(this->super).klass)->name[0];
+  if (kind == 'L') {
+    return (int)((cpus + 1) >> 1);
+  }
+  if (kind == 'R') {
+    return (int)(cpus >> 1);
+  }
+  return (int)cpus;
+}
 
 /* AllCPUsMeter_updateValues @ 0x114070 */
 
@@ -7,46 +21,14 @@
 void AllCPUsMeter_updateValues(Meter *this)
 
 {
-  long *plVar1;
-  byte bVar2;
-  uint uVar3;
-  long *a0;
-  ulong uVar4;
-  ulong a3;
-  ulong a2;
-  ulong extraout_RDX;
-  long *plVar5;
-  long in_RSI;
-  long in_R8;
-  long in_R9;
+  CPUHistoryMeterData *data = this->meterData;
+  int count = CPUMeter_coreCount(this,data->cpus);
 
-  plVar5 = *(long **)((long)this->meterData + 8);
-                    /* Unresolved local var: CPUMeterData * data@[???]
-                       Unresolved local var: uint cpus@[???] */
-  uVar3 = *(uint *)this->meterData;
-  a3 = (ulong)(int)uVar3;
-  bVar2 = (byte)*(uchar *)(this->super).klass[3].delete;
-  a2 = (ulong)bVar2;
-  if (bVar2 == 0x4c) {
-    uVar4 = (ulong)(uVar3 + 1 >> 1);
+  for (int i = 0; i < count; i++) {
+    Meter *core = data->meters[i];
+    (*(code *)((const MeterClass *)(core->super).klass)->updateValues)(core);
+    CPUHistory_record(data->history,i,this->host->monotonicMs,CPUHistory_meterPercent(core));
   }
-  else {
-    uVar4 = (ulong)(uVar3 >> 1);
-    if (bVar2 != 0x52) {
-      uVar4 = a3;
-    }
-  }
-                    /* Unresolved local var: int i@[???] */
-  if (0 < (int)uVar4) {
-    plVar1 = plVar5 + uVar4;
-    do {
-      a0 = (long *)*plVar5;
-      plVar5 = plVar5 + 1;
-      (**(code **)(*a0 + 0x38))((long)a0,in_RSI,a2,a3,in_R8,in_R9);
-      a2 = extraout_RDX;
-    } while (plVar1 != plVar5);
-  }
-  return;
 }
 
 
@@ -58,65 +40,19 @@ void AllCPUsMeter_updateValues(Meter *this)
 void CPUMeterCommonDraw(Meter *this,int x,int y,int w,int ncol)
 
 {
-  char cVar1;
-  long *plVar2;
-  long a0;
-  long lVar3;
-  ulong uVar4;
-  int iVar5;
-  int iVar6;
-  uint uVar7;
-  uint uVar8;
-  undefined4 in_register_00000084;
-  long in_R9;
-  int iVar9;
-  int iVar10;
-  ulong uVar11;
+  CPUHistoryMeterData *data = this->meterData;
+  int count = CPUMeter_coreCount(this,data->cpus);
+  int colwidth = (w - ncol) / ncol + 1;
+  int diff = w - ncol * colwidth;
+  int nrows = (count + ncol - 1) / ncol;
 
-                    /* Unresolved local var: CPUMeterData * data@[???]
-                       Unresolved local var: Meter * * meters@[???]
-                       Unresolved local var: int start@[???]
-                       Unresolved local var: int count@[???]
-                       Unresolved local var: int colwidth@[???]
-                       Unresolved local var: int diff@[???]
-                       Unresolved local var: int nrows@[???] */
-                    /* Unresolved local var: CPUMeterData * data@[???]
-                       Unresolved local var: uint cpus@[???] */
-  plVar2 = *(long **)((long)this->meterData + 8);
-  uVar7 = *(uint *)this->meterData;
-  cVar1 = (char)*(uchar *)(this->super).klass[3].delete;
-  if (cVar1 == 'L') {
-    uVar7 = uVar7 + 1 >> 1;
+  /* same column layout as the bars had; each core is one heatmap row */
+  for (int i = 0; i < count; i++) {
+    int d = i / nrows;
+    int xpos = x + d * colwidth + (d < diff ? d : diff);
+    int ypos = y + i % nrows;
+    CPUHistory_drawRow(data->history,i,data->meters[i],this->host->monotonicMs,xpos,ypos,colwidth);
   }
-  else if (cVar1 == 'R') {
-    uVar7 = uVar7 >> 1;
-  }
-  uVar8 = (w - ncol) / ncol + 1;
-  iVar9 = w - ncol * uVar8;
-  iVar10 = ((uVar7 - 1) + ncol) / ncol;
-                    /* Unresolved local var: int i@[???] */
-  if (0 < (int)uVar7) {
-    uVar11 = 0;
-    do {
-                    /* Unresolved local var: int d@[???]
-                       Unresolved local var: int xpos@[???]
-                       Unresolved local var: int ypos@[???] */
-      a0 = plVar2[uVar11];
-      lVar3 = (long)iVar10;
-      uVar4 = (ulong)(uint)((int)uVar11 >> 0x1f) << 0x20 | uVar11 & 0xffffffff;
-      iVar5 = (int)((long)uVar4 / lVar3);
-      iVar6 = iVar5;
-      if (iVar9 < iVar5) {
-        iVar6 = iVar9;
-      }
-      uVar11 = uVar11 + 1;
-      (**(code **)(a0 + 8))
-                (a0,(ulong)(uint)(iVar5 * uVar8 + x + iVar6),
-                 (ulong)(uint)((int)((long)uVar4 % lVar3) * *(int *)(*plVar2 + 0x48) + y),
-                 (ulong)uVar8,CONCAT44(in_register_00000084,ncol),in_R9);
-    } while ((long)(int)uVar7 != uVar11);
-  }
-  return;
 }
 
 
@@ -167,40 +103,12 @@ void OctoColCPUsMeter_draw(Meter *this,int x,int y,int w)
 void SingleColCPUsMeter_draw(Meter *this,int x,int y,int w)
 
 {
-  char cVar1;
-  uint uVar2;
-  long *plVar3;
-  ulong uVar4;
-  long *plVar5;
-  long *plVar6;
-  long in_R8;
-  long in_R9;
+  CPUHistoryMeterData *data = this->meterData;
+  int count = CPUMeter_coreCount(this,data->cpus);
 
-  plVar3 = *(long **)((long)this->meterData + 8);
-                    /* Unresolved local var: CPUMeterData * data@[???]
-                       Unresolved local var: uint cpus@[???] */
-  uVar2 = *(uint *)this->meterData;
-  cVar1 = (char)*(uchar *)(this->super).klass[3].delete;
-  if (cVar1 == 'L') {
-    uVar4 = (ulong)(uVar2 + 1 >> 1);
+  for (int i = 0; i < count; i++) {
+    CPUHistory_drawRow(data->history,i,data->meters[i],this->host->monotonicMs,x,y + i,w);
   }
-  else {
-    uVar4 = (ulong)(uVar2 >> 1);
-    if (cVar1 != 'R') {
-      uVar4 = (long)(int)uVar2;
-    }
-  }
-                    /* Unresolved local var: int i@[???] */
-  if (0 < (int)uVar4) {
-    plVar5 = plVar3;
-    do {
-      plVar6 = plVar5 + 1;
-      (**(code **)(*plVar5 + 8))(*plVar5,(ulong)(uint)x,(ulong)(uint)y,(ulong)(uint)w,in_R8,in_R9);
-      y = y + *(int *)(*plVar5 + 0x48);
-      plVar5 = plVar6;
-    } while (plVar6 != plVar3 + uVar4);
-  }
-  return;
 }
 
 
@@ -302,7 +210,8 @@ LAB_001143b9:
     } while (puVar1 != puVar8);
   }
 LAB_00114449:
-  this->h = (((*(int (*))(__fp - 0x3c)) + -1 + ncol) / ncol) * wVar3;
+  /* heatmap: one row per core per column, whatever mode is selected */
+  this->h = ((*(int (*))(__fp - 0x3c)) + -1 + ncol) / ncol;
   return;
 }
 
@@ -396,6 +305,7 @@ void AllCPUsMeter_done(Meter *this)
     __ptr_00 = *(undefined8 **)(__ptr + 2);
   }
   free(__ptr_00);
+  CPUHistory_delete(((CPUHistoryMeterData *)__ptr)->history);
   free(__ptr);
   return;
 }
@@ -503,7 +413,7 @@ void CPUMeterCommonInit(Meter *this,int ncol)
   uVar6 = this->host->existingCPUs;
   if (puVar3 == (uint *)0x0) {
                     /* Unresolved local var: void * data@[???] */
-    puVar3 = malloc(0x10);
+    puVar3 = malloc(sizeof(CPUHistoryMeterData));
     if (puVar3 == (uint *)0x0) {
 LAB_0011ca3b:
                     /* WARNING: Subroutine does not return */
@@ -516,6 +426,7 @@ LAB_0011ca3b:
     a3 = calloc((ulong)uVar6,8);
     if (a3 == (long *)0x0) goto LAB_0011ca3b;
     *(long **)(puVar3 + 2) = a3;
+    ((CPUHistoryMeterData *)puVar3)->history = CPUHistory_new(uVar6);
   }
   else {
     a3 = *(long **)(puVar3 + 2);
@@ -561,7 +472,8 @@ LAB_0011c935:
   else {
     pMVar4 = Meter_modes[this->mode];
   }
-  this->h = (((uVar6 - 1) + ncol) / ncol) * pMVar4->h;
+  /* heatmap: one row per core per column, whatever mode is selected */
+  this->h = ((uVar6 - 1) + ncol) / ncol;
   return;
 }
 

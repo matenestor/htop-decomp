@@ -20,6 +20,10 @@ It needs `gcc` and `libncurses-dev`. libnl-3 is linked directly by its `.so.200`
 | `decomp/include/externs.h` | Library imports. |
 | `decomp/include/ghidra.h` | Ghidra types and helpers (`undefined8`, `CONCAT44`, `SUB168`, …). |
 
+## Changes from stock htop
+
+- **CPU history heatmap**: the per-core CPU meters (`AllCPUs*`, `LeftCPUs*`, `RightCPUs*`) show one row per core with usage over the last 60 s (right edge = now) instead of momentary bars. Rows use `▁…█` (ASCII `.:-=+*#@` without UTF-8), green below 70 %, red above. Code: `decomp/src/CPUHistory.c`, wired in `decomp/src/CPUMeter.c`.
+
 ## Reading the code
 
 - Functions, parameters and globals have their original names and types, so fields print as `this->selected` and `pMVar3->super.klass`. Locals that the optimizer kept only in registers get Ghidra names (`iVar1`, `pcVar2`).
