@@ -1,0 +1,5 @@
+001138a0	OpenFilesScreen_scan_lto_priv_0_cold	abort	ext
+001139a0	_INIT_0	register_tm_clones	int
+00117880	EnvScreen_delete	CommandScreen_delete	int
+001200b0	OpenFilesScreen_delete	CommandScreen_delete	int
+001200c0	ProcessLocksScreen_delete	CommandScreen_delete	int
