@@ -22,7 +22,9 @@ It needs `gcc` and `libncurses-dev`. libnl-3 is linked directly by its `.so.200`
 
 ## Changes from stock htop
 
-- **CPU history heatmap**: the per-core CPU meters (`AllCPUs*`, `LeftCPUs*`, `RightCPUs*`) show one row per core with usage over the last 60 s (right edge = now) instead of momentary bars. Rows use `▁…█` (ASCII `.:-=+*#@` without UTF-8), green below 70 %, red above. Code: `decomp/src/CPUHistory.c`, wired in `decomp/src/CPUMeter.c`.
+- **CPU history graph**: the per-core CPU meters (`AllCPUs*`, `LeftCPUs*`, `RightCPUs*`) are replaced by one line graph of all cores over the last 60 s (right edge = now), 6 rows plus a legend row. Each core is a line in its own colour (16 colours on 256-colour terminals, 14 on 8-colour ones), drawn with braille dots (`*` without UTF-8). A `LeftCPUs*` meter draws it over the full header width and the `RightCPUs*` meter beside it stays empty. Code: `decomp/src/CPUHistory.c`, wired in `decomp/src/CPUMeter.c`.
+
+![CPU history graph above the process list](showcase.png)
 
 ## Reading the code
 
