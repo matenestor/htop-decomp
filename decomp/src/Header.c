@@ -2,43 +2,51 @@
 
 /* Header_new @ 0x1184a0 */
 
-undefined8 * Header_new(undefined8 param_1,int param_2)
+Header_4 * Header_new(Machine_2 *host,HeaderLayout hLayout)
 
 {
-  undefined8 *puVar1;
-  void *pvVar2;
-  undefined8 *puVar3;
-  void *pvVar4;
+  Header_4 *pHVar1;
+  Vector **ppVVar2;
+  Vector *pVVar3;
+  Object **ppOVar4;
   ulong uVar5;
   ulong uVar6;
 
-  puVar1 = calloc(1,0x20);
-  if (puVar1 != (undefined8 *)0x0) {
-    uVar6 = (ulong)(byte)(&DAT_00155fa0)[(long)param_2 * 0x18];
-    pvVar2 = malloc(uVar6 * 8);
-    if (pvVar2 != (void *)0x0) {
-      *puVar1 = pvVar2;
-      *(int *)(puVar1 + 2) = param_2;
-      puVar1[1] = param_1;
+                    /* Unresolved local var: void * data@[???] */
+  pHVar1 = calloc(1,0x20);
+  if (pHVar1 != (Header_4 *)0x0) {
+    uVar6 = (ulong)HeaderLayout_layouts[hLayout].columns;
+                    /* Unresolved local var: void * data@[???] */
+    ppVVar2 = malloc(uVar6 * 8);
+    if (ppVVar2 != (Vector **)0x0) {
+      pHVar1->columns = ppVVar2;
+      pHVar1->headerLayout = hLayout;
+      pHVar1->host = host;
+                    /* Unresolved local var: size_t i@[???]
+                       Unresolved local var: size_t H_fEC_numColumns_@[???] */
       if (uVar6 != 0) {
+                    /* Unresolved local var: Vector * this@[???] */
         uVar5 = 0;
         do {
-          puVar3 = malloc(0x28);
-          if (puVar3 == (undefined8 *)0x0) goto LAB_00118594;
-          *(undefined4 *)((long)puVar3 + 0x14) = 10;
-          pvVar4 = calloc(10,8);
-          if (pvVar4 == (void *)0x0) goto LAB_00118594;
-          *puVar3 = pvVar4;
-          *(undefined8 **)((long)pvVar2 + uVar5 * 8) = puVar3;
+                    /* Unresolved local var: void * data@[???] */
+          pVVar3 = malloc(0x28);
+          if (pVVar3 == (Vector *)0x0) goto LAB_00118594;
+          pVVar3->growthRate = 10;
+                    /* Unresolved local var: void * data@[???] */
+          ppOVar4 = calloc(10,8);
+          if (ppOVar4 == (Object **)0x0) goto LAB_00118594;
+          pVVar3->array = ppOVar4;
+          ppVVar2[uVar5] = pVVar3;
           uVar5 = uVar5 + 1;
-          *(undefined4 *)(puVar3 + 2) = 10;
-          puVar3[1] = Meter_class;
-          *(undefined1 *)((long)puVar3 + 0x24) = 1;
-          puVar3[3] = 0xffffffff00000000;
-          *(undefined4 *)(puVar3 + 4) = 0;
+          pVVar3->arraySize = 10;
+          pVVar3->type = &Meter_class.super;
+          pVVar3->owner = true;
+          pVVar3->items = 0;
+          pVVar3->dirty_index = -1;
+          pVVar3->dirty_count = 0;
         } while (uVar5 != uVar6);
       }
-      return puVar1;
+      return pHVar1;
     }
   }
 LAB_00118594:
@@ -47,290 +55,46 @@ LAB_00118594:
 }
 
 
-/* FUN_001185a0 @ 0x1185a0 */
-
-/* WARNING: Removing unreachable block (ram,0x00118661) */
-/* WARNING: Heritage AFTER dead removal. Example location: s0xffffffffffffff70 : 0x0011867e */
-/* WARNING: Restarted to delay deadcode elimination for space: stack */
-
-undefined8 FUN_001185a0(long *param_1)
-
-{
-  undefined1 __frame[0x138] __attribute__((aligned(16)));
-  undefined1 *__fp = __frame + 0xf8;
-  char cVar1;
-  wchar_t __wc;
-  int *piVar2;
-  code *pcVar3;
-  long *plVar4;
-  ulong *puVar5;
-  long *plVar6;
-  ulong *puVar7;
-  int iVar8;
-  int iVar9;
-  undefined4 *puVar10;
-  long *a0;
-  size_t sVar11;
-  ulong *puVar12;
-  long lVar13;
-  long a3;
-  undefined8 *puVar14;
-  char *pcVar15;
-  char *pcVar16;
-  ulong *a3_00;
-  uint uVar17;
-  long *plVar18;
-  long extraout_RDX;
-  wchar_t *pwVar19;
-  long *plVar20;
-  long *plVar21;
-  ulong *a5;
-  undefined1 (*pauVar22) [16];
-  undefined8 uVar23;
-  long lVar24;
-  long in_FS_OFFSET = (long)__fake_fs;
-
-  plVar20 = &(*(undefined8 *)(__fp - 0x88));
-  (*(long *)(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
-  (*(undefined8 *)(__fp - 0x48)) = 0;
-  (*(char * *)(__fp - 0x58)) = ((char *)(long)&s_Sort_0014721b /* "Sort   " */);
-  (*(char * *)(__fp - 0x50)) = ((char *)(long)&s_Cancel_00147223 /* "Cancel " */);
-  (*(long * *)(__fp - 0x78)) = param_1;
-  puVar10 = FunctionBar_new(&(*(char * *)(__fp - 0x58)),(long)&PTR_s_Enter_001565c0,(long)&DAT_0014d258);
-  a0 = malloc(0x26e0);
-  if (a0 != (long *)0x0) {
-    a3_00 = (ulong *)0x0;
-    *a0 = (long)Panel_class;
-    Panel_init((long)a0,0,0,0,0,ListItem_class,1,puVar10);
-    uVar17 = *(uint *)(CRT_colors + 0x1c);
-    (*(long * *)(__fp - 0x60)) = &(*(undefined8 *)(__fp - 0x88));
-    pwVar19 = (*(wchar_t (*)[4])(__fp - 0xa8));
-    (*(long * *)(__fp - 0x60)) = &(*(undefined8 *)(__fp - 0x88));
-    sVar11 = mbstowcs((*(wchar_t (*)[4])(__fp - 0xa8)),((char *)(long)&s_Sort_by_0014722b /* "Sort by" */),7);
-    iVar8 = (int)sVar11;
-    if (0 < iVar8) {
-      FUN_00130130((int *)(a0 + 0xc),iVar8);
-      (*(long * *)(__fp - 0x68)) = a0;
-      pauVar22 = (undefined1 (*) [16])a0[0xd];
-      do {
-        __wc = *pwVar19;
-        iVar9 = iswprint(__wc);
-        *(undefined16 *)(*pauVar22) = (undefined16)0x0;
-        if (iVar9 == 0) {
-          __wc = L'�';
-        }
-        pwVar19 = pwVar19 + 1;
-        *(uint *)*pauVar22 = uVar17 & 0xffffff;
-        *(undefined16 *)(*(undefined1 (*) [16])(*pauVar22 + 0xc)) = (undefined16)0x0;
-        *(wchar_t *)(*pauVar22 + 4) = __wc;
-        a0 = (*(long * *)(__fp - 0x68));
-        pauVar22 = (undefined1 (*) [16])(pauVar22[1] + 0xc);
-      } while (pwVar19 != (*(wchar_t (*)[4])(__fp - 0xa8)) + (ulong)(iVar8 - 1) + 1);
-    }
-    plVar20 = (*(long * *)(__fp - 0x60));
-    *(undefined1 *)(a0 + 9) = 1;
-    lVar24 = 0;
-    plVar21 = *(long **)*(*(long * *)(__fp - 0x78));
-    a5 = (ulong *)plVar21[3];
-    piVar2 = *(int **)(plVar21[8] + 0x18);
-    iVar8 = *piVar2;
-    puVar5 = (ulong *)*(*(long * *)(__fp - 0x78));
-    plVar6 = plVar21;
-    puVar7 = a5;
-    plVar4 = (*(long * *)(__fp - 0x78));
-    do {
-      while( true ) {
-        (*(long * *)(__fp - 0x78)) = plVar4;
-        if (iVar8 == 0) {
-          a3 = 0;
-          uVar23 = 0x61;
-          (*(long * *)(__fp - 0x60)) = plVar6;
-          plVar18 = a0;
-          lVar13 = Action_pickFromVector(plVar4,(long)a0,0xe,'\0',(long)plVar6,(long)a5);
-          plVar21 = (*(long * *)(__fp - 0x60));
-          lVar24 = extraout_RDX;
-          if (lVar13 != 0) {
-            iVar8 = *(int *)(lVar13 + 0x10);
-            a3 = (long)iVar8;
-            lVar24 = (*(long * *)(__fp - 0x60))[8];
-            cVar1 = Process_fields[a3 * 0x20 + 0x1d];
-            if ((*(char *)(lVar24 + 0x35) == '\0') && (*(char *)(lVar24 + 0x34) != '\0')) {
-              *(int *)(lVar24 + 0x30) = iVar8;
-              *(uint *)(lVar24 + 0x28) = (-(uint)(cVar1 == '\0') & 2) - 1;
-            }
-            else {
-              *(int *)(lVar24 + 0x2c) = iVar8;
-              *(undefined1 *)(lVar24 + 0x34) = 0;
-              *(uint *)(lVar24 + 0x24) = (-(uint)(cVar1 == '\0') & 2) - 1;
-            }
-            uVar23 = 0x6d;
-          }
-          pcVar3 = *(code **)(*a0 + 0x10);
-          (*pcVar3)((long)a0,(long)plVar18,lVar24,a3,(long)plVar21,(long)a5);
-          *(undefined1 *)(puVar5[0x15] + 0x30) = 1;
-          if ((*(long *)(__fp - 0x40)) != *(long *)(in_FS_OFFSET + 0x28)) {
-                    /* WARNING: Subroutine does not return */
-            __stack_chk_fail();
-          }
-          return uVar23;
-        }
-        (*(ulong * *)(__fp - 0x80)) = puVar5;
-        (*(ulong * *)(__fp - 0x70)) = puVar7;
-        (*(long * *)(__fp - 0x68)) = plVar6;
-        if (iVar8 < 0x84) break;
-        plVar21 = (long *)*puVar7;
-        a5 = (ulong *)puVar7[1];
-        plVar18 = (long *)((ulong)(long)iVar8 % (ulong)plVar21);
-        pcVar16 = (char *)(a5 + (long)plVar18 * 3)[2];
-        a3_00 = puVar7;
-        if (pcVar16 != (char *)0x0) {
-          a3_00 = (ulong *)0x0;
-          puVar12 = a5 + (long)plVar18 * 3;
-          do {
-            while( true ) {
-              if (iVar8 == (int)*puVar12) {
-                pcVar15 = *(char **)(pcVar16 + 0x28);
-                if (*(char **)(pcVar16 + 0x28) == (char *)0x0) {
-                  pcVar15 = pcVar16;
-                }
-                pcVar16 = strdup(pcVar15);
-                if (pcVar16 != (char *)0x0) goto LAB_001188a6;
-                goto LAB_0011899f;
-              }
-              if ((ulong *)puVar12[1] < a3_00) goto LAB_001187d0;
-              plVar18 = (long *)((long)plVar18 + 1);
-              if (plVar21 != plVar18) break;
-              plVar18 = (long *)0x0;
-              a3_00 = (ulong *)((long)a3_00 + 1);
-              pcVar16 = (char *)a5[2];
-              puVar12 = a5;
-              if (pcVar16 == (char *)0x0) goto LAB_001187d0;
-            }
-            a3_00 = (ulong *)((long)a3_00 + 1);
-            puVar12 = a5 + (long)plVar18 * 3;
-            pcVar16 = (char *)puVar12[2];
-          } while (pcVar16 != (char *)0x0);
-        }
-LAB_001187d0:
-        lVar24 = lVar24 + 1;
-        iVar8 = piVar2[lVar24];
-      }
-      pcVar16 = *(char **)(Process_fields + (long)iVar8 * 0x20);
-      pcVar16 = String_trim(pcVar16);
-LAB_001188a6:
-      iVar8 = piVar2[lVar24];
-      puVar14 = malloc(0x18);
-      if (puVar14 == (undefined8 *)0x0) break;
-      *puVar14 = ListItem_class;
-      (*(long * *)(__fp - 0x60)) = puVar14;
-      pcVar15 = strdup(pcVar16);
-      plVar6 = (*(long * *)(__fp - 0x60));
-      if (pcVar15 == (char *)0x0) break;
-      plVar4 = (long *)a0[4];
-      (*(long * *)(__fp - 0x60))[1] = (long)pcVar15;
-      lVar13 = plVar4[3];
-      *(int *)((*(long * *)(__fp - 0x60)) + 2) = iVar8;
-      *(undefined1 *)((long)(*(long * *)(__fp - 0x60)) + 0x14) = 0;
-      Vector_set(plVar4,(int)lVar13,(long)plVar6,(long)a3_00,(long)plVar21,(long)a5);
-      *(undefined1 *)(a0 + 9) = 1;
-      a3_00 = (ulong *)(ulong)(uint)piVar2[lVar24];
-      lVar13 = (*(long * *)(__fp - 0x68))[8];
-      if (*(char *)(lVar13 + 0x34) == '\0') {
-        uVar17 = *(uint *)(lVar13 + 0x2c);
-      }
-      else {
-        uVar17 = 1;
-        if (*(char *)(lVar13 + 0x35) == '\0') {
-          uVar17 = *(uint *)(lVar13 + 0x30);
-        }
-      }
-      if (piVar2[lVar24] == uVar17) {
-        iVar8 = *(int *)(a0[4] + 0x18) + -1;
-        if ((int)lVar24 < *(int *)(a0[4] + 0x18)) {
-          iVar8 = (int)lVar24;
-        }
-        if (iVar8 < 0) {
-          iVar8 = 0;
-        }
-        *(int *)(a0 + 5) = iVar8;
-        pcVar3 = *(code **)(*a0 + 0x20);
-        if (pcVar3 != (code *)0x0) {
-          (*pcVar3)((long)a0,0xffffffff,0,(long)a3_00,(long)plVar21,(long)a5);
-        }
-      }
-      lVar24 = lVar24 + 1;
-      free(pcVar16);
-      iVar8 = piVar2[lVar24];
-      puVar5 = (*(ulong * *)(__fp - 0x80));
-      plVar6 = (*(long * *)(__fp - 0x68));
-      puVar7 = (*(ulong * *)(__fp - 0x70));
-      plVar4 = (*(long * *)(__fp - 0x78));
-    } while( true );
-  }
-LAB_0011899f:
-                    /* WARNING: Subroutine does not return */
-  fail();
-}
-
-
-/* FUN_001189d0 @ 0x1189d0 */
-
-undefined8 FUN_001189d0(long *param_1)
-
-{
-  byte *pbVar1;
-  long *plVar2;
-  long lVar3;
-  undefined8 uVar4;
-
-  if (*(char *)(*(long *)(*(long *)*param_1 + 0x40) + 0x34) == '\0') {
-    uVar4 = FUN_001185a0(param_1);
-    return uVar4;
-  }
-  plVar2 = *(long **)(param_1[1] + 0x20);
-  if ((0 < (int)plVar2[3]) &&
-     (lVar3 = *(long *)(*plVar2 + (long)*(int *)(param_1[1] + 0x28) * 8), lVar3 != 0)) {
-    pbVar1 = (byte *)(lVar3 + 0x20);
-    *pbVar1 = *pbVar1 ^ 1;
-    return 3;
-  }
-  return 0;
-}
-
-
 /* Header_reinit @ 0x120190 */
 
-void Header_reinit(long *param_1,long param_rsi,long param_rdx,long param_rcx,long param_r8,
-                  long param_r9)
+/* DWARF original prototype: void Header_reinit(Header * this) */
+
+void Header_reinit(Header *this)
 
 {
   byte bVar1;
   code *pcVar2;
-  long *plVar3;
+  Vector *pVVar3;
   ulong a3;
-  long a2;
+  Vector **a2;
   long lVar4;
+  long in_RSI;
+  long in_R8;
+  long in_R9;
   ulong uVar5;
 
-  bVar1 = (&DAT_00155fa0)[(long)(int)param_1[2] * 0x18];
+                    /* Unresolved local var: size_t col@[???]
+                       Unresolved local var: size_t H_fEC_numColumns_@[???] */
+  bVar1 = HeaderLayout_layouts[this->headerLayout].columns;
   if ((ulong)bVar1 != 0) {
-    a2 = *param_1;
+    a2 = this->columns;
     uVar5 = 0;
     do {
-      plVar3 = *(long **)(a2 + uVar5 * 8);
+                    /* Unresolved local var: int i@[???] */
+      pVVar3 = a2[uVar5];
       lVar4 = 0;
-      a3 = (ulong)*(uint *)(plVar3 + 3);
-      if (0 < (int)*(uint *)(plVar3 + 3)) {
+      a3 = (ulong)(uint)pVVar3->items;
+      if (0 < pVVar3->items) {
         do {
-          plVar3 = *(long **)(*plVar3 + lVar4 * 8);
-          pcVar2 = *(code **)(*plVar3 + 0x20);
+                    /* Unresolved local var: Meter * meter@[???] */
+          pcVar2 = pVVar3->array[lVar4]->klass[1].extends;
           if (pcVar2 != (code *)0x0) {
-            (*pcVar2)((long)plVar3,param_rsi,a2,a3,param_r8,param_r9);
-            a2 = *param_1;
+            (*pcVar2)((long)pVVar3->array[lVar4],in_RSI,(long)a2,a3,in_R8,in_R9);
+            a2 = this->columns;
           }
-          plVar3 = *(long **)(a2 + uVar5 * 8);
+          pVVar3 = a2[uVar5];
           lVar4 = lVar4 + 1;
-        } while ((int)lVar4 < (int)plVar3[3]);
+        } while ((int)lVar4 < pVVar3->items);
       }
       uVar5 = uVar5 + 1;
     } while (uVar5 != bVar1);
@@ -342,90 +106,104 @@ void Header_reinit(long *param_1,long param_rsi,long param_rdx,long param_rcx,lo
 /* Header_draw @ 0x120230 */
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* DWARF original prototype: void Header_draw(Header * this) */
 
-void Header_draw(long *param_1,long param_rsi,long param_rdx,long param_rcx,long param_r8,
-                long param_r9)
+void Header_draw(Header *this)
 
 {
   undefined1 __frame[0xe8] __attribute__((aligned(16)));
   undefined1 *__fp = __frame + 0xa8;
-  byte bVar1;
-  long *plVar2;
-  long *a0;
-  long lVar3;
-  int iVar4;
-  long lVar5;
-  uint uVar6;
-  long lVar7;
-  uint uVar8;
+  byte *pbVar1;
+  byte bVar2;
+  int wVar3;
+  Vector *pVVar4;
+  Object *a0;
+  int iVar5;
+  long lVar6;
+  uint uVar7;
+  long lVar8;
+  int wVar9;
+  long in_R8;
+  long in_R9;
   int p1;
-  uint uVar9;
-  float fVar10;
+  uint uVar10;
   float fVar11;
+  float fVar12;
 
   p1 = 0;
-  lVar5 = param_1[3];
-  uVar8 = *(uint *)((long)param_1 + 0x14);
-  wattrset(_stdscr,*(int *)CRT_colors);
-  if (0 < (int)lVar5) {
+  wVar3 = this->height;
+  wVar9 = this->pad;
+  wattrset(_stdscr,*CRT_colors);
+                    /* Unresolved local var: int y@[???] */
+  if (0 < wVar3) {
     do {
-      iVar4 = wmove(_stdscr,p1,0);
-      if (iVar4 != -1) {
+      iVar5 = wmove(_stdscr,p1,0);
+      if (iVar5 != -1) {
         whline(_stdscr,0x20,_COLS);
       }
       p1 = p1 + 1;
-    } while ((int)lVar5 != p1);
+    } while (wVar3 != p1);
   }
-  lVar5 = (long)(int)param_1[2];
-  bVar1 = (&DAT_00155fa0)[lVar5 * 0x18];
-  if ((ulong)bVar1 != 0) {
-    (*(ulong *)(__fp - 0x48)) = 0;
-    (*(float *)(__fp - 0x54)) = 0.0;
-    uVar6 = (int)uVar8 / 2;
-    fVar11 = (float)(int)((_COLS + uVar8 * -2) - (bVar1 - 1));
+  lVar6 = (long)this->headerLayout;
+  bVar2 = HeaderLayout_layouts[lVar6].columns;
+                    /* Unresolved local var: size_t col@[???]
+                       Unresolved local var: size_t H_fEC_numColumns_@[???] */
+  if ((ulong)bVar2 != 0) {
+                    /* Unresolved local var: Vector * meters@[???]
+                       Unresolved local var: float colWidth@[???]
+                       Unresolved local var: int y@[???]
+                       Unresolved local var: int i@[???] */
+    (*(ulong (*))(__fp - 0x48)) = 0;
+    (*(float (*))(__fp - 0x54)) = 0.0;
+    uVar7 = wVar9 / 2;
+    fVar12 = (float)((_COLS + wVar9 * -2) - (bVar2 - 1));
     while( true ) {
-      plVar2 = *(long **)(*param_1 + (*(ulong *)(__fp - 0x48)) * 8);
-      (*(float *)(__fp - 0x3c)) = ((float)(byte)(&UNK_00155fa1)[(*(ulong *)(__fp - 0x48)) + lVar5 * 0x18] * fVar11) / 100.0;
-      fVar10 = (*(float *)(__fp - 0x3c));
-      if (ABS((*(float *)(__fp - 0x3c))) < 8388608.0) {
-        fVar10 = __builtin_floorf((*(float *)(__fp - 0x3c)));
+      pVVar4 = this->columns[(*(ulong (*))(__fp - 0x48))];
+      (*(float (*))(__fp - 0x3c)) = ((float)*(byte *)((*(ulong (*))(__fp - 0x48)) + lVar6 * 0x18 + (long)(__sec_data_rel_ro + 0x3a1)) * fVar12) / 100.0;
+      fVar11 = (*(float (*))(__fp - 0x3c));
+      if (ABS((*(float (*))(__fp - 0x3c))) < 8388608.0) {
+        fVar11 = __builtin_floorf((*(float (*))(__fp - 0x3c)));
       }
-      (*(float *)(__fp - 0x54)) = ((*(float *)(__fp - 0x3c)) - fVar10) + (*(float *)(__fp - 0x54));
-      if (1.0 <= (*(float *)(__fp - 0x54))) {
-        (*(float *)(__fp - 0x54)) = (*(float *)(__fp - 0x54)) - 1.0;
-        (*(float *)(__fp - 0x3c)) = (*(float *)(__fp - 0x3c)) + 1.0;
+      (*(float (*))(__fp - 0x54)) = ((*(float (*))(__fp - 0x3c)) - fVar11) + (*(float (*))(__fp - 0x54));
+      if (1.0 <= (*(float (*))(__fp - 0x54))) {
+        (*(float (*))(__fp - 0x54)) = (*(float (*))(__fp - 0x54)) - 1.0;
+        (*(float (*))(__fp - 0x3c)) = (*(float (*))(__fp - 0x3c)) + 1.0;
       }
-      lVar5 = 0;
-      uVar9 = uVar6;
-      if (0 < (int)plVar2[3]) {
+      lVar6 = 0;
+      uVar10 = uVar7;
+      if (0 < pVVar4->items) {
         do {
-          a0 = *(long **)(*plVar2 + lVar5 * 8);
-          fVar10 = (*(float *)(__fp - 0x3c));
-          if ((((int)a0[4] == 2) && (*(char *)(*a0 + 0x91) == '\0')) &&
-             (1 < *(int *)((long)a0 + 0x4c))) {
-            lVar7 = 1;
+          a0 = pVVar4->array[lVar6];
+          fVar11 = (*(float (*))(__fp - 0x3c));
+                    /* Unresolved local var: int j@[???] */
+          if (((*(int *)&a0[4].klass == 2) && (*(char *)((long)&a0->klass[4].delete + 1) == '\0'))
+             && (iVar5 = *(int *)((long)&a0[9].klass + 4), 1 < iVar5)) {
+            lVar8 = 1;
             do {
-              lVar3 = lVar7 + (*(ulong *)(__fp - 0x48)) + (long)(int)param_1[2] * 0x18;
-              lVar7 = lVar7 + 1;
-              fVar10 = fVar10 + 1.0 + ((float)(byte)(&UNK_00155fa1)[lVar3] * fVar11) / 100.0;
-            } while ((int)lVar7 < *(int *)((long)a0 + 0x4c));
+              pbVar1 = (byte *)((*(ulong (*))(__fp - 0x48)) + (long)this->headerLayout * 0x18 + (long)(__sec_data_rel_ro + 0x3a1) + lVar8);
+              lVar8 = lVar8 + 1;
+              fVar11 = fVar11 + 1.0 + ((float)*pbVar1 * fVar12) / 100.0;
+            } while ((int)lVar8 < iVar5);
           }
-          if (ABS(fVar10) < 8388608.0) {
-            fVar10 = __builtin_floorf(fVar10);
+                    /* Unresolved local var: Meter * meter@[???]
+                       Unresolved local var: float actualWidth@[???] */
+          if (ABS(fVar11) < 8388608.0) {
+            fVar11 = __builtin_floorf(fVar11);
           }
-          (*(code *)a0[1])((long)a0,(ulong)uVar8,(ulong)uVar9,(ulong)(uint)(int)fVar10,param_r8,
-                           param_r9);
-          lVar5 = lVar5 + 1;
-          uVar9 = uVar9 + (int)a0[9];
-        } while ((int)lVar5 < (int)plVar2[3]);
+          (*(code *)a0[1].klass)
+                    ((long)a0,(ulong)(uint)wVar9,(ulong)uVar10,(ulong)(uint)(int)fVar11,in_R8,in_R9)
+          ;
+          lVar6 = lVar6 + 1;
+          uVar10 = uVar10 + *(int *)&a0[9].klass;
+        } while ((int)lVar6 < pVVar4->items);
       }
-      if (ABS((*(float *)(__fp - 0x3c))) < 8388608.0) {
-        (*(float *)(__fp - 0x3c)) = __builtin_floorf((*(float *)(__fp - 0x3c)));
+      if (ABS((*(float (*))(__fp - 0x3c))) < 8388608.0) {
+        (*(float (*))(__fp - 0x3c)) = __builtin_floorf((*(float (*))(__fp - 0x3c)));
       }
-      (*(ulong *)(__fp - 0x48)) = (*(ulong *)(__fp - 0x48)) + 1;
-      uVar8 = (int)((float)(int)uVar8 + (*(float *)(__fp - 0x3c))) + 1;
-      if (bVar1 <= (*(ulong *)(__fp - 0x48))) break;
-      lVar5 = (long)(int)param_1[2];
+      (*(ulong (*))(__fp - 0x48)) = (*(ulong (*))(__fp - 0x48)) + 1;
+      wVar9 = (int)((float)wVar9 + (*(float (*))(__fp - 0x3c))) + 1;
+      if (bVar2 <= (*(ulong (*))(__fp - 0x48))) break;
+      lVar6 = (long)this->headerLayout;
     }
   }
   return;
@@ -434,34 +212,45 @@ void Header_draw(long *param_1,long param_rsi,long param_rdx,long param_rcx,long
 
 /* Header_updateData @ 0x120590 */
 
-void Header_updateData(long *param_1,long param_rsi,long param_rdx,long param_rcx,long param_r8,
-                      long param_r9)
+/* DWARF original prototype: void Header_updateData(Header * this) */
+
+void Header_updateData(Header *this)
 
 {
   byte bVar1;
-  int iVar2;
-  long *plVar3;
+  int wVar2;
+  Vector *pVVar3;
   long *a0;
+  long in_RCX;
   long extraout_RDX;
   long a2;
   long lVar4;
+  long in_RSI;
+  long in_R8;
+  long in_R9;
   ulong uVar5;
 
-  a2 = (long)(int)param_1[2] * 3;
-  bVar1 = (&DAT_00155fa0)[(long)(int)param_1[2] * 0x18];
+                    /* Unresolved local var: size_t col@[???]
+                       Unresolved local var: size_t H_fEC_numColumns_@[???] */
+  a2 = (long)this->headerLayout * 3;
+  bVar1 = HeaderLayout_layouts[this->headerLayout].columns;
   if ((ulong)bVar1 != 0) {
     uVar5 = 0;
     do {
-      plVar3 = *(long **)(*param_1 + uVar5 * 8);
-      iVar2 = (int)plVar3[3];
-      if (0 < iVar2) {
+                    /* Unresolved local var: Vector * meters@[???]
+                       Unresolved local var: int items@[???] */
+      pVVar3 = this->columns[uVar5];
+      wVar2 = pVVar3->items;
+                    /* Unresolved local var: int i@[???] */
+      if (0 < wVar2) {
         lVar4 = 0;
         do {
-          a0 = *(long **)(*plVar3 + lVar4);
+                    /* Unresolved local var: Meter * meter@[???] */
+          a0 = *(long **)((long)pVVar3->array + lVar4);
           lVar4 = lVar4 + 8;
-          (**(code **)(*a0 + 0x38))((long)a0,param_rsi,a2,param_rcx,param_r8,param_r9);
+          (**(code **)(*a0 + 0x38))((long)a0,in_RSI,a2,in_RCX,in_R8,in_R9);
           a2 = extraout_RDX;
-        } while ((long)iVar2 * 8 != lVar4);
+        } while ((long)wVar2 * 8 != lVar4);
       }
       uVar5 = uVar5 + 1;
     } while (bVar1 != uVar5);
@@ -472,563 +261,574 @@ void Header_updateData(long *param_1,long param_rsi,long param_rdx,long param_rc
 
 /* Header_calculateHeight @ 0x120620 */
 
-int Header_calculateHeight(long *param_1)
+/* DWARF original prototype: int Header_calculateHeight(Header * this) */
+
+int Header_calculateHeight(Header *this)
 
 {
   undefined1 __frame[0xd8] __attribute__((aligned(16)));
   undefined1 *__fp = __frame + 0x98;
-  long *plVar1;
-  long *plVar2;
-  byte bVar3;
-  long lVar4;
-  long lVar5;
-  int iVar6;
-  ulong uVar7;
+  Object **ppOVar1;
+  Object **ppOVar2;
+  _Bool _Var3;
+  byte bVar4;
+  Settings__5 *pSVar5;
+  Vector **ppVVar6;
+  Vector *pVVar7;
   int iVar8;
-  long *plVar9;
-  long *plVar10;
-  int iVar11;
-  long *plVar12;
-  ulong uVar13;
-  int iVar14;
-  int iVar15;
+  int iVar9;
+  ulong uVar10;
+  int wVar11;
+  Object **ppOVar12;
+  Object **ppOVar13;
+  int wVar14;
+  MeterClass_3 *pMVar15;
   ulong uVar16;
+  int wVar17;
+  int wVar18;
+  ulong uVar19;
 
-  lVar4 = *(long *)param_1[1];
-  bVar3 = *(byte *)(lVar4 + 0x6d);
-  (*(int *)(__fp - 0x50)) = (uint)bVar3 + (uint)bVar3;
-  bVar3 = (&DAT_00155fa0)[(long)(int)param_1[2] * 0x18];
-  uVar16 = (ulong)bVar3;
-  if (uVar16 != 0) {
-    lVar5 = *param_1;
-    uVar13 = 0;
-    iVar8 = (*(int *)(__fp - 0x50));
+  pSVar5 = this->host->settings;
+  _Var3 = pSVar5->headerMargin;
+  (*(int (*))(__fp - 0x50)) = (uint)_Var3 + (uint)_Var3;
+                    /* Unresolved local var: size_t col@[???]
+                       Unresolved local var: size_t H_fEC_numColumns_@[???] */
+  bVar4 = HeaderLayout_layouts[this->headerLayout].columns;
+  uVar19 = (ulong)bVar4;
+  if (uVar19 != 0) {
+                    /* Unresolved local var: Vector * meters@[???]
+                       Unresolved local var: int height@[???]
+                       Unresolved local var: int i@[???]
+                       Unresolved local var: Meter * meter@[???] */
+    ppVVar6 = this->columns;
+    uVar16 = 0;
+    wVar11 = (*(int (*))(__fp - 0x50));
     do {
-      plVar10 = *(long **)(lVar5 + uVar13 * 8);
-      iVar14 = (int)plVar10[3];
-      iVar15 = (*(int *)(__fp - 0x50));
-      if (0 < iVar14) {
-        plVar10 = (long *)*plVar10;
-        iVar6 = (int)uVar13;
-        plVar1 = plVar10 + iVar14;
-        iVar14 = (*(int *)(__fp - 0x50));
+      pVVar7 = ppVVar6[uVar16];
+      wVar17 = pVVar7->items;
+      wVar18 = (*(int (*))(__fp - 0x50));
+      if (0 < wVar17) {
+        ppOVar13 = pVVar7->array;
+        iVar8 = (int)uVar16;
+                    /* Unresolved local var: size_t i@[???] */
+        ppOVar1 = ppOVar13 + wVar17;
+        wVar17 = (*(int (*))(__fp - 0x50));
         do {
-          iVar15 = *(int *)(*plVar10 + 0x48) + iVar14;
-          for (uVar7 = (ulong)(iVar6 + 1); iVar11 = (uint)bVar3 - iVar6, uVar7 < uVar16;
-              uVar7 = uVar7 + 1) {
-            plVar9 = *(long **)(lVar5 + uVar7 * 8);
-            iVar11 = (int)plVar9[3];
-            if (0 < iVar11) {
-              plVar9 = (long *)*plVar9;
-              plVar2 = plVar9 + iVar11;
-              iVar11 = (*(int *)(__fp - 0x50));
+          wVar18 = *(int *)&(*ppOVar13)[9].klass + wVar17;
+          for (uVar10 = (ulong)(iVar8 + 1); iVar9 = (uint)bVar4 - iVar8, uVar10 < uVar19;
+              uVar10 = uVar10 + 1) {
+                    /* Unresolved local var: Vector * meters@[???]
+                       Unresolved local var: int height@[???] */
+            pVVar7 = ppVVar6[uVar10];
+                    /* Unresolved local var: int j@[???] */
+            wVar14 = pVVar7->items;
+            if (0 < wVar14) {
+              ppOVar12 = pVVar7->array;
+              ppOVar2 = ppOVar12 + wVar14;
+              wVar14 = (*(int (*))(__fp - 0x50));
               do {
-                if (iVar15 <= iVar11) break;
-                iVar11 = iVar11 + (int)((long *)*plVar9)[9];
-                if (iVar14 < iVar11) {
-                  plVar12 = *(long **)*plVar9;
-                  if (plVar12 == (long *)0x0) {
+                    /* Unresolved local var: Meter * meter@[???] */
+                if (wVar18 <= wVar14) break;
+                wVar14 = wVar14 + *(int *)&(*ppOVar12)[9].klass;
+                if (wVar17 < wVar14) {
+                    /* Unresolved local var: ObjectClass * type@[???] */
+                  pMVar15 = (MeterClass_3 *)(*ppOVar12)->klass;
+                  if (pMVar15 == (MeterClass_3 *)0x0) {
 LAB_00120735:
-                    iVar11 = (int)uVar7 - iVar6;
+                    iVar9 = (int)uVar10 - iVar8;
                     goto LAB_0012073e;
                   }
-                  if (plVar12 != (long *)BlankMeter_class) {
+                  if (pMVar15 != &BlankMeter_class) {
                     do {
-                      plVar12 = (long *)*plVar12;
-                      if (plVar12 == (long *)0x0) goto LAB_00120735;
-                    } while (plVar12 != (long *)BlankMeter_class);
+                      pMVar15 = (pMVar15->super).extends;
+                      if (pMVar15 == (MeterClass_3 *)0x0) goto LAB_00120735;
+                    } while (pMVar15 != &BlankMeter_class);
                   }
                 }
-                plVar9 = plVar9 + 1;
-              } while (plVar2 != plVar9);
+                ppOVar12 = ppOVar12 + 1;
+              } while (ppOVar2 != ppOVar12);
             }
           }
 LAB_0012073e:
-          *(int *)(*plVar10 + 0x4c) = iVar11;
-          plVar10 = plVar10 + 1;
-          iVar14 = iVar15;
-        } while (plVar1 != plVar10);
+          *(int *)((long)&(*ppOVar13)[9].klass + 4) = iVar9;
+          ppOVar13 = ppOVar13 + 1;
+          wVar17 = wVar18;
+        } while (ppOVar1 != ppOVar13);
       }
-      if (iVar8 < iVar15) {
-        iVar8 = iVar15;
+      if (wVar11 < wVar18) {
+        wVar11 = wVar18;
       }
-      uVar13 = uVar13 + 1;
-    } while (uVar13 != uVar16);
-    if (iVar8 != (*(int *)(__fp - 0x50))) goto LAB_00120780;
+      uVar16 = uVar16 + 1;
+    } while (uVar16 != uVar19);
+    if (wVar11 != (*(int (*))(__fp - 0x50))) goto LAB_00120780;
   }
-  (*(int *)(__fp - 0x50)) = 0;
-  iVar8 = 0;
+  (*(int (*))(__fp - 0x50)) = 0;
+  wVar11 = 0;
 LAB_00120780:
-  iVar8 = (iVar8 + 1) - (uint)(*(char *)(lVar4 + 0x6e) == '\0');
-  *(int *)((long)param_1 + 0x14) = (*(int *)(__fp - 0x50));
-  *(int *)(param_1 + 3) = iVar8;
-  return iVar8;
+  wVar11 = (wVar11 + 1) - (uint)(pSVar5->screenTabs == false);
+  this->pad = (*(int (*))(__fp - 0x50));
+  this->height = wVar11;
+  return wVar11;
 }
 
 
 /* Header_delete @ 0x123070 */
 
-void Header_delete(long *param_1,long param_rsi,long param_rdx,long param_rcx,long param_r8,
-                  long param_r9)
+/* DWARF original prototype: void Header_delete(Header * this) */
+
+void Header_delete(Header *this)
 
 {
-  long lVar1;
+  Vector **ppVVar1;
   byte bVar2;
-  long lVar3;
-  long extraout_RDX;
-  ulong uVar4;
+  ulong uVar3;
 
-  lVar3 = (long)(int)param_1[2] * 3;
-  bVar2 = (&DAT_00155fa0)[(long)(int)param_1[2] * 0x18];
+                    /* Unresolved local var: size_t i@[???]
+                       Unresolved local var: size_t H_fEC_numColumns_@[???] */
+  bVar2 = HeaderLayout_layouts[this->headerLayout].columns;
   if ((ulong)bVar2 != 0) {
-    uVar4 = 0;
+    uVar3 = 0;
     do {
-      lVar1 = uVar4 * 8;
-      uVar4 = uVar4 + 1;
-      Vector_delete(*(long **)(*param_1 + lVar1),param_rsi,lVar3,param_rcx,param_r8,param_r9);
-      lVar3 = extraout_RDX;
-    } while (uVar4 != bVar2);
+      ppVVar1 = this->columns + uVar3;
+      uVar3 = uVar3 + 1;
+      Vector_delete(*ppVVar1);
+    } while (uVar3 != bVar2);
   }
-  free((void *)*param_1);
-  free(param_1);
+  free(this->columns);
+  free(this);
   return;
 }
 
 
 /* Header_setLayout @ 0x1230e0 */
 
-void Header_setLayout(long *param_1,int param_2,long param_rdx,long param_rcx,long param_r8,
-                     long param_r9)
+/* DWARF original prototype: void Header_setLayout(Header * this, HeaderLayout hLayout) */
+
+void Header_setLayout(Header *this,HeaderLayout hLayout)
 
 {
   undefined1 __frame[0xc8] __attribute__((aligned(16)));
   undefined1 *__fp = __frame + 0x88;
   size_t __size;
-  uint uVar1;
-  long lVar2;
-  void *pvVar3;
-  void *pvVar4;
-  undefined8 *puVar5;
-  ulong uVar6;
-  long extraout_RDX;
-  long extraout_RDX_00;
-  undefined4 in_register_00000034;
+  HeaderLayout HVar1;
+  Vector **ppVVar2;
+  Object *data_;
+  Vector **ppVVar3;
+  Object **ppOVar4;
+  Vector *pVVar5;
+  size_t sVar6;
   ulong uVar7;
-  long *plVar8;
-  size_t sVar9;
-  ulong uVar10;
-  int iVar11;
-  int iVar12;
+  ulong uVar8;
+  int idx;
+  int wVar9;
 
-  uVar7 = CONCAT44(in_register_00000034,param_2);
-  lVar2 = param_1[2];
-  *(int *)(param_1 + 2) = param_2;
-  (*(ulong *)(__fp - 0x40)) = (ulong)(byte)(&DAT_00155fa0)[(long)(int)lVar2 * 0x18];
-  lVar2 = (long)param_2 * 3;
-  uVar10 = (ulong)(byte)(&DAT_00155fa0)[(long)param_2 * 0x18];
-  if (uVar10 == (*(ulong *)(__fp - 0x40))) {
+  HVar1 = this->headerLayout;
+  this->headerLayout = hLayout;
+  (*(ulong (*))(__fp - 0x40)) = (ulong)HeaderLayout_layouts[HVar1].columns;
+  uVar7 = (ulong)HeaderLayout_layouts[hLayout].columns;
+  if (uVar7 == (*(ulong (*))(__fp - 0x40))) {
     return;
   }
-  __size = uVar10 * 8;
-  pvVar4 = (void *)*param_1;
-  if ((*(ulong *)(__fp - 0x40)) < uVar10) {
-    pvVar3 = realloc(pvVar4,__size);
-    if (pvVar3 == (void *)0x0) {
-      free(pvVar4);
+                    /* Unresolved local var: size_t i@[???]
+                       Unresolved local var: int j@[???] */
+  __size = uVar7 * 8;
+  ppVVar2 = this->columns;
+  sVar6 = __size;
+  uVar8 = uVar7;
+  if ((*(ulong (*))(__fp - 0x40)) < uVar7) {
+                    /* Unresolved local var: void * data@[???] */
+    ppVVar3 = realloc(ppVVar2,__size);
+    if (ppVVar3 == (Vector **)0x0) {
+      free(ppVVar2);
                     /* WARNING: Subroutine does not return */
       fail();
     }
-    *param_1 = (long)pvVar3;
+    this->columns = ppVVar3;
+                    /* Unresolved local var: size_t i@[???]
+                       Unresolved local var: Vector * this@[???] */
     do {
-      puVar5 = malloc(0x28);
-      if (puVar5 == (undefined8 *)0x0) goto LAB_00123275;
-      *(undefined4 *)((long)puVar5 + 0x14) = 10;
-      pvVar4 = calloc(10,8);
-      if (pvVar4 == (void *)0x0) goto LAB_00123275;
-      *puVar5 = pvVar4;
-      *(undefined4 *)(puVar5 + 2) = 10;
-      puVar5[1] = Meter_class;
-      *(undefined1 *)((long)puVar5 + 0x24) = 1;
-      puVar5[3] = 0xffffffff00000000;
-      *(undefined4 *)(puVar5 + 4) = 0;
-      *(undefined8 **)((long)pvVar3 + (*(ulong *)(__fp - 0x40)) * 8) = puVar5;
-      (*(ulong *)(__fp - 0x40)) = (*(ulong *)(__fp - 0x40)) + 1;
-    } while ((*(ulong *)(__fp - 0x40)) < uVar10);
+      pVVar5 = malloc(0x28);
+      if (pVVar5 == (Vector *)0x0) goto LAB_00123275;
+                    /* Unresolved local var: void * data@[???] */
+      pVVar5->growthRate = 10;
+                    /* Unresolved local var: void * data@[???] */
+      ppOVar4 = calloc(10,8);
+      if (ppOVar4 == (Object **)0x0) goto LAB_00123275;
+      pVVar5->array = ppOVar4;
+      pVVar5->arraySize = 10;
+      pVVar5->type = &Meter_class.super;
+      pVVar5->owner = true;
+      pVVar5->items = 0;
+      pVVar5->dirty_index = -1;
+      pVVar5->dirty_count = 0;
+      ppVVar3[(*(ulong (*))(__fp - 0x40))] = pVVar5;
+      (*(ulong (*))(__fp - 0x40)) = (*(ulong (*))(__fp - 0x40)) + 1;
+    } while ((*(ulong (*))(__fp - 0x40)) < uVar7);
   }
   else {
-    uVar6 = (*(ulong *)(__fp - 0x40));
-    sVar9 = __size;
     while( true ) {
-      plVar8 = *(long **)(*param_1 + sVar9);
-      iVar11 = (int)plVar8[3] + -1;
-      if (-1 < iVar11) {
+      pVVar5 = *(Vector **)((long)this->columns + sVar6);
+      idx = pVVar5->items + -1;
+      if (-1 < idx) {
         do {
-          iVar12 = iVar11 + -1;
-          lVar2 = Vector_take(plVar8,iVar11);
-          plVar8 = *(long **)(*param_1 + (__size - 8));
-          uVar1 = *(uint *)(plVar8 + 3);
-          uVar7 = (ulong)uVar1;
-          Vector_set(plVar8,uVar1,lVar2,uVar6,param_r8,param_r9);
-          plVar8 = *(long **)(*param_1 + sVar9);
-          lVar2 = extraout_RDX;
-          iVar11 = iVar12;
-        } while (iVar12 != -1);
+          wVar9 = idx + -1;
+          data_ = Vector_take(pVVar5,idx);
+                    /* Unresolved local var: Object * data@[???]
+                       Unresolved local var: int i@[???] */
+          Vector_set(this->columns[uVar7 - 1],this->columns[uVar7 - 1]->items,data_);
+          pVVar5 = *(Vector **)((long)this->columns + sVar6);
+          idx = wVar9;
+        } while (wVar9 != -1);
       }
-      Vector_delete(plVar8,uVar7,lVar2,uVar6,param_r8,param_r9);
-      uVar10 = uVar10 + 1;
-      if ((*(ulong *)(__fp - 0x40)) <= uVar10) break;
-      sVar9 = uVar10 * 8;
-      lVar2 = extraout_RDX_00;
+      Vector_delete(pVVar5);
+      uVar8 = uVar8 + 1;
+      if ((*(ulong (*))(__fp - 0x40)) <= uVar8) break;
+      sVar6 = uVar8 * 8;
     }
-    pvVar4 = (void *)*param_1;
-    pvVar3 = realloc(pvVar4,__size);
-    if (pvVar3 == (void *)0x0) {
-      free(pvVar4);
+    ppVVar2 = this->columns;
+                    /* Unresolved local var: void * data@[???] */
+    ppVVar3 = realloc(ppVVar2,__size);
+    if (ppVVar3 == (Vector **)0x0) {
+      free(ppVVar2);
 LAB_00123275:
                     /* WARNING: Subroutine does not return */
       fail();
     }
-    *param_1 = (long)pvVar3;
+    this->columns = ppVVar3;
   }
-  Header_calculateHeight(param_1);
+  Header_calculateHeight(this);
   return;
 }
 
 
 /* Header_addMeterByClass @ 0x123600 */
 
-long * Header_addMeterByClass
-                 (long *param_1,long param_2,undefined4 param_3,uint param_4,long param_r8,
-                 long param_r9)
+/* DWARF original prototype: Meter * Header_addMeterByClass(Header * this, MeterClass * type, uint
+   param, uint column) */
+
+Meter_3 * Header_addMeterByClass(Header *this,MeterClass_3 *type,uint param,uint column)
 
 {
-  long *plVar1;
-  long *plVar2;
-  ulong uVar3;
+  Vector *this_00;
+  Meter_3 *data_;
 
-  uVar3 = (ulong)param_4;
-  plVar1 = *(long **)(*param_1 + uVar3 * 8);
-  plVar2 = Meter_new(param_1[1],param_3,param_2,uVar3,param_r8,param_r9);
-  Vector_set(plVar1,(int)plVar1[3],(long)plVar2,uVar3,param_r8,param_r9);
-  return plVar2;
-}
-
-
-/* FUN_00123640 @ 0x123640 */
-
-void FUN_00123640(long param_1,long param_rsi,long param_rdx,long param_rcx,long param_r8,
-                 long param_r9)
-
-{
-  code *pcVar1;
-  int iVar2;
-  long *plVar3;
-  undefined1 (*pauVar4) [16];
-  long extraout_RDX;
-  long extraout_RDX_00;
-  long extraout_RDX_01;
-
-  pauVar4 = *(undefined1 (**) [16])(param_1 + 0x170);
-  if (pauVar4 == (undefined1 (*) [16])0x0) {
-    pauVar4 = malloc(0x10);
-    if (pauVar4 == (undefined1 (*) [16])0x0) {
-                    /* WARNING: Subroutine does not return */
-      fail();
-    }
-    *(undefined1 (**) [16])(param_1 + 0x170) = pauVar4;
-    *(undefined16 *)(*pauVar4) = (undefined16)0x0;
-  }
-  else if (*(long *)*pauVar4 != 0) goto LAB_00123668;
-  param_rsi = 0;
-  plVar3 = Meter_new(*(long *)(param_1 + 0x10),0,(long)&MemoryMeter_class,param_rcx,param_r8,param_r9);
-  *(long **)*pauVar4 = plVar3;
-  param_rdx = extraout_RDX_01;
-LAB_00123668:
-  if (*(long *)(*pauVar4 + 8) == 0) {
-    param_rsi = 0;
-    plVar3 = Meter_new(*(long *)(param_1 + 0x10),0,(long)&SwapMeter_class,param_rcx,param_r8,param_r9);
-    *(long **)(*pauVar4 + 8) = plVar3;
-    param_rdx = extraout_RDX_00;
-  }
-  pcVar1 = *(code **)(**(long **)*pauVar4 + 0x20);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)((long)*(long **)*pauVar4,param_rsi,param_rdx,param_rcx,param_r8,param_r9);
-    param_rdx = extraout_RDX;
-  }
-  plVar3 = *(long **)(*pauVar4 + 8);
-  if (*(code **)(*plVar3 + 0x20) != (code *)0x0) {
-    (**(code **)(*plVar3 + 0x20))((long)plVar3,param_rsi,param_rdx,param_rcx,param_r8,param_r9);
-    plVar3 = *(long **)(*pauVar4 + 8);
-  }
-  if (*(int *)(param_1 + 0x20) == 0) {
-    *(undefined4 *)(param_1 + 0x20) = 1;
-  }
-  iVar2 = *(int *)(*(long *)(Meter_modes + (long)*(int *)(*(long *)*pauVar4 + 0x20) * 8) + 0x10);
-  if (*(int *)(*(long *)(Meter_modes + (long)*(int *)(*(long *)*pauVar4 + 0x20) * 8) + 0x10) <
-      *(int *)(*(long *)(Meter_modes + (long)(int)plVar3[4] * 8) + 0x10)) {
-    iVar2 = *(int *)(*(long *)(Meter_modes + (long)(int)plVar3[4] * 8) + 0x10);
-  }
-  *(int *)(param_1 + 0x48) = iVar2;
-  return;
+  this_00 = this->columns[column];
+  data_ = Meter_new((Machine_2 *)this->host,param,type);
+                    /* Unresolved local var: Object * data@[???]
+                       Unresolved local var: int i@[???] */
+  Vector_set(this_00,this_00->items,data_);
+  return data_;
 }
 
 
 /* Header_populateFromSettings @ 0x126560 */
 
-void Header_populateFromSettings
-               (long *param_1,long param_rsi,long param_rdx,long param_rcx,long param_r8,
-               long param_r9)
+/* DWARF original prototype: void Header_populateFromSettings(Header * this) */
+
+void Header_populateFromSettings(Header *this)
 
 {
   undefined1 __frame[0x108] __attribute__((aligned(16)));
   undefined1 *__fp = __frame + 0xc8;
-  ulong *puVar1;
-  uint *puVar2;
+  MeterColumnSetting *pMVar1;
+  HashtableItem *pHVar2;
   byte bVar3;
-  int iVar4;
-  long lVar5;
-  long lVar6;
+  int modeIndex;
+  long lVar4;
+  Settings__5 *pSVar5;
   char *__s;
-  long *plVar7;
-  bool bVar8;
-  int iVar9;
+  Vector *this_00;
+  Hashtable_2 *pHVar6;
+  bool bVar7;
+  int iVar8;
+  char *pcVar9;
+  Meter_3 *this_01;
   char *pcVar10;
-  long *plVar11;
-  char *pcVar12;
-  ulong uVar13;
-  long extraout_RDX;
   size_t __n;
-  char *__s2;
-  uint uVar14;
-  undefined1 *puVar15;
-  ulong uVar16;
-  uint *puVar17;
-  undefined1 *puVar18;
+  ht_key_t hVar11;
+  MeterClass **ppMVar12;
+  ulong uVar13;
+  HashtableItem *pHVar14;
+  MeterClass_3 *type;
   long in_FS_OFFSET = (long)__fake_fs;
 
-  (*(long *)(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
-  lVar5 = *(long *)param_1[1];
-  uVar14 = *(uint *)(lVar5 + 0xc);
-  __s2 = (char *)(ulong)uVar14;
-  Header_setLayout(param_1,uVar14,param_rdx,param_rcx,param_r8,param_r9);
-  bVar3 = (&DAT_00155fa0)[(long)(int)param_1[2] * 0x18];
+  lVar4 = *(long *)(in_FS_OFFSET + 0x28);
+  pSVar5 = this->host->settings;
+  Header_setLayout(this,pSVar5->hLayout);
+                    /* Unresolved local var: size_t col@[???]
+                       Unresolved local var: size_t H_fEC_numColumns_@[???] */
+  bVar3 = HeaderLayout_layouts[this->headerLayout].columns;
   if ((ulong)bVar3 != 0) {
-    uVar16 = 0;
+    uVar13 = 0;
     do {
-      lVar6 = *(long *)(lVar5 + 0x10);
-      puVar1 = (ulong *)(lVar6 + uVar16 * 0x18);
-      Vector_prune(*(long **)(*param_1 + uVar16 * 8),(long)__s2,lVar6,param_rcx,param_r8,param_r9);
-      param_rcx = (long)(ulong *)0x0;
-      param_r8 = (long)&(*(uint *)(__fp - 0x6c));
-      if (*puVar1 != 0) {
-        (*(ulong *)(__fp - 0x80)) = 0;
+                    /* Unresolved local var: MeterColumnSetting * colSettings@[???] */
+      pMVar1 = pSVar5->hColumns + uVar13;
+      Vector_prune(this->columns[uVar13]);
+                    /* Unresolved local var: size_t i@[???] */
+                    /* Unresolved local var: Vector * meters@[???]
+                       Unresolved local var: char * paren@[???]
+                       Unresolved local var: size_t nameLen@[???]
+                       Unresolved local var: int ok@[???] */
+      if (pMVar1->len != 0) {
+        (*(ulong (*))(__fp - 0x80)) = 0;
         do {
-          iVar4 = *(int *)(puVar1[2] + (*(ulong *)(__fp - 0x80)) * 4);
-          __s = *(char **)(puVar1[1] + (*(ulong *)(__fp - 0x80)) * 8);
-          plVar7 = *(long **)(*param_1 + uVar16 * 8);
-          uVar13 = uVar16 * 8;
-          pcVar10 = strchr(__s,0x28);
-          (*(uint *)(__fp - 0x6c)) = 0;
-          if (pcVar10 == (char *)0x0) {
+          modeIndex = pMVar1->modes[(*(ulong (*))(__fp - 0x80))];
+          __s = pMVar1->names[(*(ulong (*))(__fp - 0x80))];
+          this_00 = this->columns[uVar13];
+          pcVar9 = strchr(__s,0x28);
+          (*(uint (*))(__fp - 0x6c)) = 0;
+          if (pcVar9 == (char *)0x0) {
             __n = strlen(__s);
 LAB_001266af:
-            puVar15 = Platform_meterTypes;
-            puVar18 = CPUMeter_class;
-            pcVar10 = ((char *)(long)(__sec_rodata + 0x826) /* "CPU" */);
-            while ((__s2 = pcVar10, iVar9 = strncmp(__s,pcVar10,__n), iVar9 != 0 ||
-                   (pcVar10[__n] != '\0'))) {
-              puVar18 = *(undefined1 **)(puVar15 + 8);
-              puVar15 = puVar15 + 8;
-              if (puVar18 == (undefined1 *)0x0) goto LAB_001266fe;
-              pcVar10 = *(char **)(puVar18 + 0x70);
+                    /* Unresolved local var: MeterClass * * type@[???] */
+            ppMVar12 = Platform_meterTypes;
+            type = &CPUMeter_class;
+                    /* Unresolved local var: char * end@[???]
+                       Unresolved local var: Settings * settings@[???]
+                       Unresolved local var: DynamicIterator_conflict1 iter@[???]
+                       Unresolved local var: size_t i@[???]
+                       Unresolved local var: HashtableItem * walk@[???]
+                       Unresolved local var: DynamicMeter * meter@[???]
+                       Unresolved local var: DynamicIterator_conflict1 * iter@[???] */
+            pcVar9 = ((char *)(long)(__sec_rodata + 0x826) /* "CPU" */);
+            while ((iVar8 = strncmp(__s,pcVar9,__n), iVar8 != 0 || (pcVar9[__n] != '\0'))) {
+              type = (MeterClass_3 *)ppMVar12[1];
+              ppMVar12 = ppMVar12 + 1;
+              if (type == (MeterClass_3 *)0x0) goto LAB_001266fe;
+              pcVar9 = ((MeterClass *)type)->name;
             }
-            plVar11 = Meter_new(param_1[1],(*(uint *)(__fp - 0x6c)),(long)puVar18,uVar13,param_r8,param_r9);
-            if (iVar4 != 0) {
-              Meter_setMode(plVar11,iVar4,extraout_RDX,uVar13,param_r8,param_r9);
+                    /* Unresolved local var: Meter * meter@[???] */
+            this_01 = Meter_new((Machine_2 *)this->host,(*(uint (*))(__fp - 0x6c)),type);
+            if (modeIndex != 0) {
+              Meter_setMode((Meter *)this_01,modeIndex);
             }
-            uVar14 = *(uint *)(plVar7 + 3);
-            __s2 = (char *)(ulong)uVar14;
-            Vector_set(plVar7,uVar14,(long)plVar11,uVar13,param_r8,param_r9);
+                    /* Unresolved local var: Object * data@[???]
+                       Unresolved local var: int i@[???] */
+            Vector_set(this_00,this_00->items,this_01);
           }
           else {
-            iVar9 = __isoc23_sscanf(pcVar10,((char *)(long)&s___10u__00148819 /* "(%10u)" */),&(*(uint *)(__fp - 0x6c)));
-            if (iVar9 != 0) {
+            iVar8 = __isoc23_sscanf(pcVar9,((char *)(long)&s___10u__00148819 /* "(%10u)" */),&(*(uint (*))(__fp - 0x6c)));
+            if (iVar8 != 0) {
 LAB_001266a9:
-              __n = (long)pcVar10 - (long)__s;
+              __n = (long)pcVar9 - (long)__s;
               goto LAB_001266af;
             }
-            ASSIGN_ARR((*(undefined1 (*)[16])(__fp - 0x68)), (undefined16)0x0);
-            ASSIGN_ARR((*(undefined1 (*)[16])(__fp - 0x58)), (undefined16)0x0);
-            iVar9 = __isoc23_sscanf(pcVar10,((char *)(long)(__sec_rodata + 0x1c03) /* "(%30s)" */),(*(undefined1 (*)[16])(__fp - 0x68)));
-            if (iVar9 == 0) {
-              (*(uint *)(__fp - 0x6c)) = 0;
+            (*(char (*) [32])(__fp - 0x68))[0] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[1] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[2] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[3] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[4] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[5] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[6] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[7] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[8] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[9] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[10] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0xb] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0xc] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0xd] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0xe] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0xf] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0x10] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0x11] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0x12] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0x13] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0x14] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0x15] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0x16] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0x17] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0x18] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0x19] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0x1a] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0x1b] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0x1c] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0x1d] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0x1e] = '\0';
+            (*(char (*) [32])(__fp - 0x68))[0x1f] = '\0';
+            iVar8 = __isoc23_sscanf(pcVar9,((char *)(long)(__sec_rodata + 0x1c03) /* "(%30s)" */),(*(char (*) [32])(__fp - 0x68)));
+            if (iVar8 == 0) {
+              (*(uint (*))(__fp - 0x6c)) = 0;
               goto LAB_001266a9;
             }
-            __s2 = (char *)0x29;
-            pcVar12 = strrchr((*(undefined1 (*)[16])(__fp - 0x68)),0x29);
-            if (pcVar12 != (char *)0x0) {
-              *pcVar12 = '\0';
-              plVar11 = *(long **)(*(long *)param_1[1] + 0x20);
-              if (plVar11 != (long *)0x0) {
-                __s2 = (char *)0x0;
-                if (*plVar11 != 0) {
-                  puVar17 = (uint *)plVar11[1];
-                  uVar14 = 0;
-                  puVar2 = puVar17 + *plVar11 * 6;
-                  bVar8 = false;
-                  do {
-                    __s2 = *(char **)(puVar17 + 4);
-                    if ((__s2 != (char *)0x0) && (iVar9 = strcmp((*(undefined1 (*)[16])(__fp - 0x68)),__s2), iVar9 == 0)) {
-                      uVar14 = *puVar17;
-                      bVar8 = true;
-                    }
-                    puVar17 = puVar17 + 6;
-                  } while (puVar2 != puVar17);
-                  uVar13 = (ulong)uVar14;
-                  (*(uint *)(__fp - 0x6c)) = uVar14;
-                  if (bVar8) goto LAB_001266a9;
-                }
+            pcVar10 = strrchr((*(char (*) [32])(__fp - 0x68)),0x29);
+            if (pcVar10 != (char *)0x0) {
+              *pcVar10 = '\0';
+              pHVar6 = this->host->settings->dynamicMeters;
+              if ((pHVar6 != (Hashtable_2 *)0x0) && (pHVar6->size != 0)) {
+                pHVar14 = pHVar6->buckets;
+                hVar11 = 0;
+                pHVar2 = pHVar14 + pHVar6->size;
+                bVar7 = false;
+                do {
+                  if ((pHVar14->value != (char *)0x0) &&
+                     (iVar8 = strcmp((*(char (*) [32])(__fp - 0x68)),pHVar14->value), iVar8 == 0)) {
+                    hVar11 = pHVar14->key;
+                    bVar7 = true;
+                  }
+                  pHVar14 = pHVar14 + 1;
+                } while (pHVar2 != pHVar14);
+                (*(uint (*))(__fp - 0x6c)) = hVar11;
+                if (bVar7) goto LAB_001266a9;
               }
             }
           }
 LAB_001266fe:
-          (*(ulong *)(__fp - 0x80)) = (*(ulong *)(__fp - 0x80)) + 1;
-          param_rcx = (long)puVar1;
-        } while ((*(ulong *)(__fp - 0x80)) < *puVar1);
+          (*(ulong (*))(__fp - 0x80)) = (*(ulong (*))(__fp - 0x80)) + 1;
+        } while ((*(ulong (*))(__fp - 0x80)) < pMVar1->len);
       }
-      uVar16 = uVar16 + 1;
-    } while (uVar16 != bVar3);
+      uVar13 = uVar13 + 1;
+    } while (uVar13 != bVar3);
   }
-  if ((*(long *)(__fp - 0x40)) != *(long *)(in_FS_OFFSET + 0x28)) {
+  if (lVar4 != *(long *)(in_FS_OFFSET + 0x28)) {
                     /* WARNING: Subroutine does not return */
     __stack_chk_fail();
   }
-  Header_calculateHeight(param_1);
+  Header_calculateHeight(this);
   return;
 }
 
 
 /* Header_writeBackToSettings @ 0x126910 */
 
-void Header_writeBackToSettings(long *param_1)
+/* DWARF original prototype: void Header_writeBackToSettings(Header * this) */
+
+void Header_writeBackToSettings(Header *this)
 
 {
   undefined1 __frame[0xd8] __attribute__((aligned(16)));
   undefined1 *__fp = __frame + 0x98;
-  ulong *puVar1;
-  int iVar2;
+  MeterColumnSetting *pMVar1;
+  int wVar2;
   uint va1;
-  long lVar3;
-  long *plVar4;
-  long *plVar5;
-  undefined1 *puVar6;
-  uint *puVar7;
-  ulong uVar8;
-  void *pvVar9;
-  uint *puVar10;
+  Settings *this_00;
+  Vector *pVVar3;
+  Object *pOVar4;
+  MeterClass_3 *pMVar5;
+  HashtableItem *pHVar6;
+  ulong uVar7;
+  char **ppcVar8;
+  int *pwVar9;
+  HashtableItem *pHVar10;
   ulong uVar11;
   ulong uVar12;
   long lVar13;
   ulong uVar14;
+  void *va1_00;
   ulong uVar15;
   long in_FS_OFFSET = (long)__fake_fs;
 
-  (*(long *)(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
-  lVar3 = *(long *)param_1[1];
-  Settings_setHeaderLayout(lVar3,(int)param_1[2]);
-  uVar8 = (ulong)(byte)(&DAT_00155fa0)[(long)(int)param_1[2] * 0x18];
-  if (uVar8 != 0) {
+  (*(long (*))(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
+  this_00 = (Settings *)this->host->settings;
+  Settings_setHeaderLayout(this_00,this->headerLayout);
+                    /* Unresolved local var: size_t col@[???]
+                       Unresolved local var: size_t H_fEC_numColumns_@[???] */
+  uVar7 = (ulong)HeaderLayout_layouts[this->headerLayout].columns;
+  if (uVar7 != 0) {
     uVar15 = 0;
     do {
       while( true ) {
-        puVar1 = (ulong *)(*(long *)(lVar3 + 0x10) + uVar15 * 0x18);
-        pvVar9 = (void *)puVar1[1];
-        if (pvVar9 != (void *)0x0) {
-          if (*puVar1 != 0) {
+        pMVar1 = this_00->hColumns + uVar15;
+        ppcVar8 = pMVar1->names;
+        if (ppcVar8 != (char **)0x0) {
+                    /* Unresolved local var: size_t j@[???] */
+          if (pMVar1->len != 0) {
             uVar12 = 0;
             do {
-              lVar13 = uVar12 * 8;
+              ppcVar8 = ppcVar8 + uVar12;
               uVar12 = uVar12 + 1;
-              free(*(void **)((long)pvVar9 + lVar13));
-              pvVar9 = (void *)puVar1[1];
-            } while (uVar12 < *puVar1);
+              free(*ppcVar8);
+              ppcVar8 = pMVar1->names;
+            } while (uVar12 < pMVar1->len);
           }
-          free(pvVar9);
+          free(ppcVar8);
         }
-        free((void *)puVar1[2]);
-        plVar4 = *(long **)(*param_1 + uVar15 * 8);
-        iVar2 = (int)plVar4[3];
-        if (iVar2 != 0) break;
-        *puVar1 = 0;
+                    /* Unresolved local var: MeterColumnSetting * colSettings@[???]
+                       Unresolved local var: Vector * vec@[???]
+                       Unresolved local var: int len@[???] */
+        free(pMVar1->modes);
+        pVVar3 = this->columns[uVar15];
+        wVar2 = pVVar3->items;
+        if (wVar2 != 0) break;
+        pMVar1->len = 0;
         uVar15 = uVar15 + 1;
-        *(undefined16 *)(*(undefined1 (*) [16])(puVar1 + 1)) = (undefined16)0x0;
-        if (uVar8 == uVar15) goto LAB_00126b00;
+        pMVar1->names = (char **)0x0;
+        pMVar1->modes = (int *)0x0;
+                    /* Unresolved local var: int i@[???] */
+        if (uVar7 == uVar15) goto LAB_00126b00;
       }
-      if ((0x1fffffffffffffff < (ulong)(long)(iVar2 + 1)) ||
-         (pvVar9 = calloc((long)(iVar2 + 1),8), pvVar9 == (void *)0x0)) {
+                    /* Unresolved local var: void * data@[???] */
+      if ((0x1fffffffffffffff < (ulong)(long)(wVar2 + 1)) ||
+         (ppcVar8 = calloc((long)(wVar2 + 1),8), ppcVar8 == (char **)0x0)) {
 LAB_00126be5:
                     /* WARNING: Subroutine does not return */
         fail();
       }
-      puVar1[1] = (ulong)pvVar9;
-      uVar12 = (ulong)iVar2;
-      if ((0x3fffffffffffffff < uVar12) || (pvVar9 = calloc(uVar12,4), pvVar9 == (void *)0x0))
+      pMVar1->names = ppcVar8;
+      uVar12 = (ulong)wVar2;
+                    /* Unresolved local var: void * data@[???] */
+      if ((0x3fffffffffffffff < uVar12) || (pwVar9 = calloc(uVar12,4), pwVar9 == (int *)0x0))
       goto LAB_00126be5;
-      puVar1[2] = (ulong)pvVar9;
-      *puVar1 = uVar12;
+      pMVar1->modes = pwVar9;
+                    /* Unresolved local var: Meter * meter@[???]
+                       Unresolved local var: char * dynamic@[???] */
+      pMVar1->len = uVar12;
       lVar13 = 0;
       do {
-        plVar5 = *(long **)(*plVar4 + lVar13 * 8);
-        va1 = *(uint *)((long)plVar5 + 0x24);
-        puVar6 = (undefined1 *)*plVar5;
+        pOVar4 = pVVar3->array[lVar13];
+        va1 = *(uint *)((long)&pOVar4[4].klass + 4);
+        pMVar5 = (MeterClass_3 *)pOVar4->klass;
         if (va1 == 0) {
 LAB_00126ab3:
-          xAsprintf(&(*(char * *)(__fp - 0x48)),((char *)(long)(__sec_rodata + 0x626) /* "%s" */),*(void **)(puVar6 + 0x70));
+          xAsprintf(&(*(char *(*))(__fp - 0x48)),((char *)(long)(__sec_rodata + 0x626) /* "%s" */),pMVar5->name);
         }
-        else if (puVar6 == DynamicMeter_class) {
-          uVar12 = **(ulong **)(lVar3 + 0x20);
-          puVar7 = (uint *)(*(ulong **)(lVar3 + 0x20))[1];
+        else if (pMVar5 == &DynamicMeter_class) {
+                    /* Unresolved local var: DynamicMeter * meter@[???]
+                       Unresolved local var: size_t index@[???]
+                       Unresolved local var: size_t probe@[???]
+                       Unresolved local var: void * res@[???] */
+          uVar12 = this_00->dynamicMeters->size;
+          pHVar6 = this_00->dynamicMeters->buckets;
           uVar11 = (ulong)va1 % uVar12;
-          pvVar9 = *(void **)(puVar7 + uVar11 * 6 + 4);
-          if (pvVar9 != (void *)0x0) {
+          va1_00 = pHVar6[uVar11].value;
+          if (va1_00 != (void *)0x0) {
             uVar14 = 0;
-            puVar10 = puVar7 + uVar11 * 6;
+            pHVar10 = pHVar6 + uVar11;
             do {
               while( true ) {
-                if (va1 == *puVar10) goto LAB_00126bb8;
-                if (*(ulong *)(puVar10 + 2) < uVar14) {
-                  pvVar9 = (void *)0x0;
+                if (va1 == pHVar10->key) goto LAB_00126bb8;
+                if (pHVar10->probe < uVar14) {
+                  va1_00 = (void *)0x0;
                   goto LAB_00126bb8;
                 }
                 uVar11 = uVar11 + 1;
                 if (uVar12 != uVar11) break;
                 uVar11 = 0;
                 uVar14 = uVar14 + 1;
-                pvVar9 = *(void **)(puVar7 + 4);
-                puVar10 = puVar7;
-                if (pvVar9 == (void *)0x0) goto LAB_00126bb8;
+                va1_00 = pHVar6->value;
+                pHVar10 = pHVar6;
+                if (va1_00 == (void *)0x0) goto LAB_00126bb8;
               }
               uVar14 = uVar14 + 1;
-              puVar10 = puVar7 + uVar11 * 6;
-              pvVar9 = *(void **)(puVar10 + 4);
-            } while (pvVar9 != (void *)0x0);
+              pHVar10 = pHVar6 + uVar11;
+              va1_00 = pHVar10->value;
+            } while (va1_00 != (void *)0x0);
           }
 LAB_00126bb8:
-          xAsprintf(&(*(char * *)(__fp - 0x48)),((char *)(long)&s__s__s__00148820 /* "%s(%s)" */),((char *)(long)&s_Dynamic_00147e36 /* "Dynamic" */),pvVar9);
+          xAsprintf(&(*(char *(*))(__fp - 0x48)),((char *)(long)&s__s__s__00148820 /* "%s(%s)" */),((char *)(long)&s_Dynamic_00147e36 /* "Dynamic" */),va1_00);
         }
         else {
-          if (puVar6 != CPUMeter_class) goto LAB_00126ab3;
-          xAsprintf(&(*(char * *)(__fp - 0x48)),((char *)(long)&s__s__u__00148827 /* "%s(%u)" */),((char *)(long)(__sec_rodata + 0x826) /* "CPU" */),va1);
+          if (pMVar5 != &CPUMeter_class) goto LAB_00126ab3;
+          xAsprintf(&(*(char *(*))(__fp - 0x48)),((char *)(long)&s__s__u__00148827 /* "%s(%u)" */),((char *)(long)(__sec_rodata + 0x826) /* "CPU" */),va1);
         }
-        *(char **)(puVar1[1] + lVar13 * 8) = (*(char * *)(__fp - 0x48));
-        *(int *)(puVar1[2] + lVar13 * 4) = (int)plVar5[4];
+        pMVar1->names[lVar13] = (*(char *(*))(__fp - 0x48));
+        pMVar1->modes[lVar13] = *(int *)&pOVar4[4].klass;
         lVar13 = lVar13 + 1;
-      } while ((int)lVar13 < iVar2);
+      } while ((int)lVar13 < wVar2);
       uVar15 = uVar15 + 1;
-    } while (uVar8 != uVar15);
+    } while (uVar7 != uVar15);
   }
 LAB_00126b00:
-  if ((*(long *)(__fp - 0x40)) != *(long *)(in_FS_OFFSET + 0x28)) {
+  if ((*(long (*))(__fp - 0x40)) != *(long *)(in_FS_OFFSET + 0x28)) {
                     /* WARNING: Subroutine does not return */
     __stack_chk_fail();
   }

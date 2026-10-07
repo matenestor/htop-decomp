@@ -2,28 +2,31 @@
 
 /* Scheduling_rowSetPolicy @ 0x12dcd0 */
 
-undefined8 Scheduling_rowSetPolicy(long param_1,uint *param_2)
+_Bool Scheduling_rowSetPolicy(Process_ *row,Arg arg)
 
 {
   undefined1 __frame[0xa8] __attribute__((aligned(16)));
   undefined1 *__fp = __frame + 0x68;
+  long lVar1;
   uint __policy;
-  int iVar1;
-  undefined4 extraout_var;
+  int iVar2;
   long in_FS_OFFSET = (long)__fake_fs;
 
-  (*(sched_param *)(__fp - 0x14)).__sched_priority = 0;
-  __policy = *param_2;
-  (*(long *)(__fp - 0x10)) = *(long *)(in_FS_OFFSET + 0x28);
-  if ((&DAT_0015656c)[(long)(int)__policy * 0x10] != '\0') {
-    (*(sched_param *)(__fp - 0x14)).__sched_priority = param_2[1];
+                    /* Unresolved local var: SchedulingArg * sarg@[???]
+                       Unresolved local var: int policy@[???]
+                       Unresolved local var: int r@[???] */
+  (*(sched_param (*))(__fp - 0x14)).sched_priority = 0;
+  __policy = *(uint *)arg.v;
+  lVar1 = *(long *)(in_FS_OFFSET + 0x28);
+  if (policies[(int)__policy].prioritySupport != false) {
+    (*(sched_param (*))(__fp - 0x14)).sched_priority = *(int *)((long)arg.v + 4);
   }
-  if (BYTE_0015c0d8 != 0) {
+  if (reset_on_fork) {
     __policy = __policy & 0x40000000;
   }
-  iVar1 = sched_setscheduler(*(__pid_t *)(param_1 + 0x10),__policy,&(*(sched_param *)(__fp - 0x14)));
-  if ((*(long *)(__fp - 0x10)) == *(long *)(in_FS_OFFSET + 0x28)) {
-    return CONCAT71((int7)(CONCAT44(extraout_var,iVar1) >> 8),iVar1 != -1);
+  iVar2 = sched_setscheduler((row->super).id,__policy,(sched_param_2 *)&(*(sched_param (*))(__fp - 0x14)));
+  if (lVar1 == *(long *)(in_FS_OFFSET + 0x28)) {
+    return iVar2 != -1;
   }
                     /* WARNING: Subroutine does not return */
   __stack_chk_fail();
@@ -32,10 +35,10 @@ undefined8 Scheduling_rowSetPolicy(long param_1,uint *param_2)
 
 /* Scheduling_formatPolicy @ 0x12dd50 */
 
-char * Scheduling_formatPolicy(uint param_1)
+char * Scheduling_formatPolicy(int policy)
 
 {
-  switch(param_1 & 0xbfffffff) {
+  switch(policy & 0xbfffffff) {
   case 0:
     return ((char *)(long)&s_OTHER_0014895d /* "OTHER" */);
   case 1:
@@ -56,43 +59,44 @@ char * Scheduling_formatPolicy(uint param_1)
 
 /* Scheduling_readProcessPolicy @ 0x12dde0 */
 
-void Scheduling_readProcessPolicy(long param_1)
+void Scheduling_readProcessPolicy(Process *proc)
 
 {
-  int iVar1;
+  int wVar1;
 
-  iVar1 = sched_getscheduler(*(__pid_t *)(param_1 + 0x10));
-  *(int *)(param_1 + 0x10c) = iVar1;
+  wVar1 = sched_getscheduler((proc->super).id);
+  proc->scheduling_policy = wVar1;
   return;
 }
 
 
 /* Scheduling_togglePolicyPanelResetOnFork @ 0x1320d0 */
 
-void Scheduling_togglePolicyPanelResetOnFork(long param_1)
+void Scheduling_togglePolicyPanelResetOnFork(Panel *schedPanel)
 
 {
-  long lVar1;
-  char *__s1;
+  Object *pOVar1;
   int iVar2;
-  byte bVar3;
-  char *pcVar4;
+  ObjectClass *pOVar3;
+  bool bVar4;
+  char *__s2;
 
-  pcVar4 = ((char *)(long)&s_Reset_on_fork__off_001473b8 /* "Reset on fork: off" */);
-  bVar3 = BYTE_0015c0d8 ^ 1;
-  if (BYTE_0015c0d8 != 1) {
-    pcVar4 = ((char *)(long)&s_Reset_on_fork__on_001473a6 /* "Reset on fork: on" */);
+  __s2 = ((char *)(long)&s_Reset_on_fork__off_001473b8 /* "Reset on fork: off" */);
+  bVar4 = !reset_on_fork;
+  if (!reset_on_fork) {
+    __s2 = ((char *)(long)&s_Reset_on_fork__on_001473a6 /* "Reset on fork: on" */);
   }
-  lVar1 = *(long *)**(undefined8 **)(param_1 + 0x20);
-  __s1 = *(char **)(lVar1 + 8);
-  BYTE_0015c0d8 = bVar3;
-  if ((__s1 != (char *)0x0) && (iVar2 = strcmp(__s1,pcVar4), iVar2 == 0)) {
+  pOVar1 = *schedPanel->items->array;
+  pOVar3 = pOVar1[1].klass;
+  reset_on_fork = bVar4;
+  if ((pOVar3 != (ObjectClass *)0x0) && (iVar2 = strcmp((char *)pOVar3,__s2), iVar2 == 0)) {
     return;
   }
-  free(__s1);
-  pcVar4 = strdup(pcVar4);
-  if (pcVar4 != (char *)0x0) {
-    *(char **)(lVar1 + 8) = pcVar4;
+  free(pOVar3);
+                    /* Unresolved local var: char * data@[???] */
+  pOVar3 = (ObjectClass *)strdup(__s2);
+  if (pOVar3 != (ObjectClass *)0x0) {
+    pOVar1[1].klass = pOVar3;
     return;
   }
                     /* WARNING: Subroutine does not return */
@@ -106,132 +110,152 @@ void Scheduling_togglePolicyPanelResetOnFork(long param_1)
 /* WARNING: Heritage AFTER dead removal. Example location: s0xffffffffffffff80 : 0x0013323c */
 /* WARNING: Restarted to delay deadcode elimination for space: stack */
 
-long * Scheduling_newPolicyPanel(int param_1)
+Panel * Scheduling_newPolicyPanel(int preSelectedPolicy)
 
 {
   undefined1 __frame[0x138] __attribute__((aligned(16)));
   undefined1 *__fp = __frame + 0xf8;
-  uint uVar1;
-  wchar_t __wc;
-  long *plVar2;
-  code *pcVar3;
-  long lVar4;
-  wchar_t *__s;
+  int wVar1;
+  long lVar2;
+  Vector *pVVar3;
+  code *pcVar4;
+  int *__s;
   int iVar5;
-  int iVar6;
-  undefined4 *puVar7;
-  long *a0;
-  size_t sVar8;
-  undefined8 *puVar9;
-  long lVar10;
-  wchar_t *pwVar11;
-  undefined **ppuVar12;
-  undefined1 *puVar13;
+  int wVar6;
+  FunctionBar *fuBar;
+  Panel *this;
+  size_t sVar7;
+  undefined8 *puVar8;
+  int *pwVar9;
+  SchedulingPolicy *pSVar10;
+  undefined1 *puVar11;
   long a4;
-  undefined1 *a5;
-  char *pcVar14;
-  undefined1 (*pauVar15) [16];
+  ObjectClass *a5;
+  int wVar12;
+  char *pcVar13;
+  cchar_t *pcVar14;
   long in_FS_OFFSET = (long)__fake_fs;
 
-  puVar13 = (*(undefined1 (*)[8])(__fp - 0x78));
-  (*(long *)(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
-  (*(undefined8 *)(__fp - 0x48)) = 0;
-  (*(char * *)(__fp - 0x58)) = ((char *)(long)&s_Select_00149166 /* "Select " */);
-  (*(char * *)(__fp - 0x50)) = ((char *)(long)&s_Cancel_00147223 /* "Cancel " */);
-  (*(int *)(__fp - 0x64)) = param_1;
-  puVar7 = FunctionBar_new(&(*(char * *)(__fp - 0x58)),(long)&PTR_s_Enter_001565c0,(long)&DAT_0014d258);
-  a0 = malloc(0x26e0);
-  if (a0 != (long *)0x0) {
+  puVar11 = (*(undefined1 (*) [8])(__fp - 0x78));
+  lVar2 = *(long *)(in_FS_OFFSET + 0x28);
+  (*(char *(*) [3])(__fp - 0x58))[2] = (char *)0x0;
+  (*(char *(*) [3])(__fp - 0x58))[0] = ((char *)(long)&s_Select_00149166 /* "Select " */);
+  (*(char *(*) [3])(__fp - 0x58))[1] = ((char *)(long)&s_Cancel_00147223 /* "Cancel " */);
+  (*(int (*))(__fp - 0x64)) = preSelectedPolicy;
+  fuBar = FunctionBar_new((*(char *(*) [3])(__fp - 0x58)),FunctionBar_EnterEscKeys,((char *)(long)&FunctionBar_EnterEscEvents /* L"\r\x1b" */));
+                    /* Unresolved local var: Panel * this@[???]
+                       Unresolved local var: void * data@[???] */
+  this = malloc(0x26e0);
+  if (this != (Panel *)0x0) {
     a4 = 0;
-    a5 = ListItem_class;
-    lVar10 = 0;
-    *a0 = (long)Panel_class;
-    Panel_init((long)a0,0,0,0,0,ListItem_class,1,puVar7);
-    uVar1 = *(uint *)(CRT_colors + 0x1c);
-    (*(undefined1 * *)(__fp - 0x70)) = (*(undefined1 (*)[8])(__fp - 0x78));
-    pwVar11 = (*(wchar_t (*)[8])(__fp - 0xa8));
-    (*(undefined1 * *)(__fp - 0x70)) = (*(undefined1 (*)[8])(__fp - 0x78));
-    sVar8 = mbstowcs((*(wchar_t (*)[8])(__fp - 0xa8)),((char *)(long)&s_New_policy__0014916e /* "New policy:" */),0xb);
-    iVar5 = (int)sVar8;
-    if (0 < iVar5) {
-      FUN_00130130((int *)(a0 + 0xc),iVar5);
-      (*(wchar_t * *)(__fp - 0x60)) = (*(wchar_t (*)[8])(__fp - 0xa8)) + (ulong)(iVar5 - 1) + 1;
-      pauVar15 = (undefined1 (*) [16])a0[0xd];
+    a5 = &ListItem_class;
+    (this->super).klass = &Panel_class.super;
+    Panel_init(this,0,0,0,0,&ListItem_class,true,fuBar);
+    wVar1 = CRT_colors[7];
+                    /* Unresolved local var: int[41750] data@[???]
+                       Unresolved local var: int newLen@[???] */
+    (*(undefined1 *(*))(__fp - 0x70)) = (*(undefined1 (*) [8])(__fp - 0x78));
+    pwVar9 = (*(int (*) [8])(__fp - 0xa8));
+    (*(undefined1 *(*))(__fp - 0x70)) = (*(undefined1 (*) [8])(__fp - 0x78));
+    sVar7 = mbstowcs((*(int (*) [8])(__fp - 0xa8)),((char *)(long)&s_New_policy__0014916e /* "New policy:" */),0xb);
+    wVar12 = (int)sVar7;
+    if (0 < wVar12) {
+                    /* Unresolved local var: int i@[???]
+                       Unresolved local var: int j@[???] */
+      RichString_setLen(&this->header,wVar12);
+      (*(int *(*))(__fp - 0x60)) = (*(int (*) [8])(__fp - 0xa8)) + (ulong)(uint)(wVar12 + -1) + 1;
+      pcVar14 = (this->header).chptr;
       do {
-        __wc = *pwVar11;
-        iVar5 = iswprint(__wc);
-        *(undefined16 *)(*pauVar15) = (undefined16)0x0;
+        wVar12 = *pwVar9;
+        iVar5 = iswprint(wVar12);
+        pcVar14->attr = 0;
+        pcVar14->chars[0] = 0;
+        pcVar14->chars[1] = 0;
+        pcVar14->chars[2] = 0;
         if (iVar5 == 0) {
-          __wc = L'�';
+          wVar12 = 65533;
         }
-        *(uint *)*pauVar15 = uVar1 & 0xffffff;
-        pwVar11 = pwVar11 + 1;
-        *(undefined16 *)(*(undefined1 (*) [16])(*pauVar15 + 0xc)) = (undefined16)0x0;
-        *(wchar_t *)(*pauVar15 + 4) = __wc;
-        pauVar15 = (undefined1 (*) [16])(pauVar15[1] + 0xc);
-      } while ((*(wchar_t * *)(__fp - 0x60)) != pwVar11);
+        pcVar14->attr = wVar1 & 0xffffff;
+        pwVar9 = pwVar9 + 1;
+        *(undefined16 *)(*(undefined1 (*) [16])(pcVar14->chars + 2)) = (undefined16)0x0;
+        pcVar14->chars[0] = wVar12;
+        pcVar14 = pcVar14 + 1;
+      } while ((*(int *(*))(__fp - 0x60)) != pwVar9);
     }
-    puVar13 = (*(undefined1 * *)(__fp - 0x70));
-    *(undefined1 *)(a0 + 9) = 1;
-    pcVar14 = ((char *)(long)&s_Reset_on_fork__off_001473b8 /* "Reset on fork: off" */);
-    if (BYTE_0015c0d8 != 0) {
-      pcVar14 = ((char *)(long)&s_Reset_on_fork__on_001473a6 /* "Reset on fork: on" */);
+    puVar11 = (*(undefined1 *(*))(__fp - 0x70));
+    this->needsRedraw = true;
+    pcVar13 = ((char *)(long)&s_Reset_on_fork__off_001473b8 /* "Reset on fork: off" */);
+                    /* Unresolved local var: ListItem * this@[???]
+                       Unresolved local var: void * data@[???] */
+    if (reset_on_fork != false) {
+      pcVar13 = ((char *)(long)&s_Reset_on_fork__on_001473a6 /* "Reset on fork: on" */);
     }
-    puVar9 = malloc(0x18);
-    if (puVar9 != (undefined8 *)0x0) {
-      *puVar9 = ListItem_class;
-      pcVar14 = strdup(pcVar14);
-      if (pcVar14 != (char *)0x0) {
-        plVar2 = (long *)a0[4];
-        puVar9[1] = pcVar14;
-        iVar5 = 0;
-        *(undefined4 *)(puVar9 + 2) = 0xffffffff;
-        *(undefined1 *)((long)puVar9 + 0x14) = 0;
-        lVar4 = plVar2[3];
-        ppuVar12 = &PTR_s_Other_00156560;
-        Vector_set(plVar2,(int)lVar4,(long)puVar9,lVar10,a4,(long)a5);
-        *(undefined1 *)(a0 + 9) = 1;
+    puVar8 = malloc(0x18);
+    if (puVar8 != (undefined8 *)0x0) {
+                    /* Unresolved local var: char * data@[???] */
+      *puVar8 = &ListItem_class;
+      pcVar13 = strdup(pcVar13);
+      if (pcVar13 != (char *)0x0) {
+        pVVar3 = this->items;
+        puVar8[1] = pcVar13;
+                    /* Unresolved local var: Object * data@[???]
+                       Unresolved local var: int i@[???] */
+                    /* Unresolved local var: uint i@[???] */
+        wVar12 = 0;
+        *(undefined4 *)(puVar8 + 2) = 0xffffffff;
+        *(undefined1 *)((long)puVar8 + 0x14) = 0;
+        wVar1 = pVVar3->items;
+        pSVar10 = policies;
+        Vector_set(pVVar3,wVar1,puVar8);
+        this->needsRedraw = true;
         do {
-          pwVar11 = (wchar_t *)*ppuVar12;
-          (*(wchar_t * *)(__fp - 0x60)) = pwVar11;
-          if (pwVar11 != (wchar_t *)0x0) {
-            iVar6 = *(int *)(ppuVar12 + 1);
-            puVar9 = malloc(0x18);
-            __s = (*(wchar_t * *)(__fp - 0x60));
-            if (puVar9 == (undefined8 *)0x0) break;
-            *puVar9 = ListItem_class;
-            pcVar14 = strdup((char *)__s);
-            if (pcVar14 == (char *)0x0) break;
-            plVar2 = (long *)a0[4];
-            puVar9[1] = pcVar14;
-            *(int *)(puVar9 + 2) = iVar6;
-            *(undefined1 *)((long)puVar9 + 0x14) = 0;
-            lVar10 = plVar2[3];
-            Vector_set(plVar2,(int)lVar10,(long)puVar9,(long)pwVar11,a4,(long)a5);
-            *(undefined1 *)(a0 + 9) = 1;
-            if (iVar6 == (*(int *)(__fp - 0x64))) {
-              iVar6 = *(int *)(a0[4] + 0x18) + -1;
-              if (iVar5 < *(int *)(a0[4] + 0x18)) {
-                iVar6 = iVar5;
+          pwVar9 = (int *)pSVar10->name;
+          (*(int *(*))(__fp - 0x60)) = pwVar9;
+          if (pwVar9 != (int *)0x0) {
+                    /* Unresolved local var: ListItem * this@[???]
+                       Unresolved local var: void * data@[???] */
+            wVar1 = pSVar10->id;
+            puVar8 = malloc(0x18);
+            __s = (*(int *(*))(__fp - 0x60));
+            if (puVar8 == (undefined8 *)0x0) break;
+                    /* Unresolved local var: char * data@[???] */
+            *puVar8 = &ListItem_class;
+            pcVar13 = strdup((char *)__s);
+            if (pcVar13 == (char *)0x0) break;
+            pVVar3 = this->items;
+            puVar8[1] = pcVar13;
+                    /* Unresolved local var: Object * data@[???]
+                       Unresolved local var: int i@[???] */
+            *(int *)(puVar8 + 2) = wVar1;
+            *(undefined1 *)((long)puVar8 + 0x14) = 0;
+            wVar6 = pVVar3->items;
+            Vector_set(pVVar3,wVar6,puVar8);
+            this->needsRedraw = true;
+            if (wVar1 == (*(int (*))(__fp - 0x64))) {
+                    /* Unresolved local var: int size@[???] */
+              wVar1 = this->items->items;
+              wVar6 = wVar1 + -1;
+              if (wVar12 < wVar1) {
+                wVar6 = wVar12;
               }
-              if (iVar6 < 0) {
-                iVar6 = 0;
+              if (wVar6 < 0) {
+                wVar6 = 0;
               }
-              *(int *)(a0 + 5) = iVar6;
-              pcVar3 = *(code **)(*a0 + 0x20);
-              if (pcVar3 != (code *)0x0) {
-                (*pcVar3)((long)a0,0xffffffff,0,(long)pwVar11,a4,(long)a5);
+              this->selected = wVar6;
+              pcVar4 = (this->super).klass[1].extends;
+              if (pcVar4 != (code *)0x0) {
+                (*pcVar4)((long)this,0xffffffff,0,(long)pwVar9,a4,(long)a5);
               }
             }
           }
-          iVar5 = iVar5 + 1;
-          ppuVar12 = ppuVar12 + 2;
-          if (iVar5 == 6) {
-            if ((*(long *)(__fp - 0x40)) != *(long *)(in_FS_OFFSET + 0x28)) {
+          wVar12 = wVar12 + 1;
+          pSVar10 = pSVar10 + 1;
+          if (wVar12 == 6) {
+            if (lVar2 != *(long *)(in_FS_OFFSET + 0x28)) {
                     /* WARNING: Subroutine does not return */
               __stack_chk_fail();
             }
-            return a0;
+            return this;
           }
         } while( true );
       }
@@ -248,120 +272,139 @@ long * Scheduling_newPolicyPanel(int param_1)
 /* WARNING: Heritage AFTER dead removal. Example location: s0xffffffffffffff70 : 0x0013356a */
 /* WARNING: Restarted to delay deadcode elimination for space: stack */
 
-long * Scheduling_newPriorityPanel(uint param_1,uint param_2)
+Panel * Scheduling_newPriorityPanel(int policy,int preSelectedPriority)
 
 {
   undefined1 __frame[0x148] __attribute__((aligned(16)));
   undefined1 *__fp = __frame + 0x108;
-  wint_t __wc;
-  long *plVar1;
-  code *pcVar2;
-  long lVar3;
-  uint va0;
+  int wVar1;
+  long lVar2;
+  Vector *this;
+  code *pcVar3;
+  int va0;
   int iVar4;
-  uint uVar5;
-  long *a0;
+  int wVar5;
+  Panel *this_00;
   size_t sVar6;
-  undefined8 *puVar7;
-  char *pcVar8;
+  undefined8 *data_;
+  char *pcVar7;
   ulong a3;
-  undefined1 (*pauVar9) [16];
-  undefined1 *puVar10;
-  undefined1 (*pauVar11) [16];
+  FunctionBar *pFVar8;
+  undefined1 *puVar9;
+  FunctionBar *pFVar10;
   long a4;
-  undefined1 *a5;
+  ObjectClass *a5;
   long in_FS_OFFSET = (long)__fake_fs;
 
-  puVar10 = (*(undefined1 (*)[8])(__fp - 0x88));
-  (*(long *)(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
-  if ((((param_1 < 6) && ((&PTR_s_Other_00156560)[(long)(int)param_1 * 2] != (undefined *)0x0)) &&
-      ((&DAT_0015656c)[(long)(int)param_1 * 0x10] != '\0')) &&
-     ((va0 = sched_get_priority_min(param_1), -1 < (int)va0 &&
-      ((*(int *)(__fp - 0x5c)) = sched_get_priority_max(param_1), -1 < (*(int *)(__fp - 0x5c)))))) {
-    (*(undefined8 *)(__fp - 0x48)) = 0;
-    (*(char * *)(__fp - 0x58)) = ((char *)(long)&s_Select_00149166 /* "Select " */);
-    (*(char * *)(__fp - 0x50)) = ((char *)(long)&s_Cancel_00147223 /* "Cancel " */);
-    (*(undefined1 (**)[16])(__fp - 0x68)) = (undefined1 (*) [16])FunctionBar_new(&(*(char * *)(__fp - 0x58)),(long)&PTR_s_Enter_001565c0,(long)&DAT_0014d258);
-    a0 = malloc(0x26e0);
-    puVar10 = (*(undefined1 (*)[8])(__fp - 0x88));
-    if (a0 == (long *)0x0) {
+  puVar9 = (*(undefined1 (*) [8])(__fp - 0x88));
+  lVar2 = *(long *)(in_FS_OFFSET + 0x28);
+  if (((((uint)policy < 6) && (policies[policy].name != (char *)0x0)) &&
+      (policies[policy].prioritySupport != false)) &&
+     ((va0 = sched_get_priority_min(policy), -1 < va0 &&
+      ((*(int (*))(__fp - 0x5c)) = sched_get_priority_max(policy), -1 < (*(int (*))(__fp - 0x5c)))))) {
+    (*(char *(*) [3])(__fp - 0x58))[2] = (char *)0x0;
+    (*(char *(*) [3])(__fp - 0x58))[0] = ((char *)(long)&s_Select_00149166 /* "Select " */);
+    (*(char *(*) [3])(__fp - 0x58))[1] = ((char *)(long)&s_Cancel_00147223 /* "Cancel " */);
+    (*(FunctionBar *(*))(__fp - 0x68)) = FunctionBar_new((*(char *(*) [3])(__fp - 0x58)),FunctionBar_EnterEscKeys,((char *)(long)&FunctionBar_EnterEscEvents /* L"\r\x1b" */));
+                    /* Unresolved local var: Panel * this@[???]
+                       Unresolved local var: void * data@[???] */
+    this_00 = malloc(0x26e0);
+    puVar9 = (*(undefined1 (*) [8])(__fp - 0x88));
+    if (this_00 == (Panel *)0x0) {
 LAB_00133704:
                     /* WARNING: Subroutine does not return */
       fail();
     }
     a4 = 0;
-    a5 = ListItem_class;
-    *a0 = (long)Panel_class;
-    Panel_init((long)a0,0,0,0,0,ListItem_class,1,(*(undefined1 (**)[16])(__fp - 0x68)));
-    uVar5 = *(uint *)(CRT_colors + 0x1c);
-    (*(undefined1 * *)(__fp - 0x80)) = (*(undefined1 (*)[8])(__fp - 0x88));
-    (*(undefined1 (**)[16])(__fp - 0x70)) = (undefined1 (*) [16])(*(wchar_t (*)[8])(__fp - 0xb8));
-    (*(undefined1 * *)(__fp - 0x80)) = (*(undefined1 (*)[8])(__fp - 0x88));
-    sVar6 = mbstowcs((*(wchar_t (*)[8])(__fp - 0xb8)),((char *)(long)(__sec_rodata + 0x2e25) /* "Priority:" */),9);
+    a5 = &ListItem_class;
+    (this_00->super).klass = &Panel_class.super;
+    Panel_init(this_00,0,0,0,0,&ListItem_class,true,(*(FunctionBar *(*))(__fp - 0x68)));
+    wVar1 = CRT_colors[7];
+                    /* Unresolved local var: int[43692] data@[???]
+                       Unresolved local var: int newLen@[???] */
+    (*(undefined1 *(*))(__fp - 0x80)) = (*(undefined1 (*) [8])(__fp - 0x88));
+    (*(FunctionBar *(*))(__fp - 0x70)) = (FunctionBar *)(*(int (*) [8])(__fp - 0xb8));
+    (*(undefined1 *(*))(__fp - 0x80)) = (*(undefined1 (*) [8])(__fp - 0x88));
+    sVar6 = mbstowcs((*(int (*) [8])(__fp - 0xb8)),((char *)(long)(__sec_rodata + 0x2e25) /* "Priority:" */),9);
     if (0 < (int)sVar6) {
-      (*(undefined1 (**)[16])(__fp - 0x68)) = (undefined1 (*) [16])sVar6;
-      FUN_00130130((int *)(a0 + 0xc),(int)sVar6);
-      pauVar9 = (undefined1 (*) [16])a0[0xd];
-      (*(uint *)(__fp - 0x60)) = uVar5 & 0xffffff;
-      (*(undefined1 (**)[16])(__fp - 0x78)) = (undefined1 (*) [16])(*(*(undefined1 (**)[16])(__fp - 0x70)) + (ulong)((int)(*(undefined1 (**)[16])(__fp - 0x68)) - 1) * 4 + 4);
-      pauVar11 = (*(undefined1 (**)[16])(__fp - 0x70));
+      (*(FunctionBar *(*))(__fp - 0x68)) = (FunctionBar *)sVar6;
+      RichString_setLen(&this_00->header,(int)sVar6);
+                    /* Unresolved local var: int i@[???]
+                       Unresolved local var: int j@[???] */
+      pFVar8 = (FunctionBar *)(this_00->header).chptr;
+      (*(int (*))(__fp - 0x60)) = wVar1 & 0xffffff;
+      (*(int *(*))(__fp - 0x78)) = (int *)((long)&(*(FunctionBar *(*))(__fp - 0x70))->field_0x4 + (ulong)((int)(*(FunctionBar *(*))(__fp - 0x68)) - 1) * 4);
+      pFVar10 = (*(FunctionBar *(*))(__fp - 0x70));
       do {
-        __wc = *(wint_t *)*pauVar11;
-        (*(undefined1 (**)[16])(__fp - 0x70)) = pauVar9;
-        (*(undefined1 (**)[16])(__fp - 0x68)) = pauVar11;
-        iVar4 = iswprint(__wc);
+        wVar1 = pFVar10->size;
+        (*(FunctionBar *(*))(__fp - 0x70)) = pFVar8;
+        (*(FunctionBar *(*))(__fp - 0x68)) = pFVar10;
+        iVar4 = iswprint(wVar1);
         if (iVar4 == 0) {
-          __wc = 0xfffd;
+          wVar1 = 65533;
         }
-        *(undefined16 *)(*(*(undefined1 (**)[16])(__fp - 0x70))) = (undefined16)0x0;
-        pauVar11 = (undefined1 (*) [16])(*(*(undefined1 (**)[16])(__fp - 0x68)) + 4);
-        *(undefined16 *)(*(undefined1 (*) [16])(*(*(undefined1 (**)[16])(__fp - 0x70)) + 0xc)) = (undefined16)0x0;
-        pauVar9 = (undefined1 (*) [16])((*(undefined1 (**)[16])(__fp - 0x70))[1] + 0xc);
-        *(uint *)*(*(undefined1 (**)[16])(__fp - 0x70)) = (*(uint *)(__fp - 0x60));
-        *(wint_t *)(*(*(undefined1 (**)[16])(__fp - 0x70)) + 4) = __wc;
-      } while ((*(undefined1 (**)[16])(__fp - 0x78)) != pauVar11);
+        (*(FunctionBar *(*))(__fp - 0x70))->size = 0;
+        (*(FunctionBar *(*))(__fp - 0x70))->field_0x4 = 0;
+        (*(FunctionBar *(*))(__fp - 0x70))->field_0x5 = 0;
+        (*(FunctionBar *(*))(__fp - 0x70))->field_0x6 = 0;
+        (*(FunctionBar *(*))(__fp - 0x70))->field_0x7 = 0;
+        (*(FunctionBar *(*))(__fp - 0x70))->functions = (char **)0x0;
+        pFVar10 = (FunctionBar *)&(*(FunctionBar *(*))(__fp - 0x68))->field_0x4;
+        *(undefined16 *)(*(undefined1 (*) [16])((long)&(*(FunctionBar *(*))(__fp - 0x70))->functions + 4)) = (undefined16)0x0;
+        pFVar8 = (FunctionBar *)((long)&(*(FunctionBar *(*))(__fp - 0x70))->events + 4);
+        (*(FunctionBar *(*))(__fp - 0x70))->size = (*(int (*))(__fp - 0x60));
+        *(int *)&(*(FunctionBar *(*))(__fp - 0x70))->field_0x4 = wVar1;
+      } while ((FunctionBar *)(*(int *(*))(__fp - 0x78)) != pFVar10);
     }
-    puVar10 = (*(undefined1 * *)(__fp - 0x80));
-    *(undefined1 *)(a0 + 9) = 1;
-    if ((int)va0 <= (*(int *)(__fp - 0x5c))) {
+                    /* Unresolved local var: int i@[???] */
+    puVar9 = (*(undefined1 *(*))(__fp - 0x80));
+    this_00->needsRedraw = true;
+    if (va0 <= (*(int (*))(__fp - 0x5c))) {
       do {
-        a3 = (ulong)va0;
-        xSnprintf((char *)&(*(char * *)(__fp - 0x58)),0x10,((char *)(long)(__sec_rodata + 0x2710) /* "%d" */),va0);
-        puVar7 = malloc(0x18);
-        if (puVar7 == (undefined8 *)0x0) goto LAB_00133704;
-        *puVar7 = ListItem_class;
-        pcVar8 = strdup((char *)&(*(char * *)(__fp - 0x58)));
-        if (pcVar8 == (char *)0x0) goto LAB_00133704;
-        plVar1 = (long *)a0[4];
-        puVar7[1] = pcVar8;
-        *(uint *)(puVar7 + 2) = va0;
-        *(undefined1 *)((long)puVar7 + 0x14) = 0;
-        lVar3 = plVar1[3];
-        Vector_set(plVar1,(int)lVar3,(long)puVar7,a3,a4,(long)a5);
-        *(undefined1 *)(a0 + 9) = 1;
-        if (param_2 == va0) {
-          uVar5 = *(int *)(a0[4] + 0x18) - 1;
-          if ((int)param_2 < *(int *)(a0[4] + 0x18)) {
-            uVar5 = param_2;
+        a3 = (ulong)(uint)va0;
+        xSnprintf((char *)(*(char *(*) [3])(__fp - 0x58)),0x10,((char *)(long)(__sec_rodata + 0x2710) /* "%d" */),va0);
+                    /* Unresolved local var: ListItem * this@[???]
+                       Unresolved local var: void * data@[???] */
+        data_ = malloc(0x18);
+        if (data_ == (undefined8 *)0x0) goto LAB_00133704;
+                    /* Unresolved local var: char * data@[???] */
+        *data_ = &ListItem_class;
+        pcVar7 = strdup((char *)(*(char *(*) [3])(__fp - 0x58)));
+        if (pcVar7 == (char *)0x0) goto LAB_00133704;
+        this = this_00->items;
+        data_[1] = pcVar7;
+                    /* Unresolved local var: Object * data@[???]
+                       Unresolved local var: int i@[???] */
+        *(int *)(data_ + 2) = va0;
+        *(undefined1 *)((long)data_ + 0x14) = 0;
+        wVar1 = this->items;
+        Vector_set(this,wVar1,data_);
+        this_00->needsRedraw = true;
+        if (preSelectedPriority == va0) {
+                    /* Unresolved local var: int size@[???] */
+          wVar1 = this_00->items->items;
+          wVar5 = wVar1 + -1;
+          if (preSelectedPriority < wVar1) {
+            wVar5 = preSelectedPriority;
           }
-          if ((int)uVar5 < 0) {
-            uVar5 = 0;
+          if (wVar5 < 0) {
+            wVar5 = 0;
           }
-          *(uint *)(a0 + 5) = uVar5;
-          pcVar2 = *(code **)(*a0 + 0x20);
-          if (pcVar2 != (code *)0x0) {
-            (*pcVar2)((long)a0,0xffffffff,0,a3,a4,(long)a5);
+          this_00->selected = wVar5;
+          pcVar3 = (this_00->super).klass[1].extends;
+          if (pcVar3 != (code *)0x0) {
+            (*pcVar3)((long)this_00,0xffffffff,0,a3,a4,(long)a5);
           }
         }
         va0 = va0 + 1;
-      } while ((int)va0 <= (*(int *)(__fp - 0x5c)));
+      } while (va0 <= (*(int (*))(__fp - 0x5c)));
     }
   }
   else {
-    a0 = (long *)0x0;
+    this_00 = (Panel *)0x0;
   }
-  if ((*(long *)(__fp - 0x40)) == *(long *)(in_FS_OFFSET + 0x28)) {
-    return a0;
+  if (lVar2 == *(long *)(in_FS_OFFSET + 0x28)) {
+    return this_00;
   }
                     /* WARNING: Subroutine does not return */
   __stack_chk_fail();

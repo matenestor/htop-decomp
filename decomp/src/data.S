@@ -200,8 +200,6 @@ __sec_rodata:
 .set s_Reset_on_fork__off_001473b8, __sec_rodata+0x3b8
 .globl s_Sending____001473cb
 .set s_Sending____001473cb, __sec_rodata+0x3cb
-.globl L_001473d4
-.set L_001473d4, __sec_rodata+0x3d4
 .globl s_Show_001473d6
 .set s_Show_001473d6, __sec_rodata+0x3d6
 .globl s_Show_processes_of__001473de
@@ -406,206 +404,204 @@ __sec_rodata:
 .set DAT_0014775e, __sec_rodata+0x75e
 .globl DAT_00147760
 .set DAT_00147760, __sec_rodata+0x760
-.globl L_00147762
-.set L_00147762, __sec_rodata+0x762
-.globl L_0014776a
-.set L_0014776a, __sec_rodata+0x76a
-.globl L_00147773
-.set L_00147773, __sec_rodata+0x773
-.globl L_00147779
-.set L_00147779, __sec_rodata+0x779
-.globl L_00147780
-.set L_00147780, __sec_rodata+0x780
-.globl L_00147788
-.set L_00147788, __sec_rodata+0x788
-.globl L_0014778d
-.set L_0014778d, __sec_rodata+0x78d
-.globl L_00147791
-.set L_00147791, __sec_rodata+0x791
-.globl L_00147799
-.set L_00147799, __sec_rodata+0x799
-.globl L_001477a7
-.set L_001477a7, __sec_rodata+0x7a7
+.globl s_ZFSCARC_00147762
+.set s_ZFSCARC_00147762, __sec_rodata+0x762
+.globl s_ZFS_CARC_0014776a
+.set s_ZFS_CARC_0014776a, __sec_rodata+0x76a
+.globl s_ARC__00147773
+.set s_ARC__00147773, __sec_rodata+0x773
+.globl s_ZFSARC_00147779
+.set s_ZFSARC_00147779, __sec_rodata+0x779
+.globl s_ZFS_ARC_00147780
+.set s_ZFS_ARC_00147780, __sec_rodata+0x780
+.globl DAT_00147788
+.set DAT_00147788, __sec_rodata+0x788
+.globl DAT_0014778d
+.set DAT_0014778d, __sec_rodata+0x78d
+.globl s_Systemd_00147791
+.set s_Systemd_00147791, __sec_rodata+0x791
+.globl s_Systemd_state_00147799
+.set s_Systemd_state_00147799, __sec_rodata+0x799
+.globl s_Systemd__001477a7
+.set s_Systemd__001477a7, __sec_rodata+0x7a7
 .globl s_SystemdUser_001477b1
 .set s_SystemdUser_001477b1, __sec_rodata+0x7b1
-.globl L_001477bd
-.set L_001477bd, __sec_rodata+0x7bd
-.globl L_001477d0
-.set L_001477d0, __sec_rodata+0x7d0
-.globl L_001477df
-.set L_001477df, __sec_rodata+0x7df
-.globl L_001477e7
-.set L_001477e7, __sec_rodata+0x7e7
-.globl L_001477f1
-.set L_001477f1, __sec_rodata+0x7f1
-.globl L_00147808
-.set L_00147808, __sec_rodata+0x808
-.globl L_0014781d
-.set L_0014781d, __sec_rodata+0x81d
-.globl L_0014782a
-.set L_0014782a, __sec_rodata+0x82a
-.globl L_0014783c
-.set L_0014783c, __sec_rodata+0x83c
-.globl L_00147850
-.set L_00147850, __sec_rodata+0x850
-.globl L_0014785c
-.set L_0014785c, __sec_rodata+0x85c
-.globl L_0014786e
-.set L_0014786e, __sec_rodata+0x86e
-.globl L_00147882
-.set L_00147882, __sec_rodata+0x882
-.globl L_0014788e
-.set L_0014788e, __sec_rodata+0x88e
-.globl L_001478a0
-.set L_001478a0, __sec_rodata+0x8a0
-.globl L_001478b5
-.set L_001478b5, __sec_rodata+0x8b5
-.globl L_001478c2
-.set L_001478c2, __sec_rodata+0x8c2
-.globl L_001478d4
-.set L_001478d4, __sec_rodata+0x8d4
-.globl L_001478ec
-.set L_001478ec, __sec_rodata+0x8ec
-.globl L_001478fc
-.set L_001478fc, __sec_rodata+0x8fc
-.globl L_0014790e
-.set L_0014790e, __sec_rodata+0x90e
-.globl L_00147926
-.set L_00147926, __sec_rodata+0x926
-.globl L_00147936
-.set L_00147936, __sec_rodata+0x936
-.globl L_00147948
-.set L_00147948, __sec_rodata+0x948
-.globl L_00147952
-.set L_00147952, __sec_rodata+0x952
+.globl s_Systemd_user_state_001477bd
+.set s_Systemd_user_state_001477bd, __sec_rodata+0x7bd
+.globl s_Systemd_User__001477d0
+.set s_Systemd_User__001477d0, __sec_rodata+0x7d0
+.globl s_SELinux_001477df
+.set s_SELinux_001477df, __sec_rodata+0x7df
+.globl s_SELinux__001477e7
+.set s_SELinux__001477e7, __sec_rodata+0x7e7
+.globl s_SELinux_state_overview_001477f1
+.set s_SELinux_state_overview_001477f1, __sec_rodata+0x7f1
+.globl s_PressureStallCPUSome_00147808
+.set s_PressureStallCPUSome_00147808, __sec_rodata+0x808
+.globl s_PSI_some_CPU_0014781d
+.set s_PSI_some_CPU_0014781d, __sec_rodata+0x81d
+.globl s_PSI_some_CPU__0014782a
+.set s_PSI_some_CPU__0014782a, __sec_rodata+0x82a
+.globl s_PressureStallIOSome_0014783c
+.set s_PressureStallIOSome_0014783c, __sec_rodata+0x83c
+.globl s_PSI_some_IO_00147850
+.set s_PSI_some_IO_00147850, __sec_rodata+0x850
+.globl s_PSI_some_IO__0014785c
+.set s_PSI_some_IO__0014785c, __sec_rodata+0x85c
+.globl s_PressureStallIOFull_0014786e
+.set s_PressureStallIOFull_0014786e, __sec_rodata+0x86e
+.globl s_PSI_full_IO_00147882
+.set s_PSI_full_IO_00147882, __sec_rodata+0x882
+.globl s_PSI_full_IO__0014788e
+.set s_PSI_full_IO__0014788e, __sec_rodata+0x88e
+.globl s_PressureStallIRQFull_001478a0
+.set s_PressureStallIRQFull_001478a0, __sec_rodata+0x8a0
+.globl s_PSI_full_IRQ_001478b5
+.set s_PSI_full_IRQ_001478b5, __sec_rodata+0x8b5
+.globl s_PSI_full_IRQ__001478c2
+.set s_PSI_full_IRQ__001478c2, __sec_rodata+0x8c2
+.globl s_PressureStallMemorySome_001478d4
+.set s_PressureStallMemorySome_001478d4, __sec_rodata+0x8d4
+.globl s_PSI_some_memory_001478ec
+.set s_PSI_some_memory_001478ec, __sec_rodata+0x8ec
+.globl s_PSI_some_memory__001478fc
+.set s_PSI_some_memory__001478fc, __sec_rodata+0x8fc
+.globl s_PressureStallMemoryFull_0014790e
+.set s_PressureStallMemoryFull_0014790e, __sec_rodata+0x90e
+.globl s_PSI_full_memory_00147926
+.set s_PSI_full_memory_00147926, __sec_rodata+0x926
+.globl s_PSI_full_memory__00147936
+.set s_PSI_full_memory__00147936, __sec_rodata+0x936
+.globl s_HugePages_00147948
+.set s_HugePages_00147948, __sec_rodata+0x948
+.globl DAT_00147952
+.set DAT_00147952, __sec_rodata+0x952
 .globl s_Uptime_00147955
 .set s_Uptime_00147955, __sec_rodata+0x955
-.globl L_0014795c
-.set L_0014795c, __sec_rodata+0x95c
+.globl s_Uptime__0014795c
+.set s_Uptime__0014795c, __sec_rodata+0x95c
 .globl s_Tasks_00147965
 .set s_Tasks_00147965, __sec_rodata+0x965
-.globl L_0014796b
-.set L_0014796b, __sec_rodata+0x96b
-.globl L_00147978
-.set L_00147978, __sec_rodata+0x978
-.globl L_00147980
-.set L_00147980, __sec_rodata+0x980
-.globl L_00147987
-.set L_00147987, __sec_rodata+0x987
-.globl L_00147990
-.set L_00147990, __sec_rodata+0x990
-.globl L_00147994
-.set L_00147994, __sec_rodata+0x994
-.globl L_0014799e
-.set L_0014799e, __sec_rodata+0x99e
-.globl L_001479a9
-.set L_001479a9, __sec_rodata+0x9a9
-.globl L_001479b3
-.set L_001479b3, __sec_rodata+0x9b3
-.globl L_001479be
-.set L_001479be, __sec_rodata+0x9be
-.globl L_001479cc
-.set L_001479cc, __sec_rodata+0x9cc
+.globl s_Task_counter_0014796b
+.set s_Task_counter_0014796b, __sec_rodata+0x96b
+.globl s_Tasks__00147978
+.set s_Tasks__00147978, __sec_rodata+0x978
+.globl s_System_00147980
+.set s_System_00147980, __sec_rodata+0x980
+.globl s_System__00147987
+.set s_System__00147987, __sec_rodata+0x987
+.globl DAT_00147990
+.set DAT_00147990, __sec_rodata+0x990
+.globl s_NetworkIO_00147994
+.set s_NetworkIO_00147994, __sec_rodata+0x994
+.globl s_Network_IO_0014799e
+.set s_Network_IO_0014799e, __sec_rodata+0x99e
+.globl s_Network__001479a9
+.set s_Network__001479a9, __sec_rodata+0x9a9
+.globl s_MemorySwap_001479b3
+.set s_MemorySwap_001479b3, __sec_rodata+0x9b3
+.globl s_Memory___Swap_001479be
+.set s_Memory___Swap_001479be, __sec_rodata+0x9be
+.globl DAT_001479cc
+.set DAT_001479cc, __sec_rodata+0x9cc
 .globl s_Memory_001479d0
 .set s_Memory_001479d0, __sec_rodata+0x9d0
-.globl L_001479d7
-.set L_001479d7, __sec_rodata+0x9d7
+.globl DAT_001479d7
+.set DAT_001479d7, __sec_rodata+0x9d7
 .globl s_LoadAverage_001479db
 .set s_LoadAverage_001479db, __sec_rodata+0x9db
-.globl L_001479e7
-.set L_001479e7, __sec_rodata+0x9e7
-.globl L_001479f4
-.set L_001479f4, __sec_rodata+0x9f4
-.globl L_00147a03
-.set L_00147a03, __sec_rodata+0xa03
-.globl L_00147a08
-.set L_00147a08, __sec_rodata+0xa08
-.globl L_00147a0f
-.set L_00147a0f, __sec_rodata+0xa0f
-.globl L_00147a18
-.set L_00147a18, __sec_rodata+0xa18
-.globl L_00147a23
-.set L_00147a23, __sec_rodata+0xa23
-.globl L_00147a33
-.set L_00147a33, __sec_rodata+0xa33
-.globl L_00147a44
-.set L_00147a44, __sec_rodata+0xa44
-.globl L_00147a4a
-.set L_00147a4a, __sec_rodata+0xa4a
-.globl L_00147a51
-.set L_00147a51, __sec_rodata+0xa51
-.globl L_00147a59
-.set L_00147a59, __sec_rodata+0xa59
-.globl L_00147a63
-.set L_00147a63, __sec_rodata+0xa63
-.globl L_00147a6c
-.set L_00147a6c, __sec_rodata+0xa6c
-.globl L_00147a7a
-.set L_00147a7a, __sec_rodata+0xa7a
-.globl L_00147a81
-.set L_00147a81, __sec_rodata+0xa81
-.globl L_00147a88
-.set L_00147a88, __sec_rodata+0xa88
-.globl L_00147a8d
-.set L_00147a8d, __sec_rodata+0xa8d
+.globl s_Load_average_001479e7
+.set s_Load_average_001479e7, __sec_rodata+0x9e7
+.globl s_Load_average__001479f4
+.set s_Load_average__001479f4, __sec_rodata+0x9f4
+.globl DAT_00147a03
+.set DAT_00147a03, __sec_rodata+0xa03
+.globl s_Load__00147a08
+.set s_Load__00147a08, __sec_rodata+0xa08
+.globl s_Hostname_00147a0f
+.set s_Hostname_00147a0f, __sec_rodata+0xa0f
+.globl s_Hostname__00147a18
+.set s_Hostname__00147a18, __sec_rodata+0xa18
+.globl s_FileDescriptors_00147a23
+.set s_FileDescriptors_00147a23, __sec_rodata+0xa23
+.globl s_File_Descriptors_00147a33
+.set s_File_Descriptors_00147a33, __sec_rodata+0xa33
+.globl s_FDs__00147a44
+.set s_FDs__00147a44, __sec_rodata+0xa44
+.globl s_DiskIO_00147a4a
+.set s_DiskIO_00147a4a, __sec_rodata+0xa4a
+.globl s_Disk_IO_00147a51
+.set s_Disk_IO_00147a51, __sec_rodata+0xa51
+.globl s_Disk_IO__00147a59
+.set s_Disk_IO__00147a59, __sec_rodata+0xa59
+.globl s_DateTime_00147a63
+.set s_DateTime_00147a63, __sec_rodata+0xa63
+.globl s_Date_and_Time_00147a6c
+.set s_Date_and_Time_00147a6c, __sec_rodata+0xa6c
+.globl s_Date___Time__00147a7a
+.set s_Date___Time__00147a7a, __sec_rodata+0xa7a
+.globl DAT_00147a88
+.set DAT_00147a88, __sec_rodata+0xa88
+.globl s_Date__00147a8d
+.set s_Date__00147a8d, __sec_rodata+0xa8d
 .globl s_AllCPUs_00147a94
 .set s_AllCPUs_00147a94, __sec_rodata+0xa94
-.globl L_00147a9c
-.set L_00147a9c, __sec_rodata+0xa9c
-.globl L_00147aa7
-.set L_00147aa7, __sec_rodata+0xaa7
-.globl L_00147abc
-.set L_00147abc, __sec_rodata+0xabc
-.globl L_00147ac5
-.set L_00147ac5, __sec_rodata+0xac5
+.globl s_CPUs__1_1__00147a9c
+.set s_CPUs__1_1__00147a9c, __sec_rodata+0xa9c
+.globl s_CPUs__1_1___all_CPUs_00147aa7
+.set s_CPUs__1_1___all_CPUs_00147aa7, __sec_rodata+0xaa7
+.globl s_AllCPUs2_00147abc
+.set s_AllCPUs2_00147abc, __sec_rodata+0xabc
+.globl s_CPUs__1_2_2__00147ac5
+.set s_CPUs__1_2_2__00147ac5, __sec_rodata+0xac5
 .globl s_LeftCPUs_00147ad2
 .set s_LeftCPUs_00147ad2, __sec_rodata+0xad2
-.globl L_00147adb
-.set L_00147adb, __sec_rodata+0xadb
+.globl s_CPUs__1_2__00147adb
+.set s_CPUs__1_2__00147adb, __sec_rodata+0xadb
 .globl s_RightCPUs_00147ae6
 .set s_RightCPUs_00147ae6, __sec_rodata+0xae6
-.globl L_00147af0
-.set L_00147af0, __sec_rodata+0xaf0
+.globl s_CPUs__2_2__00147af0
+.set s_CPUs__2_2__00147af0, __sec_rodata+0xaf0
 .globl s_LeftCPUs2_00147afb
 .set s_LeftCPUs2_00147afb, __sec_rodata+0xafb
-.globl L_00147b05
-.set L_00147b05, __sec_rodata+0xb05
+.globl s_CPUs__1_2_4__00147b05
+.set s_CPUs__1_2_4__00147b05, __sec_rodata+0xb05
 .globl s_RightCPUs2_00147b12
 .set s_RightCPUs2_00147b12, __sec_rodata+0xb12
-.globl L_00147b1d
-.set L_00147b1d, __sec_rodata+0xb1d
-.globl L_00147b2a
-.set L_00147b2a, __sec_rodata+0xb2a
-.globl L_00147b33
-.set L_00147b33, __sec_rodata+0xb33
+.globl s_CPUs__3_4_4__00147b1d
+.set s_CPUs__3_4_4__00147b1d, __sec_rodata+0xb1d
+.globl s_AllCPUs4_00147b2a
+.set s_AllCPUs4_00147b2a, __sec_rodata+0xb2a
+.globl s_CPUs__1_2_3_4_4__00147b33
+.set s_CPUs__1_2_3_4_4__00147b33, __sec_rodata+0xb33
 .globl s_LeftCPUs4_00147b44
 .set s_LeftCPUs4_00147b44, __sec_rodata+0xb44
-.globl L_00147b4e
-.set L_00147b4e, __sec_rodata+0xb4e
+.globl s_CPUs__1_4_8__00147b4e
+.set s_CPUs__1_4_8__00147b4e, __sec_rodata+0xb4e
 .globl s_RightCPUs4_00147b5b
 .set s_RightCPUs4_00147b5b, __sec_rodata+0xb5b
-.globl L_00147b66
-.set L_00147b66, __sec_rodata+0xb66
-.globl L_00147b73
-.set L_00147b73, __sec_rodata+0xb73
-.globl L_00147b7c
-.set L_00147b7c, __sec_rodata+0xb7c
+.globl s_CPUs__5_8_8__00147b66
+.set s_CPUs__5_8_8__00147b66, __sec_rodata+0xb66
+.globl s_AllCPUs8_00147b73
+.set s_AllCPUs8_00147b73, __sec_rodata+0xb73
+.globl s_CPUs__1_8_8__00147b7c
+.set s_CPUs__1_8_8__00147b7c, __sec_rodata+0xb7c
 .globl s_LeftCPUs8_00147b89
 .set s_LeftCPUs8_00147b89, __sec_rodata+0xb89
-.globl L_00147b93
-.set L_00147b93, __sec_rodata+0xb93
+.globl s_CPUs__1_8_16__00147b93
+.set s_CPUs__1_8_16__00147b93, __sec_rodata+0xb93
 .globl s_RightCPUs8_00147ba1
 .set s_RightCPUs8_00147ba1, __sec_rodata+0xba1
-.globl L_00147bac
-.set L_00147bac, __sec_rodata+0xbac
+.globl s_CPUs__9_16_16__00147bac
+.set s_CPUs__9_16_16__00147bac, __sec_rodata+0xbac
 .globl s_Clock_00147bbb
 .set s_Clock_00147bbb, __sec_rodata+0xbbb
-.globl L_00147bc1
-.set L_00147bc1, __sec_rodata+0xbc1
-.globl L_00147bc9
-.set L_00147bc9, __sec_rodata+0xbc9
-.globl L_00147bd3
-.set L_00147bd3, __sec_rodata+0xbd3
+.globl s_Battery_00147bc1
+.set s_Battery_00147bc1, __sec_rodata+0xbc1
+.globl s_Battery__00147bc9
+.set s_Battery__00147bc9, __sec_rodata+0xbc9
+.globl s_Blank_00147bd3
+.set s_Blank_00147bd3, __sec_rodata+0xbd3
 .globl DAT_00147bd9
 .set DAT_00147bd9, __sec_rodata+0xbd9
 .globl DAT_00147bdc
@@ -640,14 +636,12 @@ __sec_rodata:
 .set DAT_00147c0e, __sec_rodata+0xc0e
 .globl DAT_00147c12
 .set DAT_00147c12, __sec_rodata+0xc12
-.globl s_MoveUp_00147c16
-.set s_MoveUp_00147c16, __sec_rodata+0xc16
-.globl L_00147c1a
-.set L_00147c1a, __sec_rodata+0xc1a
+.globl DAT_00147c16
+.set DAT_00147c16, __sec_rodata+0xc16
+.globl DAT_00147c1a
+.set DAT_00147c1a, __sec_rodata+0xc1a
 .globl s_MoveDn_00147c1d
 .set s_MoveDn_00147c1d, __sec_rodata+0xc1d
-.globl L_00147c21
-.set L_00147c21, __sec_rodata+0xc21
 .globl s_Remove_00147c24
 .set s_Remove_00147c24, __sec_rodata+0xc24
 .globl s_Monochromatic_00147c2b
@@ -788,8 +782,8 @@ __sec_rodata:
 .set s_show_this_help_screen_00148043, __sec_rodata+0x1043
 .globl s_F10_q__00148059
 .set s_F10_q__00148059, __sec_rodata+0x1059
-.globl L_00148063
-.set L_00148063, __sec_rodata+0x1063
+.globl DAT_00148063
+.set DAT_00148063, __sec_rodata+0x1063
 .globl s_hide_show_header_meters_00148068
 .set s_hide_show_header_meters_00148068, __sec_rodata+0x1068
 .globl s_Tab__00148080
@@ -846,304 +840,280 @@ __sec_rodata:
 .set s_invert_sort_order_0014820f, __sec_rodata+0x120f
 .globl s_F6______00148221
 .set s_F6______00148221, __sec_rodata+0x1221
-.globl L_0014822b
-.set L_0014822b, __sec_rodata+0x122b
+.globl s_select_sort_column_0014822b
+.set s_select_sort_column_0014822b, __sec_rodata+0x122b
 .globl s_Other_0014823e
 .set s_Other_0014823e, __sec_rodata+0x123e
 .globl DAT_00148244
 .set DAT_00148244, __sec_rodata+0x1244
-.globl L_00148249
-.set L_00148249, __sec_rodata+0x1249
-.globl L_00148254
-.set L_00148254, __sec_rodata+0x1254
+.globl s_RoundRobin_00148249
+.set s_RoundRobin_00148249, __sec_rodata+0x1249
+.globl s_Batch_00148254
+.set s_Batch_00148254, __sec_rodata+0x1254
 .globl DAT_0014825a
 .set DAT_0014825a, __sec_rodata+0x125a
 .globl s_Process_thread_ID_0014825f
 .set s_Process_thread_ID_0014825f, __sec_rodata+0x125f
-.globl L_00148271
-.set L_00148271, __sec_rodata+0x1271
+.globl s_Command_00148271
+.set s_Command_00148271, __sec_rodata+0x1271
 .globl s_Command_line_0014827a
 .set s_Command_line_0014827a, __sec_rodata+0x127a
 .globl s_STATE_00148287
 .set s_STATE_00148287, __sec_rodata+0x1287
-.globl L_0014828d
-.set L_0014828d, __sec_rodata+0x128d
+.globl DAT_0014828d
+.set DAT_0014828d, __sec_rodata+0x128d
 .globl DAT_0014828e
 .set DAT_0014828e, __sec_rodata+0x128e
-.globl L_00148292
-.set L_00148292, __sec_rodata+0x1292
-.globl L_001482a4
-.set L_001482a4, __sec_rodata+0x12a4
-.globl L_001482a9
-.set L_001482a9, __sec_rodata+0x12a9
-.globl L_001482ba
-.set L_001482ba, __sec_rodata+0x12ba
-.globl L_001482c2
-.set L_001482c2, __sec_rodata+0x12c2
-.globl L_001482c6
-.set L_001482c6, __sec_rodata+0x12c6
-.globl L_001482db
-.set L_001482db, __sec_rodata+0x12db
-.globl L_001482df
-.set L_001482df, __sec_rodata+0x12df
-.globl L_001482e9
-.set L_001482e9, __sec_rodata+0x12e9
-.globl L_001482fe
-.set L_001482fe, __sec_rodata+0x12fe
-.globl L_00148304
-.set L_00148304, __sec_rodata+0x1304
-.globl L_00148311
-.set L_00148311, __sec_rodata+0x1311
-.globl L_00148312
-.set L_00148312, __sec_rodata+0x1312
-.globl L_00148319
-.set L_00148319, __sec_rodata+0x1319
-.globl L_00148326
-.set L_00148326, __sec_rodata+0x1326
-.globl L_00148333
-.set L_00148333, __sec_rodata+0x1333
-.globl L_00148334
-.set L_00148334, __sec_rodata+0x1334
-.globl L_0014833b
-.set L_0014833b, __sec_rodata+0x133b
-.globl L_00148348
-.set L_00148348, __sec_rodata+0x1348
-.globl L_00148352
-.set L_00148352, __sec_rodata+0x1352
-.globl L_0014835c
-.set L_0014835c, __sec_rodata+0x135c
-.globl L_0014835d
-.set L_0014835d, __sec_rodata+0x135d
-.globl L_00148363
-.set L_00148363, __sec_rodata+0x1363
-.globl L_0014836d
-.set L_0014836d, __sec_rodata+0x136d
-.globl L_0014836e
-.set L_0014836e, __sec_rodata+0x136e
-.globl L_0014836f
-.set L_0014836f, __sec_rodata+0x136f
-.globl L_00148374
-.set L_00148374, __sec_rodata+0x1374
+.globl s_Parent_process_ID_00148292
+.set s_Parent_process_ID_00148292, __sec_rodata+0x1292
+.globl DAT_001482a4
+.set DAT_001482a4, __sec_rodata+0x12a4
+.globl s_Process_group_ID_001482a9
+.set s_Process_group_ID_001482a9, __sec_rodata+0x12a9
+.globl s_SESSION_001482ba
+.set s_SESSION_001482ba, __sec_rodata+0x12ba
+.globl DAT_001482c2
+.set DAT_001482c2, __sec_rodata+0x12c2
+.globl s_Process_s_session_ID_001482c6
+.set s_Process_s_session_ID_001482c6, __sec_rodata+0x12c6
+.globl DAT_001482db
+.set DAT_001482db, __sec_rodata+0x12db
+.globl s_TTY_001482df
+.set s_TTY_001482df, __sec_rodata+0x12df
+.globl s_Controlling_terminal_001482e9
+.set s_Controlling_terminal_001482e9, __sec_rodata+0x12e9
+.globl s_TPGID_001482fe
+.set s_TPGID_001482fe, __sec_rodata+0x12fe
+.globl s_MINFLT_00148304
+.set s_MINFLT_00148304, __sec_rodata+0x1304
+.globl s_CMINFLT_00148311
+.set s_CMINFLT_00148311, __sec_rodata+0x1311
+.globl s_CMINFLT_00148319
+.set s_CMINFLT_00148319, __sec_rodata+0x1319
+.globl s_MAJFLT_00148326
+.set s_MAJFLT_00148326, __sec_rodata+0x1326
+.globl DAT_00148333
+.set DAT_00148333, __sec_rodata+0x1333
+.globl s_MAJFLT_00148334
+.set s_MAJFLT_00148334, __sec_rodata+0x1334
+.globl s_CMAJFLT_0014833b
+.set s_CMAJFLT_0014833b, __sec_rodata+0x133b
+.globl s_CUTIME_0014835c
+.set s_CUTIME_0014835c, __sec_rodata+0x135c
+.globl s_CSTIME_0014836d
+.set s_CSTIME_0014836d, __sec_rodata+0x136d
+.globl DAT_00148374
+.set DAT_00148374, __sec_rodata+0x1374
 .globl DAT_0014837b
 .set DAT_0014837b, __sec_rodata+0x137b
-.globl L_0014837e
-.set L_0014837e, __sec_rodata+0x137e
-.globl L_00148383
-.set L_00148383, __sec_rodata+0x1383
-.globl L_00148388
-.set L_00148388, __sec_rodata+0x1388
-.globl L_00148392
-.set L_00148392, __sec_rodata+0x1392
-.globl L_00148399
-.set L_00148399, __sec_rodata+0x1399
-.globl L_001483b6
-.set L_001483b6, __sec_rodata+0x13b6
-.globl L_001483c0
-.set L_001483c0, __sec_rodata+0x13c0
-.globl L_001483c5
-.set L_001483c5, __sec_rodata+0x13c5
-.globl L_001483cc
-.set L_001483cc, __sec_rodata+0x13cc
-.globl L_001483d3
-.set L_001483d3, __sec_rodata+0x13d3
-.globl L_001483de
-.set L_001483de, __sec_rodata+0x13de
-.globl L_001483e2
-.set L_001483e2, __sec_rodata+0x13e2
-.globl L_001483e5
-.set L_001483e5, __sec_rodata+0x13e5
-.globl L_001483ed
-.set L_001483ed, __sec_rodata+0x13ed
-.globl L_001483f4
-.set L_001483f4, __sec_rodata+0x13f4
-.globl L_001483fa
-.set L_001483fa, __sec_rodata+0x13fa
-.globl L_00148401
-.set L_00148401, __sec_rodata+0x1401
-.globl L_00148407
-.set L_00148407, __sec_rodata+0x1407
-.globl L_0014840e
-.set L_0014840e, __sec_rodata+0x140e
-.globl L_00148414
-.set L_00148414, __sec_rodata+0x1414
-.globl L_0014841b
-.set L_0014841b, __sec_rodata+0x141b
-.globl L_0014841e
-.set L_0014841e, __sec_rodata+0x141e
-.globl L_00148422
-.set L_00148422, __sec_rodata+0x1422
-.globl L_0014843f
-.set L_0014843f, __sec_rodata+0x143f
-.globl L_0014844b
-.set L_0014844b, __sec_rodata+0x144b
-.globl L_00148451
-.set L_00148451, __sec_rodata+0x1451
-.globl L_0014845d
-.set L_0014845d, __sec_rodata+0x145d
-.globl L_00148463
-.set L_00148463, __sec_rodata+0x1463
-.globl L_00148468
-.set L_00148468, __sec_rodata+0x1468
-.globl L_00148474
-.set L_00148474, __sec_rodata+0x1474
-.globl L_0014847e
-.set L_0014847e, __sec_rodata+0x147e
-.globl L_00148483
-.set L_00148483, __sec_rodata+0x1483
-.globl L_00148489
-.set L_00148489, __sec_rodata+0x1489
-.globl L_0014848e
-.set L_0014848e, __sec_rodata+0x148e
-.globl L_0014849f
-.set L_0014849f, __sec_rodata+0x149f
-.globl L_001484a5
-.set L_001484a5, __sec_rodata+0x14a5
-.globl L_001484ad
-.set L_001484ad, __sec_rodata+0x14ad
-.globl L_001484b7
-.set L_001484b7, __sec_rodata+0x14b7
-.globl L_001484c7
-.set L_001484c7, __sec_rodata+0x14c7
-.globl L_001484ce
-.set L_001484ce, __sec_rodata+0x14ce
-.globl L_001484d3
-.set L_001484d3, __sec_rodata+0x14d3
-.globl L_001484dd
-.set L_001484dd, __sec_rodata+0x14dd
-.globl L_001484e2
-.set L_001484e2, __sec_rodata+0x14e2
-.globl L_001484f4
-.set L_001484f4, __sec_rodata+0x14f4
-.globl L_001484f9
-.set L_001484f9, __sec_rodata+0x14f9
-.globl L_00148500
-.set L_00148500, __sec_rodata+0x1500
-.globl L_00148513
-.set L_00148513, __sec_rodata+0x1513
-.globl L_00148519
-.set L_00148519, __sec_rodata+0x1519
-.globl L_00148520
-.set L_00148520, __sec_rodata+0x1520
-.globl L_00148526
-.set L_00148526, __sec_rodata+0x1526
-.globl L_0014852d
-.set L_0014852d, __sec_rodata+0x152d
-.globl L_00148533
-.set L_00148533, __sec_rodata+0x1533
-.globl L_00148540
-.set L_00148540, __sec_rodata+0x1540
-.globl L_00148546
-.set L_00148546, __sec_rodata+0x1546
-.globl L_00148553
-.set L_00148553, __sec_rodata+0x1553
-.globl L_0014855a
-.set L_0014855a, __sec_rodata+0x155a
-.globl L_00148561
-.set L_00148561, __sec_rodata+0x1561
-.globl L_00148568
-.set L_00148568, __sec_rodata+0x1568
-.globl L_0014856f
-.set L_0014856f, __sec_rodata+0x156f
-.globl L_00148576
-.set L_00148576, __sec_rodata+0x1576
-.globl L_0014857d
-.set L_0014857d, __sec_rodata+0x157d
-.globl L_0014858a
-.set L_0014858a, __sec_rodata+0x158a
-.globl L_00148597
-.set L_00148597, __sec_rodata+0x1597
-.globl L_001485a5
-.set L_001485a5, __sec_rodata+0x15a5
-.globl L_001485b2
-.set L_001485b2, __sec_rodata+0x15b2
-.globl L_001485ba
-.set L_001485ba, __sec_rodata+0x15ba
-.globl L_001485c7
-.set L_001485c7, __sec_rodata+0x15c7
-.globl L_001485d4
-.set L_001485d4, __sec_rodata+0x15d4
-.globl L_001485d8
-.set L_001485d8, __sec_rodata+0x15d8
-.globl L_001485de
-.set L_001485de, __sec_rodata+0x15de
-.globl L_001485e1
-.set L_001485e1, __sec_rodata+0x15e1
-.globl L_001485ea
-.set L_001485ea, __sec_rodata+0x15ea
-.globl L_001485ee
-.set L_001485ee, __sec_rodata+0x15ee
-.globl L_001485fb
-.set L_001485fb, __sec_rodata+0x15fb
-.globl L_0014860d
-.set L_0014860d, __sec_rodata+0x160d
-.globl L_00148614
-.set L_00148614, __sec_rodata+0x1614
-.globl L_00148620
-.set L_00148620, __sec_rodata+0x1620
-.globl L_00148631
-.set L_00148631, __sec_rodata+0x1631
-.globl L_00148638
-.set L_00148638, __sec_rodata+0x1638
-.globl L_0014864a
-.set L_0014864a, __sec_rodata+0x164a
-.globl L_0014865d
-.set L_0014865d, __sec_rodata+0x165d
-.globl L_00148664
-.set L_00148664, __sec_rodata+0x1664
-.globl L_00148673
-.set L_00148673, __sec_rodata+0x1673
-.globl L_00148679
-.set L_00148679, __sec_rodata+0x1679
-.globl L_00148680
-.set L_00148680, __sec_rodata+0x1680
-.globl L_00148687
-.set L_00148687, __sec_rodata+0x1687
-.globl L_0014868e
-.set L_0014868e, __sec_rodata+0x168e
-.globl L_00148696
-.set L_00148696, __sec_rodata+0x1696
-.globl L_0014869e
-.set L_0014869e, __sec_rodata+0x169e
-.globl L_001486a3
-.set L_001486a3, __sec_rodata+0x16a3
-.globl L_001486aa
-.set L_001486aa, __sec_rodata+0x16aa
-.globl L_001486b2
-.set L_001486b2, __sec_rodata+0x16b2
-.globl L_001486c5
-.set L_001486c5, __sec_rodata+0x16c5
-.globl L_001486ca
-.set L_001486ca, __sec_rodata+0x16ca
-.globl L_001486db
-.set L_001486db, __sec_rodata+0x16db
-.globl L_001486df
-.set L_001486df, __sec_rodata+0x16df
-.globl L_001486f0
-.set L_001486f0, __sec_rodata+0x16f0
-.globl L_001486f4
-.set L_001486f4, __sec_rodata+0x16f4
-.globl L_0014870f
-.set L_0014870f, __sec_rodata+0x170f
-.globl L_0014871c
-.set L_0014871c, __sec_rodata+0x171c
-.globl L_00148721
-.set L_00148721, __sec_rodata+0x1721
-.globl L_0014872b
-.set L_0014872b, __sec_rodata+0x172b
-.globl L_00148730
-.set L_00148730, __sec_rodata+0x1730
-.globl L_00148735
-.set L_00148735, __sec_rodata+0x1735
-.globl L_00148736
-.set L_00148736, __sec_rodata+0x1736
-.globl L_0014873d
-.set L_0014873d, __sec_rodata+0x173d
-.globl L_00148751
-.set L_00148751, __sec_rodata+0x1751
-.globl L_0014875b
-.set L_0014875b, __sec_rodata+0x175b
-.globl L_00148762
-.set L_00148762, __sec_rodata+0x1762
+.globl DAT_0014837e
+.set DAT_0014837e, __sec_rodata+0x137e
+.globl DAT_00148383
+.set DAT_00148383, __sec_rodata+0x1383
+.globl s_STARTTIME_00148388
+.set s_STARTTIME_00148388, __sec_rodata+0x1388
+.globl s_START_00148392
+.set s_START_00148392, __sec_rodata+0x1392
+.globl s_Time_the_process_was_started_00148399
+.set s_Time_the_process_was_started_00148399, __sec_rodata+0x1399
+.globl s_PROCESSOR_001483b6
+.set s_PROCESSOR_001483b6, __sec_rodata+0x13b6
+.globl DAT_001483c0
+.set DAT_001483c0, __sec_rodata+0x13c0
+.globl s_M_VIRT_001483c5
+.set s_M_VIRT_001483c5, __sec_rodata+0x13c5
+.globl s_VIRT_001483cc
+.set s_VIRT_001483cc, __sec_rodata+0x13cc
+.globl s_M_RESIDENT_001483d3
+.set s_M_RESIDENT_001483d3, __sec_rodata+0x13d3
+.globl DAT_001483de
+.set DAT_001483de, __sec_rodata+0x13de
+.globl DAT_001483e2
+.set DAT_001483e2, __sec_rodata+0x13e2
+.globl s_M_SHARE_001483e5
+.set s_M_SHARE_001483e5, __sec_rodata+0x13e5
+.globl s_SHR_001483ed
+.set s_SHR_001483ed, __sec_rodata+0x13ed
+.globl s_M_TRS_001483f4
+.set s_M_TRS_001483f4, __sec_rodata+0x13f4
+.globl s_CODE_001483fa
+.set s_CODE_001483fa, __sec_rodata+0x13fa
+.globl s_M_DRS_00148401
+.set s_M_DRS_00148401, __sec_rodata+0x1401
+.globl s_DATA_00148407
+.set s_DATA_00148407, __sec_rodata+0x1407
+.globl s_M_LRS_0014840e
+.set s_M_LRS_0014840e, __sec_rodata+0x140e
+.globl s_LIB_00148414
+.set s_LIB_00148414, __sec_rodata+0x1414
+.globl s_ST_UID_0014841b
+.set s_ST_UID_0014841b, __sec_rodata+0x141b
+.globl s_User_ID_of_the_process_owner_00148422
+.set s_User_ID_of_the_process_owner_00148422, __sec_rodata+0x1422
+.globl s_PERCENT_CPU_0014843f
+.set s_PERCENT_CPU_0014843f, __sec_rodata+0x143f
+.globl s_CPU__0014844b
+.set s_CPU__0014844b, __sec_rodata+0x144b
+.globl s_PERCENT_MEM_00148451
+.set s_PERCENT_MEM_00148451, __sec_rodata+0x1451
+.globl s_MEM__0014845d
+.set s_MEM__0014845d, __sec_rodata+0x145d
+.globl DAT_00148463
+.set DAT_00148463, __sec_rodata+0x1463
+.globl s_USER_00148468
+.set s_USER_00148468, __sec_rodata+0x1468
+.globl DAT_0014847e
+.set DAT_0014847e, __sec_rodata+0x147e
+.globl s_NLWP_00148483
+.set s_NLWP_00148483, __sec_rodata+0x1483
+.globl DAT_00148489
+.set DAT_00148489, __sec_rodata+0x1489
+.globl s_PERCENT_NORM_CPU_0014848e
+.set s_PERCENT_NORM_CPU_0014848e, __sec_rodata+0x148e
+.globl s_NCPU__0014849f
+.set s_NCPU__0014849f, __sec_rodata+0x149f
+.globl s_ELAPSED_001484a5
+.set s_ELAPSED_001484a5, __sec_rodata+0x14a5
+.globl s_ELAPSED_001484ad
+.set s_ELAPSED_001484ad, __sec_rodata+0x14ad
+.globl s_SCHEDULERPOLICY_001484b7
+.set s_SCHEDULERPOLICY_001484b7, __sec_rodata+0x14b7
+.globl s_SCHED_001484c7
+.set s_SCHED_001484c7, __sec_rodata+0x14c7
+.globl DAT_001484ce
+.set DAT_001484ce, __sec_rodata+0x14ce
+.globl s_CTID_001484d3
+.set s_CTID_001484d3, __sec_rodata+0x14d3
+.globl DAT_001484dd
+.set DAT_001484dd, __sec_rodata+0x14dd
+.globl s_OpenVZ_process_ID_001484e2
+.set s_OpenVZ_process_ID_001484e2, __sec_rodata+0x14e2
+.globl DAT_001484f4
+.set DAT_001484f4, __sec_rodata+0x14f4
+.globl s_VXID_001484f9
+.set s_VXID_001484f9, __sec_rodata+0x14f9
+.globl s_VServer_process_ID_00148500
+.set s_VServer_process_ID_00148500, __sec_rodata+0x1500
+.globl s_RCHAR_00148513
+.set s_RCHAR_00148513, __sec_rodata+0x1513
+.globl s_RCHAR_00148519
+.set s_RCHAR_00148519, __sec_rodata+0x1519
+.globl s_WCHAR_00148520
+.set s_WCHAR_00148520, __sec_rodata+0x1520
+.globl s_WCHAR_00148526
+.set s_WCHAR_00148526, __sec_rodata+0x1526
+.globl s_SYSCR_0014852d
+.set s_SYSCR_0014852d, __sec_rodata+0x152d
+.globl s_READ_SYSC_00148533
+.set s_READ_SYSC_00148533, __sec_rodata+0x1533
+.globl s_SYSCW_00148540
+.set s_SYSCW_00148540, __sec_rodata+0x1540
+.globl s_WRITE_SYSC_00148546
+.set s_WRITE_SYSC_00148546, __sec_rodata+0x1546
+.globl s_RBYTES_00148553
+.set s_RBYTES_00148553, __sec_rodata+0x1553
+.globl s_IO_R_0014855a
+.set s_IO_R_0014855a, __sec_rodata+0x155a
+.globl s_WBYTES_00148561
+.set s_WBYTES_00148561, __sec_rodata+0x1561
+.globl s_IO_W_00148568
+.set s_IO_W_00148568, __sec_rodata+0x1568
+.globl s_CNCLWB_0014856f
+.set s_CNCLWB_0014856f, __sec_rodata+0x156f
+.globl s_IO_C_00148576
+.set s_IO_C_00148576, __sec_rodata+0x1576
+.globl s_IO_READ_RATE_0014857d
+.set s_IO_READ_RATE_0014857d, __sec_rodata+0x157d
+.globl s_DISK_READ_0014858a
+.set s_DISK_READ_0014858a, __sec_rodata+0x158a
+.globl s_IO_WRITE_RATE_00148597
+.set s_IO_WRITE_RATE_00148597, __sec_rodata+0x1597
+.globl s_DISK_WRITE_001485a5
+.set s_DISK_WRITE_001485a5, __sec_rodata+0x15a5
+.globl s_IO_RATE_001485b2
+.set s_IO_RATE_001485b2, __sec_rodata+0x15b2
+.globl s_DISK_R_W_001485ba
+.set s_DISK_R_W_001485ba, __sec_rodata+0x15ba
+.globl s_CGROUP__raw__001485c7
+.set s_CGROUP__raw__001485c7, __sec_rodata+0x15c7
+.globl DAT_001485d4
+.set DAT_001485d4, __sec_rodata+0x15d4
+.globl s_OOM_001485d8
+.set s_OOM_001485d8, __sec_rodata+0x15d8
+.globl s_IO_PRIORITY_001485de
+.set s_IO_PRIORITY_001485de, __sec_rodata+0x15de
+.globl DAT_001485ea
+.set DAT_001485ea, __sec_rodata+0x15ea
+.globl s_I_O_priority_001485ee
+.set s_I_O_priority_001485ee, __sec_rodata+0x15ee
+.globl s_PERCENT_CPU_DELAY_001485fb
+.set s_PERCENT_CPU_DELAY_001485fb, __sec_rodata+0x15fb
+.globl s_CPUD__0014860d
+.set s_CPUD__0014860d, __sec_rodata+0x160d
+.globl s_CPU_delay___00148614
+.set s_CPU_delay___00148614, __sec_rodata+0x1614
+.globl s_PERCENT_IO_DELAY_00148620
+.set s_PERCENT_IO_DELAY_00148620, __sec_rodata+0x1620
+.globl s_IOD__00148631
+.set s_IOD__00148631, __sec_rodata+0x1631
+.globl s_Block_I_O_delay___00148638
+.set s_Block_I_O_delay___00148638, __sec_rodata+0x1638
+.globl s_PERCENT_SWAP_DELAY_0014864a
+.set s_PERCENT_SWAP_DELAY_0014864a, __sec_rodata+0x164a
+.globl s_SWPD__0014865d
+.set s_SWPD__0014865d, __sec_rodata+0x165d
+.globl s_Swapin_delay___00148664
+.set s_Swapin_delay___00148664, __sec_rodata+0x1664
+.globl s_M_PSS_00148673
+.set s_M_PSS_00148673, __sec_rodata+0x1673
+.globl s_PSS_00148679
+.set s_PSS_00148679, __sec_rodata+0x1679
+.globl s_M_SWAP_00148680
+.set s_M_SWAP_00148680, __sec_rodata+0x1680
+.globl s_SWAP_00148687
+.set s_SWAP_00148687, __sec_rodata+0x1687
+.globl s_M_PSSWP_0014868e
+.set s_M_PSSWP_0014868e, __sec_rodata+0x168e
+.globl s_PSSWP_00148696
+.set s_PSSWP_00148696, __sec_rodata+0x1696
+.globl DAT_0014869e
+.set DAT_0014869e, __sec_rodata+0x169e
+.globl s_CTXT_001486a3
+.set s_CTXT_001486a3, __sec_rodata+0x16a3
+.globl s_SECATTR_001486aa
+.set s_SECATTR_001486aa, __sec_rodata+0x16aa
+.globl s_Security_Attribute_001486b2
+.set s_Security_Attribute_001486b2, __sec_rodata+0x16b2
+.globl DAT_001486c5
+.set DAT_001486c5, __sec_rodata+0x16c5
+.globl s_COMM_001486ca
+.set s_COMM_001486ca, __sec_rodata+0x16ca
+.globl DAT_001486db
+.set DAT_001486db, __sec_rodata+0x16db
+.globl s_EXE_001486df
+.set s_EXE_001486df, __sec_rodata+0x16df
+.globl DAT_001486f0
+.set DAT_001486f0, __sec_rodata+0x16f0
+.globl s_CWD_001486f4
+.set s_CWD_001486f4, __sec_rodata+0x16f4
+.globl s_AUTOGROUP_ID_0014870f
+.set s_AUTOGROUP_ID_0014870f, __sec_rodata+0x170f
+.globl DAT_0014871c
+.set DAT_0014871c, __sec_rodata+0x171c
+.globl s_AUTOGROUP_NICE_00148721
+.set s_AUTOGROUP_NICE_00148721, __sec_rodata+0x1721
+.globl DAT_00148730
+.set DAT_00148730, __sec_rodata+0x1730
+.globl s_CCGROUP_00148735
+.set s_CCGROUP_00148735, __sec_rodata+0x1735
+.globl s_CGROUP__compressed__0014873d
+.set s_CGROUP__compressed__0014873d, __sec_rodata+0x173d
+.globl s_CONTAINER_00148751
+.set s_CONTAINER_00148751, __sec_rodata+0x1751
+.globl s_M_PRIV_0014875b
+.set s_M_PRIV_0014875b, __sec_rodata+0x175b
+.globl s_PRIV_00148762
+.set s_PRIV_00148762, __sec_rodata+0x1762
 .globl DAT_00148769
 .set DAT_00148769, __sec_rodata+0x1769
 .globl DAT_0014876e
@@ -1806,76 +1776,76 @@ __sec_rodata:
 .set s_0_Cancel_00149570, __sec_rodata+0x2570
 .globl s_1_SIGHUP_0014957a
 .set s_1_SIGHUP_0014957a, __sec_rodata+0x257a
-.globl L_00149584
-.set L_00149584, __sec_rodata+0x2584
-.globl L_0014958e
-.set L_0014958e, __sec_rodata+0x258e
-.globl L_00149599
-.set L_00149599, __sec_rodata+0x2599
-.globl L_001495a3
-.set L_001495a3, __sec_rodata+0x25a3
-.globl L_001495ae
-.set L_001495ae, __sec_rodata+0x25ae
-.globl L_001495b9
-.set L_001495b9, __sec_rodata+0x25b9
-.globl L_001495c3
-.set L_001495c3, __sec_rodata+0x25c3
-.globl L_001495cd
-.set L_001495cd, __sec_rodata+0x25cd
-.globl L_001495d7
-.set L_001495d7, __sec_rodata+0x25d7
-.globl L_001495e2
-.set L_001495e2, __sec_rodata+0x25e2
-.globl L_001495ed
-.set L_001495ed, __sec_rodata+0x25ed
-.globl L_001495f8
-.set L_001495f8, __sec_rodata+0x25f8
-.globl L_00149603
-.set L_00149603, __sec_rodata+0x2603
-.globl L_0014960e
-.set L_0014960e, __sec_rodata+0x260e
-.globl L_00149619
-.set L_00149619, __sec_rodata+0x2619
-.globl L_00149624
-.set L_00149624, __sec_rodata+0x2624
-.globl L_00149631
-.set L_00149631, __sec_rodata+0x2631
-.globl L_0014963c
-.set L_0014963c, __sec_rodata+0x263c
-.globl L_00149647
-.set L_00149647, __sec_rodata+0x2647
-.globl L_00149652
-.set L_00149652, __sec_rodata+0x2652
-.globl L_0014965d
-.set L_0014965d, __sec_rodata+0x265d
-.globl L_00149668
-.set L_00149668, __sec_rodata+0x2668
-.globl L_00149673
-.set L_00149673, __sec_rodata+0x2673
-.globl L_0014967d
-.set L_0014967d, __sec_rodata+0x267d
-.globl L_00149688
-.set L_00149688, __sec_rodata+0x2688
+.globl s_2_SIGINT_00149584
+.set s_2_SIGINT_00149584, __sec_rodata+0x2584
+.globl s_3_SIGQUIT_0014958e
+.set s_3_SIGQUIT_0014958e, __sec_rodata+0x258e
+.globl s_4_SIGILL_00149599
+.set s_4_SIGILL_00149599, __sec_rodata+0x2599
+.globl s_5_SIGTRAP_001495a3
+.set s_5_SIGTRAP_001495a3, __sec_rodata+0x25a3
+.globl s_6_SIGABRT_001495ae
+.set s_6_SIGABRT_001495ae, __sec_rodata+0x25ae
+.globl s_6_SIGIOT_001495b9
+.set s_6_SIGIOT_001495b9, __sec_rodata+0x25b9
+.globl s_7_SIGBUS_001495c3
+.set s_7_SIGBUS_001495c3, __sec_rodata+0x25c3
+.globl s_8_SIGFPE_001495cd
+.set s_8_SIGFPE_001495cd, __sec_rodata+0x25cd
+.globl s_9_SIGKILL_001495d7
+.set s_9_SIGKILL_001495d7, __sec_rodata+0x25d7
+.globl s_10_SIGUSR1_001495e2
+.set s_10_SIGUSR1_001495e2, __sec_rodata+0x25e2
+.globl s_11_SIGSEGV_001495ed
+.set s_11_SIGSEGV_001495ed, __sec_rodata+0x25ed
+.globl s_12_SIGUSR2_001495f8
+.set s_12_SIGUSR2_001495f8, __sec_rodata+0x25f8
+.globl s_13_SIGPIPE_00149603
+.set s_13_SIGPIPE_00149603, __sec_rodata+0x2603
+.globl s_14_SIGALRM_0014960e
+.set s_14_SIGALRM_0014960e, __sec_rodata+0x260e
+.globl s_15_SIGTERM_00149619
+.set s_15_SIGTERM_00149619, __sec_rodata+0x2619
+.globl s_16_SIGSTKFLT_00149624
+.set s_16_SIGSTKFLT_00149624, __sec_rodata+0x2624
+.globl s_17_SIGCHLD_00149631
+.set s_17_SIGCHLD_00149631, __sec_rodata+0x2631
+.globl s_18_SIGCONT_0014963c
+.set s_18_SIGCONT_0014963c, __sec_rodata+0x263c
+.globl s_19_SIGSTOP_00149647
+.set s_19_SIGSTOP_00149647, __sec_rodata+0x2647
+.globl s_20_SIGTSTP_00149652
+.set s_20_SIGTSTP_00149652, __sec_rodata+0x2652
+.globl s_21_SIGTTIN_0014965d
+.set s_21_SIGTTIN_0014965d, __sec_rodata+0x265d
+.globl s_22_SIGTTOU_00149668
+.set s_22_SIGTTOU_00149668, __sec_rodata+0x2668
+.globl s_23_SIGURG_00149673
+.set s_23_SIGURG_00149673, __sec_rodata+0x2673
+.globl s_24_SIGXCPU_0014967d
+.set s_24_SIGXCPU_0014967d, __sec_rodata+0x267d
+.globl DAT_00149688
+.set DAT_00149688, __sec_rodata+0x2688
 .globl DAT_00149691
 .set DAT_00149691, __sec_rodata+0x2691
-.globl L_00149693
-.set L_00149693, __sec_rodata+0x2693
-.globl L_001496a0
-.set L_001496a0, __sec_rodata+0x26a0
-.globl L_001496ab
-.set L_001496ab, __sec_rodata+0x26ab
-.globl L_001496b7
-.set L_001496b7, __sec_rodata+0x26b7
-.globl L_001496c0
-.set L_001496c0, __sec_rodata+0x26c0
-.globl L_001496cb
-.set L_001496cb, __sec_rodata+0x26cb
-.globl L_001496d5
-.set L_001496d5, __sec_rodata+0x26d5
-.globl L_001496df
-.set L_001496df, __sec_rodata+0x26df
-.globl L_001496e4
-.set L_001496e4, __sec_rodata+0x26e4
+.globl s_26_SIGVTALRM_00149693
+.set s_26_SIGVTALRM_00149693, __sec_rodata+0x2693
+.globl s_27_SIGPROF_001496a0
+.set s_27_SIGPROF_001496a0, __sec_rodata+0x26a0
+.globl s_28_SIGWINCH_001496ab
+.set s_28_SIGWINCH_001496ab, __sec_rodata+0x26ab
+.globl s_29_SIGIO_001496b7
+.set s_29_SIGIO_001496b7, __sec_rodata+0x26b7
+.globl s_29_SIGPOLL_001496c0
+.set s_29_SIGPOLL_001496c0, __sec_rodata+0x26c0
+.globl s_30_SIGPWR_001496cb
+.set s_30_SIGPWR_001496cb, __sec_rodata+0x26cb
+.globl s_31_SIGSYS_001496d5
+.set s_31_SIGSYS_001496d5, __sec_rodata+0x26d5
+.globl DAT_001496df
+.set DAT_001496df, __sec_rodata+0x26df
+.globl DAT_001496e4
+.set DAT_001496e4, __sec_rodata+0x26e4
 .globl s_New_001496e8
 .set s_New_001496e8, __sec_rodata+0x26e8
 .globl s_Rename_001496ef
@@ -2492,54 +2462,54 @@ __sec_rodata:
 .set s_Environment_of_process__d____s_0014b1c8, __sec_rodata+0x41c8
 .globl s_Could_not_read_process_environme_0014b1e8
 .set s_Could_not_read_process_environme_0014b1e8, __sec_rodata+0x41e8
-.globl L_0014b210
-.set L_0014b210, __sec_rodata+0x4210
-.globl L_0014b238
-.set L_0014b238, __sec_rodata+0x4238
-.globl L_0014b260
-.set L_0014b260, __sec_rodata+0x4260
-.globl L_0014b288
-.set L_0014b288, __sec_rodata+0x4288
-.globl L_0014b2b0
-.set L_0014b2b0, __sec_rodata+0x42b0
-.globl L_0014b2d8
-.set L_0014b2d8, __sec_rodata+0x42d8
-.globl L_0014b300
-.set L_0014b300, __sec_rodata+0x4300
-.globl L_0014b328
-.set L_0014b328, __sec_rodata+0x4328
-.globl L_0014b350
-.set L_0014b350, __sec_rodata+0x4350
-.globl L_0014b378
-.set L_0014b378, __sec_rodata+0x4378
-.globl L_0014b398
-.set L_0014b398, __sec_rodata+0x4398
-.globl L_0014b3c8
-.set L_0014b3c8, __sec_rodata+0x43c8
-.globl L_0014b400
-.set L_0014b400, __sec_rodata+0x4400
-.globl L_0014b430
-.set L_0014b430, __sec_rodata+0x4430
-.globl L_0014b460
-.set L_0014b460, __sec_rodata+0x4460
-.globl L_0014b480
-.set L_0014b480, __sec_rodata+0x4480
-.globl L_0014b4a0
-.set L_0014b4a0, __sec_rodata+0x44a0
-.globl L_0014b4d0
-.set L_0014b4d0, __sec_rodata+0x44d0
-.globl L_0014b500
-.set L_0014b500, __sec_rodata+0x4500
-.globl L_0014b530
-.set L_0014b530, __sec_rodata+0x4530
-.globl L_0014b560
-.set L_0014b560, __sec_rodata+0x4560
-.globl L_0014b590
-.set L_0014b590, __sec_rodata+0x4590
-.globl L_0014b5c0
-.set L_0014b5c0, __sec_rodata+0x45c0
-.globl L_0014b5f0
-.set L_0014b5f0, __sec_rodata+0x45f0
+.globl s_ZFS_CARC__Compressed_ARC_statist_0014b210
+.set s_ZFS_CARC__Compressed_ARC_statist_0014b210, __sec_rodata+0x4210
+.globl s_Systemd_system_state_and_unit_ov_0014b238
+.set s_Systemd_system_state_and_unit_ov_0014b238, __sec_rodata+0x4238
+.globl s_Systemd_user_state_and_unit_over_0014b260
+.set s_Systemd_user_state_and_unit_over_0014b260, __sec_rodata+0x4260
+.globl s_Pressure_Stall_Information__some_0014b288
+.set s_Pressure_Stall_Information__some_0014b288, __sec_rodata+0x4288
+.globl s_Pressure_Stall_Information__some_0014b2b0
+.set s_Pressure_Stall_Information__some_0014b2b0, __sec_rodata+0x42b0
+.globl s_Pressure_Stall_Information__full_0014b2d8
+.set s_Pressure_Stall_Information__full_0014b2d8, __sec_rodata+0x42d8
+.globl s_Pressure_Stall_Information__full_0014b300
+.set s_Pressure_Stall_Information__full_0014b300, __sec_rodata+0x4300
+.globl s_Pressure_Stall_Information__some_0014b328
+.set s_Pressure_Stall_Information__some_0014b328, __sec_rodata+0x4328
+.globl s_Pressure_Stall_Information__full_0014b350
+.set s_Pressure_Stall_Information__full_0014b350, __sec_rodata+0x4350
+.globl s_Combined_memory_and_swap_usage_0014b378
+.set s_Combined_memory_and_swap_usage_0014b378, __sec_rodata+0x4378
+.globl s_Load_averages__1_minute__5_minut_0014b398
+.set s_Load_averages__1_minute__5_minut_0014b398, __sec_rodata+0x4398
+.globl s_Load__average_of_ready_processes_0014b3c8
+.set s_Load__average_of_ready_processes_0014b3c8, __sec_rodata+0x43c8
+.globl s_Number_of_allocated_available_fi_0014b400
+.set s_Number_of_allocated_available_fi_0014b400, __sec_rodata+0x4400
+.globl s_CPUs__1_2_2___all_CPUs_in_2_shor_0014b430
+.set s_CPUs__1_2_2___all_CPUs_in_2_shor_0014b430, __sec_rodata+0x4430
+.globl s_CPUs__1_2___first_half_of_list_0014b460
+.set s_CPUs__1_2___first_half_of_list_0014b460, __sec_rodata+0x4460
+.globl s_CPUs__2_2___second_half_of_list_0014b480
+.set s_CPUs__2_2___second_half_of_list_0014b480, __sec_rodata+0x4480
+.globl s_CPUs__1_2_4___first_half_in_2_sh_0014b4a0
+.set s_CPUs__1_2_4___first_half_in_2_sh_0014b4a0, __sec_rodata+0x44a0
+.globl s_CPUs__3_4_4___second_half_in_2_s_0014b4d0
+.set s_CPUs__3_4_4___second_half_in_2_s_0014b4d0, __sec_rodata+0x44d0
+.globl s_CPUs__1_2_3_4_4___all_CPUs_in_4_s_0014b500
+.set s_CPUs__1_2_3_4_4___all_CPUs_in_4_s_0014b500, __sec_rodata+0x4500
+.globl s_CPUs__1_4_8___first_half_in_4_sh_0014b530
+.set s_CPUs__1_4_8___first_half_in_4_sh_0014b530, __sec_rodata+0x4530
+.globl s_CPUs__5_8_8___second_half_in_4_s_0014b560
+.set s_CPUs__5_8_8___second_half_in_4_s_0014b560, __sec_rodata+0x4560
+.globl s_CPUs__1_8_8___all_CPUs_in_8_shor_0014b590
+.set s_CPUs__1_8_8___all_CPUs_in_8_shor_0014b590, __sec_rodata+0x4590
+.globl s_CPUs__1_8_16___first_half_in_8_s_0014b5c0
+.set s_CPUs__1_8_16___first_half_in_8_s_0014b5c0, __sec_rodata+0x45c0
+.globl s_CPUs__9_16_16___second_half_in_8_0014b5f0
+.set s_CPUs__9_16_16___second_half_in_8_0014b5f0, __sec_rodata+0x45f0
 .globl s_wrap_process_command_in_multiple_0014b628
 .set s_wrap_process_command_in_multiple_0014b628, __sec_rodata+0x4628
 .globl s_show_processes_of_a_single_user_0014b650
@@ -2554,112 +2524,112 @@ __sec_rodata:
 .set s_sort_by_PID__CPU___MEM__or_TIME_0014b6d8, __sec_rodata+0x46d8
 .globl s_Process_state__S_sleeping__R_run_0014b6f8
 .set s_Process_state__S_sleeping__R_run_0014b6f8, __sec_rodata+0x46f8
-.globl L_0014b750
-.set L_0014b750, __sec_rodata+0x4750
-.globl L_0014b790
-.set L_0014b790, __sec_rodata+0x4790
-.globl L_0014b7e0
-.set L_0014b7e0, __sec_rodata+0x47e0
-.globl L_0014b808
-.set L_0014b808, __sec_rodata+0x4808
-.globl L_0014b858
-.set L_0014b858, __sec_rodata+0x4858
-.globl L_0014b880
-.set L_0014b880, __sec_rodata+0x4880
-.globl L_0014b8c0
-.set L_0014b8c0, __sec_rodata+0x48c0
-.globl L_0014b910
-.set L_0014b910, __sec_rodata+0x4910
-.globl L_0014b938
-.set L_0014b938, __sec_rodata+0x4938
-.globl L_0014b960
-.set L_0014b960, __sec_rodata+0x4960
-.globl L_0014b990
-.set L_0014b990, __sec_rodata+0x4990
-.globl L_0014b9e8
-.set L_0014b9e8, __sec_rodata+0x49e8
-.globl L_0014ba18
-.set L_0014ba18, __sec_rodata+0x4a18
-.globl L_0014ba40
-.set L_0014ba40, __sec_rodata+0x4a40
-.globl L_0014ba88
-.set L_0014ba88, __sec_rodata+0x4a88
-.globl L_0014bab0
-.set L_0014bab0, __sec_rodata+0x4ab0
-.globl L_0014bae0
-.set L_0014bae0, __sec_rodata+0x4ae0
-.globl L_0014bb28
-.set L_0014bb28, __sec_rodata+0x4b28
-.globl L_0014bb68
-.set L_0014bb68, __sec_rodata+0x4b68
-.globl L_0014bbb0
-.set L_0014bbb0, __sec_rodata+0x4bb0
-.globl L_0014bc00
-.set L_0014bc00, __sec_rodata+0x4c00
-.globl L_0014bc48
-.set L_0014bc48, __sec_rodata+0x4c48
-.globl L_0014bc88
-.set L_0014bc88, __sec_rodata+0x4c88
-.globl L_0014bcb0
-.set L_0014bcb0, __sec_rodata+0x4cb0
-.globl L_0014bcd8
-.set L_0014bcd8, __sec_rodata+0x4cd8
-.globl L_0014bd40
-.set L_0014bd40, __sec_rodata+0x4d40
-.globl L_0014bd68
-.set L_0014bd68, __sec_rodata+0x4d68
-.globl L_0014bd98
-.set L_0014bd98, __sec_rodata+0x4d98
-.globl L_0014bdd0
-.set L_0014bdd0, __sec_rodata+0x4dd0
-.globl L_0014bdf8
-.set L_0014bdf8, __sec_rodata+0x4df8
-.globl L_0014be20
-.set L_0014be20, __sec_rodata+0x4e20
-.globl L_0014be50
-.set L_0014be50, __sec_rodata+0x4e50
-.globl L_0014be80
-.set L_0014be80, __sec_rodata+0x4e80
-.globl L_0014bea8
-.set L_0014bea8, __sec_rodata+0x4ea8
-.globl L_0014bed0
-.set L_0014bed0, __sec_rodata+0x4ed0
-.globl L_0014bef0
-.set L_0014bef0, __sec_rodata+0x4ef0
-.globl L_0014bf30
-.set L_0014bf30, __sec_rodata+0x4f30
-.globl L_0014bf70
-.set L_0014bf70, __sec_rodata+0x4f70
-.globl L_0014bf98
-.set L_0014bf98, __sec_rodata+0x4f98
-.globl L_0014bfb8
-.set L_0014bfb8, __sec_rodata+0x4fb8
-.globl L_0014bfe0
-.set L_0014bfe0, __sec_rodata+0x4fe0
-.globl L_0014c050
-.set L_0014c050, __sec_rodata+0x5050
-.globl L_0014c078
-.set L_0014c078, __sec_rodata+0x5078
-.globl L_0014c108
-.set L_0014c108, __sec_rodata+0x5108
-.globl L_0014c168
-.set L_0014c168, __sec_rodata+0x5168
-.globl L_0014c1a8
-.set L_0014c1a8, __sec_rodata+0x51a8
-.globl L_0014c1e0
-.set L_0014c1e0, __sec_rodata+0x51e0
-.globl L_0014c218
-.set L_0014c218, __sec_rodata+0x5218
-.globl L_0014c248
-.set L_0014c248, __sec_rodata+0x5248
-.globl L_0014c270
-.set L_0014c270, __sec_rodata+0x5270
-.globl L_0014c2e0
-.set L_0014c2e0, __sec_rodata+0x52e0
-.globl L_0014c320
-.set L_0014c320, __sec_rodata+0x5320
-.globl L_0014c360
-.set L_0014c360, __sec_rodata+0x5360
+.globl s_Process_ID_of_the_fg_process_gro_0014b750
+.set s_Process_ID_of_the_fg_process_gro_0014b750, __sec_rodata+0x4750
+.globl s_Number_of_minor_faults_which_hav_0014b790
+.set s_Number_of_minor_faults_which_hav_0014b790, __sec_rodata+0x4790
+.globl s_Children_processes__minor_faults_0014b7e0
+.set s_Children_processes__minor_faults_0014b7e0, __sec_rodata+0x47e0
+.globl s_Number_of_major_faults_which_hav_0014b808
+.set s_Number_of_major_faults_which_hav_0014b808, __sec_rodata+0x4808
+.globl s_Children_processes__major_faults_0014b858
+.set s_Children_processes__major_faults_0014b858, __sec_rodata+0x4858
+.globl s_User_CPU_time___time_the_process_0014b880
+.set s_User_CPU_time___time_the_process_0014b880, __sec_rodata+0x4880
+.globl s_System_CPU_time___time_the_kerne_0014b8c0
+.set s_System_CPU_time___time_the_kerne_0014b8c0, __sec_rodata+0x48c0
+.globl s_Children_processes__user_CPU_tim_0014b910
+.set s_Children_processes__user_CPU_tim_0014b910, __sec_rodata+0x4910
+.globl s_Children_processes__system_CPU_t_0014b938
+.set s_Children_processes__system_CPU_t_0014b938, __sec_rodata+0x4938
+.globl s_Kernel_s_internal_priority_for_t_0014b960
+.set s_Kernel_s_internal_priority_for_t_0014b960, __sec_rodata+0x4960
+.globl s_Nice_value__the_higher_the_value_0014b990
+.set s_Nice_value__the_higher_the_value_0014b990, __sec_rodata+0x4990
+.globl s_Id_of_the_CPU_the_process_last_e_0014b9e8
+.set s_Id_of_the_CPU_the_process_last_e_0014b9e8, __sec_rodata+0x49e8
+.globl s_Total_program_size_in_virtual_me_0014ba18
+.set s_Total_program_size_in_virtual_me_0014ba18, __sec_rodata+0x4a18
+.globl s_Resident_set_size__size_of_the_t_0014ba40
+.set s_Resident_set_size__size_of_the_t_0014ba40, __sec_rodata+0x4a40
+.globl s_Size_of_the_process_s_shared_pag_0014ba88
+.set s_Size_of_the_process_s_shared_pag_0014ba88, __sec_rodata+0x4a88
+.globl s_Size_of_the__text_segment_of_the_0014bab0
+.set s_Size_of_the__text_segment_of_the_0014bab0, __sec_rodata+0x4ab0
+.globl s_Size_of_the__data_segment_plus_s_0014bae0
+.set s_Size_of_the__data_segment_plus_s_0014bae0, __sec_rodata+0x4ae0
+.globl s_The_library_size_of_the_process___0014bb28
+.set s_The_library_size_of_the_process___0014bb28, __sec_rodata+0x4b28
+.globl s_Percentage_of_the_CPU_time_the_p_0014bb68
+.set s_Percentage_of_the_CPU_time_the_p_0014bb68, __sec_rodata+0x4b68
+.globl s_Percentage_of_the_memory_the_pro_0014bbb0
+.set s_Percentage_of_the_memory_the_pro_0014bbb0, __sec_rodata+0x4bb0
+.globl s_Username_of_the_process_owner__o_0014bc00
+.set s_Username_of_the_process_owner__o_0014bc00, __sec_rodata+0x4c00
+.globl s_Total_time_the_process_has_spent_0014bc48
+.set s_Total_time_the_process_has_spent_0014bc48, __sec_rodata+0x4c48
+.globl s_Number_of_threads_in_the_process_0014bc88
+.set s_Number_of_threads_in_the_process_0014bc88, __sec_rodata+0x4c88
+.globl s_Thread_group_ID__i_e__process_ID_0014bcb0
+.set s_Thread_group_ID__i_e__process_ID_0014bcb0, __sec_rodata+0x4cb0
+.globl s_Normalized_percentage_of_the_CPU_0014bcd8
+.set s_Normalized_percentage_of_the_CPU_0014bcd8, __sec_rodata+0x4cd8
+.globl s_Time_since_the_process_was_start_0014bd40
+.set s_Time_since_the_process_was_start_0014bd40, __sec_rodata+0x4d40
+.globl s_Current_scheduling_policy_of_the_0014bd68
+.set s_Current_scheduling_policy_of_the_0014bd68, __sec_rodata+0x4d68
+.globl s_OpenVZ_container_ID__a_k_a__virt_0014bd98
+.set s_OpenVZ_container_ID__a_k_a__virt_0014bd98, __sec_rodata+0x4d98
+.globl s_Number_of_bytes_the_process_has_r_0014bdd0
+.set s_Number_of_bytes_the_process_has_r_0014bdd0, __sec_rodata+0x4dd0
+.globl s_Number_of_bytes_the_process_has_w_0014bdf8
+.set s_Number_of_bytes_the_process_has_w_0014bdf8, __sec_rodata+0x4df8
+.globl s_Number_of_read_2__syscalls_for_t_0014be20
+.set s_Number_of_read_2__syscalls_for_t_0014be20, __sec_rodata+0x4e20
+.globl s_Number_of_write_2__syscalls_for_t_0014be50
+.set s_Number_of_write_2__syscalls_for_t_0014be50, __sec_rodata+0x4e50
+.globl s_Bytes_of_read_2__I_O_for_the_pro_0014be80
+.set s_Bytes_of_read_2__I_O_for_the_pro_0014be80, __sec_rodata+0x4e80
+.globl s_Bytes_of_write_2__I_O_for_the_pr_0014bea8
+.set s_Bytes_of_write_2__I_O_for_the_pr_0014bea8, __sec_rodata+0x4ea8
+.globl s_Bytes_of_cancelled_write_2__I_O_0014bed0
+.set s_Bytes_of_cancelled_write_2__I_O_0014bed0, __sec_rodata+0x4ed0
+.globl s_The_I_O_rate_of_read_2__in_bytes_0014bef0
+.set s_The_I_O_rate_of_read_2__in_bytes_0014bef0, __sec_rodata+0x4ef0
+.globl s_The_I_O_rate_of_write_2__in_byte_0014bf30
+.set s_The_I_O_rate_of_write_2__in_byte_0014bf30, __sec_rodata+0x4f30
+.globl s_Total_I_O_rate_in_bytes_per_seco_0014bf70
+.set s_Total_I_O_rate_in_bytes_per_seco_0014bf70, __sec_rodata+0x4f70
+.globl s_Which_cgroup_the_process_is_in_0014bf98
+.set s_Which_cgroup_the_process_is_in_0014bf98, __sec_rodata+0x4f98
+.globl s_OOM__Out_of_Memory__killer_score_0014bfb8
+.set s_OOM__Out_of_Memory__killer_score_0014bfb8, __sec_rodata+0x4fb8
+.globl s_proportional_set_size__same_as_M_0014bfe0
+.set s_proportional_set_size__same_as_M_0014bfe0, __sec_rodata+0x4fe0
+.globl s_Size_of_the_process_s_swapped_pa_0014c050
+.set s_Size_of_the_process_s_swapped_pa_0014c050, __sec_rodata+0x5050
+.globl s_shows_proportional_swap_share_of_0014c078
+.set s_shows_proportional_swap_share_of_0014c078, __sec_rodata+0x5078
+.globl s_Context_switches__incremental_su_0014c108
+.set s_Context_switches__incremental_su_0014c108, __sec_rodata+0x5108
+.globl s_Security_attribute_of_the_proces_0014c168
+.set s_Security_attribute_of_the_proces_0014c168, __sec_rodata+0x5168
+.globl s_comm_string_of_the_process_from___0014c1a8
+.set s_comm_string_of_the_process_from___0014c1a8, __sec_rodata+0x51a8
+.globl s_Basename_of_exe_of_the_process_f_0014c1e0
+.set s_Basename_of_exe_of_the_process_f_0014c1e0, __sec_rodata+0x51e0
+.globl s_The_current_working_directory_of_0014c218
+.set s_The_current_working_directory_of_0014c218, __sec_rodata+0x5218
+.globl s_The_autogroup_identifier_of_the_p_0014c248
+.set s_The_autogroup_identifier_of_the_p_0014c248, __sec_rodata+0x5248
+.globl s_Nice_value__the_higher_the_value_0014c270
+.set s_Nice_value__the_higher_the_value_0014c270, __sec_rodata+0x5270
+.globl s_Which_cgroup_the_process_is_in___0014c2e0
+.set s_Which_cgroup_the_process_is_in___0014c2e0, __sec_rodata+0x52e0
+.globl s_Name_of_the_container_the_proces_0014c320
+.set s_Name_of_the_container_the_proces_0014c320, __sec_rodata+0x5320
+.globl s_The_private_memory_size_of_the_p_0014c360
+.set s_The_private_memory_size_of_the_p_0014c360, __sec_rodata+0x5360
 .globl s__proc_sys_kernel_sched_autogroup_0014c3b0
 .set s__proc_sys_kernel_sched_autogroup_0014c3b0, __sec_rodata+0x53b0
 .globl s_FD_TYPE_MODE_DEVICE_SIZE_OFFSET_N_0014c3e0
@@ -2712,10 +2682,10 @@ __sec_rodata:
 .set s_The_configuration_file_will_be_d_0014c8d8, __sec_rodata+0x58d8
 .globl s_shadow_distribution_path_prefix_0014c928
 .set s_shadow_distribution_path_prefix_0014c928, __sec_rodata+0x5928
-.globl L_0014c948
-.set L_0014c948, __sec_rodata+0x5948
-.globl L_0014c9a8
-.set L_0014c9a8, __sec_rodata+0x59a8
+.globl s_PID_USER_PRIORITY_NICE_M_VIRT_M__0014c948
+.set s_PID_USER_PRIORITY_NICE_M_VIRT_M__0014c948, __sec_rodata+0x5948
+.globl s_PID_USER_IO_PRIORITY_IO_RATE_IO__0014c9a8
+.set s_PID_USER_IO_PRIORITY_IO_RATE_IO__0014c9a8, __sec_rodata+0x59a8
 .globl s_nonvoluntary_ctxt_switches___lu_0014ca10
 .set s_nonvoluntary_ctxt_switches___lu_0014ca10, __sec_rodata+0x5a10
 .globl s__proc_acpi_ac_adapter_AC_state_0014ca30
@@ -3024,68 +2994,68 @@ __sec_rodata:
 .set L_0014cf9c, __sec_rodata+0x5f9c
 .globl L_0014cfa0
 .set L_0014cfa0, __sec_rodata+0x5fa0
-.globl L_0014cfa4
-.set L_0014cfa4, __sec_rodata+0x5fa4
-.globl L_0014cfb0
-.set L_0014cfb0, __sec_rodata+0x5fb0
-.globl L_0014cfc8
-.set L_0014cfc8, __sec_rodata+0x5fc8
-.globl L_0014cfd0
-.set L_0014cfd0, __sec_rodata+0x5fd0
-.globl L_0014cfd4
-.set L_0014cfd4, __sec_rodata+0x5fd4
-.globl L_0014cfd8
-.set L_0014cfd8, __sec_rodata+0x5fd8
-.globl L_0014cff0
-.set L_0014cff0, __sec_rodata+0x5ff0
-.globl L_0014d000
-.set L_0014d000, __sec_rodata+0x6000
-.globl L_0014d010
-.set L_0014d010, __sec_rodata+0x6010
-.globl L_0014d020
-.set L_0014d020, __sec_rodata+0x6020
-.globl L_0014d028
-.set L_0014d028, __sec_rodata+0x6028
-.globl L_0014d038
-.set L_0014d038, __sec_rodata+0x6038
-.globl L_0014d040
-.set L_0014d040, __sec_rodata+0x6040
-.globl L_0014d058
-.set L_0014d058, __sec_rodata+0x6058
-.globl L_0014d064
-.set L_0014d064, __sec_rodata+0x6064
-.globl L_0014d068
-.set L_0014d068, __sec_rodata+0x6068
-.globl L_0014d070
-.set L_0014d070, __sec_rodata+0x6070
-.globl L_0014d080
-.set L_0014d080, __sec_rodata+0x6080
-.globl L_0014d0a8
-.set L_0014d0a8, __sec_rodata+0x60a8
-.globl L_0014d0b4
-.set L_0014d0b4, __sec_rodata+0x60b4
-.globl L_0014d0b8
-.set L_0014d0b8, __sec_rodata+0x60b8
-.globl L_0014d0c0
-.set L_0014d0c0, __sec_rodata+0x60c0
-.globl L_0014d0e0
-.set L_0014d0e0, __sec_rodata+0x60e0
-.globl L_0014d0e4
-.set L_0014d0e4, __sec_rodata+0x60e4
-.globl L_0014d0e8
-.set L_0014d0e8, __sec_rodata+0x60e8
+.globl ZfsCompressedArcMeter_attributes
+.set ZfsCompressedArcMeter_attributes, __sec_rodata+0x5fa4
+.globl ZfsArcMeter_attributes
+.set ZfsArcMeter_attributes, __sec_rodata+0x5fb0
+.globl ZramMeter_attributes
+.set ZramMeter_attributes, __sec_rodata+0x5fc8
+.globl SystemdMeter_attributes
+.set SystemdMeter_attributes, __sec_rodata+0x5fd0
+.globl SELinuxMeter_attributes
+.set SELinuxMeter_attributes, __sec_rodata+0x5fd4
+.globl PressureStallMeter_attributes
+.set PressureStallMeter_attributes, __sec_rodata+0x5fd8
+.globl HugePageMeter_attributes
+.set HugePageMeter_attributes, __sec_rodata+0x5ff0
+.globl UptimeMeter_attributes
+.set UptimeMeter_attributes, __sec_rodata+0x6000
+.globl TasksMeter_attributes
+.set TasksMeter_attributes, __sec_rodata+0x6010
+.globl SysArchMeter_attributes
+.set SysArchMeter_attributes, __sec_rodata+0x6020
+.globl SwapMeter_attributes
+.set SwapMeter_attributes, __sec_rodata+0x6028
+.globl NetworkIOMeter_attributes
+.set NetworkIOMeter_attributes, __sec_rodata+0x6038
+.globl MemoryMeter_attributes
+.set MemoryMeter_attributes, __sec_rodata+0x6040
+.globl LoadAverageMeter_attributes
+.set LoadAverageMeter_attributes, __sec_rodata+0x6058
+.globl LoadMeter_attributes
+.set LoadMeter_attributes, __sec_rodata+0x6064
+.globl HostnameMeter_attributes
+.set HostnameMeter_attributes, __sec_rodata+0x6068
+.globl FileDescriptorMeter_attributes
+.set FileDescriptorMeter_attributes, __sec_rodata+0x6070
+.globl DynamicMeter_attributes
+.set DynamicMeter_attributes, __sec_rodata+0x6080
+.globl DiskIOMeter_attributes
+.set DiskIOMeter_attributes, __sec_rodata+0x60a8
+.globl DateTimeMeter_attributes
+.set DateTimeMeter_attributes, __sec_rodata+0x60b4
+.globl DateMeter_attributes
+.set DateMeter_attributes, __sec_rodata+0x60b8
+.globl CPUMeter_attributes
+.set CPUMeter_attributes, __sec_rodata+0x60c0
+.globl ClockMeter_attributes
+.set ClockMeter_attributes, __sec_rodata+0x60e0
+.globl BatteryMeter_attributes
+.set BatteryMeter_attributes, __sec_rodata+0x60e4
+.globl BlankMeter_attributes
+.set BlankMeter_attributes, __sec_rodata+0x60e8
 .globl Object_class
 .set Object_class, __sec_rodata+0x6100
-.globl DAT_0014d120
-.set DAT_0014d120, __sec_rodata+0x6120
-.globl DAT_0014d128
-.set DAT_0014d128, __sec_rodata+0x6128
+.globl OEISprimes
+.set OEISprimes, __sec_rodata+0x6120
+.globl OEISprimes_1_
+.set OEISprimes_1_, __sec_rodata+0x6128
 .globl DAT_0014d238
 .set DAT_0014d238, __sec_rodata+0x6238
-.globl DAT_0014d240
-.set DAT_0014d240, __sec_rodata+0x6240
-.globl DAT_0014d258
-.set DAT_0014d258, __sec_rodata+0x6258
+.globl AffinityPanelEvents
+.set AffinityPanelEvents, __sec_rodata+0x6240
+.globl FunctionBar_EnterEscEvents
+.set FunctionBar_EnterEscEvents, __sec_rodata+0x6258
 .globl DAT_0014d260
 .set DAT_0014d260, __sec_rodata+0x6260
 .globl DAT_0014d268
@@ -4060,32 +4030,28 @@ __sec_rodata:
 .set L_0014db0c, __sec_rodata+0x6b0c
 .globl L_0014db10
 .set L_0014db10, __sec_rodata+0x6b10
-.globl s__URQWDBPTtZXIS_0014db18
-.set s__URQWDBPTtZXIS_0014db18, __sec_rodata+0x6b18
-.globl DAT_0014db40
-.set DAT_0014db40, __sec_rodata+0x6b40
-.globl DAT_0014db70
-.set DAT_0014db70, __sec_rodata+0x6b70
-.globl s__________0014db88
-.set s__________0014db88, __sec_rodata+0x6b88
-.globl DAT_0014db98
-.set DAT_0014db98, __sec_rodata+0x6b98
-.globl UNK_0014db99
-.set UNK_0014db99, __sec_rodata+0x6b99
-.globl s_GTPEZYRQ_0014db9a
-.set s_GTPEZYRQ_0014db9a, __sec_rodata+0x6b9a
-.globl DAT_0014dba4
-.set DAT_0014dba4, __sec_rodata+0x6ba4
-.globl DAT_0014dba8
-.set DAT_0014dba8, __sec_rodata+0x6ba8
-.globl DAT_0014dbac
-.set DAT_0014dbac, __sec_rodata+0x6bac
-.globl DAT_0014dbb0
-.set DAT_0014dbb0, __sec_rodata+0x6bb0
-.globl DAT_0014dbc0
-.set DAT_0014dbc0, __sec_rodata+0x6bc0
-.globl DAT_0014dbd0
-.set DAT_0014dbd0, __sec_rodata+0x6bd0
+.globl CSWTCH_184
+.set CSWTCH_184, __sec_rodata+0x6b18
+.globl MetersMovingEvents
+.set MetersMovingEvents, __sec_rodata+0x6b40
+.globl MetersEvents
+.set MetersEvents, __sec_rodata+0x6b70
+.globl BarMeterMode_characters
+.set BarMeterMode_characters, __sec_rodata+0x6b88
+.globl unitPrefixes
+.set unitPrefixes, __sec_rodata+0x6b98
+.globl High_attributes
+.set High_attributes, __sec_rodata+0x6ba4
+.globl Medium_attributes
+.set Medium_attributes, __sec_rodata+0x6ba8
+.globl OK_attributes
+.set OK_attributes, __sec_rodata+0x6bac
+.globl InfoScreenEvents
+.set InfoScreenEvents, __sec_rodata+0x6bb0
+.globl searchEvents
+.set searchEvents, __sec_rodata+0x6bc0
+.globl filterEvents
+.set filterEvents, __sec_rodata+0x6bd0
 .globl switchdataD_0014dbe0
 .set switchdataD_0014dbe0, __sec_rodata+0x6be0
 .globl L_0014dbe4
@@ -4770,8 +4736,8 @@ __sec_rodata:
 .set L_0014e134, __sec_rodata+0x7134
 .globl L_0014e138
 .set L_0014e138, __sec_rodata+0x7138
-.globl DAT_0014e140
-.set DAT_0014e140, __sec_rodata+0x7140
+.globl TraceScreenEvents
+.set TraceScreenEvents, __sec_rodata+0x7140
 .globl Platform_numberOfSignals
 .set Platform_numberOfSignals, __sec_rodata+0x7154
 .globl Platform_numberOfDefaultScreens
@@ -5346,8 +5312,8 @@ __sec_rodata:
 .set L_0014e5cc, __sec_rodata+0x75cc
 .globl L_0014e5d0
 .set L_0014e5d0, __sec_rodata+0x75d0
-.globl DAT_0014e5e0
-.set DAT_0014e5e0, __sec_rodata+0x75e0
+.globl CSWTCH_143
+.set CSWTCH_143, __sec_rodata+0x75e0
 .byte 1,0,2,0,0,0,200,66,0,0,0,75,0,0,128,63,205,204,199,66,205,204,76,61,32,32,32,32,32,32,35,58
 .byte 32,0,32,32,83,45,84,97,98,58,32,0,67,80,85,32,117,115,97,103,101,32,98,97,114,58,32,0,91,0,110,111
 .byte 114,109,97,108,0,107,101,114,110,101,108,0,115,111,102,116,45,105,114,113,0,115,116,101,97,108,0,103,117,101,115,116
@@ -6297,992 +6263,208 @@ __sec_rodata:
 .balign 64
 .globl __sec_data_rel_ro
 __sec_data_rel_ro:
-.globl PTR_DAT_00155c00
-.set PTR_DAT_00155c00, __sec_data_rel_ro+0x0
-.globl L_00155c08
-.set L_00155c08, __sec_data_rel_ro+0x8
-.globl L_00155c10
-.set L_00155c10, __sec_data_rel_ro+0x10
-.globl L_00155c18
-.set L_00155c18, __sec_data_rel_ro+0x18
-.globl L_00155c20
-.set L_00155c20, __sec_data_rel_ro+0x20
-.globl L_00155c28
-.set L_00155c28, __sec_data_rel_ro+0x28
-.globl L_00155c30
-.set L_00155c30, __sec_data_rel_ro+0x30
-.globl L_00155c38
-.set L_00155c38, __sec_data_rel_ro+0x38
-.globl L_00155c40
-.set L_00155c40, __sec_data_rel_ro+0x40
-.globl L_00155c48
-.set L_00155c48, __sec_data_rel_ro+0x48
-.globl PTR_DAT_00155c60
-.set PTR_DAT_00155c60, __sec_data_rel_ro+0x60
-.globl PTR_DAT_00155c68
-.set PTR_DAT_00155c68, __sec_data_rel_ro+0x68
-.globl L_00155c70
-.set L_00155c70, __sec_data_rel_ro+0x70
-.globl L_00155c78
-.set L_00155c78, __sec_data_rel_ro+0x78
-.globl L_00155c80
-.set L_00155c80, __sec_data_rel_ro+0x80
-.globl L_00155c88
-.set L_00155c88, __sec_data_rel_ro+0x88
-.globl L_00155c90
-.set L_00155c90, __sec_data_rel_ro+0x90
-.globl L_00155c98
-.set L_00155c98, __sec_data_rel_ro+0x98
-.globl L_00155ca0
-.set L_00155ca0, __sec_data_rel_ro+0xa0
-.globl L_00155ca8
-.set L_00155ca8, __sec_data_rel_ro+0xa8
-.globl PTR_DAT_00155cc0
-.set PTR_DAT_00155cc0, __sec_data_rel_ro+0xc0
-.globl L_00155cc8
-.set L_00155cc8, __sec_data_rel_ro+0xc8
-.globl L_00155cd0
-.set L_00155cd0, __sec_data_rel_ro+0xd0
-.globl L_00155cd8
-.set L_00155cd8, __sec_data_rel_ro+0xd8
-.globl L_00155ce0
-.set L_00155ce0, __sec_data_rel_ro+0xe0
-.globl L_00155ce8
-.set L_00155ce8, __sec_data_rel_ro+0xe8
-.globl L_00155cf0
-.set L_00155cf0, __sec_data_rel_ro+0xf0
-.globl L_00155cf8
-.set L_00155cf8, __sec_data_rel_ro+0xf8
-.globl L_00155d00
-.set L_00155d00, __sec_data_rel_ro+0x100
-.globl L_00155d08
-.set L_00155d08, __sec_data_rel_ro+0x108
-.globl PTR_DAT_00155d20
-.set PTR_DAT_00155d20, __sec_data_rel_ro+0x120
-.globl PTR_DAT_00155d28
-.set PTR_DAT_00155d28, __sec_data_rel_ro+0x128
-.globl L_00155d30
-.set L_00155d30, __sec_data_rel_ro+0x130
-.globl L_00155d38
-.set L_00155d38, __sec_data_rel_ro+0x138
-.globl PTR_DAT_00155d40
-.set PTR_DAT_00155d40, __sec_data_rel_ro+0x140
-.globl PTR_DAT_00155d50
-.set PTR_DAT_00155d50, __sec_data_rel_ro+0x150
-.globl L_00155d58
-.set L_00155d58, __sec_data_rel_ro+0x158
-.globl PTR_DAT_00155d60
-.set PTR_DAT_00155d60, __sec_data_rel_ro+0x160
-.globl L_00155d68
-.set L_00155d68, __sec_data_rel_ro+0x168
-.globl L_00155d70
-.set L_00155d70, __sec_data_rel_ro+0x170
-.globl L_00155d78
-.set L_00155d78, __sec_data_rel_ro+0x178
-.globl L_00155d80
-.set L_00155d80, __sec_data_rel_ro+0x180
-.globl L_00155d88
-.set L_00155d88, __sec_data_rel_ro+0x188
-.globl L_00155d90
-.set L_00155d90, __sec_data_rel_ro+0x190
-.globl L_00155d98
-.set L_00155d98, __sec_data_rel_ro+0x198
+.globl FunctionBar_FKeys
+.set FunctionBar_FKeys, __sec_data_rel_ro+0x0
+.globl FunctionBar_FLabels
+.set FunctionBar_FLabels, __sec_data_rel_ro+0x60
+.globl FunctionBar_FLabels_1_
+.set FunctionBar_FLabels_1_, __sec_data_rel_ro+0x68
+.globl DisplayOptionsFunctions
+.set DisplayOptionsFunctions, __sec_data_rel_ro+0xc0
+.globl CRT_treeStrAscii
+.set CRT_treeStrAscii, __sec_data_rel_ro+0x120
+.globl CRT_treeStrAscii_1_
+.set CRT_treeStrAscii_1_, __sec_data_rel_ro+0x128
+.globl CRT_treeStrAscii_4_
+.set CRT_treeStrAscii_4_, __sec_data_rel_ro+0x140
+.globl CRT_treeStrAscii_5_
+.set CRT_treeStrAscii_5_, __sec_data_rel_ro+0x148
+.globl CRT_treeStrAscii_6_
+.set CRT_treeStrAscii_6_, __sec_data_rel_ro+0x150
+.globl CRT_treeStrUtf8
+.set CRT_treeStrUtf8, __sec_data_rel_ro+0x160
 .globl Meter_modes
 .set Meter_modes, __sec_data_rel_ro+0x1a0
-.globl PTR_DAT_00155de0
-.set PTR_DAT_00155de0, __sec_data_rel_ro+0x1e0
-.globl L_00155de8
-.set L_00155de8, __sec_data_rel_ro+0x1e8
-.globl L_00155df0
-.set L_00155df0, __sec_data_rel_ro+0x1f0
-.globl L_00155df8
-.set L_00155df8, __sec_data_rel_ro+0x1f8
-.globl L_00155e00
-.set L_00155e00, __sec_data_rel_ro+0x200
-.globl L_00155e08
-.set L_00155e08, __sec_data_rel_ro+0x208
-.globl L_00155e10
-.set L_00155e10, __sec_data_rel_ro+0x210
-.globl L_00155e18
-.set L_00155e18, __sec_data_rel_ro+0x218
-.globl L_00155e20
-.set L_00155e20, __sec_data_rel_ro+0x220
-.globl L_00155e28
-.set L_00155e28, __sec_data_rel_ro+0x228
-.globl PTR_DAT_00155e40
-.set PTR_DAT_00155e40, __sec_data_rel_ro+0x240
-.globl L_00155e48
-.set L_00155e48, __sec_data_rel_ro+0x248
-.globl L_00155e50
-.set L_00155e50, __sec_data_rel_ro+0x250
-.globl L_00155e58
-.set L_00155e58, __sec_data_rel_ro+0x258
-.globl L_00155e60
-.set L_00155e60, __sec_data_rel_ro+0x260
-.globl L_00155e68
-.set L_00155e68, __sec_data_rel_ro+0x268
-.globl L_00155e70
-.set L_00155e70, __sec_data_rel_ro+0x270
-.globl L_00155e78
-.set L_00155e78, __sec_data_rel_ro+0x278
-.globl L_00155e80
-.set L_00155e80, __sec_data_rel_ro+0x280
-.globl L_00155e88
-.set L_00155e88, __sec_data_rel_ro+0x288
-.globl PTR_s_Default_00155ea0
-.set PTR_s_Default_00155ea0, __sec_data_rel_ro+0x2a0
-.globl PTR_s_Monochromatic_00155ea8
-.set PTR_s_Monochromatic_00155ea8, __sec_data_rel_ro+0x2a8
-.globl PTR_s_Black_on_White_00155eb0
-.set PTR_s_Black_on_White_00155eb0, __sec_data_rel_ro+0x2b0
-.globl PTR_s_Light_Terminal_00155eb8
-.set PTR_s_Light_Terminal_00155eb8, __sec_data_rel_ro+0x2b8
-.globl L_00155ec0
-.set L_00155ec0, __sec_data_rel_ro+0x2c0
-.globl L_00155ec8
-.set L_00155ec8, __sec_data_rel_ro+0x2c8
-.globl L_00155ed0
-.set L_00155ed0, __sec_data_rel_ro+0x2d0
-.globl PTR_DAT_00155ee0
-.set PTR_DAT_00155ee0, __sec_data_rel_ro+0x2e0
-.globl L_00155ee8
-.set L_00155ee8, __sec_data_rel_ro+0x2e8
-.globl L_00155ef0
-.set L_00155ef0, __sec_data_rel_ro+0x2f0
-.globl L_00155ef8
-.set L_00155ef8, __sec_data_rel_ro+0x2f8
-.globl L_00155f00
-.set L_00155f00, __sec_data_rel_ro+0x300
-.globl L_00155f08
-.set L_00155f08, __sec_data_rel_ro+0x308
-.globl L_00155f10
-.set L_00155f10, __sec_data_rel_ro+0x310
-.globl L_00155f18
-.set L_00155f18, __sec_data_rel_ro+0x318
-.globl L_00155f20
-.set L_00155f20, __sec_data_rel_ro+0x320
-.globl L_00155f28
-.set L_00155f28, __sec_data_rel_ro+0x328
-.globl PTR_s_Display_options_00155f40
-.set PTR_s_Display_options_00155f40, __sec_data_rel_ro+0x340
-.globl L_00155f48
-.set L_00155f48, __sec_data_rel_ro+0x348
-.globl PTR_FUN_00155f48
-.set PTR_FUN_00155f48, __sec_data_rel_ro+0x348
-.globl PTR_s_Header_layout_00155f50
-.set PTR_s_Header_layout_00155f50, __sec_data_rel_ro+0x350
-.globl L_00155f58
-.set L_00155f58, __sec_data_rel_ro+0x358
-.globl L_00155f60
-.set L_00155f60, __sec_data_rel_ro+0x360
-.globl L_00155f68
-.set L_00155f68, __sec_data_rel_ro+0x368
-.globl L_00155f70
-.set L_00155f70, __sec_data_rel_ro+0x370
-.globl L_00155f78
-.set L_00155f78, __sec_data_rel_ro+0x378
-.globl L_00155f80
-.set L_00155f80, __sec_data_rel_ro+0x380
-.globl L_00155f88
-.set L_00155f88, __sec_data_rel_ro+0x388
+.globl ColumnsFunctions
+.set ColumnsFunctions, __sec_data_rel_ro+0x1e0
+.globl ColorsFunctions
+.set ColorsFunctions, __sec_data_rel_ro+0x240
+.globl ColorSchemeNames
+.set ColorSchemeNames, __sec_data_rel_ro+0x2a0
+.globl ColorSchemeNames_1_
+.set ColorSchemeNames_1_, __sec_data_rel_ro+0x2a8
+.globl ColorSchemeNames_2_
+.set ColorSchemeNames_2_, __sec_data_rel_ro+0x2b0
+.globl ColorSchemeNames_3_
+.set ColorSchemeNames_3_, __sec_data_rel_ro+0x2b8
+.globl CategoriesFunctions
+.set CategoriesFunctions, __sec_data_rel_ro+0x2e0
+.globl categoriesPanelPages
+.set categoriesPanelPages, __sec_data_rel_ro+0x340
+.globl categoriesPanelPages_1__name
+.set categoriesPanelPages_1__name, __sec_data_rel_ro+0x350
 .globl DAT_00155f90
 .set DAT_00155f90, __sec_data_rel_ro+0x390
-.globl DAT_00155fa0
-.set DAT_00155fa0, __sec_data_rel_ro+0x3a0
-.globl UNK_00155fa1
-.set UNK_00155fa1, __sec_data_rel_ro+0x3a1
-.globl DAT_00155fa2
-.set DAT_00155fa2, __sec_data_rel_ro+0x3a2
-.globl DAT_00155fa3
-.set DAT_00155fa3, __sec_data_rel_ro+0x3a3
-.globl PTR_s_two_50_50_00155fa8
-.set PTR_s_two_50_50_00155fa8, __sec_data_rel_ro+0x3a8
-.globl PTR_s_2_columns___50_50__default__00155fb0
-.set PTR_s_2_columns___50_50__default__00155fb0, __sec_data_rel_ro+0x3b0
-.globl PTR_s_two_33_67_00155fc0
-.set PTR_s_two_33_67_00155fc0, __sec_data_rel_ro+0x3c0
-.globl PTR_s_2_columns___33_67_00155fc8
-.set PTR_s_2_columns___33_67_00155fc8, __sec_data_rel_ro+0x3c8
-.globl L_00155fd8
-.set L_00155fd8, __sec_data_rel_ro+0x3d8
-.globl L_00155fe0
-.set L_00155fe0, __sec_data_rel_ro+0x3e0
-.globl L_00155ff0
-.set L_00155ff0, __sec_data_rel_ro+0x3f0
-.globl L_00155ff8
-.set L_00155ff8, __sec_data_rel_ro+0x3f8
-.globl L_00156008
-.set L_00156008, __sec_data_rel_ro+0x408
-.globl L_00156010
-.set L_00156010, __sec_data_rel_ro+0x410
-.globl L_00156020
-.set L_00156020, __sec_data_rel_ro+0x420
-.globl L_00156028
-.set L_00156028, __sec_data_rel_ro+0x428
-.globl L_00156038
-.set L_00156038, __sec_data_rel_ro+0x438
-.globl L_00156040
-.set L_00156040, __sec_data_rel_ro+0x440
-.globl L_00156050
-.set L_00156050, __sec_data_rel_ro+0x450
-.globl L_00156058
-.set L_00156058, __sec_data_rel_ro+0x458
-.globl L_00156068
-.set L_00156068, __sec_data_rel_ro+0x468
-.globl L_00156070
-.set L_00156070, __sec_data_rel_ro+0x470
-.globl L_00156080
-.set L_00156080, __sec_data_rel_ro+0x480
-.globl L_00156088
-.set L_00156088, __sec_data_rel_ro+0x488
-.globl L_00156098
-.set L_00156098, __sec_data_rel_ro+0x498
-.globl L_001560a0
-.set L_001560a0, __sec_data_rel_ro+0x4a0
-.globl L_001560b0
-.set L_001560b0, __sec_data_rel_ro+0x4b0
-.globl L_001560b8
-.set L_001560b8, __sec_data_rel_ro+0x4b8
-.globl PTR_DAT_001560c0
-.set PTR_DAT_001560c0, __sec_data_rel_ro+0x4c0
-.globl L_001560c8
-.set L_001560c8, __sec_data_rel_ro+0x4c8
-.globl PTR_DAT_001560d0
-.set PTR_DAT_001560d0, __sec_data_rel_ro+0x4d0
-.globl L_001560d8
-.set L_001560d8, __sec_data_rel_ro+0x4d8
-.globl L_001560e0
-.set L_001560e0, __sec_data_rel_ro+0x4e0
-.globl L_001560e8
-.set L_001560e8, __sec_data_rel_ro+0x4e8
-.globl L_001560f0
-.set L_001560f0, __sec_data_rel_ro+0x4f0
-.globl L_001560f8
-.set L_001560f8, __sec_data_rel_ro+0x4f8
-.globl L_00156100
-.set L_00156100, __sec_data_rel_ro+0x500
-.globl L_00156108
-.set L_00156108, __sec_data_rel_ro+0x508
-.globl DAT_00156120
-.set DAT_00156120, __sec_data_rel_ro+0x520
-.globl L_00156128
-.set L_00156128, __sec_data_rel_ro+0x528
-.globl L_00156130
-.set L_00156130, __sec_data_rel_ro+0x530
-.globl PTR_s_Enter_00156140
-.set PTR_s_Enter_00156140, __sec_data_rel_ro+0x540
-.globl L_00156148
-.set L_00156148, __sec_data_rel_ro+0x548
-.globl L_00156150
-.set L_00156150, __sec_data_rel_ro+0x550
-.globl L_00156158
-.set L_00156158, __sec_data_rel_ro+0x558
-.globl L_00156160
-.set L_00156160, __sec_data_rel_ro+0x560
-.globl PTR_s_Set_00156170
-.set PTR_s_Set_00156170, __sec_data_rel_ro+0x570
-.globl L_00156178
-.set L_00156178, __sec_data_rel_ro+0x578
-.globl DAT_001561a8
-.set DAT_001561a8, __sec_data_rel_ro+0x5a8
-.globl PTR_s_switch_to_previous_screen_tab_001561b0
-.set PTR_s_switch_to_previous_screen_tab_001561b0, __sec_data_rel_ro+0x5b0
-.globl PTR_s_Space__001561b8
-.set PTR_s_Space__001561b8, __sec_data_rel_ro+0x5b8
-.globl DAT_001561c0
-.set DAT_001561c0, __sec_data_rel_ro+0x5c0
-.globl L_001561c8
-.set L_001561c8, __sec_data_rel_ro+0x5c8
-.globl L_001561d0
-.set L_001561d0, __sec_data_rel_ro+0x5d0
-.globl L_001561e0
-.set L_001561e0, __sec_data_rel_ro+0x5e0
-.globl L_001561e8
-.set L_001561e8, __sec_data_rel_ro+0x5e8
-.globl L_001561f8
-.set L_001561f8, __sec_data_rel_ro+0x5f8
-.globl L_00156200
-.set L_00156200, __sec_data_rel_ro+0x600
-.globl L_00156210
-.set L_00156210, __sec_data_rel_ro+0x610
-.globl L_00156218
-.set L_00156218, __sec_data_rel_ro+0x618
-.globl L_00156228
-.set L_00156228, __sec_data_rel_ro+0x628
-.globl L_00156230
-.set L_00156230, __sec_data_rel_ro+0x630
-.globl L_00156240
-.set L_00156240, __sec_data_rel_ro+0x640
-.globl L_00156248
-.set L_00156248, __sec_data_rel_ro+0x648
-.globl L_00156258
-.set L_00156258, __sec_data_rel_ro+0x658
-.globl L_00156260
-.set L_00156260, __sec_data_rel_ro+0x660
-.globl L_00156270
-.set L_00156270, __sec_data_rel_ro+0x670
-.globl L_00156278
-.set L_00156278, __sec_data_rel_ro+0x678
-.globl L_00156288
-.set L_00156288, __sec_data_rel_ro+0x688
-.globl L_00156290
-.set L_00156290, __sec_data_rel_ro+0x690
-.globl L_001562a0
-.set L_001562a0, __sec_data_rel_ro+0x6a0
-.globl L_001562a8
-.set L_001562a8, __sec_data_rel_ro+0x6a8
-.globl L_001562b8
-.set L_001562b8, __sec_data_rel_ro+0x6b8
-.globl L_001562c0
-.set L_001562c0, __sec_data_rel_ro+0x6c0
-.globl L_001562d0
-.set L_001562d0, __sec_data_rel_ro+0x6d0
-.globl L_001562d8
-.set L_001562d8, __sec_data_rel_ro+0x6d8
-.globl L_001562e8
-.set L_001562e8, __sec_data_rel_ro+0x6e8
-.globl L_001562f0
-.set L_001562f0, __sec_data_rel_ro+0x6f0
-.globl L_00156300
-.set L_00156300, __sec_data_rel_ro+0x700
-.globl L_00156308
-.set L_00156308, __sec_data_rel_ro+0x708
-.globl L_00156318
-.set L_00156318, __sec_data_rel_ro+0x718
-.globl L_00156320
-.set L_00156320, __sec_data_rel_ro+0x720
-.globl L_00156330
-.set L_00156330, __sec_data_rel_ro+0x730
-.globl L_00156338
-.set L_00156338, __sec_data_rel_ro+0x738
-.globl DAT_00156388
-.set DAT_00156388, __sec_data_rel_ro+0x788
-.globl PTR_s_hide_show_header_meters_00156390
-.set PTR_s_hide_show_header_meters_00156390, __sec_data_rel_ro+0x790
-.globl PTR_s_Tab__00156398
-.set PTR_s_Tab__00156398, __sec_data_rel_ro+0x798
-.globl DAT_001563a0
-.set DAT_001563a0, __sec_data_rel_ro+0x7a0
-.globl PTR_s_switch_to_next_screen_tab_001563a8
-.set PTR_s_switch_to_next_screen_tab_001563a8, __sec_data_rel_ro+0x7a8
-.globl L_001563b0
-.set L_001563b0, __sec_data_rel_ro+0x7b0
-.globl L_001563c0
-.set L_001563c0, __sec_data_rel_ro+0x7c0
-.globl L_001563c8
-.set L_001563c8, __sec_data_rel_ro+0x7c8
-.globl L_001563d8
-.set L_001563d8, __sec_data_rel_ro+0x7d8
-.globl L_001563e0
-.set L_001563e0, __sec_data_rel_ro+0x7e0
-.globl L_001563f0
-.set L_001563f0, __sec_data_rel_ro+0x7f0
-.globl L_001563f8
-.set L_001563f8, __sec_data_rel_ro+0x7f8
-.globl L_00156408
-.set L_00156408, __sec_data_rel_ro+0x808
-.globl L_00156410
-.set L_00156410, __sec_data_rel_ro+0x810
-.globl L_00156420
-.set L_00156420, __sec_data_rel_ro+0x820
-.globl L_00156428
-.set L_00156428, __sec_data_rel_ro+0x828
-.globl L_00156438
-.set L_00156438, __sec_data_rel_ro+0x838
-.globl L_00156440
-.set L_00156440, __sec_data_rel_ro+0x840
-.globl L_00156450
-.set L_00156450, __sec_data_rel_ro+0x850
-.globl L_00156458
-.set L_00156458, __sec_data_rel_ro+0x858
-.globl L_00156468
-.set L_00156468, __sec_data_rel_ro+0x868
-.globl L_00156470
-.set L_00156470, __sec_data_rel_ro+0x870
-.globl L_00156480
-.set L_00156480, __sec_data_rel_ro+0x880
-.globl L_00156488
-.set L_00156488, __sec_data_rel_ro+0x888
-.globl L_00156498
-.set L_00156498, __sec_data_rel_ro+0x898
-.globl L_001564a0
-.set L_001564a0, __sec_data_rel_ro+0x8a0
-.globl L_001564b0
-.set L_001564b0, __sec_data_rel_ro+0x8b0
-.globl L_001564b8
-.set L_001564b8, __sec_data_rel_ro+0x8b8
-.globl L_001564c8
-.set L_001564c8, __sec_data_rel_ro+0x8c8
-.globl L_001564d0
-.set L_001564d0, __sec_data_rel_ro+0x8d0
-.globl L_001564e0
-.set L_001564e0, __sec_data_rel_ro+0x8e0
-.globl L_001564e8
-.set L_001564e8, __sec_data_rel_ro+0x8e8
-.globl L_001564f8
-.set L_001564f8, __sec_data_rel_ro+0x8f8
-.globl L_00156500
-.set L_00156500, __sec_data_rel_ro+0x900
-.globl L_00156510
-.set L_00156510, __sec_data_rel_ro+0x910
-.globl L_00156518
-.set L_00156518, __sec_data_rel_ro+0x918
-.globl L_00156528
-.set L_00156528, __sec_data_rel_ro+0x928
-.globl L_00156530
-.set L_00156530, __sec_data_rel_ro+0x930
-.globl PTR_s_Other_00156560
-.set PTR_s_Other_00156560, __sec_data_rel_ro+0x960
-.globl DAT_00156568
-.set DAT_00156568, __sec_data_rel_ro+0x968
-.globl DAT_0015656c
-.set DAT_0015656c, __sec_data_rel_ro+0x96c
-.globl PTR_DAT_00156570
-.set PTR_DAT_00156570, __sec_data_rel_ro+0x970
-.globl DAT_00156578
-.set DAT_00156578, __sec_data_rel_ro+0x978
-.globl PTR_s_Enter_001565c0
-.set PTR_s_Enter_001565c0, __sec_data_rel_ro+0x9c0
-.globl L_001565c8
-.set L_001565c8, __sec_data_rel_ro+0x9c8
+.globl HeaderLayout_layouts
+.set HeaderLayout_layouts, __sec_data_rel_ro+0x3a0
+.globl HeaderLayout_layouts_0__widths_1_
+.set HeaderLayout_layouts_0__widths_1_, __sec_data_rel_ro+0x3a2
+.globl HeaderLayout_layouts_0__widths_2_
+.set HeaderLayout_layouts_0__widths_2_, __sec_data_rel_ro+0x3a3
+.globl HeaderLayout_layouts_0__name
+.set HeaderLayout_layouts_0__name, __sec_data_rel_ro+0x3a8
+.globl HeaderLayout_layouts_0__description
+.set HeaderLayout_layouts_0__description, __sec_data_rel_ro+0x3b0
+.globl HeaderLayout_layouts_1__name
+.set HeaderLayout_layouts_1__name, __sec_data_rel_ro+0x3c0
+.globl HeaderLayout_layouts_1__description
+.set HeaderLayout_layouts_1__description, __sec_data_rel_ro+0x3c8
+.globl AvailableColumnsFunctions
+.set AvailableColumnsFunctions, __sec_data_rel_ro+0x4c0
+.globl AvailableColumnsFunctions_2_
+.set AvailableColumnsFunctions_2_, __sec_data_rel_ro+0x4d0
+.globl MaskItem_class
+.set MaskItem_class, __sec_data_rel_ro+0x520
+.globl AffinityPanelKeys
+.set AffinityPanelKeys, __sec_data_rel_ro+0x540
+.globl AffinityPanelFunctions
+.set AffinityPanelFunctions, __sec_data_rel_ro+0x570
+.globl helpRight
+.set helpRight, __sec_data_rel_ro+0x5a0
+.globl helpRight_0__roInactive
+.set helpRight_0__roInactive, __sec_data_rel_ro+0x5a8
+.globl helpRight_0__info
+.set helpRight_0__info, __sec_data_rel_ro+0x5b0
+.globl helpRight_1__key
+.set helpRight_1__key, __sec_data_rel_ro+0x5b8
+.globl helpRight_1__roInactive
+.set helpRight_1__roInactive, __sec_data_rel_ro+0x5c0
+.globl helpLeft
+.set helpLeft, __sec_data_rel_ro+0x780
+.globl helpLeft_0__roInactive
+.set helpLeft_0__roInactive, __sec_data_rel_ro+0x788
+.globl helpLeft_0__info
+.set helpLeft_0__info, __sec_data_rel_ro+0x790
+.globl helpLeft_1__key
+.set helpLeft_1__key, __sec_data_rel_ro+0x798
+.globl helpLeft_1__roInactive
+.set helpLeft_1__roInactive, __sec_data_rel_ro+0x7a0
+.globl helpLeft_1__info
+.set helpLeft_1__info, __sec_data_rel_ro+0x7a8
+.globl policies
+.set policies, __sec_data_rel_ro+0x960
+.globl policies_0__id
+.set policies_0__id, __sec_data_rel_ro+0x968
+.globl policies_0__prioritySupport
+.set policies_0__prioritySupport, __sec_data_rel_ro+0x96c
+.globl policies_1__name
+.set policies_1__name, __sec_data_rel_ro+0x970
+.globl policies_1__id
+.set policies_1__id, __sec_data_rel_ro+0x978
+.globl FunctionBar_EnterEscKeys
+.set FunctionBar_EnterEscKeys, __sec_data_rel_ro+0x9c0
 .globl Process_fields
 .set Process_fields, __sec_data_rel_ro+0x9e0
-.globl Process_fields_8_
-.set Process_fields_8_, __sec_data_rel_ro+0x9e8
-.globl Process_fields_24_
-.set Process_fields_24_, __sec_data_rel_ro+0x9f8
-.globl Process_fields_28_
-.set Process_fields_28_, __sec_data_rel_ro+0x9fc
-.globl Process_fields_29_
-.set Process_fields_29_, __sec_data_rel_ro+0x9fd
-.globl Process_fields_30_
-.set Process_fields_30_, __sec_data_rel_ro+0x9fe
-.globl Process_fields_32_
-.set Process_fields_32_, __sec_data_rel_ro+0xa00
-.globl Process_fields_40_
-.set Process_fields_40_, __sec_data_rel_ro+0xa08
-.globl Process_fields_48_
-.set Process_fields_48_, __sec_data_rel_ro+0xa10
-.globl Process_fields_61_
-.set Process_fields_61_, __sec_data_rel_ro+0xa1d
-.globl Process_fields_62_
-.set Process_fields_62_, __sec_data_rel_ro+0xa1e
-.globl Process_fields_64_
-.set Process_fields_64_, __sec_data_rel_ro+0xa20
-.globl Process_fields_80_
-.set Process_fields_80_, __sec_data_rel_ro+0xa30
-.globl Process_fields_96_
-.set Process_fields_96_, __sec_data_rel_ro+0xa40
-.globl Process_fields_112_
-.set Process_fields_112_, __sec_data_rel_ro+0xa50
-.globl PTR_s_Space_00157660
-.set PTR_s_Space_00157660, __sec_data_rel_ro+0x1a60
-.globl L_00157668
-.set L_00157668, __sec_data_rel_ro+0x1a68
-.globl PTR_s_Enter_00157668
-.set PTR_s_Enter_00157668, __sec_data_rel_ro+0x1a68
-.globl L_00157680
-.set L_00157680, __sec_data_rel_ro+0x1a80
-.globl L_00157688
-.set L_00157688, __sec_data_rel_ro+0x1a88
-.globl L_00157690
-.set L_00157690, __sec_data_rel_ro+0x1a90
-.globl L_00157698
-.set L_00157698, __sec_data_rel_ro+0x1a98
-.globl L_001576a0
-.set L_001576a0, __sec_data_rel_ro+0x1aa0
-.globl PTR_s_Style_001576c0
-.set PTR_s_Style_001576c0, __sec_data_rel_ro+0x1ac0
-.globl L_001576c8
-.set L_001576c8, __sec_data_rel_ro+0x1ac8
-.globl L_001576d0
-.set L_001576d0, __sec_data_rel_ro+0x1ad0
-.globl L_001576d8
-.set L_001576d8, __sec_data_rel_ro+0x1ad8
-.globl L_001576e0
-.set L_001576e0, __sec_data_rel_ro+0x1ae0
-.globl L_001576e8
-.set L_001576e8, __sec_data_rel_ro+0x1ae8
-.globl L_001576f0
-.set L_001576f0, __sec_data_rel_ro+0x1af0
-.globl L_001576f8
-.set L_001576f8, __sec_data_rel_ro+0x1af8
-.globl L_00157700
-.set L_00157700, __sec_data_rel_ro+0x1b00
-.globl PTR_s_Space_00157720
-.set PTR_s_Space_00157720, __sec_data_rel_ro+0x1b20
-.globl L_00157728
-.set L_00157728, __sec_data_rel_ro+0x1b28
-.globl L_00157730
-.set L_00157730, __sec_data_rel_ro+0x1b30
-.globl L_00157738
-.set L_00157738, __sec_data_rel_ro+0x1b38
-.globl L_00157740
-.set L_00157740, __sec_data_rel_ro+0x1b40
-.globl PTR_s_Style_00157760
-.set PTR_s_Style_00157760, __sec_data_rel_ro+0x1b60
-.globl L_00157768
-.set L_00157768, __sec_data_rel_ro+0x1b68
-.globl L_00157770
-.set L_00157770, __sec_data_rel_ro+0x1b70
-.globl L_00157778
-.set L_00157778, __sec_data_rel_ro+0x1b78
-.globl L_00157780
-.set L_00157780, __sec_data_rel_ro+0x1b80
-.globl PTR_DAT_001577a0
-.set PTR_DAT_001577a0, __sec_data_rel_ro+0x1ba0
-.globl L_001577a8
-.set L_001577a8, __sec_data_rel_ro+0x1ba8
-.globl L_001577b0
-.set L_001577b0, __sec_data_rel_ro+0x1bb0
-.globl L_001577b8
-.set L_001577b8, __sec_data_rel_ro+0x1bb8
-.globl L_001577c0
-.set L_001577c0, __sec_data_rel_ro+0x1bc0
-.globl L_001577c8
-.set L_001577c8, __sec_data_rel_ro+0x1bc8
-.globl L_001577d0
-.set L_001577d0, __sec_data_rel_ro+0x1bd0
-.globl L_001577d8
-.set L_001577d8, __sec_data_rel_ro+0x1bd8
-.globl L_001577e0
-.set L_001577e0, __sec_data_rel_ro+0x1be0
-.globl L_001577e8
-.set L_001577e8, __sec_data_rel_ro+0x1be8
-.globl L_001577f0
-.set L_001577f0, __sec_data_rel_ro+0x1bf0
-.globl L_001577f8
-.set L_001577f8, __sec_data_rel_ro+0x1bf8
-.globl L_00157800
-.set L_00157800, __sec_data_rel_ro+0x1c00
-.globl L_00157808
-.set L_00157808, __sec_data_rel_ro+0x1c08
-.globl L_00157810
-.set L_00157810, __sec_data_rel_ro+0x1c10
-.globl L_00157818
-.set L_00157818, __sec_data_rel_ro+0x1c18
-.globl L_00157820
-.set L_00157820, __sec_data_rel_ro+0x1c20
-.globl L_00157828
-.set L_00157828, __sec_data_rel_ro+0x1c28
-.globl L_00157830
-.set L_00157830, __sec_data_rel_ro+0x1c30
-.globl L_00157838
-.set L_00157838, __sec_data_rel_ro+0x1c38
-.globl L_00157840
-.set L_00157840, __sec_data_rel_ro+0x1c40
-.globl L_00157848
-.set L_00157848, __sec_data_rel_ro+0x1c48
-.globl L_00157850
-.set L_00157850, __sec_data_rel_ro+0x1c50
-.globl L_00157858
-.set L_00157858, __sec_data_rel_ro+0x1c58
-.globl L_00157860
-.set L_00157860, __sec_data_rel_ro+0x1c60
-.globl L_00157868
-.set L_00157868, __sec_data_rel_ro+0x1c68
-.globl L_00157870
-.set L_00157870, __sec_data_rel_ro+0x1c70
-.globl L_00157878
-.set L_00157878, __sec_data_rel_ro+0x1c78
-.globl L_00157880
-.set L_00157880, __sec_data_rel_ro+0x1c80
-.globl L_00157888
-.set L_00157888, __sec_data_rel_ro+0x1c88
-.globl PTR_DAT_001578a0
-.set PTR_DAT_001578a0, __sec_data_rel_ro+0x1ca0
-.globl L_001578a8
-.set L_001578a8, __sec_data_rel_ro+0x1ca8
-.globl L_001578b0
-.set L_001578b0, __sec_data_rel_ro+0x1cb0
-.globl L_001578b8
-.set L_001578b8, __sec_data_rel_ro+0x1cb8
-.globl L_001578c0
-.set L_001578c0, __sec_data_rel_ro+0x1cc0
-.globl L_001578c8
-.set L_001578c8, __sec_data_rel_ro+0x1cc8
-.globl L_001578d0
-.set L_001578d0, __sec_data_rel_ro+0x1cd0
-.globl L_001578d8
-.set L_001578d8, __sec_data_rel_ro+0x1cd8
-.globl L_001578e0
-.set L_001578e0, __sec_data_rel_ro+0x1ce0
-.globl L_001578e8
-.set L_001578e8, __sec_data_rel_ro+0x1ce8
-.globl L_001578f0
-.set L_001578f0, __sec_data_rel_ro+0x1cf0
-.globl L_001578f8
-.set L_001578f8, __sec_data_rel_ro+0x1cf8
-.globl L_00157900
-.set L_00157900, __sec_data_rel_ro+0x1d00
-.globl L_00157908
-.set L_00157908, __sec_data_rel_ro+0x1d08
-.globl L_00157910
-.set L_00157910, __sec_data_rel_ro+0x1d10
-.globl L_00157918
-.set L_00157918, __sec_data_rel_ro+0x1d18
-.globl L_00157920
-.set L_00157920, __sec_data_rel_ro+0x1d20
-.globl L_00157928
-.set L_00157928, __sec_data_rel_ro+0x1d28
-.globl L_00157930
-.set L_00157930, __sec_data_rel_ro+0x1d30
-.globl L_00157938
-.set L_00157938, __sec_data_rel_ro+0x1d38
-.globl L_00157940
-.set L_00157940, __sec_data_rel_ro+0x1d40
-.globl L_00157948
-.set L_00157948, __sec_data_rel_ro+0x1d48
-.globl L_00157950
-.set L_00157950, __sec_data_rel_ro+0x1d50
-.globl L_00157958
-.set L_00157958, __sec_data_rel_ro+0x1d58
-.globl L_00157960
-.set L_00157960, __sec_data_rel_ro+0x1d60
-.globl L_00157968
-.set L_00157968, __sec_data_rel_ro+0x1d68
-.globl L_00157970
-.set L_00157970, __sec_data_rel_ro+0x1d70
-.globl L_00157978
-.set L_00157978, __sec_data_rel_ro+0x1d78
-.globl L_00157980
-.set L_00157980, __sec_data_rel_ro+0x1d80
-.globl L_00157988
-.set L_00157988, __sec_data_rel_ro+0x1d88
-.globl DAT_001579a0
-.set DAT_001579a0, __sec_data_rel_ro+0x1da0
-.globl L_001579c8
-.set L_001579c8, __sec_data_rel_ro+0x1dc8
-.globl L_001579d0
-.set L_001579d0, __sec_data_rel_ro+0x1dd0
-.globl L_001579d8
-.set L_001579d8, __sec_data_rel_ro+0x1dd8
-.globl L_001579e0
-.set L_001579e0, __sec_data_rel_ro+0x1de0
-.globl PTR_DAT_00157a00
-.set PTR_DAT_00157a00, __sec_data_rel_ro+0x1e00
-.globl L_00157a08
-.set L_00157a08, __sec_data_rel_ro+0x1e08
-.globl L_00157a10
-.set L_00157a10, __sec_data_rel_ro+0x1e10
-.globl L_00157a18
-.set L_00157a18, __sec_data_rel_ro+0x1e18
-.globl L_00157a20
-.set L_00157a20, __sec_data_rel_ro+0x1e20
-.globl L_00157a28
-.set L_00157a28, __sec_data_rel_ro+0x1e28
-.globl L_00157a30
-.set L_00157a30, __sec_data_rel_ro+0x1e30
-.globl L_00157a38
-.set L_00157a38, __sec_data_rel_ro+0x1e38
-.globl L_00157a40
-.set L_00157a40, __sec_data_rel_ro+0x1e40
-.globl L_00157a48
-.set L_00157a48, __sec_data_rel_ro+0x1e48
-.globl L_00157a50
-.set L_00157a50, __sec_data_rel_ro+0x1e50
-.globl L_00157a58
-.set L_00157a58, __sec_data_rel_ro+0x1e58
-.globl L_00157a60
-.set L_00157a60, __sec_data_rel_ro+0x1e60
-.globl L_00157a68
-.set L_00157a68, __sec_data_rel_ro+0x1e68
-.globl L_00157a70
-.set L_00157a70, __sec_data_rel_ro+0x1e70
-.globl L_00157a78
-.set L_00157a78, __sec_data_rel_ro+0x1e78
-.globl L_00157a80
-.set L_00157a80, __sec_data_rel_ro+0x1e80
-.globl L_00157a88
-.set L_00157a88, __sec_data_rel_ro+0x1e88
-.globl L_00157a90
-.set L_00157a90, __sec_data_rel_ro+0x1e90
-.globl L_00157a98
-.set L_00157a98, __sec_data_rel_ro+0x1e98
-.globl L_00157aa0
-.set L_00157aa0, __sec_data_rel_ro+0x1ea0
-.globl L_00157aa8
-.set L_00157aa8, __sec_data_rel_ro+0x1ea8
-.globl L_00157ab0
-.set L_00157ab0, __sec_data_rel_ro+0x1eb0
-.globl L_00157ab8
-.set L_00157ab8, __sec_data_rel_ro+0x1eb8
-.globl L_00157ac0
-.set L_00157ac0, __sec_data_rel_ro+0x1ec0
-.globl PTR_s_Help_00157ae0
-.set PTR_s_Help_00157ae0, __sec_data_rel_ro+0x1ee0
-.globl L_00157ae8
-.set L_00157ae8, __sec_data_rel_ro+0x1ee8
-.globl L_00157af0
-.set L_00157af0, __sec_data_rel_ro+0x1ef0
-.globl L_00157af8
-.set L_00157af8, __sec_data_rel_ro+0x1ef8
-.globl L_00157b00
-.set L_00157b00, __sec_data_rel_ro+0x1f00
-.globl L_00157b08
-.set L_00157b08, __sec_data_rel_ro+0x1f08
-.globl L_00157b10
-.set L_00157b10, __sec_data_rel_ro+0x1f10
-.globl L_00157b18
-.set L_00157b18, __sec_data_rel_ro+0x1f18
-.globl L_00157b20
-.set L_00157b20, __sec_data_rel_ro+0x1f20
-.globl L_00157b28
-.set L_00157b28, __sec_data_rel_ro+0x1f28
-.globl PTR_s_Help_00157b40
-.set PTR_s_Help_00157b40, __sec_data_rel_ro+0x1f40
-.globl L_00157b48
-.set L_00157b48, __sec_data_rel_ro+0x1f48
-.globl L_00157b50
-.set L_00157b50, __sec_data_rel_ro+0x1f50
-.globl L_00157b58
-.set L_00157b58, __sec_data_rel_ro+0x1f58
-.globl L_00157b60
-.set L_00157b60, __sec_data_rel_ro+0x1f60
-.globl L_00157b68
-.set L_00157b68, __sec_data_rel_ro+0x1f68
-.globl L_00157b70
-.set L_00157b70, __sec_data_rel_ro+0x1f70
-.globl L_00157b78
-.set L_00157b78, __sec_data_rel_ro+0x1f78
-.globl L_00157b80
-.set L_00157b80, __sec_data_rel_ro+0x1f80
-.globl L_00157b88
-.set L_00157b88, __sec_data_rel_ro+0x1f88
-.globl PTR_DAT_00157ba0
-.set PTR_DAT_00157ba0, __sec_data_rel_ro+0x1fa0
-.globl L_00157ba8
-.set L_00157ba8, __sec_data_rel_ro+0x1fa8
-.globl L_00157bb0
-.set L_00157bb0, __sec_data_rel_ro+0x1fb0
-.globl L_00157bb8
-.set L_00157bb8, __sec_data_rel_ro+0x1fb8
-.globl PTR_s_Search_00157bc0
-.set PTR_s_Search_00157bc0, __sec_data_rel_ro+0x1fc0
-.globl L_00157bc8
-.set L_00157bc8, __sec_data_rel_ro+0x1fc8
-.globl L_00157bd0
-.set L_00157bd0, __sec_data_rel_ro+0x1fd0
-.globl L_00157bd8
-.set L_00157bd8, __sec_data_rel_ro+0x1fd8
-.globl PTR_DAT_00157c00
-.set PTR_DAT_00157c00, __sec_data_rel_ro+0x2000
-.globl L_00157c08
-.set L_00157c08, __sec_data_rel_ro+0x2008
-.globl L_00157c10
-.set L_00157c10, __sec_data_rel_ro+0x2010
-.globl L_00157c18
-.set L_00157c18, __sec_data_rel_ro+0x2018
-.globl PTR_s_Next_00157c20
-.set PTR_s_Next_00157c20, __sec_data_rel_ro+0x2020
-.globl L_00157c28
-.set L_00157c28, __sec_data_rel_ro+0x2028
-.globl L_00157c30
-.set L_00157c30, __sec_data_rel_ro+0x2030
-.globl L_00157c38
-.set L_00157c38, __sec_data_rel_ro+0x2038
-.globl PTR_s_Enter_00157c50
-.set PTR_s_Enter_00157c50, __sec_data_rel_ro+0x2050
-.globl L_00157c58
-.set L_00157c58, __sec_data_rel_ro+0x2058
-.globl L_00157c60
-.set L_00157c60, __sec_data_rel_ro+0x2060
-.globl PTR_s_Done_00157c80
-.set PTR_s_Done_00157c80, __sec_data_rel_ro+0x2080
-.globl L_00157c88
-.set L_00157c88, __sec_data_rel_ro+0x2088
-.globl L_00157c90
-.set L_00157c90, __sec_data_rel_ro+0x2090
-.globl PTR_DAT_00157ca0
-.set PTR_DAT_00157ca0, __sec_data_rel_ro+0x20a0
-.globl L_00157ca8
-.set L_00157ca8, __sec_data_rel_ro+0x20a8
-.globl L_00157cb0
-.set L_00157cb0, __sec_data_rel_ro+0x20b0
-.globl L_00157cb8
-.set L_00157cb8, __sec_data_rel_ro+0x20b8
-.globl L_00157cc0
-.set L_00157cc0, __sec_data_rel_ro+0x20c0
-.globl L_00157cc8
-.set L_00157cc8, __sec_data_rel_ro+0x20c8
-.globl L_00157cd0
-.set L_00157cd0, __sec_data_rel_ro+0x20d0
-.globl L_00157cd8
-.set L_00157cd8, __sec_data_rel_ro+0x20d8
-.globl L_00157ce0
-.set L_00157ce0, __sec_data_rel_ro+0x20e0
-.globl L_00157ce8
-.set L_00157ce8, __sec_data_rel_ro+0x20e8
-.globl PTR_DAT_00157d00
-.set PTR_DAT_00157d00, __sec_data_rel_ro+0x2100
-.globl L_00157d08
-.set L_00157d08, __sec_data_rel_ro+0x2108
-.globl L_00157d10
-.set L_00157d10, __sec_data_rel_ro+0x2110
-.globl L_00157d18
-.set L_00157d18, __sec_data_rel_ro+0x2118
-.globl L_00157d20
-.set L_00157d20, __sec_data_rel_ro+0x2120
-.globl PTR_s_Search_00157d40
-.set PTR_s_Search_00157d40, __sec_data_rel_ro+0x2140
-.globl L_00157d48
-.set L_00157d48, __sec_data_rel_ro+0x2148
-.globl L_00157d50
-.set L_00157d50, __sec_data_rel_ro+0x2150
-.globl L_00157d58
-.set L_00157d58, __sec_data_rel_ro+0x2158
-.globl L_00157d60
-.set L_00157d60, __sec_data_rel_ro+0x2160
+.globl Process_fields_0__title
+.set Process_fields_0__title, __sec_data_rel_ro+0x9e8
+.globl Process_fields_0__flags
+.set Process_fields_0__flags, __sec_data_rel_ro+0x9f8
+.globl Process_fields_0__pidColumn
+.set Process_fields_0__pidColumn, __sec_data_rel_ro+0x9fc
+.globl Process_fields_0__defaultSortDesc
+.set Process_fields_0__defaultSortDesc, __sec_data_rel_ro+0x9fd
+.globl Process_fields_0__autoWidth
+.set Process_fields_0__autoWidth, __sec_data_rel_ro+0x9fe
+.globl Process_fields_1__name
+.set Process_fields_1__name, __sec_data_rel_ro+0xa00
+.globl Process_fields_1__title
+.set Process_fields_1__title, __sec_data_rel_ro+0xa08
+.globl Process_fields_1__description
+.set Process_fields_1__description, __sec_data_rel_ro+0xa10
+.globl Process_fields_1__defaultSortDesc
+.set Process_fields_1__defaultSortDesc, __sec_data_rel_ro+0xa1d
+.globl Process_fields_1__autoWidth
+.set Process_fields_1__autoWidth, __sec_data_rel_ro+0xa1e
+.globl Process_fields_2__name
+.set Process_fields_2__name, __sec_data_rel_ro+0xa20
+.globl Process_fields_2__description
+.set Process_fields_2__description, __sec_data_rel_ro+0xa30
+.globl Process_fields_3__name
+.set Process_fields_3__name, __sec_data_rel_ro+0xa40
+.globl Process_fields_3__description
+.set Process_fields_3__description, __sec_data_rel_ro+0xa50
+.globl MetersMovingKeys
+.set MetersMovingKeys, __sec_data_rel_ro+0x1a60
+.globl MetersMovingFunctions
+.set MetersMovingFunctions, __sec_data_rel_ro+0x1ac0
+.globl MetersKeys
+.set MetersKeys, __sec_data_rel_ro+0x1b20
+.globl MetersFunctions
+.set MetersFunctions, __sec_data_rel_ro+0x1b60
+.globl LEDMeterMode_digitsAscii
+.set LEDMeterMode_digitsAscii, __sec_data_rel_ro+0x1ba0
+.globl LEDMeterMode_digitsUtf8
+.set LEDMeterMode_digitsUtf8, __sec_data_rel_ro+0x1ca0
+.globl GraphMeterMode_dotsAscii
+.set GraphMeterMode_dotsAscii, __sec_data_rel_ro+0x1da0
+.globl GraphMeterMode_dotsUtf8
+.set GraphMeterMode_dotsUtf8, __sec_data_rel_ro+0x1e00
+.globl MainFunctions_ro
+.set MainFunctions_ro, __sec_data_rel_ro+0x1ee0
+.globl MainFunctions
+.set MainFunctions, __sec_data_rel_ro+0x1f40
+.globl InfoScreenKeys
+.set InfoScreenKeys, __sec_data_rel_ro+0x1fa0
+.globl InfoScreenFunctions
+.set InfoScreenFunctions, __sec_data_rel_ro+0x1fc0
+.globl searchKeys
+.set searchKeys, __sec_data_rel_ro+0x2000
+.globl searchFunctions
+.set searchFunctions, __sec_data_rel_ro+0x2020
+.globl filterKeys
+.set filterKeys, __sec_data_rel_ro+0x2050
+.globl filterFunctions
+.set filterFunctions, __sec_data_rel_ro+0x2080
+.globl HeaderOptionsFunctions
+.set HeaderOptionsFunctions, __sec_data_rel_ro+0x20a0
+.globl TraceScreenKeys
+.set TraceScreenKeys, __sec_data_rel_ro+0x2100
+.globl TraceScreenFunctions
+.set TraceScreenFunctions, __sec_data_rel_ro+0x2140
 .globl Platform_signals
 .set Platform_signals, __sec_data_rel_ro+0x2180
-.globl DAT_00157d88
-.set DAT_00157d88, __sec_data_rel_ro+0x2188
-.globl PTR_s_1_SIGHUP_00157d90
-.set PTR_s_1_SIGHUP_00157d90, __sec_data_rel_ro+0x2190
-.globl DAT_00157d98
-.set DAT_00157d98, __sec_data_rel_ro+0x2198
+.globl Platform_signals_0__number
+.set Platform_signals_0__number, __sec_data_rel_ro+0x2188
+.globl Platform_signals_1__name
+.set Platform_signals_1__name, __sec_data_rel_ro+0x2190
+.globl Platform_signals_1__number
+.set Platform_signals_1__number, __sec_data_rel_ro+0x2198
 .globl Platform_defaultScreens
 .set Platform_defaultScreens, __sec_data_rel_ro+0x23a0
-.globl Platform_defaultScreens_32_
-.set Platform_defaultScreens_32_, __sec_data_rel_ro+0x23c0
-.globl PTR_DAT_00157fe0
-.set PTR_DAT_00157fe0, __sec_data_rel_ro+0x23e0
-.globl L_00157fe8
-.set L_00157fe8, __sec_data_rel_ro+0x23e8
-.globl L_00157ff0
-.set L_00157ff0, __sec_data_rel_ro+0x23f0
-.globl L_00157ff8
-.set L_00157ff8, __sec_data_rel_ro+0x23f8
-.globl L_00158000
-.set L_00158000, __sec_data_rel_ro+0x2400
-.globl L_00158008
-.set L_00158008, __sec_data_rel_ro+0x2408
-.globl L_00158010
-.set L_00158010, __sec_data_rel_ro+0x2410
-.globl L_00158018
-.set L_00158018, __sec_data_rel_ro+0x2418
-.globl L_00158020
-.set L_00158020, __sec_data_rel_ro+0x2420
-.globl L_00158028
-.set L_00158028, __sec_data_rel_ro+0x2428
-.globl PTR_DAT_00158040
-.set PTR_DAT_00158040, __sec_data_rel_ro+0x2440
-.globl L_00158048
-.set L_00158048, __sec_data_rel_ro+0x2448
-.globl L_00158050
-.set L_00158050, __sec_data_rel_ro+0x2450
-.globl L_00158058
-.set L_00158058, __sec_data_rel_ro+0x2458
-.globl L_00158060
-.set L_00158060, __sec_data_rel_ro+0x2460
-.globl L_00158068
-.set L_00158068, __sec_data_rel_ro+0x2468
-.globl L_00158070
-.set L_00158070, __sec_data_rel_ro+0x2470
-.globl L_00158078
-.set L_00158078, __sec_data_rel_ro+0x2478
-.globl L_00158080
-.set L_00158080, __sec_data_rel_ro+0x2480
-.globl L_00158088
-.set L_00158088, __sec_data_rel_ro+0x2488
-.globl PTR_DAT_001580a0
-.set PTR_DAT_001580a0, __sec_data_rel_ro+0x24a0
-.globl L_001580a8
-.set L_001580a8, __sec_data_rel_ro+0x24a8
-.globl L_001580b0
-.set L_001580b0, __sec_data_rel_ro+0x24b0
-.globl L_001580b8
-.set L_001580b8, __sec_data_rel_ro+0x24b8
-.globl L_001580c0
-.set L_001580c0, __sec_data_rel_ro+0x24c0
-.globl L_001580c8
-.set L_001580c8, __sec_data_rel_ro+0x24c8
-.globl L_001580d0
-.set L_001580d0, __sec_data_rel_ro+0x24d0
-.globl L_001580d8
-.set L_001580d8, __sec_data_rel_ro+0x24d8
-.globl L_001580e0
-.set L_001580e0, __sec_data_rel_ro+0x24e0
-.globl L_001580e8
-.set L_001580e8, __sec_data_rel_ro+0x24e8
-.globl PTR_DAT_00158100
-.set PTR_DAT_00158100, __sec_data_rel_ro+0x2500
-.globl L_00158108
-.set L_00158108, __sec_data_rel_ro+0x2508
-.globl L_00158110
-.set L_00158110, __sec_data_rel_ro+0x2510
-.globl L_00158118
-.set L_00158118, __sec_data_rel_ro+0x2518
-.globl L_00158120
-.set L_00158120, __sec_data_rel_ro+0x2520
-.globl L_00158128
-.set L_00158128, __sec_data_rel_ro+0x2528
-.globl L_00158130
-.set L_00158130, __sec_data_rel_ro+0x2530
-.globl L_00158138
-.set L_00158138, __sec_data_rel_ro+0x2538
-.globl L_00158140
-.set L_00158140, __sec_data_rel_ro+0x2540
-.globl L_00158148
-.set L_00158148, __sec_data_rel_ro+0x2548
-.globl PTR_s_coretemp_00158160
-.set PTR_s_coretemp_00158160, __sec_data_rel_ro+0x2560
+.globl Platform_defaultScreens_1__name
+.set Platform_defaultScreens_1__name, __sec_data_rel_ro+0x23c0
+.globl ScreenNamesFunctions
+.set ScreenNamesFunctions, __sec_data_rel_ro+0x23e0
+.globl ScreenTabsFunctions
+.set ScreenTabsFunctions, __sec_data_rel_ro+0x2440
+.globl ScreensFunctions
+.set ScreensFunctions, __sec_data_rel_ro+0x24a0
+.globl DynamicFunctions
+.set DynamicFunctions, __sec_data_rel_ro+0x2500
+.globl tempDrivers_0
+.set tempDrivers_0, __sec_data_rel_ro+0x2560
 .globl DAT_00158168
 .set DAT_00158168, __sec_data_rel_ro+0x2568
 .globl PTR_s_via_cputemp_00158170
 .set PTR_s_via_cputemp_00158170, __sec_data_rel_ro+0x2570
-.globl DAT_001581c0
-.set DAT_001581c0, __sec_data_rel_ro+0x25c0
-.globl PTR_s_Best_effort_001581d8
-.set PTR_s_Best_effort_001581d8, __sec_data_rel_ro+0x25d8
-.globl PTR_s_64K__00158200
-.set PTR_s_64K__00158200, __sec_data_rel_ro+0x2600
-.globl PTR_s_128K__00158208
-.set PTR_s_128K__00158208, __sec_data_rel_ro+0x2608
-.globl L_00158210
-.set L_00158210, __sec_data_rel_ro+0x2610
-.globl L_00158218
-.set L_00158218, __sec_data_rel_ro+0x2618
-.globl L_00158220
-.set L_00158220, __sec_data_rel_ro+0x2620
-.globl L_00158228
-.set L_00158228, __sec_data_rel_ro+0x2628
-.globl L_00158230
-.set L_00158230, __sec_data_rel_ro+0x2630
-.globl L_00158238
-.set L_00158238, __sec_data_rel_ro+0x2638
-.globl L_00158240
-.set L_00158240, __sec_data_rel_ro+0x2640
-.globl L_00158248
-.set L_00158248, __sec_data_rel_ro+0x2648
-.globl L_00158250
-.set L_00158250, __sec_data_rel_ro+0x2650
-.globl L_00158258
-.set L_00158258, __sec_data_rel_ro+0x2658
-.globl L_00158260
-.set L_00158260, __sec_data_rel_ro+0x2660
-.globl L_00158268
-.set L_00158268, __sec_data_rel_ro+0x2668
-.globl L_00158270
-.set L_00158270, __sec_data_rel_ro+0x2670
-.globl L_00158278
-.set L_00158278, __sec_data_rel_ro+0x2678
-.globl L_00158280
-.set L_00158280, __sec_data_rel_ro+0x2680
-.globl L_00158288
-.set L_00158288, __sec_data_rel_ro+0x2688
-.globl L_00158290
-.set L_00158290, __sec_data_rel_ro+0x2690
-.globl L_00158298
-.set L_00158298, __sec_data_rel_ro+0x2698
-.globl L_001582a0
-.set L_001582a0, __sec_data_rel_ro+0x26a0
-.globl L_001582a8
-.set L_001582a8, __sec_data_rel_ro+0x26a8
-.globl L_001582b0
-.set L_001582b0, __sec_data_rel_ro+0x26b0
-.globl L_001582b8
-.set L_001582b8, __sec_data_rel_ro+0x26b8
+.globl classes
+.set classes, __sec_data_rel_ro+0x25c0
+.globl classes_1__name
+.set classes_1__name, __sec_data_rel_ro+0x25d8
+.globl HugePageMeter_labels
+.set HugePageMeter_labels, __sec_data_rel_ro+0x2600
+.globl HugePageMeter_labels_1_
+.set HugePageMeter_labels_1_, __sec_data_rel_ro+0x2608
 .globl LinuxProcess_class
 .set LinuxProcess_class, __sec_data_rel_ro+0x26c0
 .globl ProcessTable_class
@@ -7369,12 +6551,12 @@ __sec_data_rel_ro:
 .set RightCPUs8Meter_class, __sec_data_rel_ro+0x3f80
 .globl ClockMeter_class
 .set ClockMeter_class, __sec_data_rel_ro+0x4020
-.globl ClockMeter_class_112_
-.set ClockMeter_class_112_, __sec_data_rel_ro+0x4090
-.globl ClockMeter_class_120_
-.set ClockMeter_class_120_, __sec_data_rel_ro+0x4098
-.globl ClockMeter_class_136_
-.set ClockMeter_class_136_, __sec_data_rel_ro+0x40a8
+.globl ClockMeter_class_name
+.set ClockMeter_class_name, __sec_data_rel_ro+0x4090
+.globl ClockMeter_class_uiName
+.set ClockMeter_class_uiName, __sec_data_rel_ro+0x4098
+.globl ClockMeter_class_description
+.set ClockMeter_class_description, __sec_data_rel_ro+0x40a8
 .globl BatteryMeter_class
 .set BatteryMeter_class, __sec_data_rel_ro+0x40c0
 .globl BlankMeter_class
@@ -7421,12 +6603,12 @@ __sec_data_rel_ro:
 .set AvailableMetersPanel_class, __sec_data_rel_ro+0x4800
 .globl Platform_meterTypes
 .set Platform_meterTypes, __sec_data_rel_ro+0x4840
-.globl Platform_meterTypes_8_
-.set Platform_meterTypes_8_, __sec_data_rel_ro+0x4848
-.globl Platform_meterTypes_16_
-.set Platform_meterTypes_16_, __sec_data_rel_ro+0x4850
-.globl Platform_meterTypes_24_
-.set Platform_meterTypes_24_, __sec_data_rel_ro+0x4858
+.globl Platform_meterTypes_1_
+.set Platform_meterTypes_1_, __sec_data_rel_ro+0x4848
+.globl Platform_meterTypes_2_
+.set Platform_meterTypes_2_, __sec_data_rel_ro+0x4850
+.globl Platform_meterTypes_3_
+.set Platform_meterTypes_3_, __sec_data_rel_ro+0x4858
 .globl AvailableColumnsPanel_class
 .set AvailableColumnsPanel_class, __sec_data_rel_ro+0x49a0
 .globl AffinityPanel_class
@@ -7437,10 +6619,10 @@ __sec_data_rel_ro:
 .set EnvScreen_class, __sec_data_rel_ro+0x4a60
 .globl Panel_class
 .set Panel_class, __sec_data_rel_ro+0x4aa0
-.globl Panel_class_16_
-.set Panel_class_16_, __sec_data_rel_ro+0x4ab0
-.globl Panel_class_32_
-.set Panel_class_32_, __sec_data_rel_ro+0x4ac0
+.globl Panel_class_super_delete
+.set Panel_class_super_delete, __sec_data_rel_ro+0x4ab0
+.globl Panel_class_eventHandler
+.set Panel_class_eventHandler, __sec_data_rel_ro+0x4ac0
 .globl ListItem_class
 .set ListItem_class, __sec_data_rel_ro+0x4ae0
 .quad __sec_rodata+0xbd9
@@ -7540,15 +6722,15 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0xbf5
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_rodata+0x24d
-.quad FUN_00119aa0
+.quad CategoriesPanel_makeDisplayOptionsPage
 .quad __sec_rodata+0xc72
-.quad FUN_0011cd90
+.quad CategoriesPanel_makeHeaderOptionsPage
 .quad __sec_rodata+0xc80
-.quad FUN_0011cb80
+.quad CategoriesPanel_makeMetersPage
 .quad __sec_rodata+0xc87
-.quad FUN_0011cd00
+.quad CategoriesPanel_makeScreensPage
 .quad __sec_rodata+0x246
-.quad FUN_00118e70
+.quad CategoriesPanel_makeColorsPage
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,50,50,0,0,0,0,0
 .quad __sec_rodata+0xc8f
 .quad __sec_rodata+0xc99
@@ -7596,8 +6778,8 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0xd8
 .quad __sec_rodata+0xbf5
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_0011adf0
-.quad FUN_001175c0
+.quad MaskItem_display
+.quad MaskItem_delete
 .byte 0,0,0,0,0,0,0,0
 .quad __sec_rodata+0xe3e
 .quad __sec_rodata+0xe44
@@ -8439,19 +7621,19 @@ __sec_data_rel_ro:
 .quad Process_compare
 .quad Process_rowIsHighlighted
 .quad Process_rowIsVisible
-.quad FUN_00142f70
+.quad LinuxProcess_rowWriteField
 .quad Process_rowMatchesFilter
 .quad Process_rowGetSortKey
 .quad Process_compareByParent
-.quad FUN_001436e0
+.quad LinuxProcess_compareByKey
 .byte 0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4240
 .byte 0,0,0,0,0,0,0,0
 .quad ProcessTable_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011fc50
-.quad FUN_001200d0
-.quad FUN_0012d160
+.quad ProcessTable_prepareEntries
+.quad ProcessTable_iterateEntries
+.quad ProcessTable_cleanupEntries
 .byte 0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4280
 .quad Row_display
@@ -8459,16 +7641,16 @@ __sec_data_rel_ro:
 .quad Process_compare
 .quad Process_rowIsHighlighted
 .quad Process_rowIsVisible
-.quad Process_writeField
+.quad Process_rowWriteField
 .quad Process_rowMatchesFilter
 .quad Process_rowGetSortKey
 .quad Process_compareByParent
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_001446f0
+.quad ZfsCompressedArcMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_0013d5c0
+.quad ZfsCompressedArcMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x5fa4
@@ -8478,10 +7660,10 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x4210
 .byte 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_00140ce0
+.quad ZfsArcMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_00140a50
+.quad ZfsArcMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x5fb0
@@ -8490,10 +7672,10 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x773
 .byte 0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_00140bc0
+.quad ZramMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_001408a0
+.quad ZramMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x5fc8
@@ -8502,12 +7684,12 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x78d
 .byte 0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_00144bd0
+.quad SystemdMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_001389f0
+.quad SystemdMeter_done
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0013fab0
+.quad SystemdMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x5fd0
@@ -8517,12 +7699,12 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x4238
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_00144bf0
+.quad SystemdUserMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_001389f0
+.quad SystemdMeter_done
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0013fab0
+.quad SystemdMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x5fd0
@@ -8535,7 +7717,7 @@ __sec_data_rel_ro:
 .byte 0,0,0,0,0,0,0,0
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_0013d430
+.quad SELinuxMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x5fd4
@@ -8545,10 +7727,10 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x7f1
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_001445e0
+.quad PressureStallMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_0013d320
+.quad PressureStallMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x5fd8
@@ -8558,10 +7740,10 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x4288
 .byte 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_001445e0
+.quad PressureStallMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_0013d320
+.quad PressureStallMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x5fd8
@@ -8571,10 +7753,10 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x42b0
 .byte 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_001445e0
+.quad PressureStallMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_0013d320
+.quad PressureStallMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x5fd8
@@ -8584,10 +7766,10 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x42d8
 .byte 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_001445e0
+.quad PressureStallMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_0013d320
+.quad PressureStallMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x5fd8
@@ -8597,10 +7779,10 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x4300
 .byte 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_001445e0
+.quad PressureStallMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_0013d320
+.quad PressureStallMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x5fd8
@@ -8610,10 +7792,10 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x4328
 .byte 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_001445e0
+.quad PressureStallMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_0013d320
+.quad PressureStallMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x5fd8
@@ -8623,10 +7805,10 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x4350
 .byte 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_00140ad0
+.quad HugePageMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_001406e0
+.quad HugePageMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x5ff0
@@ -8638,7 +7820,7 @@ __sec_data_rel_ro:
 .byte 0,0,0,0,0,0,0,0
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_0012fec0
+.quad UptimeMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x6000
@@ -8647,10 +7829,10 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x95c
 .byte 0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_001318d0
+.quad TasksMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_0012e840
+.quad TasksMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x6010
@@ -8662,7 +7844,7 @@ __sec_data_rel_ro:
 .byte 0,0,0,0,0,0,0,0
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_0012d9d0
+.quad SysArchMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x6020
@@ -8671,10 +7853,10 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x987
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_00131bd0
+.quad SwapMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_0012f890
+.quad SwapMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x6028
@@ -8683,10 +7865,10 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x990
 .byte 0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_001296f0
+.quad NetworkIOMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_00129fb0
+.quad NetworkIOMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x6038
@@ -8698,11 +7880,11 @@ __sec_data_rel_ro:
 .byte 0,0,0,0,0,0,0,0
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_00123640
-.quad FUN_0011fe90
-.quad FUN_00121500
-.quad FUN_0011fb10
-.quad FUN_0011fb40
+.quad MemorySwapMeter_init
+.quad MemorySwapMeter_done
+.quad MemorySwapMeter_updateMode
+.quad MemorySwapMeter_updateValues
+.quad MemorySwapMeter_draw
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,0,0
 .quad __sec_rodata+0x9b3
@@ -8711,10 +7893,10 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x4378
 .byte 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_00129470
+.quad MemoryMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_001293a0
+.quad MemoryMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x6040
@@ -8723,10 +7905,10 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x9d7
 .byte 0,0,0,0,0,0,0,0,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_00128ef0
+.quad LoadAverageMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_00128d50
+.quad LoadAverageMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x6058
@@ -8736,10 +7918,10 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x4398
 .byte 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_00129000
+.quad LoadMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_00128e10
+.quad LoadMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x6064
@@ -8752,7 +7934,7 @@ __sec_data_rel_ro:
 .byte 0,0,0,0,0,0,0,0
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_00120080
+.quad HostnameMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x6068
@@ -8761,10 +7943,10 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0xa18
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_0011ef70
+.quad FileDescriptorMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_0011f910
+.quad FileDescriptorMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,240,64
 .quad __sec_rodata+0x6070
@@ -8774,10 +7956,10 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x4400
 .byte 2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_0011f410
+.quad DiskIOMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_0011f0f0
+.quad DiskIOMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x60a8
@@ -8789,7 +7971,7 @@ __sec_data_rel_ro:
 .byte 0,0,0,0,0,0,0,0
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_001157c0
+.quad DateTimeMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,208,118,64
 .quad __sec_rodata+0x60b4
@@ -8801,7 +7983,7 @@ __sec_data_rel_ro:
 .byte 0,0,0,0,0,0,0,0
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_001156e0
+.quad DateMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,208,118,64
 .quad __sec_rodata+0x60b8
@@ -8810,14 +7992,14 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0xa8d
 .byte 0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_0011e6d0
+.quad CPUMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011ca40
-.quad FUN_001144e0
-.quad FUN_001144a0
-.quad FUN_00114070
-.quad FUN_001141e0
+.quad SingleColCPUsMeter_init
+.quad AllCPUsMeter_done
+.quad SingleColCPUsMeter_updateMode
+.quad AllCPUsMeter_updateValues
+.quad SingleColCPUsMeter_draw
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x60c0
 .quad __sec_rodata+0xa94
@@ -8826,14 +8008,14 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0xaa7
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_0011e6d0
+.quad CPUMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011ca50
-.quad FUN_001144e0
-.quad FUN_001144b0
-.quad FUN_00114070
-.quad FUN_001141b0
+.quad DualColCPUsMeter_init
+.quad AllCPUsMeter_done
+.quad DualColCPUsMeter_updateMode
+.quad AllCPUsMeter_updateValues
+.quad DualColCPUsMeter_draw
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x60c0
 .quad __sec_rodata+0xabc
@@ -8842,14 +8024,14 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x4430
 .byte 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_0011e6d0
+.quad CPUMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011ca40
-.quad FUN_001144e0
-.quad FUN_001144a0
-.quad FUN_00114070
-.quad FUN_001141e0
+.quad SingleColCPUsMeter_init
+.quad AllCPUsMeter_done
+.quad SingleColCPUsMeter_updateMode
+.quad AllCPUsMeter_updateValues
+.quad SingleColCPUsMeter_draw
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x60c0
 .quad __sec_rodata+0xad2
@@ -8858,14 +8040,14 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x4460
 .byte 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_0011e6d0
+.quad CPUMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011ca40
-.quad FUN_001144e0
-.quad FUN_001144a0
-.quad FUN_00114070
-.quad FUN_001141e0
+.quad SingleColCPUsMeter_init
+.quad AllCPUsMeter_done
+.quad SingleColCPUsMeter_updateMode
+.quad AllCPUsMeter_updateValues
+.quad SingleColCPUsMeter_draw
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x60c0
 .quad __sec_rodata+0xae6
@@ -8874,14 +8056,14 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x4480
 .byte 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_0011e6d0
+.quad CPUMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011ca50
-.quad FUN_001144e0
-.quad FUN_001144b0
-.quad FUN_00114070
-.quad FUN_001141b0
+.quad DualColCPUsMeter_init
+.quad AllCPUsMeter_done
+.quad DualColCPUsMeter_updateMode
+.quad AllCPUsMeter_updateValues
+.quad DualColCPUsMeter_draw
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x60c0
 .quad __sec_rodata+0xafb
@@ -8890,14 +8072,14 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x44a0
 .byte 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_0011e6d0
+.quad CPUMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011ca50
-.quad FUN_001144e0
-.quad FUN_001144b0
-.quad FUN_00114070
-.quad FUN_001141b0
+.quad DualColCPUsMeter_init
+.quad AllCPUsMeter_done
+.quad DualColCPUsMeter_updateMode
+.quad AllCPUsMeter_updateValues
+.quad DualColCPUsMeter_draw
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x60c0
 .quad __sec_rodata+0xb12
@@ -8906,14 +8088,14 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x44d0
 .byte 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_0011e6d0
+.quad CPUMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011ca60
-.quad FUN_001144e0
-.quad FUN_001144c0
-.quad FUN_00114070
-.quad FUN_001141c0
+.quad QuadColCPUsMeter_init
+.quad AllCPUsMeter_done
+.quad QuadColCPUsMeter_updateMode
+.quad AllCPUsMeter_updateValues
+.quad QuadColCPUsMeter_draw
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x60c0
 .quad __sec_rodata+0xb2a
@@ -8922,14 +8104,14 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x4500
 .byte 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_0011e6d0
+.quad CPUMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011ca60
-.quad FUN_001144e0
-.quad FUN_001144c0
-.quad FUN_00114070
-.quad FUN_001141c0
+.quad QuadColCPUsMeter_init
+.quad AllCPUsMeter_done
+.quad QuadColCPUsMeter_updateMode
+.quad AllCPUsMeter_updateValues
+.quad QuadColCPUsMeter_draw
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x60c0
 .quad __sec_rodata+0xb44
@@ -8938,14 +8120,14 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x4530
 .byte 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_0011e6d0
+.quad CPUMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011ca60
-.quad FUN_001144e0
-.quad FUN_001144c0
-.quad FUN_00114070
-.quad FUN_001141c0
+.quad QuadColCPUsMeter_init
+.quad AllCPUsMeter_done
+.quad QuadColCPUsMeter_updateMode
+.quad AllCPUsMeter_updateValues
+.quad QuadColCPUsMeter_draw
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x60c0
 .quad __sec_rodata+0xb5b
@@ -8954,14 +8136,14 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x4560
 .byte 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_0011e6d0
+.quad CPUMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011ca70
-.quad FUN_001144e0
-.quad FUN_001144d0
-.quad FUN_00114070
-.quad FUN_001141d0
+.quad OctoColCPUsMeter_init
+.quad AllCPUsMeter_done
+.quad OctoColCPUsMeter_updateMode
+.quad AllCPUsMeter_updateValues
+.quad OctoColCPUsMeter_draw
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x60c0
 .quad __sec_rodata+0xb73
@@ -8970,14 +8152,14 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x4590
 .byte 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_0011e6d0
+.quad CPUMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011ca70
-.quad FUN_001144e0
-.quad FUN_001144d0
-.quad FUN_00114070
-.quad FUN_001141d0
+.quad OctoColCPUsMeter_init
+.quad AllCPUsMeter_done
+.quad OctoColCPUsMeter_updateMode
+.quad AllCPUsMeter_updateValues
+.quad OctoColCPUsMeter_draw
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x60c0
 .quad __sec_rodata+0xb89
@@ -8986,14 +8168,14 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x45c0
 .byte 0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_0011e6d0
+.quad CPUMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011ca70
-.quad FUN_001144e0
-.quad FUN_001144d0
-.quad FUN_00114070
-.quad FUN_001141d0
+.quad OctoColCPUsMeter_init
+.quad AllCPUsMeter_done
+.quad OctoColCPUsMeter_updateMode
+.quad AllCPUsMeter_updateValues
+.quad OctoColCPUsMeter_draw
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x60c0
 .quad __sec_rodata+0xba1
@@ -9005,7 +8187,7 @@ __sec_data_rel_ro:
 .byte 0,0,0,0,0,0,0,0
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_00115660
+.quad ClockMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,128,150,64
 .quad __sec_rodata+0x60e0
@@ -9017,7 +8199,7 @@ __sec_data_rel_ro:
 .byte 0,0,0,0,0,0,0,0
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_0011ca80
+.quad BatteryMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x60e4
@@ -9026,10 +8208,10 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0xbc9
 .byte 0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_0011fbc0
+.quad BlankMeter_display_lto_priv_0
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_0011fbb0
+.quad BlankMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x60e8
@@ -9041,12 +8223,12 @@ __sec_data_rel_ro:
 .byte 0,0,0,0,0,0,0,0
 .quad TraceScreen_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_0012fc10
-.quad FUN_0012fc60
-.quad FUN_0012fe10
+.quad TraceScreen_draw
+.quad TraceScreen_updateTrace
+.quad TraceScreen_onKey
 .quad __sec_rodata+0x6100
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0012f980
+.quad Table_delete
 .byte 0,0,0,0,0,0,0,0
 .quad Table_prepareEntries
 .byte 0,0,0,0,0,0,0,0
@@ -9061,35 +8243,35 @@ __sec_data_rel_ro:
 .byte 0,0,0,0,0,0,0,0
 .quad CommandScreen_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0012cd60
-.quad FUN_001283c0
+.quad ProcessLocksScreen_scan
+.quad ProcessLocksScreen_draw
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_rodata+0x6100
 .byte 0,0,0,0,0,0,0,0
 .quad CommandScreen_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0012b7f0
-.quad FUN_00128370
+.quad OpenFilesScreen_scan
+.quad OpenFilesScreen_draw
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4aa0
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_00126e80
+.quad MetersPanel_delete_lto_priv_0
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_00129b50
+.quad MetersPanel_eventHandler
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4aa0
 .byte 0,0,0,0,0,0,0,0
 .quad MainPanel_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0012b050
-.quad FUN_001291c0
-.quad FUN_00129230
+.quad MainPanel_eventHandler
+.quad MainPanel_drawFunctionBar
+.quad MainPanel_printHeader
 .byte 0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4aa0
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_00126c50
+.quad HeaderOptionsPanel_delete_lto_priv_0
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_00126f40
+.quad HeaderOptionsPanel_eventHandler
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_rodata+0x6100
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -9098,58 +8280,58 @@ __sec_data_rel_ro:
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4540
-.quad FUN_0011ff20
-.quad FUN_0011fed0
+.quad TextItem_display
+.quad OptionItem_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4540
-.quad FUN_00129950
-.quad FUN_0011fed0
+.quad NumberItem_display
+.quad OptionItem_delete
 .byte 0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,0,0
 .quad __sec_rodata+0x6100
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011fed0
+.quad OptionItem_delete
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4aa0
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_00117890
+.quad DisplayOptionsPanel_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011f5f0
+.quad DisplayOptionsPanel_eventHandler
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4aa0
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_00117790
+.quad ColumnsPanel_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011cf50
+.quad ColumnsPanel_eventHandler
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4540
-.quad FUN_00129890
-.quad FUN_0011fed0
+.quad CheckItem_display
+.quad OptionItem_delete
 .byte 0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4aa0
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_00117730
+.quad ColorsPanel_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_00116530
+.quad ColorsPanel_eventHandler
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4aa0
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_001176d0
+.quad CategoriesPanel_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011cde0
+.quad CategoriesPanel_eventHandler
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_0011e6d0
+.quad CPUMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011c3e0
+.quad CPUMeter_init
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_0011e3d0
+.quad CPUMeter_updateValues
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_0011c4d0
+.quad CPUMeter_getUiName
 .byte 1,0,0,0,0,0,0,0,0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x60c0
 .quad __sec_rodata+0x826
@@ -9157,15 +8339,15 @@ __sec_data_rel_ro:
 .quad __sec_rodata+0x826
 .byte 0,0,0,0,0,0,0,0,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4420
-.quad FUN_00114280
+.quad DynamicMeter_display
 .quad Meter_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_00114060
+.quad DynamicMeter_init
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_00114270
+.quad DynamicMeter_updateValues_lto_priv_0
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_00114290
-.quad FUN_0011c510
+.quad DynamicMeter_getCaption
+.quad DynamicMeter_getUiName
 .byte 2,0,0,0,0,0,0,0,0,0,0,0,0,0,89,64
 .quad __sec_rodata+0x6080
 .quad __sec_rodata+0xe36
@@ -9174,9 +8356,9 @@ __sec_data_rel_ro:
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4aa0
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_00117670
+.quad AvailableMetersPanel_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011c630
+.quad AvailableMetersPanel_eventHandler
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x46c0
 .quad __sec_data_rel_ro+0x4020
@@ -9224,29 +8406,29 @@ __sec_data_rel_ro:
 .byte 0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4aa0
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_00117560
+.quad AvailableColumnsPanel_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011a2f0
+.quad AvailableColumnsPanel_eventHandler
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4aa0
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_00117600
+.quad AffinityPanel_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011b030
+.quad AffinityPanel_eventHandler
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_rodata+0x6100
 .byte 0,0,0,0,0,0,0,0
 .quad CommandScreen_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011e100
-.quad FUN_0011e330
+.quad CommandScreen_scan
+.quad CommandScreen_draw
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_rodata+0x6100
 .byte 0,0,0,0,0,0,0,0
 .quad CommandScreen_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0011f7f0
-.quad FUN_0011e380
+.quad EnvScreen_scan
+.quad EnvScreen_draw
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_rodata+0x6100
 .byte 0,0,0,0,0,0,0,0
@@ -9261,52 +8443,42 @@ __sec_data_rel_ro:
 .balign 64
 .globl __sec_data
 __sec_data:
-.globl PTR_LOOP_0015b008
-.set PTR_LOOP_0015b008, __sec_data+0x8
 .globl PTR_DAT_0015b020
 .set PTR_DAT_0015b020, __sec_data+0x20
 .globl DAT_0015b028
 .set DAT_0015b028, __sec_data+0x28
-.globl DAT_0015b220
-.set DAT_0015b220, __sec_data+0x220
-.globl UINT_0015b248
-.set UINT_0015b248, __sec_data+0x248
-.globl UINT_0015b260
-.set UINT_0015b260, __sec_data+0x260
-.globl DAT_0015b264
-.set DAT_0015b264, __sec_data+0x264
-.globl DAT_0015b41c
-.set DAT_0015b41c, __sec_data+0x41c
-.globl DAT_0015bcc8
-.set DAT_0015bcc8, __sec_data+0xcc8
-.globl DAT_0015bccc
-.set DAT_0015bccc, __sec_data+0xccc
+.globl FunctionBar_FEvents
+.set FunctionBar_FEvents, __sec_data+0x220
+.globl status
+.set status, __sec_data+0x248
+.globl CRT_colorSchemes
+.set CRT_colorSchemes, __sec_data+0x260
+.globl CRT_colorSchemes_0__1_
+.set CRT_colorSchemes_0__1_, __sec_data+0x264
+.globl CRT_colorSchemes_1__0_
+.set CRT_colorSchemes_1__0_, __sec_data+0x41c
+.globl CRT_colorSchemes_6__0_
+.set CRT_colorSchemes_6__0_, __sec_data+0xcc8
+.globl CRT_colorSchemes_6__1_
+.set CRT_colorSchemes_6__1_, __sec_data+0xccc
 .globl CRT_scrollWheelVAmount
 .set CRT_scrollWheelVAmount, __sec_data+0xe84
 .globl CRT_scrollHAmount
 .set CRT_scrollHAmount, __sec_data+0xe88
-.globl INT_0015be8c
-.set INT_0015be8c, __sec_data+0xe8c
-.globl UINT_0015be90
-.set UINT_0015be90, __sec_data+0xe90
-.globl L_0015bea0
-.set L_0015bea0, __sec_data+0xea0
-.globl L_0015bea8
-.set L_0015bea8, __sec_data+0xea8
-.globl L_0015bec0
-.set L_0015bec0, __sec_data+0xec0
-.globl L_0015bec8
-.set L_0015bec8, __sec_data+0xec8
-.globl L_0015bee0
-.set L_0015bee0, __sec_data+0xee0
-.globl L_0015bee8
-.set L_0015bee8, __sec_data+0xee8
-.globl PTR_FUN_0015bf00
-.set PTR_FUN_0015bf00, __sec_data+0xf00
-.globl L_0015bf08
-.set L_0015bf08, __sec_data+0xf08
-.globl DAT_0015bf10
-.set DAT_0015bf10, __sec_data+0xf10
+.globl preSelectedSignal
+.set preSelectedSignal, __sec_data+0xe8c
+.globl preSelectedPriority
+.set preSelectedPriority, __sec_data+0xe90
+.globl LEDMeterMode
+.set LEDMeterMode, __sec_data+0xea0
+.globl GraphMeterMode
+.set GraphMeterMode, __sec_data+0xec0
+.globl TextMeterMode
+.set TextMeterMode, __sec_data+0xee0
+.globl BarMeterMode
+.set BarMeterMode, __sec_data+0xf00
+.globl BarMeterMode_h
+.set BarMeterMode_h, __sec_data+0xf10
 .globl program
 .set program, __sec_data+0xf18
 .globl CRT_treeStr
@@ -9323,14 +8495,14 @@ __sec_data:
 .set ScreenTabListItem_class, __sec_data+0x1020
 .globl ScreenListItem_class
 .set ScreenListItem_class, __sec_data+0x1040
-.globl INT_0015c060
-.set INT_0015c060, __sec_data+0x1060
+.globl status_15c060
+.set status_15c060, __sec_data+0x1060
 .globl Row_uidDigits
 .set Row_uidDigits, __sec_data+0x1064
 .globl Row_pidDigits
 .set Row_pidDigits, __sec_data+0x1068
-.globl DOUBLE_0015c070
-.set DOUBLE_0015c070, __sec_data+0x1070
+.globl Platform_Battery_cachePercent
+.set Platform_Battery_cachePercent, __sec_data+0x1070
 .byte 0,0,0,0,0,0,0,0
 .quad __sec_data+0x8
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
@@ -9465,16 +8637,16 @@ __sec_data:
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,10,0,0,0
 .byte 5,0,0,0,15,0,0,0,50,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_00120ba0
+.quad LEDMeterMode_draw
 .quad __sec_rodata+0x74f
 .byte 3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_001237b0
+.quad GraphMeterMode_draw
 .quad __sec_rodata+0x753
 .byte 4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_001209c0
+.quad TextMeterMode_draw
 .quad __sec_rodata+0x759
 .byte 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-.quad FUN_001217e0
+.quad BarMeterMode_draw
 .quad __sec_rodata+0x75e
 .byte 1,0,0,0,0,0,0,0
 .quad __sec_rodata+0x254a
@@ -9482,21 +8654,21 @@ __sec_data:
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4aa0
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0012eb10
+.quad ScreenTabsPanel_delete_lto_priv_0
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_00136d60
+.quad ScreenTabsPanel_eventHandler
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4aa0
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0012eb70
+.quad ScreenNamesPanel_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_00136fb0
+.quad ScreenNamesPanel_eventHandler
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4aa0
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_0012ea80
+.quad ScreensPanel_delete
 .byte 0,0,0,0,0,0,0,0
-.quad FUN_00135d60
+.quad ScreensPanel_eventHandler
 .byte 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 .quad __sec_data_rel_ro+0x4ae0
 .quad ListItem_display
@@ -9508,7 +8680,7 @@ __sec_data:
 .quad ListItem_compare
 .quad __sec_data_rel_ro+0x4ae0
 .quad ListItem_display
-.quad FUN_0012d370
+.quad ScreenListItem_delete
 .quad ListItem_compare
 .byte 1,0,0,0,5,0,0,0,5,0,0,0,0,0,0,0,0,0,0,0,0,0,248,127
 .section .bss,"aw",@nobits
@@ -9521,182 +8693,164 @@ __sec_bss:
 .set CRT_utf8, __sec_bss+0x20
 .globl CRT_degreeSign
 .set CRT_degreeSign, __sec_bss+0x28
-.globl PTR_0015c0b0
-.set PTR_0015c0b0, __sec_bss+0x30
-.globl PTR_0015c0b8
-.set PTR_0015c0b8, __sec_bss+0x38
-.globl LONG_0015c0c0
-.set LONG_0015c0c0, __sec_bss+0x40
+.globl sym_sensors_cleanup
+.set sym_sensors_cleanup, __sec_bss+0x30
+.globl dlopenHandle
+.set dlopenHandle, __sec_bss+0x38
+.globl Meters_movingBar
+.set Meters_movingBar, __sec_bss+0x40
 .globl CRT_colorScheme
 .set CRT_colorScheme, __sec_bss+0x48
-.globl PTR_0015c0d0
-.set PTR_0015c0d0, __sec_bss+0x50
-.globl BYTE_0015c0d8
-.set BYTE_0015c0d8, __sec_bss+0x58
-.globl CHAR____0015c0d9
-.set CHAR____0015c0d9, __sec_bss+0x59
+.globl CRT_delay
+.set CRT_delay, __sec_bss+0x50
+.globl reset_on_fork
+.set reset_on_fork, __sec_bss+0x58
+.globl readonly
+.set readonly, __sec_bss+0x59
 .globl CRT_colors
 .set CRT_colors, __sec_bss+0x60
-.globl INT_0015c0e8
-.set INT_0015c0e8, __sec_bss+0x68
-.globl DOUBLE_0015c0f0
-.set DOUBLE_0015c0f0, __sec_bss+0x70
-.globl ULONG_0015c0f8
-.set ULONG_0015c0f8, __sec_bss+0x78
-.globl DAT_0015c100
-.set DAT_0015c100, __sec_bss+0x80
-.globl ULONG_0015c108
-.set ULONG_0015c108, __sec_bss+0x88
-.globl DAT_0015c110
-.set DAT_0015c110, __sec_bss+0x90
-.globl ULONG_0015c118
-.set ULONG_0015c118, __sec_bss+0x98
-.globl LONG_0015c120
-.set LONG_0015c120, __sec_bss+0xa0
-.globl DAT_0015c128
-.set DAT_0015c128, __sec_bss+0xa8
-.globl LONG_0015c130
-.set LONG_0015c130, __sec_bss+0xb0
-.globl CHAR____0015c138
-.set CHAR____0015c138, __sec_bss+0xb8
-.globl DAT_0015c140
-.set DAT_0015c140, __sec_bss+0xc0
-.globl DAT_0015c3a0
-.set DAT_0015c3a0, __sec_bss+0x320
-.globl DAT_0015c4d0
-.set DAT_0015c4d0, __sec_bss+0x450
-.globl DAT_0015c568
-.set DAT_0015c568, __sec_bss+0x4e8
-.globl DAT_0015c600
-.set DAT_0015c600, __sec_bss+0x580
-.globl DAT_0015c7c8
-.set DAT_0015c7c8, __sec_bss+0x748
-.globl DAT_0015c8f8
-.set DAT_0015c8f8, __sec_bss+0x878
-.globl DAT_0015d3a8
-.set DAT_0015d3a8, __sec_bss+0x1328
-.globl UINT_0015d440
-.set UINT_0015d440, __sec_bss+0x13c0
+.globl currentLen
+.set currentLen, __sec_bss+0x68
+.globl cached_utilisation_diff
+.set cached_utilisation_diff, __sec_bss+0x70
+.globl cached_msTimeSpend_total
+.set cached_msTimeSpend_total, __sec_bss+0x78
+.globl cached_write_diff_str
+.set cached_write_diff_str, __sec_bss+0x80
+.globl cached_write_total
+.set cached_write_total, __sec_bss+0x88
+.globl cached_read_diff_str
+.set cached_read_diff_str, __sec_bss+0x90
+.globl cached_read_total
+.set cached_read_total, __sec_bss+0x98
+.globl cached_last_update
+.set cached_last_update, __sec_bss+0xa0
+.globl buffer_0
+.set buffer_0, __sec_bss+0xa8
+.globl CRT_crashSettings
+.set CRT_crashSettings, __sec_bss+0xb0
+.globl CRT_retainScreenOnExit
+.set CRT_retainScreenOnExit, __sec_bss+0xb8
+.globl old_sig_handler
+.set old_sig_handler, __sec_bss+0xc0
+.globl old_sig_handler_4____sigaction_handler
+.set old_sig_handler_4____sigaction_handler, __sec_bss+0x320
+.globl old_sig_handler_6____sigaction_handler
+.set old_sig_handler_6____sigaction_handler, __sec_bss+0x450
+.globl old_sig_handler_7____sigaction_handler
+.set old_sig_handler_7____sigaction_handler, __sec_bss+0x4e8
+.globl old_sig_handler_8____sigaction_handler
+.set old_sig_handler_8____sigaction_handler, __sec_bss+0x580
+.globl old_sig_handler_11____sigaction_handler
+.set old_sig_handler_11____sigaction_handler, __sec_bss+0x748
+.globl old_sig_handler_13____sigaction_handler
+.set old_sig_handler_13____sigaction_handler, __sec_bss+0x878
+.globl old_sig_handler_31____sigaction_handler
+.set old_sig_handler_31____sigaction_handler, __sec_bss+0x1328
+.globl preSelectedPolicy
+.set preSelectedPolicy, __sec_bss+0x13c0
 .globl Row_fieldWidths
 .set Row_fieldWidths, __sec_bss+0x13e0
-.globl BYTE_0015d48f
-.set BYTE_0015d48f, __sec_bss+0x140f
-.globl BYTE_0015d495
-.set BYTE_0015d495, __sec_bss+0x1415
-.globl BYTE_0015d4d1
-.set BYTE_0015d4d1, __sec_bss+0x1451
-.globl BYTE_0015d4db
-.set BYTE_0015d4db, __sec_bss+0x145b
-.globl BYTE_0015d4e1
-.set BYTE_0015d4e1, __sec_bss+0x1461
-.globl BYTE_0015d4e2
-.set BYTE_0015d4e2, __sec_bss+0x1462
-.globl DAT_0015d500
-.set DAT_0015d500, __sec_bss+0x1480
-.globl INT_0015d604
-.set INT_0015d604, __sec_bss+0x1584
-.globl ULONG_0015d608
-.set ULONG_0015d608, __sec_bss+0x1588
-.globl DAT_0015d610
-.set DAT_0015d610, __sec_bss+0x1590
-.globl DOUBLE_0015d618
-.set DOUBLE_0015d618, __sec_bss+0x1598
-.globl ULONG_0015d620
-.set ULONG_0015d620, __sec_bss+0x15a0
-.globl INT_0015d628
-.set INT_0015d628, __sec_bss+0x15a8
-.globl ULONG_0015d630
-.set ULONG_0015d630, __sec_bss+0x15b0
-.globl DAT_0015d638
-.set DAT_0015d638, __sec_bss+0x15b8
-.globl DOUBLE_0015d640
-.set DOUBLE_0015d640, __sec_bss+0x15c0
-.globl ULONG_0015d648
-.set ULONG_0015d648, __sec_bss+0x15c8
-.globl LONG_0015d650
-.set LONG_0015d650, __sec_bss+0x15d0
-.globl PTR_0015d658
-.set PTR_0015d658, __sec_bss+0x15d8
-.globl CHAR____0015d660
-.set CHAR____0015d660, __sec_bss+0x15e0
-.globl DAT_0015d680
-.set DAT_0015d680, __sec_bss+0x1600
+.globl titleBuffer
+.set titleBuffer, __sec_bss+0x1480
+.globl cached_txp_diff
+.set cached_txp_diff, __sec_bss+0x1584
+.globl cached_txp_total
+.set cached_txp_total, __sec_bss+0x1588
+.globl cached_txb_diff_str
+.set cached_txb_diff_str, __sec_bss+0x1590
+.globl cached_txb_diff
+.set cached_txb_diff, __sec_bss+0x1598
+.globl cached_txb_total
+.set cached_txb_total, __sec_bss+0x15a0
+.globl cached_rxp_diff
+.set cached_rxp_diff, __sec_bss+0x15a8
+.globl cached_rxp_total
+.set cached_rxp_total, __sec_bss+0x15b0
+.globl cached_rxb_diff_str
+.set cached_rxb_diff_str, __sec_bss+0x15b8
+.globl cached_rxb_diff
+.set cached_rxb_diff, __sec_bss+0x15c0
+.globl cached_rxb_total
+.set cached_rxb_total, __sec_bss+0x15c8
+.globl cached_last_update_15d650
+.set cached_last_update_15d650, __sec_bss+0x15d0
+.globl LEDMeterMode_digits
+.set LEDMeterMode_digits, __sec_bss+0x15d8
+.globl firstScanDone
+.set firstScanDone, __sec_bss+0x15e0
+.globl savedString_0_lto_priv_0
+.set savedString_0_lto_priv_0, __sec_bss+0x1600
 .globl DAT_0015d681
 .set DAT_0015d681, __sec_bss+0x1601
-.globl CHAR____0015d7d3
-.set CHAR____0015d7d3, __sec_bss+0x1753
-.globl PTR_0015d7d8
-.set PTR_0015d7d8, __sec_bss+0x1758
-.globl DAT_0015d7e0
-.set DAT_0015d7e0, __sec_bss+0x1760
-.globl DAT_0015d7eb
-.set DAT_0015d7eb, __sec_bss+0x176b
+.globl loaded_data_1_lto_priv_0
+.set loaded_data_1_lto_priv_0, __sec_bss+0x1753
+.globl string
+.set string, __sec_bss+0x1758
+.globl buf
+.set buf, __sec_bss+0x1760
 .globl Running_containerized
 .set Running_containerized, __sec_bss+0x1780
-.globl UINT_0015d804
-.set UINT_0015d804, __sec_bss+0x1784
-.globl PTR_0015d808
-.set PTR_0015d808, __sec_bss+0x1788
-.globl PTR_0015d810
-.set PTR_0015d810, __sec_bss+0x1790
-.globl PTR_0015d818
-.set PTR_0015d818, __sec_bss+0x1798
-.globl PTR_0015d820
-.set PTR_0015d820, __sec_bss+0x17a0
-.globl PTR_0015d828
-.set PTR_0015d828, __sec_bss+0x17a8
-.globl PTR_0015d830
-.set PTR_0015d830, __sec_bss+0x17b0
-.globl DAT_0015d840
-.set DAT_0015d840, __sec_bss+0x17c0
-.globl LONG_0015d848
-.set LONG_0015d848, __sec_bss+0x17c8
-.globl DAT_0015d860
-.set DAT_0015d860, __sec_bss+0x17e0
-.globl LONG_0015d868
-.set LONG_0015d868, __sec_bss+0x17e8
-.globl DAT_0015d870
-.set DAT_0015d870, __sec_bss+0x17f0
-.globl DAT_0015d874
-.set DAT_0015d874, __sec_bss+0x17f4
-.globl DAT_0015d878
-.set DAT_0015d878, __sec_bss+0x17f8
-.globl DAT_0015d87c
-.set DAT_0015d87c, __sec_bss+0x17fc
-.globl CHAR____0015d880
-.set CHAR____0015d880, __sec_bss+0x1800
-.globl INT_0015d884
-.set INT_0015d884, __sec_bss+0x1804
-.globl INT_0015d888
-.set INT_0015d888, __sec_bss+0x1808
-.globl LONG_0015d890
-.set LONG_0015d890, __sec_bss+0x1810
-.globl INT_0015d898
-.set INT_0015d898, __sec_bss+0x1818
-.globl PTR_0015d8a0
-.set PTR_0015d8a0, __sec_bss+0x1820
-.globl PTR_0015d8a8
-.set PTR_0015d8a8, __sec_bss+0x1828
-.globl PTR_0015d8b0
-.set PTR_0015d8b0, __sec_bss+0x1830
-.globl PTR_0015d8b8
-.set PTR_0015d8b8, __sec_bss+0x1838
-.globl PTR_0015d8c0
-.set PTR_0015d8c0, __sec_bss+0x1840
-.globl PTR_0015d8e0
-.set PTR_0015d8e0, __sec_bss+0x1860
-.globl DAT_0015d8e8
-.set DAT_0015d8e8, __sec_bss+0x1868
-.globl DAT_0015d8f0
-.set DAT_0015d8f0, __sec_bss+0x1870
-.globl DAT_0015d8f8
-.set DAT_0015d8f8, __sec_bss+0x1878
+.globl smaps_flag_0
+.set smaps_flag_0, __sec_bss+0x1784
+.globl sym_sd_bus_get_property_trivial
+.set sym_sd_bus_get_property_trivial, __sec_bss+0x1788
+.globl sym_sd_bus_get_property_string
+.set sym_sd_bus_get_property_string, __sec_bss+0x1790
+.globl sym_sd_bus_open_user
+.set sym_sd_bus_open_user, __sec_bss+0x1798
+.globl sym_sd_bus_open_system
+.set sym_sd_bus_open_system, __sec_bss+0x17a0
+.globl sym_sd_bus_unref
+.set sym_sd_bus_unref, __sec_bss+0x17a8
+.globl dlopenHandle_15d830
+.set dlopenHandle_15d830, __sec_bss+0x17b0
+.globl ctx_system
+.set ctx_system, __sec_bss+0x17c0
+.globl ctx_system_systemState
+.set ctx_system_systemState, __sec_bss+0x17c8
+.globl ctx_user
+.set ctx_user, __sec_bss+0x17e0
+.globl ctx_user_systemState
+.set ctx_user_systemState, __sec_bss+0x17e8
+.globl ctx_user_nFailedUnits
+.set ctx_user_nFailedUnits, __sec_bss+0x17f0
+.globl ctx_user_nInstalledJobs
+.set ctx_user_nInstalledJobs, __sec_bss+0x17f4
+.globl ctx_user_nNames
+.set ctx_user_nNames, __sec_bss+0x17f8
+.globl ctx_user_nJobs
+.set ctx_user_nJobs, __sec_bss+0x17fc
+.globl enabled
+.set enabled, __sec_bss+0x1800
+.globl Platform_Battery_method
+.set Platform_Battery_method, __sec_bss+0x1804
+.globl Platform_Battery_cacheIsOnAC
+.set Platform_Battery_cacheIsOnAC, __sec_bss+0x1808
+.globl Platform_Battery_cacheTime
+.set Platform_Battery_cacheTime, __sec_bss+0x1810
+.globl timeout_0
+.set timeout_0, __sec_bss+0x1818
+.globl sym_sensors_get_value
+.set sym_sensors_get_value, __sec_bss+0x1820
+.globl sym_sensors_get_subfeature
+.set sym_sensors_get_subfeature, __sec_bss+0x1828
+.globl sym_sensors_get_features
+.set sym_sensors_get_features, __sec_bss+0x1830
+.globl sym_sensors_get_detected_chips
+.set sym_sensors_get_detected_chips, __sec_bss+0x1838
+.globl sym_sensors_init
+.set sym_sensors_init, __sec_bss+0x1840
+.globl HugePageMeter_active_labels
+.set HugePageMeter_active_labels, __sec_bss+0x1860
+.globl HugePageMeter_active_labels_1_
+.set HugePageMeter_active_labels_1_, __sec_bss+0x1868
+.globl HugePageMeter_active_labels_2_
+.set HugePageMeter_active_labels_2_, __sec_bss+0x1870
+.globl HugePageMeter_active_labels_3_
+.set HugePageMeter_active_labels_3_, __sec_bss+0x1878
 .zero 6272
 .text
-.globl main
-.type main,@function
-main:
-	jmp CommandLine_run
 .globl EnvScreen_delete
 .type EnvScreen_delete,@function
 EnvScreen_delete:

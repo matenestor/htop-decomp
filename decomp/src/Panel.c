@@ -2,89 +2,102 @@
 
 /* Panel_getSelectedIndex @ 0x120830 */
 
-undefined4 Panel_getSelectedIndex(long param_1)
+/* DWARF original prototype: int Panel_getSelectedIndex(Panel * this) */
+
+int Panel_getSelectedIndex(Panel *this)
 
 {
-  return *(undefined4 *)(param_1 + 0x28);
+  return this->selected;
 }
 
 
 /* Panel_get @ 0x120840 */
 
-undefined8 Panel_get(long param_1,int param_2)
+/* DWARF original prototype: Object * Panel_get(Panel * this, int i) */
+
+Object * Panel_get(Panel *this,int i)
 
 {
-  return *(undefined8 *)(**(long **)(param_1 + 0x20) + (long)param_2 * 8);
+  return this->items->array[i];
 }
 
 
 /* Panel_setHeader @ 0x120880 */
 
-void Panel_setHeader(long param_1,char *param_2)
+/* DWARF original prototype: void Panel_setHeader(Panel * this, char * header) */
+
+void Panel_setHeader(Panel *this,char *header)
 
 {
   undefined1 __frame[0x1000e8] __attribute__((aligned(16)));
   undefined1 *__fp = __frame + 0x1000a8;
-  uint uVar1;
-  wint_t __wc;
+  int wVar1;
+  int __wc;
   long lVar2;
   undefined1 *puVar3;
-  long lVar4;
+  Panel *pPVar4;
+  int len;
   int iVar5;
-  int iVar6;
-  size_t sVar7;
+  size_t sVar6;
+  ulong uVar7;
   ulong uVar8;
-  ulong uVar9;
-  undefined1 (*pauVar10) [16];
-  undefined1 *puVar11;
-  wint_t *pwVar13;
+  cchar_t *pcVar9;
+  undefined1 *puVar10;
+  int *pwVar12;
   long in_FS_OFFSET = (long)__fake_fs;
-  undefined1 *puVar12;
+  undefined1 *puVar11;
 
-  puVar11 = (*(undefined1 (*)[8])(__fp - 0x58));
-  (*(long *)(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
-  uVar1 = *(uint *)(CRT_colors + 0x1c);
-  (*(long *)(__fp - 0x50)) = param_1;
-  sVar7 = strlen(param_2);
-  uVar9 = (ulong)((int)sVar7 + 1);
-  uVar8 = uVar9 * 4 + 0xf;
-  puVar12 = (*(undefined1 (*)[8])(__fp - 0x58));
-  puVar3 = (*(undefined1 (*)[8])(__fp - 0x58));
-  while (puVar12 != (*(undefined1 (*)[8])(__fp - 0x58)) + -(uVar8 & 0xfffffffffffff000)) {
-    puVar11 = puVar3 + -0x1000;
+  puVar10 = (*(undefined1 (*) [8])(__fp - 0x58));
+  (*(long (*))(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
+  wVar1 = CRT_colors[7];
+  (*(Panel *(*))(__fp - 0x50)) = this;
+  sVar6 = strlen(header);
+                    /* Unresolved local var: int[6165] data@[???]
+                       Unresolved local var: int newLen@[???] */
+  uVar8 = (ulong)((int)sVar6 + 1);
+  uVar7 = uVar8 * 4 + 0xf;
+  puVar11 = (*(undefined1 (*) [8])(__fp - 0x58));
+  puVar3 = (*(undefined1 (*) [8])(__fp - 0x58));
+  while (puVar11 != (*(undefined1 (*) [8])(__fp - 0x58)) + -(uVar7 & 0xfffffffffffff000)) {
+    puVar10 = puVar3 + -0x1000;
     *(undefined8 *)(puVar3 + -8) = *(undefined8 *)(puVar3 + -8);
-    puVar12 = puVar3 + -0x1000;
+    puVar11 = puVar3 + -0x1000;
     puVar3 = puVar3 + -0x1000;
   }
-  uVar8 = (ulong)((uint)uVar8 & 0xff0);
-  lVar2 = -uVar8;
-  pwVar13 = (wint_t *)(puVar11 + lVar2);
-  if (uVar8 != 0) {
-    *(undefined8 *)(puVar11 + -8) = *(undefined8 *)(puVar11 + -8);
+  uVar7 = (ulong)((uint)uVar7 & 0xff0);
+  lVar2 = -uVar7;
+  pwVar12 = (int *)(puVar10 + lVar2);
+  if (uVar7 != 0) {
+    *(undefined8 *)(puVar10 + -8) = *(undefined8 *)(puVar10 + -8);
   }
-  uVar8 = __mbstowcs_chk((int *)(puVar11 + lVar2),param_2,(long)(int)sVar7,
-                         uVar9 & 0x3fffffffffffffff);
-  lVar4 = (*(long *)(__fp - 0x50));
-  iVar5 = (int)uVar8;
-  if (0 < iVar5) {
-    FUN_00130130((int *)((*(long *)(__fp - 0x50)) + 0x60),iVar5);
-    pauVar10 = *(undefined1 (**) [16])(lVar4 + 0x68);
+  uVar7 = __mbstowcs_chk((int *)(puVar10 + lVar2),header,(long)(int)sVar6,uVar8 & 0x3fffffffffffffff
+                        );
+  pPVar4 = (*(Panel *(*))(__fp - 0x50));
+  len = (int)uVar7;
+  if (0 < len) {
+                    /* Unresolved local var: int i@[???]
+                       Unresolved local var: int j@[???] */
+    RichString_setLen(&(*(Panel *(*))(__fp - 0x50))->header,len);
+    pcVar9 = (pPVar4->header).chptr;
     do {
-      __wc = *pwVar13;
-      iVar6 = iswprint(__wc);
-      *(undefined16 *)(*pauVar10) = (undefined16)0x0;
-      if (iVar6 == 0) {
-        __wc = 0xfffd;
+      __wc = *pwVar12;
+      iVar5 = iswprint(__wc);
+      pcVar9->attr = 0;
+      pcVar9->chars[0] = 0;
+      pcVar9->chars[1] = 0;
+      pcVar9->chars[2] = 0;
+      if (iVar5 == 0) {
+        __wc = 65533;
       }
-      pwVar13 = pwVar13 + 1;
-      *(uint *)*pauVar10 = uVar1 & 0xffffff;
-      *(undefined16 *)(*(undefined1 (*) [16])(*pauVar10 + 0xc)) = (undefined16)0x0;
-      *(wint_t *)(*pauVar10 + 4) = __wc;
-      pauVar10 = (undefined1 (*) [16])(pauVar10[1] + 0xc);
-    } while (pwVar13 != (wint_t *)(puVar11 + (ulong)(iVar5 - 1) * 4 + lVar2 + 4));
+      pwVar12 = pwVar12 + 1;
+      pcVar9->attr = wVar1 & 0xffffff;
+      *(undefined16 *)(*(undefined1 (*) [16])(pcVar9->chars + 2)) = (undefined16)0x0;
+      pcVar9->chars[0] = __wc;
+      pcVar9 = pcVar9 + 1;
+    } while (pwVar12 != (int *)(puVar10 + (ulong)(uint)(len + -1) * 4 + lVar2 + 4));
   }
-  *(undefined1 *)((*(long *)(__fp - 0x50)) + 0x48) = 1;
-  if ((*(long *)(__fp - 0x40)) != *(long *)(in_FS_OFFSET + 0x28)) {
+  (*(Panel *(*))(__fp - 0x50))->needsRedraw = true;
+  if ((*(long (*))(__fp - 0x40)) != *(long *)(in_FS_OFFSET + 0x28)) {
                     /* WARNING: Subroutine does not return */
     __stack_chk_fail();
   }
@@ -92,206 +105,34 @@ void Panel_setHeader(long param_1,char *param_2)
 }
 
 
-/* FUN_001209c0 @ 0x1209c0 */
-
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-
-void FUN_001209c0(long *param_1,int param_2,int param_3,int param_4,long param_r8,long param_r9)
-
-{
-  undefined1 __frame[0x2758] __attribute__((aligned(16)));
-  undefined1 *__fp = __frame + 0x2718;
-  code *pcVar1;
-  int iVar2;
-  int iVar3;
-  size_t a3;
-  undefined4 in_register_0000000c;
-  undefined4 in_register_00000014;
-  long a2;
-  undefined4 in_register_00000034;
-  long in_FS_OFFSET = (long)__fake_fs;
-
-  (*(long *)(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
-  if (*(code **)(*param_1 + 0x48) == (code *)0x0) {
-    (*(char * *)(__fp - 0x26c8)) = (char *)param_1[3];
-  }
-  else {
-    (*(char * *)(__fp - 0x26c8)) = (char *)(**(code **)(*param_1 + 0x48))
-                                   ((long)param_1,CONCAT44(in_register_00000034,param_2),
-                                    CONCAT44(in_register_00000014,param_3),
-                                    CONCAT44(in_register_0000000c,param_4),param_r8,param_r9);
-  }
-  wattrset(_stdscr,*(int *)(CRT_colors + 0x38));
-  iVar2 = wmove(_stdscr,param_3,param_2);
-  if (iVar2 != -1) {
-    waddnstr(_stdscr,(*(char * *)(__fp - 0x26c8)),param_4);
-  }
-  wattrset(_stdscr,*(int *)CRT_colors);
-  a3 = strlen((*(char * *)(__fp - 0x26c8)));
-  iVar2 = param_4 - (int)a3;
-  if (0 < iVar2) {
-    (*(undefined1 * *)(__fp - 0x26b0)) = (*(undefined1 (*)[12])(__fp - 0x26a8));
-    (*(int (*)[2])(__fp - 0x26b8))[0] = 0;
-    pcVar1 = *(code **)(*param_1 + 8);
-    ASSIGN_ARR((*(undefined1 (*)[12])(__fp - 0x26a8)), SUB1612((undefined16)0x0,0));
-    (*(undefined4 *)(__fp - 0x44)) = 0;
-    (*(undefined4 *)(__fp - 0x269c)) = 0;
-    ASSIGN_ARR((*(undefined1 (*)[12])(__fp - 0x2698)), SUB1612((undefined16)0x0,4));
-    if (pcVar1 == (code *)0x0) {
-      RichString_writeWide
-                ((*(int (*)[2])(__fp - 0x26b8)),*(uint *)(CRT_colors + (long)**(int **)(*param_1 + 0x68) * 4),
-                 (char *)(param_1 + 0xc));
-    }
-    else {
-      (*pcVar1)((long)param_1,(long)(*(int (*)[2])(__fp - 0x26b8)),a2,a3,param_r8,param_r9);
-    }
-    iVar3 = wmove(_stdscr,param_3,param_2 + (int)a3);
-    if (iVar3 != -1) {
-      wadd_wchnstr(_stdscr,(*(undefined1 * *)(__fp - 0x26b0)),iVar2);
-    }
-    if (0x15e < (*(int (*)[2])(__fp - 0x26b8))[0]) {
-      free((*(undefined1 * *)(__fp - 0x26b0)));
-    }
-  }
-  if ((*(long *)(__fp - 0x40)) == *(long *)(in_FS_OFFSET + 0x28)) {
-    return;
-  }
-                    /* WARNING: Subroutine does not return */
-  __stack_chk_fail();
-}
-
-
-/* FUN_00120ba0 @ 0x120ba0 */
-
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
-/* WARNING: Restarted to delay deadcode elimination for space: ram */
-
-void FUN_00120ba0(long *param_1,int param_2,int param_3,int param_4,long param_r8,long param_r9)
-
-{
-  undefined1 __frame[0x2788] __attribute__((aligned(16)));
-  undefined1 *__fp = __frame + 0x2748;
-  int iVar1;
-  int iVar2;
-  int iVar3;
-  char *p1;
-  size_t sVar4;
-  long lVar5;
-  undefined4 in_register_0000000c;
-  long lVar6;
-  long a2;
-  ulong a1;
-  uint uVar7;
-  int p1_00;
-  long in_FS_OFFSET = (long)__fake_fs;
-
-  lVar5 = CONCAT44(in_register_0000000c,param_4);
-  (*(long *)(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
-  PTR_0015d658 = &PTR_DAT_001577a0;
-  ASSIGN_ARR((*(undefined1 (*)[12])(__fp - 0x26a8)), SUB1612((undefined16)0x0,0));
-  if (CRT_utf8 != '\0') {
-    PTR_0015d658 = &PTR_DAT_001578a0;
-  }
-  lVar6 = *param_1;
-  (*(int (*)[2])(__fp - 0x26b8))[0] = 0;
-  (*(undefined4 *)(__fp - 0x44)) = 0;
-  (*(undefined1 * *)(__fp - 0x26b0)) = (*(undefined1 (*)[12])(__fp - 0x26a8));
-  (*(undefined4 *)(__fp - 0x269c)) = 0;
-  ASSIGN_ARR((*(undefined1 (*)[12])(__fp - 0x2698)), SUB1612((undefined16)0x0,4));
-  if (*(code **)(lVar6 + 8) == (code *)0x0) {
-    lVar5 = (long)**(int **)(lVar6 + 0x68);
-    RichString_writeWide((*(int (*)[2])(__fp - 0x26b8)),*(uint *)(CRT_colors + lVar5 * 4),(char *)(param_1 + 0xc));
-  }
-  else {
-    (**(code **)(lVar6 + 8))((long)param_1,(long)(*(int (*)[2])(__fp - 0x26b8)),lVar6,lVar5,param_r8,param_r9);
-  }
-  (*(int *)(__fp - 0x26f4)) = param_3 + 2;
-  if (CRT_utf8 != '\0') {
-    (*(int *)(__fp - 0x26f4)) = param_3 + 1;
-  }
-  a1 = (ulong)*(uint *)(CRT_colors + 0x58);
-  wattrset(_stdscr,*(uint *)(CRT_colors + 0x58));
-  if (*(code **)(*param_1 + 0x48) == (code *)0x0) {
-    p1 = (char *)param_1[3];
-  }
-  else {
-    p1 = (char *)(**(code **)(*param_1 + 0x48))((long)param_1,a1,a2,lVar5,param_r8,param_r9);
-  }
-  iVar1 = wmove(_stdscr,(*(int *)(__fp - 0x26f4)),param_2);
-  if (iVar1 != -1) {
-    waddnstr(_stdscr,p1,-1);
-  }
-  sVar4 = strlen(p1);
-  iVar1 = param_2 + (int)sVar4;
-  lVar5 = (long)(*(int (*)[2])(__fp - 0x26b8))[0];
-  if (0 < (*(int (*)[2])(__fp - 0x26b8))[0]) {
-    lVar6 = 0;
-    do {
-      iVar3 = *(int *)((*(undefined1 * *)(__fp - 0x26b0)) + lVar6 + 4);
-      uVar7 = iVar3 - 0x30;
-      if (uVar7 < 10) {
-        if (param_4 <= (iVar1 - param_2) + 3) break;
-        p1_00 = param_3;
-        do {
-          iVar2 = wmove(_stdscr,p1_00,iVar1);
-          if (iVar2 != -1) {
-            waddnstr(_stdscr,PTR_0015d658[(int)uVar7],-1);
-          }
-          uVar7 = uVar7 + 10;
-          p1_00 = p1_00 + 1;
-        } while (uVar7 != iVar3 - 0x12U);
-        iVar1 = iVar1 + 4;
-      }
-      else {
-        if (param_4 <= iVar1 - param_2) break;
-        (*(undefined4 *)(__fp - 0x26d8)) = 0;
-        (*(undefined4 *)(__fp - 0x26d0)) = 0;
-        (*(undefined4 *)(__fp - 0x26cc)) = 0;
-        ASSIGN_ARR((*(undefined1 (*)[12])(__fp - 0x26c8)), SUB1612((undefined16)0x0,4));
-        (*(int *)(__fp - 0x26d4)) = iVar3;
-        iVar3 = wmove(_stdscr,(*(int *)(__fp - 0x26f4)),iVar1);
-        if (iVar3 != -1) {
-          wadd_wch(_stdscr,&(*(undefined4 *)(__fp - 0x26d8)));
-        }
-        iVar1 = iVar1 + 1;
-      }
-      lVar6 = lVar6 + 0x1c;
-    } while (lVar6 != lVar5 * 0x1c);
-  }
-  wattrset(_stdscr,*(int *)CRT_colors);
-  if (0x15e < (*(int (*)[2])(__fp - 0x26b8))[0]) {
-    free((*(undefined1 * *)(__fp - 0x26b0)));
-  }
-  if ((*(long *)(__fp - 0x40)) == *(long *)(in_FS_OFFSET + 0x28)) {
-    return;
-  }
-                    /* WARNING: Subroutine does not return */
-  __stack_chk_fail();
-}
-
-
 /* Panel_setSelected @ 0x120f60 */
 
-void Panel_setSelected(long *param_1,int param_2,long param_rdx,long param_rcx,long param_r8,
-                      long param_r9)
+/* DWARF original prototype: void Panel_setSelected(Panel * this, int selected) */
+
+void Panel_setSelected(Panel *this,int selected)
 
 {
-  uint uVar1;
+  int wVar1;
+  int wVar2;
   code *UNRECOVERED_JUMPTABLE;
+  long in_RCX;
+  long in_R8;
+  long in_R9;
 
-  uVar1 = *(int *)(param_1[4] + 0x18) - 1;
-  if (*(int *)(param_1[4] + 0x18) <= param_2) {
-    param_2 = uVar1;
+  wVar2 = this->items->items;
+  wVar1 = wVar2 + -1;
+  if (wVar2 <= selected) {
+    selected = wVar1;
   }
-  if (param_2 < 0) {
-    param_2 = 0;
+  if (selected < 0) {
+    selected = 0;
   }
-  UNRECOVERED_JUMPTABLE = *(code **)(*param_1 + 0x20);
-  *(int *)(param_1 + 5) = param_2;
+  UNRECOVERED_JUMPTABLE = (this->super).klass[1].extends;
+  this->selected = selected;
   if (UNRECOVERED_JUMPTABLE != (code *)0x0) {
                     /* WARNING: Could not recover jumptable at 0x00120f8e. Too many branches */
                     /* WARNING: Treating indirect jump as call */
-    (*UNRECOVERED_JUMPTABLE)((long)param_1,0xffffffff,(ulong)uVar1,param_rcx,param_r8,param_r9);
+    (*UNRECOVERED_JUMPTABLE)((long)this,0xffffffff,(ulong)(uint)wVar1,in_RCX,in_R8,in_R9);
     return;
   }
   return;
@@ -300,69 +141,82 @@ void Panel_setSelected(long *param_1,int param_2,long param_rdx,long param_rcx,l
 
 /* Panel_getSelected @ 0x120fa0 */
 
-undefined8 Panel_getSelected(long param_1)
+/* DWARF original prototype: Object * Panel_getSelected(Panel * this) */
+
+Object * Panel_getSelected(Panel *this)
 
 {
-  undefined8 uVar1;
+  Object *pOVar1;
 
-  uVar1 = 0;
-  if (0 < (int)(*(long **)(param_1 + 0x20))[3]) {
-    uVar1 = *(undefined8 *)(**(long **)(param_1 + 0x20) + (long)*(int *)(param_1 + 0x28) * 8);
+  pOVar1 = (Object *)0x0;
+  if (0 < this->items->items) {
+    pOVar1 = this->items->array[this->selected];
   }
-  return uVar1;
+  return pOVar1;
 }
 
 
 /* Panel_size @ 0x120fc0 */
 
-undefined4 Panel_size(long param_1)
+/* DWARF original prototype: int Panel_size(Panel * this) */
+
+int Panel_size(Panel *this)
 
 {
-  return *(undefined4 *)(*(long *)(param_1 + 0x20) + 0x18);
+  return this->items->items;
 }
 
 
 /* Panel_resize @ 0x120fd0 */
 
-void Panel_resize(long param_1,undefined4 param_2,undefined4 param_3)
+/* DWARF original prototype: void Panel_resize(Panel * this, int w, int h) */
+
+void Panel_resize(Panel *this,int w,int h)
 
 {
-  *(undefined4 *)(param_1 + 0x10) = param_2;
-  *(undefined4 *)(param_1 + 0x14) = param_3;
-  *(undefined1 *)(param_1 + 0x48) = 1;
+  this->w = w;
+  this->h = h;
+  this->needsRedraw = true;
   return;
 }
 
 
 /* Panel_setSelectionColor @ 0x121310 */
 
-void Panel_setSelectionColor(long param_1,undefined4 param_2)
+/* DWARF original prototype: void Panel_setSelectionColor(Panel * this, ColorElements colorId) */
+
+void Panel_setSelectionColor(Panel *this,ColorElements colorId)
 
 {
-  *(undefined4 *)(param_1 + 0x26d8) = param_2;
+  this->selectionColorId = colorId;
   return;
 }
 
 
 /* Panel_moveSelectedUp @ 0x1215d0 */
 
-void Panel_moveSelectedUp(long param_1)
+/* DWARF original prototype: void Panel_moveSelectedUp(Panel * this) */
+
+void Panel_moveSelectedUp(Panel *this)
 
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  undefined8 uVar4;
+  Object **ppOVar1;
+  int wVar2;
+  Object **ppOVar3;
+  Object *pOVar4;
 
-  iVar3 = *(int *)(param_1 + 0x28);
-  if (iVar3 != 0) {
-    puVar1 = (undefined8 *)(**(long **)(param_1 + 0x20) + -8 + (long)iVar3 * 8);
-    uVar4 = *puVar1;
-    puVar2 = (undefined8 *)(**(long **)(param_1 + 0x20) + -8 + (long)iVar3 * 8);
-    *puVar2 = puVar1[1];
-    puVar2[1] = uVar4;
-    if (0 < iVar3) {
-      *(int *)(param_1 + 0x28) = iVar3 + -1;
+  wVar2 = this->selected;
+                    /* Unresolved local var: Object * temp@[???] */
+  if (wVar2 != 0) {
+    ppOVar3 = this->items->array;
+                    /* Unresolved local var: Object * temp@[???] */
+    ppOVar1 = ppOVar3 + (long)wVar2 + -1;
+    pOVar4 = *ppOVar1;
+    ppOVar3 = ppOVar3 + (long)wVar2 + -1;
+    *ppOVar3 = ppOVar1[1];
+    ppOVar3[1] = pOVar4;
+    if (0 < wVar2) {
+      this->selected = wVar2 + -1;
     }
   }
   return;
@@ -371,93 +225,102 @@ void Panel_moveSelectedUp(long param_1)
 
 /* Panel_setCursorToSelection @ 0x122090 */
 
-void Panel_setCursorToSelection(long param_1)
+/* DWARF original prototype: void Panel_setCursorToSelection(Panel * this) */
+
+void Panel_setCursorToSelection(Panel *this)
 
 {
-  *(int *)(param_1 + 0x1c) =
-       ((*(int *)(param_1 + 0x28) + *(int *)(param_1 + 0xc)) - *(int *)(param_1 + 0x40)) + 1;
-  *(int *)(param_1 + 0x18) =
-       (*(int *)(param_1 + 0x30) + *(int *)(param_1 + 8)) - *(int *)(param_1 + 0x44);
+  this->cursorY = ((this->selected + this->y) - this->scrollV) + 1;
+  this->cursorX = (this->selectedLen + this->x) - this->scrollH;
   return;
 }
 
 
 /* Panel_move @ 0x1220b0 */
 
-void Panel_move(long param_1,undefined4 param_2,undefined4 param_3)
+/* DWARF original prototype: void Panel_move(Panel * this, int x, int y) */
+
+void Panel_move(Panel *this,int x,int y)
 
 {
-  *(undefined4 *)(param_1 + 8) = param_2;
-  *(undefined4 *)(param_1 + 0xc) = param_3;
-  *(undefined1 *)(param_1 + 0x48) = 1;
+  this->x = x;
+  this->y = y;
+  this->needsRedraw = true;
   return;
 }
 
 
 /* Panel_remove @ 0x1220c0 */
 
-long * Panel_remove(long param_1,int param_2,long param_rdx,long param_rcx,long param_r8,
-                   long param_r9)
+/* DWARF original prototype: Object * Panel_remove(Panel * this, int i) */
+
+Object * Panel_remove(Panel *this,int i)
 
 {
-  char cVar1;
-  long *plVar2;
-  long *a0;
-  long a3;
-  int iVar3;
+  _Bool _Var1;
+  Vector *pVVar2;
+  Object *pOVar3;
+  Object **a3;
+  int wVar4;
   undefined4 in_register_00000034;
-  void *__src;
-  long *plVar4;
+  Object **__src;
+  long in_R8;
+  long in_R9;
+  Object *pOVar5;
 
-  __src = (void *)CONCAT44(in_register_00000034,param_2);
-  plVar2 = *(long **)(param_1 + 0x20);
-  *(undefined1 *)(param_1 + 0x48) = 1;
-  a3 = *plVar2;
-  iVar3 = (int)plVar2[3] + -1;
-  plVar4 = (long *)(a3 + (long)param_2 * 8);
-  a0 = (long *)*plVar4;
-  *(int *)(plVar2 + 3) = iVar3;
-  if (param_2 < iVar3) {
-    __src = (void *)(a3 + 8 + (long)param_2 * 8);
-    memmove(plVar4,__src,(long)(iVar3 - param_2) << 3);
-    a3 = *plVar2;
-    iVar3 = (int)plVar2[3];
+                    /* Unresolved local var: Object * removed@[???] */
+  __src = (Object **)CONCAT44(in_register_00000034,i);
+  pVVar2 = this->items;
+  this->needsRedraw = true;
+  a3 = pVVar2->array;
+  wVar4 = pVVar2->items + -1;
+                    /* Unresolved local var: Object * removed@[???] */
+  pOVar3 = a3[i];
+  pVVar2->items = wVar4;
+  if (i < wVar4) {
+    __src = a3 + (long)i + 1;
+    memmove(a3 + i,__src,(long)(wVar4 - i) << 3);
+    a3 = pVVar2->array;
+    wVar4 = pVVar2->items;
   }
-  cVar1 = *(char *)((long)plVar2 + 0x24);
-  *(undefined8 *)(a3 + (long)iVar3 * 8) = 0;
-  plVar4 = a0;
-  if (cVar1 != '\0') {
-    plVar4 = (long *)0x0;
-    (**(code **)(*a0 + 0x10))((long)a0,(long)__src,(long)iVar3,a3,param_r8,param_r9);
+  _Var1 = pVVar2->owner;
+  a3[wVar4] = (Object *)0x0;
+  pOVar5 = pOVar3;
+  if (_Var1 != false) {
+    pOVar5 = (Object *)0x0;
+    (*(code *)(pOVar3->klass->delete))(pOVar3,(long)__src,(long)wVar4,(long)a3,in_R8,in_R9);
   }
-  iVar3 = *(int *)(param_1 + 0x28);
-  if ((0 < iVar3) && (*(int *)(*(long *)(param_1 + 0x20) + 0x18) <= iVar3)) {
-    *(int *)(param_1 + 0x28) = iVar3 + -1;
+  wVar4 = this->selected;
+  if ((0 < wVar4) && (this->items->items <= wVar4)) {
+    this->selected = wVar4 + -1;
   }
-  return plVar4;
+  return pOVar5;
 }
 
 
 /* Panel_moveSelectedDown @ 0x122170 */
 
-void Panel_moveSelectedDown(long param_1)
+/* DWARF original prototype: void Panel_moveSelectedDown(Panel * this) */
+
+void Panel_moveSelectedDown(Panel *this)
 
 {
-  undefined8 *puVar1;
-  int iVar2;
-  int iVar3;
-  undefined8 uVar4;
+  Object **ppOVar1;
+  int wVar2;
+  int wVar3;
+  Object *pOVar4;
 
-  iVar2 = *(int *)(param_1 + 0x28);
-  iVar3 = (int)(*(long **)(param_1 + 0x20))[3];
-  if (iVar2 != iVar3 + -1) {
-    puVar1 = (undefined8 *)(**(long **)(param_1 + 0x20) + (long)iVar2 * 8);
-    uVar4 = *puVar1;
-    *puVar1 = puVar1[1];
-    puVar1[1] = uVar4;
+  wVar2 = this->selected;
+                    /* Unresolved local var: Object * temp@[???] */
+  wVar3 = this->items->items;
+  if (wVar2 != wVar3 + -1) {
+    ppOVar1 = this->items->array + wVar2;
+    pOVar4 = *ppOVar1;
+    *ppOVar1 = ppOVar1[1];
+    ppOVar1[1] = pOVar4;
   }
-  if (iVar2 + 1 < iVar3) {
-    *(int *)(param_1 + 0x28) = iVar2 + 1;
+  if (wVar2 + 1 < wVar3) {
+    this->selected = wVar2 + 1;
   }
   return;
 }
@@ -465,62 +328,65 @@ void Panel_moveSelectedDown(long param_1)
 
 /* Panel_onKey @ 0x1221b0 */
 
-undefined8 Panel_onKey(long param_1,int param_2)
+/* DWARF original prototype: _Bool Panel_onKey(Panel * this, int key) */
+
+_Bool Panel_onKey(Panel *this,int key)
 
 {
-  int iVar1;
-  int iVar2;
-  int iVar3;
-  byte bVar4;
-  int iVar5;
-  uint uVar6;
+  int wVar1;
+  int wVar2;
+  int wVar3;
+  int wVar4;
+  byte bVar5;
+  int wVar6;
+  uint uVar7;
 
-  iVar5 = CRT_scrollWheelVAmount;
-  iVar1 = *(int *)(*(long *)(param_1 + 0x20) + 0x18);
-  if (0x127 < param_2) {
-    if (param_2 == 0x153) {
-      iVar3 = *(int *)(param_1 + 0x14);
-      uVar6 = (uint)(0 < *(int *)(param_1 + 0x60));
-      iVar5 = uVar6 - iVar3;
+  wVar6 = CRT_scrollWheelVAmount;
+  wVar1 = this->items->items;
+  if (295 < key) {
+    if (key == 339) {
+      wVar4 = this->h;
+      uVar7 = (uint)(0 < (this->header).chlen);
+      wVar6 = uVar7 - wVar4;
     }
     else {
-      if (param_2 == 0x168) {
-        *(int *)(param_1 + 0x28) = iVar1 + -1;
-        if (0 < iVar1) {
-          return 1;
+      if (key == 360) {
+        this->selected = wVar1 + -1;
+        if (0 < wVar1) {
+          return true;
         }
         goto LAB_001222a1;
       }
-      if (param_2 != 0x152) {
-        return 0;
+      if (key != 338) {
+        return false;
       }
-      iVar3 = *(int *)(param_1 + 0x14);
-      uVar6 = (uint)(0 < *(int *)(param_1 + 0x60));
-      iVar5 = iVar3 - uVar6;
+      wVar4 = this->h;
+      uVar7 = (uint)(0 < (this->header).chlen);
+      wVar6 = wVar4 - uVar7;
     }
-    iVar2 = *(int *)(param_1 + 0x28) + iVar5;
-    *(int *)(param_1 + 0x28) = iVar2;
+    wVar3 = this->selected + wVar6;
+    this->selected = wVar3;
 LAB_0012226d:
-    iVar3 = (iVar1 - iVar3) - uVar6;
-    if (iVar3 < 0) {
-      iVar3 = 0;
+    wVar4 = (wVar1 - wVar4) - uVar7;
+    if (wVar4 < 0) {
+      wVar4 = 0;
     }
-    iVar5 = iVar5 + *(int *)(param_1 + 0x40);
+    wVar6 = wVar6 + this->scrollV;
 LAB_0012227d:
-    if (iVar5 < 0) {
-      iVar5 = 0;
+    if (wVar6 < 0) {
+      wVar6 = 0;
     }
-    *(undefined1 *)(param_1 + 0x48) = 1;
-    if (iVar5 < iVar3) {
-      iVar3 = iVar5;
+    this->needsRedraw = true;
+    if (wVar6 < wVar4) {
+      wVar4 = wVar6;
     }
-    bVar4 = (byte)((uint)iVar2 >> 0x1f);
-    *(int *)(param_1 + 0x40) = iVar3;
+    bVar5 = (byte)((uint)wVar3 >> 0x1f);
+    this->scrollV = wVar4;
     goto LAB_00122294;
   }
-  if (param_2 < 0x102) {
-    if (param_2 < 0x25) {
-      switch(param_2) {
+  if (key < 258) {
+    if (key < '%') {
+      switch(key) {
       case 1:
         goto switchD_0012220e_caseD_1;
       case 2:
@@ -528,168 +394,184 @@ LAB_0012227d:
       default:
         goto switchD_001221e7_caseD_107;
       case 5:
-      case 0x24:
-        iVar5 = *(int *)(param_1 + 0x30) - *(int *)(param_1 + 0x10);
-        if (iVar5 < 0) {
-          iVar5 = 0;
+      case '$':
+        wVar6 = this->selectedLen - this->w;
+        if (wVar6 < 0) {
+          wVar6 = 0;
         }
-        *(int *)(param_1 + 0x44) = iVar5;
+        this->scrollH = wVar6;
         goto LAB_001222e1;
       case 6:
         goto switchD_001221e7_caseD_105;
-      case 0xe:
+      case 14:
         goto switchD_001221e7_caseD_102;
-      case 0x10:
+      case 16:
         goto switchD_001221e7_caseD_103;
       }
     }
-    if (param_2 != 0x5e) {
+    if (key != '^') {
 switchD_001221e7_caseD_107:
-      return 0;
+      return false;
     }
 switchD_0012220e_caseD_1:
-    *(undefined4 *)(param_1 + 0x44) = 0;
+    this->scrollH = 0;
 LAB_001222e1:
-    iVar2 = *(int *)(param_1 + 0x28);
-    *(undefined1 *)(param_1 + 0x48) = 1;
-    bVar4 = (byte)((uint)iVar2 >> 0x1f);
+    wVar3 = this->selected;
+    this->needsRedraw = true;
+    bVar5 = (byte)((uint)wVar3 >> 0x1f);
   }
   else {
-    switch(param_2) {
-    case 0x102:
+    switch(key) {
+    case 258:
 switchD_001221e7_caseD_102:
-      iVar2 = *(int *)(param_1 + 0x28) + 1;
-      *(int *)(param_1 + 0x28) = iVar2;
-      bVar4 = (byte)((uint)iVar2 >> 0x1f);
+      wVar3 = this->selected + 1;
+      this->selected = wVar3;
+      bVar5 = (byte)((uint)wVar3 >> 0x1f);
       break;
-    case 0x103:
+    case 259:
 switchD_001221e7_caseD_103:
-      iVar2 = *(int *)(param_1 + 0x28) + -1;
-      *(int *)(param_1 + 0x28) = iVar2;
-      bVar4 = (byte)((uint)iVar2 >> 0x1f);
+      wVar3 = this->selected + -1;
+      this->selected = wVar3;
+      bVar5 = (byte)((uint)wVar3 >> 0x1f);
       break;
-    case 0x104:
+    case 260:
 switchD_001221e7_caseD_104:
-      iVar2 = *(int *)(param_1 + 0x28);
-      bVar4 = (byte)((uint)iVar2 >> 0x1f);
-      if (0 < *(int *)(param_1 + 0x44)) {
-        *(undefined1 *)(param_1 + 0x48) = 1;
-        iVar5 = CRT_scrollHAmount;
+      wVar3 = this->selected;
+      bVar5 = (byte)((uint)wVar3 >> 0x1f);
+      if (0 < this->scrollH) {
+        this->needsRedraw = true;
+        wVar6 = CRT_scrollHAmount;
         if (CRT_scrollHAmount < 0) {
-          iVar5 = 0;
+          wVar6 = 0;
         }
-        *(int *)(param_1 + 0x44) = *(int *)(param_1 + 0x44) - iVar5;
+        this->scrollH = this->scrollH - wVar6;
       }
       break;
-    case 0x105:
+    case 261:
 switchD_001221e7_caseD_105:
-      *(int *)(param_1 + 0x44) = *(int *)(param_1 + 0x44) + CRT_scrollHAmount;
+      this->scrollH = this->scrollH + CRT_scrollHAmount;
       goto LAB_001222e1;
-    case 0x106:
-      *(undefined4 *)(param_1 + 0x28) = 0;
-      bVar4 = 0;
-      iVar2 = 0;
+    case 262:
+      this->selected = 0;
+      bVar5 = 0;
+      wVar3 = 0;
       break;
     default:
       goto switchD_001221e7_caseD_107;
-    case 0x126:
-      iVar2 = *(int *)(param_1 + 0x28) - CRT_scrollWheelVAmount;
-      *(int *)(param_1 + 0x28) = iVar2;
-      iVar3 = (iVar1 - *(int *)(param_1 + 0x14)) - (uint)(0 < *(int *)(param_1 + 0x60));
-      if (iVar3 < 0) {
-        iVar3 = 0;
+    case 294:
+      wVar4 = (this->header).chlen;
+      wVar3 = this->selected - CRT_scrollWheelVAmount;
+      this->selected = wVar3;
+      wVar4 = (wVar1 - this->h) - (uint)(0 < wVar4);
+      if (wVar4 < 0) {
+        wVar4 = 0;
       }
-      iVar5 = *(int *)(param_1 + 0x40) - iVar5;
+      wVar6 = this->scrollV - wVar6;
       goto LAB_0012227d;
-    case 0x127:
-      iVar3 = *(int *)(param_1 + 0x14);
-      iVar2 = *(int *)(param_1 + 0x28) + CRT_scrollWheelVAmount;
-      *(int *)(param_1 + 0x28) = iVar2;
-      uVar6 = (uint)(0 < *(int *)(param_1 + 0x60));
+    case 295:
+      wVar2 = (this->header).chlen;
+      wVar4 = this->h;
+      wVar3 = this->selected + CRT_scrollWheelVAmount;
+      this->selected = wVar3;
+      uVar7 = (uint)(0 < wVar2);
       goto LAB_0012226d;
     }
   }
 LAB_00122294:
-  if ((iVar1 != 0) && (bVar4 == 0)) {
-    if (iVar2 < iVar1) {
-      return 1;
+  if ((wVar1 != 0) && (bVar5 == 0)) {
+    if (wVar3 < wVar1) {
+      return true;
     }
-    *(undefined1 *)(param_1 + 0x48) = 1;
-    *(int *)(param_1 + 0x28) = iVar1 + -1;
-    return 1;
+    this->needsRedraw = true;
+    this->selected = wVar1 + -1;
+    return true;
   }
 LAB_001222a1:
-  *(undefined4 *)(param_1 + 0x28) = 0;
-  *(undefined1 *)(param_1 + 0x48) = 1;
-  return 1;
+  this->selected = 0;
+  this->needsRedraw = true;
+  return true;
 }
 
 
 /* Panel_getCh @ 0x122440 */
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* DWARF original prototype: int Panel_getCh(Panel * this) */
 
-int Panel_getCh(long param_1)
+int Panel_getCh(Panel *this)
 
 {
-  int iVar1;
+  int wVar1;
 
-  if (*(char *)(param_1 + 0x49) == '\0') {
+  if (this->cursorOn == false) {
     curs_set(0);
   }
   else {
-    wmove(_stdscr,*(int *)(param_1 + 0x1c),*(int *)(param_1 + 0x18));
+    wmove(_stdscr,this->cursorY,this->cursorX);
     curs_set(1);
   }
   set_escdelay(0x19);
-  iVar1 = wgetch(_stdscr);
-  return iVar1;
+  wVar1 = wgetch(_stdscr);
+  return wVar1;
 }
 
 
 /* Panel_new @ 0x123f10 */
 
-undefined8 *
-Panel_new(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
-         undefined8 param_5,undefined1 param_6,undefined8 param_7)
+Panel * Panel_new(int x,int y,int w,int h,ObjectClass *type,_Bool owner,
+                 FunctionBar *fuBar)
 
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  void *pvVar3;
+  Panel *pPVar1;
+  Vector *pVVar2;
+  Object **ppOVar3;
 
-  puVar1 = malloc(0x26e0);
-  if (puVar1 != (undefined8 *)0x0) {
-    puVar1[3] = 0;
-    *puVar1 = Panel_class;
-    puVar1[7] = 0;
-    puVar1[1] = CONCAT44(param_2,param_1);
-    puVar1[2] = CONCAT44(param_4,param_3);
-    puVar2 = malloc(0x28);
-    if (puVar2 != (undefined8 *)0x0) {
-      *(undefined4 *)((long)puVar2 + 0x14) = 10;
-      pvVar3 = calloc(10,8);
-      if (pvVar3 != (void *)0x0) {
-        *puVar2 = pvVar3;
-        *(undefined16 *)(*(undefined1 (*) [16])(puVar1 + 0xe)) = (undefined16)0x0;
-        puVar2[3] = 0xffffffff00000000;
-        *(undefined2 *)(puVar1 + 9) = 1;
-        puVar1[0xd] = puVar1 + 0xe;
-        *(undefined8 *)((long)puVar1 + 0x26d4) = 0x900000000;
-        *(undefined4 *)(puVar2 + 2) = 10;
-        puVar2[1] = param_5;
-        *(undefined1 *)((long)puVar2 + 0x24) = param_6;
-        *(undefined4 *)(puVar2 + 4) = 0;
-        puVar1[4] = puVar2;
-        puVar1[8] = 0;
-        puVar1[5] = 0;
-        *(undefined4 *)(puVar1 + 6) = 0;
-        *(undefined1 *)((long)puVar1 + 0x4a) = 0;
-        *(undefined4 *)(puVar1 + 0xc) = 0;
-        *(undefined16 *)(*(undefined1 (*) [16])((long)puVar1 + 0x7c)) = (undefined16)0x0;
-        puVar1[10] = param_7;
-        puVar1[0xb] = param_7;
-        return puVar1;
+                    /* Unresolved local var: void * data@[???] */
+  pPVar1 = malloc(0x26e0);
+  if (pPVar1 != (Panel *)0x0) {
+                    /* Unresolved local var: Vector * this@[???]
+                       Unresolved local var: void * data@[???] */
+    pPVar1->cursorX = 0;
+    pPVar1->cursorY = 0;
+    (pPVar1->super).klass = &Panel_class.super;
+    pPVar1->eventHandlerState = (void *)0x0;
+    pPVar1->x = x;
+    pPVar1->y = y;
+    pPVar1->w = w;
+    pPVar1->h = h;
+    pVVar2 = malloc(0x28);
+    if (pVVar2 != (Vector *)0x0) {
+      pVVar2->growthRate = 10;
+                    /* Unresolved local var: void * data@[???] */
+      ppOVar3 = calloc(10,8);
+      if (ppOVar3 != (Object **)0x0) {
+        pVVar2->array = ppOVar3;
+        (pPVar1->header).chstr[0].attr = 0;
+        (pPVar1->header).chstr[0].chars[0] = 0;
+        (pPVar1->header).chstr[0].chars[1] = 0;
+        (pPVar1->header).chstr[0].chars[2] = 0;
+        pVVar2->items = 0;
+        pVVar2->dirty_index = -1;
+        pPVar1->needsRedraw = true;
+        pPVar1->cursorOn = false;
+        (pPVar1->header).chptr = (pPVar1->header).chstr;
+        *(undefined8 *)&(pPVar1->header).highlightAttr = 0x900000000;
+        pVVar2->arraySize = 10;
+        pVVar2->type = type;
+        pVVar2->owner = owner;
+        pVVar2->dirty_count = 0;
+        pPVar1->items = pVVar2;
+        pPVar1->scrollV = 0;
+        pPVar1->scrollH = 0;
+        pPVar1->selected = 0;
+        pPVar1->oldSelected = 0;
+        pPVar1->selectedLen = 0;
+        pPVar1->wasFocus = false;
+        (pPVar1->header).chlen = 0;
+        *(undefined16 *)(*(undefined1 (*) [16])((pPVar1->header).chstr[0].chars + 2)) = (undefined16)0x0;
+        pPVar1->currentBar = fuBar;
+        pPVar1->defaultBar = fuBar;
+        return pPVar1;
       }
     }
   }
@@ -700,41 +582,57 @@ Panel_new(undefined4 param_1,undefined4 param_2,undefined4 param_3,undefined4 pa
 
 /* Panel_init @ 0x124070 */
 
-void Panel_init(long param_1,undefined4 param_2,undefined4 param_3,undefined4 param_4,
-               undefined4 param_5,undefined8 param_6,undefined1 param_7,undefined8 param_8)
+/* DWARF original prototype: void Panel_init(Panel * this, int x, int y, int w, int
+   h, ObjectClass * type, _Bool owner, FunctionBar * fuBar) */
+
+void Panel_init(Panel *this,int x,int y,int w,int h,ObjectClass *type,_Bool owner,
+               FunctionBar *fuBar)
 
 {
-  undefined8 *puVar1;
-  void *pvVar2;
+  Vector *pVVar1;
+  Object **ppOVar2;
 
-  *(ulong *)(param_1 + 8) = CONCAT44(param_3,param_2);
-  *(ulong *)(param_1 + 0x10) = CONCAT44(param_5,param_4);
-  *(undefined8 *)(param_1 + 0x18) = 0;
-  *(undefined8 *)(param_1 + 0x38) = 0;
-  puVar1 = malloc(0x28);
-  if (puVar1 != (undefined8 *)0x0) {
-    *(undefined4 *)((long)puVar1 + 0x14) = 10;
-    pvVar2 = calloc(10,8);
-    if (pvVar2 != (void *)0x0) {
-      *puVar1 = pvVar2;
-      *(undefined16 *)(*(undefined1 (*) [16])(param_1 + 0x70)) = (undefined16)0x0;
-      puVar1[3] = 0xffffffff00000000;
-      *(undefined2 *)(param_1 + 0x48) = 1;
-      *(long *)(param_1 + 0x68) = param_1 + 0x70;
-      *(undefined4 *)(puVar1 + 2) = 10;
-      puVar1[1] = param_6;
-      *(undefined1 *)((long)puVar1 + 0x24) = param_7;
-      *(undefined4 *)(puVar1 + 4) = 0;
-      *(undefined8 **)(param_1 + 0x20) = puVar1;
-      *(undefined8 *)(param_1 + 0x40) = 0;
-      *(undefined8 *)(param_1 + 0x28) = 0;
-      *(undefined4 *)(param_1 + 0x30) = 0;
-      *(undefined1 *)(param_1 + 0x4a) = 0;
-      *(undefined4 *)(param_1 + 0x60) = 0;
-      *(undefined8 *)(param_1 + 0x26d4) = 0x900000000;
-      *(undefined16 *)(*(undefined1 (*) [16])(param_1 + 0x7c)) = (undefined16)0x0;
-      *(undefined8 *)(param_1 + 0x50) = param_8;
-      *(undefined8 *)(param_1 + 0x58) = param_8;
+  this->x = x;
+  this->y = y;
+  this->w = w;
+  this->h = h;
+  this->cursorX = 0;
+  this->cursorY = 0;
+  this->eventHandlerState = (void *)0x0;
+                    /* Unresolved local var: Vector * this@[???]
+                       Unresolved local var: void * data@[???] */
+  pVVar1 = malloc(0x28);
+  if (pVVar1 != (Vector *)0x0) {
+    pVVar1->growthRate = 10;
+                    /* Unresolved local var: void * data@[???] */
+    ppOVar2 = calloc(10,8);
+    if (ppOVar2 != (Object **)0x0) {
+      pVVar1->array = ppOVar2;
+      (this->header).chstr[0].attr = 0;
+      (this->header).chstr[0].chars[0] = 0;
+      (this->header).chstr[0].chars[1] = 0;
+      (this->header).chstr[0].chars[2] = 0;
+      pVVar1->items = 0;
+      pVVar1->dirty_index = -1;
+      this->needsRedraw = true;
+      this->cursorOn = false;
+      (this->header).chptr = (this->header).chstr;
+      pVVar1->arraySize = 10;
+      pVVar1->type = type;
+      pVVar1->owner = owner;
+      pVVar1->dirty_count = 0;
+      this->items = pVVar1;
+      this->scrollV = 0;
+      this->scrollH = 0;
+      this->selected = 0;
+      this->oldSelected = 0;
+      this->selectedLen = 0;
+      this->wasFocus = false;
+      (this->header).chlen = 0;
+      *(undefined8 *)&(this->header).highlightAttr = 0x900000000;
+      *(undefined16 *)(*(undefined1 (*) [16])((this->header).chstr[0].chars + 2)) = (undefined16)0x0;
+      this->currentBar = fuBar;
+      this->defaultBar = fuBar;
       return;
     }
   }
@@ -745,197 +643,181 @@ void Panel_init(long param_1,undefined4 param_2,undefined4 param_3,undefined4 pa
 
 /* Panel_selectByTyping @ 0x1241a0 */
 
-undefined8
-Panel_selectByTyping
-          (long *param_1,int param_2,long param_rdx,long param_rcx,long param_r8,long param_r9)
+/* DWARF original prototype: HandlerResult Panel_selectByTyping(Panel * this, int ch) */
+
+HandlerResult Panel_selectByTyping(Panel *this,int ch)
 
 {
   undefined1 __frame[0xd8] __attribute__((aligned(16)));
   undefined1 *__fp = __frame + 0x98;
-  uint uVar1;
-  char cVar2;
-  int iVar3;
-  long *plVar4;
-  code *pcVar5;
-  int iVar6;
-  ushort **ppuVar7;
-  size_t sVar8;
-  long lVar9;
+  char cVar1;
+  int wVar2;
+  int wVar3;
+  Vector *pVVar4;
+  Object **ppOVar5;
+  code *pcVar6;
+  int iVar7;
+  ushort **ppuVar8;
+  size_t sVar9;
+  long lVar10;
   char *__s;
-  uint uVar10;
-  char *pcVar11;
-  long lVar12;
+  int wVar11;
+  char *pcVar12;
+  ObjectClass *__s1;
+  long in_R8;
+  long in_R9;
 
-  iVar3 = *(int *)(param_1[4] + 0x18);
-  if (param_2 == 0x23) {
-    return 2;
+  wVar2 = this->items->items;
+  if (ch == '#') {
+    return IGNORED;
   }
-  __s = (char *)param_1[7];
+  __s = this->eventHandlerState;
   if (__s == (char *)0x0) {
+                    /* Unresolved local var: void * data@[???] */
     __s = calloc(100,1);
     if (__s == (char *)0x0) {
                     /* WARNING: Subroutine does not return */
       fail();
     }
-    param_1[7] = (long)__s;
+    this->eventHandlerState = __s;
   }
-  if (0xfd < param_2 - 1U) {
-    if (param_2 == -1) {
-      return 2;
+  if (0xfd < (uint)(ch + -1)) {
+    if (ch == -1) {
+      return IGNORED;
     }
     *__s = '\0';
-    return 2;
+    return IGNORED;
   }
-  ppuVar7 = __ctype_b_loc();
-  if (-1 < (short)(*ppuVar7)[param_2]) {
+  ppuVar8 = __ctype_b_loc();
+  if (-1 < (short)(*ppuVar8)[ch]) {
     *__s = '\0';
-    if (param_2 != 0xd) {
-      return 2;
+    if (ch != 13) {
+      return IGNORED;
     }
-    return 4;
+                    /* Unresolved local var: int len@[???] */
+    return BREAK_LOOP;
   }
-  sVar8 = strlen(__s);
-  iVar6 = (int)sVar8;
-  if (iVar6 == 0) {
-    pcVar11 = __s;
-    if (param_2 == 0x2f) {
-      lVar9 = 1;
-      param_2 = 1;
+  sVar9 = strlen(__s);
+  iVar7 = (int)sVar9;
+  if (iVar7 == 0) {
+    pcVar12 = __s;
+    if (ch == '/') {
+      lVar10 = 1;
+      ch = 1;
     }
     else {
-      if (param_2 == 0x71) {
-        return 4;
+      if (ch == 'q') {
+        return BREAK_LOOP;
       }
-      lVar9 = 1;
+      lVar10 = 1;
     }
   }
-  else if (iVar6 == 1) {
-    pcVar11 = __s + (*__s != '\x01');
-    lVar9 = (ulong)(*__s != '\x01') + 1;
+  else if (iVar7 == 1) {
+    pcVar12 = __s + (*__s != '\x01');
+    lVar10 = (ulong)(*__s != '\x01') + 1;
   }
   else {
-    if (0x62 < iVar6) goto LAB_00124276;
-    pcVar11 = __s + iVar6;
-    lVar9 = (long)iVar6 + 1;
+    if (0x62 < iVar7) goto LAB_00124276;
+    pcVar12 = __s + iVar7;
+    lVar10 = (long)iVar7 + 1;
   }
-  *pcVar11 = (char)param_2;
-  __s[lVar9] = '\0';
-  sVar8 = strlen(__s);
+  *pcVar12 = (char)ch;
+                    /* Unresolved local var: int try@[???] */
+  __s[lVar10] = '\0';
+  sVar9 = strlen(__s);
 LAB_00124276:
-  (*(int *)(__fp - 0x50)) = 2;
+  (*(int (*))(__fp - 0x50)) = 2;
   do {
-    if (0 < iVar3) {
-      plVar4 = (long *)param_1[4];
-      lVar12 = 0;
-      lVar9 = *plVar4;
+                    /* Unresolved local var: int i@[???] */
+    if (0 < wVar2) {
+                    /* Unresolved local var: char * cur@[???] */
+      pVVar4 = this->items;
+      lVar10 = 0;
+      ppOVar5 = pVVar4->array;
       do {
-        pcVar11 = *(char **)(*(long *)(lVar9 + lVar12 * 8) + 8);
-        cVar2 = *pcVar11;
-        while (cVar2 == ' ') {
-          pcVar11 = pcVar11 + 1;
-          cVar2 = *pcVar11;
+        __s1 = ppOVar5[lVar10][1].klass;
+        cVar1 = *(char *)&__s1->extends;
+        while (cVar1 == ' ') {
+          __s1 = (ObjectClass *)((long)&__s1->extends + 1);
+          cVar1 = *(char *)&__s1->extends;
         }
-        iVar6 = strncasecmp(pcVar11,__s,(long)(int)sVar8);
-        if (iVar6 == 0) {
-          iVar3 = (int)plVar4[3];
-          uVar1 = iVar3 - 1;
-          uVar10 = uVar1;
-          if ((int)(uint)lVar12 < iVar3) {
-            uVar10 = (uint)lVar12;
+        iVar7 = strncasecmp((char *)__s1,__s,(long)(int)sVar9);
+        if (iVar7 == 0) {
+                    /* Unresolved local var: int size@[???] */
+          wVar3 = pVVar4->items;
+          wVar2 = wVar3 + -1;
+          wVar11 = wVar2;
+          if ((int)lVar10 < wVar3) {
+            wVar11 = (int)lVar10;
           }
-          if ((int)uVar10 < 0) {
-            uVar10 = 0;
+          if (wVar11 < 0) {
+            wVar11 = 0;
           }
-          pcVar5 = *(code **)(*param_1 + 0x20);
-          *(uint *)(param_1 + 5) = uVar10;
-          if (pcVar5 == (code *)0x0) {
-            return 1;
+          pcVar6 = (this->super).klass[1].extends;
+          this->selected = wVar11;
+          if (pcVar6 == (code *)0x0) {
+            return HANDLED;
           }
-          (*pcVar5)((long)param_1,0xffffffff,(ulong)uVar1,(ulong)uVar10,param_r8,param_r9);
-          return 1;
+          (*pcVar6)((long)this,0xffffffff,(ulong)(uint)wVar2,(ulong)(uint)wVar11,in_R8,in_R9);
+          return HANDLED;
         }
-        lVar12 = lVar12 + 1;
-      } while (lVar12 != iVar3);
+        lVar10 = lVar10 + 1;
+      } while (lVar10 != wVar2);
     }
-    *__s = (char)param_2;
+    *__s = (char)ch;
     __s[1] = '\0';
-    if ((*(int *)(__fp - 0x50)) == 1) {
-      return 1;
+    if ((*(int (*))(__fp - 0x50)) == 1) {
+      return HANDLED;
     }
-    sVar8 = strlen(__s);
-    (*(int *)(__fp - 0x50)) = 1;
+    sVar9 = strlen(__s);
+    (*(int (*))(__fp - 0x50)) = 1;
   } while( true );
 }
 
 
 /* Panel_prune @ 0x1268d0 */
 
-void Panel_prune(long param_1,long param_rsi,long param_rdx,long param_rcx,long param_r8,
-                long param_r9)
+/* DWARF original prototype: void Panel_prune(Panel * this) */
+
+void Panel_prune(Panel *this)
 
 {
-  Vector_prune(*(long **)(param_1 + 0x20),param_rsi,param_rdx,param_rcx,param_r8,param_r9);
-  *(undefined4 *)(param_1 + 0x40) = 0;
-  *(undefined8 *)(param_1 + 0x28) = 0;
-  *(undefined1 *)(param_1 + 0x48) = 1;
+  Vector_prune(this->items);
+  this->scrollV = 0;
+  this->selected = 0;
+  this->oldSelected = 0;
+  this->needsRedraw = true;
   return;
 }
 
 
 /* Panel_done @ 0x126bf0 */
 
-void Panel_done(long param_1,long param_rsi,long param_rdx,long param_rcx,long param_r8,
-               long param_r9)
+/* DWARF original prototype: void Panel_done(Panel * this) */
+
+void Panel_done(Panel *this)
 
 {
-  long extraout_RDX;
-
-  free(*(void **)(param_1 + 0x38));
-  Vector_delete(*(long **)(param_1 + 0x20),param_rsi,extraout_RDX,param_rcx,param_r8,param_r9);
-  FunctionBar_delete(*(int **)(param_1 + 0x58));
-  if (*(int *)(param_1 + 0x60) < 0x15f) {
+  free(this->eventHandlerState);
+  Vector_delete(this->items);
+  FunctionBar_delete(this->defaultBar);
+  if ((this->header).chlen < 351) {
     return;
   }
-  free(*(void **)(param_1 + 0x68));
-  *(long *)(param_1 + 0x68) = param_1 + 0x70;
-  return;
-}
-
-
-/* FUN_00126c50 @ 0x126c50 */
-
-void FUN_00126c50(void *param_1,long param_rsi,long param_rdx,long param_rcx,long param_r8,
-                 long param_r9)
-
-{
-  long extraout_RDX;
-
-  free(*(void **)((long)param_1 + 0x38));
-  Vector_delete(*(long **)((long)param_1 + 0x20),param_rsi,extraout_RDX,param_rcx,param_r8,param_r9)
-  ;
-  FunctionBar_delete(*(int **)((long)param_1 + 0x58));
-  if (*(int *)((long)param_1 + 0x60) < 0x15f) {
-    free(param_1);
-    return;
-  }
-  free(*(void **)((long)param_1 + 0x68));
-  free(param_1);
+  free((this->header).chptr);
+  (this->header).chptr = (this->header).chstr;
   return;
 }
 
 
 /* Panel_delete @ 0x126ee0 */
 
-void Panel_delete(void *param_1,long param_rsi,long param_rdx,long param_rcx,long param_r8,
-                 long param_r9)
+void Panel_delete(void *param_1)
 
 {
-  long extraout_RDX;
-
   free(*(void **)((long)param_1 + 0x38));
-  Vector_delete(*(long **)((long)param_1 + 0x20),param_rsi,extraout_RDX,param_rcx,param_r8,param_r9)
-  ;
-  FunctionBar_delete(*(int **)((long)param_1 + 0x58));
+  Vector_delete(*(Vector **)((long)param_1 + 0x20));
+  FunctionBar_delete(*(FunctionBar **)((long)param_1 + 0x58));
   if (*(int *)((long)param_1 + 0x60) < 0x15f) {
     free(param_1);
     return;
@@ -946,434 +828,411 @@ void Panel_delete(void *param_1,long param_rsi,long param_rdx,long param_rcx,lon
 }
 
 
-/* FUN_00126f40 @ 0x126f40 */
-
-undefined8
-FUN_00126f40(long param_1,ulong param_2,long param_rdx,long param_rcx,long param_r8,long param_r9)
-
-{
-  uint uVar1;
-  long *plVar2;
-  long lVar3;
-  long lVar4;
-  int *piVar5;
-  long *plVar6;
-  int iVar7;
-
-  iVar7 = (int)param_2;
-  if (iVar7 != 0x128) {
-    if (iVar7 < 0x129) {
-      if ((0x16 < iVar7 - 10U) || ((0x100002400U >> (param_2 & 0x3f) & 1) == 0)) {
-        return 2;
-      }
-    }
-    else if ((iVar7 != 0x157) && (iVar7 != 0x199)) {
-      return 2;
-    }
-  }
-  uVar1 = *(uint *)(param_1 + 0x28);
-  plVar2 = (long *)**(long **)(param_1 + 0x20);
-  plVar6 = plVar2;
-  do {
-    while( true ) {
-      lVar3 = *plVar6;
-      if (*(undefined1 **)(lVar3 + 0x10) != (undefined1 *)0x0) break;
-      plVar6 = plVar6 + 1;
-      *(undefined1 *)(lVar3 + 0x18) = 0;
-      if (plVar6 == plVar2 + 0xc) goto LAB_00126fbd;
-    }
-    plVar6 = plVar6 + 1;
-    **(undefined1 **)(lVar3 + 0x10) = 0;
-  } while (plVar6 != plVar2 + 0xc);
-LAB_00126fbd:
-  lVar4 = plVar2[(int)uVar1];
-  if (*(undefined1 **)(lVar4 + 0x10) == (undefined1 *)0x0) {
-    *(undefined1 *)(lVar4 + 0x18) = 1;
-  }
-  else {
-    **(undefined1 **)(lVar4 + 0x10) = 1;
-  }
-  Header_setLayout(*(long **)(*(long *)(param_1 + 0x26e0) + 0x28),uVar1,lVar4,lVar3,(ulong)uVar1,
-                   param_r9);
-  lVar3 = *(long *)(param_1 + 0x26e8);
-  piVar5 = *(int **)(param_1 + 0x26e0);
-  plVar2 = (long *)(lVar3 + 0x78);
-  *plVar2 = *plVar2 + 1;
-  *(undefined1 *)(lVar3 + 0x74) = 1;
-  ScreenManager_resize(piVar5);
-  return 1;
-}
-
-
 /* Panel_draw @ 0x127810 */
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* DWARF original prototype: void Panel_draw(Panel * this, _Bool force_redraw, _Bool focus, _Bool
+   highlightSelected, _Bool hideFunctionBar) */
 
-void Panel_draw(long *param_1,char param_2,char param_3,char param_4,char param_5,long param_r9)
+void Panel_draw(Panel *this,_Bool force_redraw,_Bool focus,_Bool highlightSelected,
+               _Bool hideFunctionBar)
 
 {
-  undefined1 __frame[0x4dd8] __attribute__((aligned(16)));
-  undefined1 *__fp = __frame + 0x4d98;
-  int iVar1;
+  undefined1 __frame[0x104dd8] __attribute__((aligned(16)));
+  undefined1 *__fp = __frame + 0x104d98;
+  int wVar1;
   int p2;
-  int iVar2;
-  code *pcVar3;
-  long *plVar4;
-  long lVar5;
+  long lVar2;
+  Object_Delete p_Var3;
+  long *a0;
+  code *pcVar4;
+  Object *pOVar5;
+  Object_Display p_Var6;
+  FunctionBar *this_00;
   void *p0;
-  uint uVar6;
   undefined1 *puVar7;
   int iVar8;
-  int iVar9;
+  int wVar9;
   int iVar10;
-  int iVar11;
-  int iVar12;
+  int wVar11;
   undefined7 in_register_00000009;
   ulong a3;
+  byte bVar12;
   undefined7 in_register_00000011;
-  ulong extraout_RDX;
-  ulong extraout_RDX_00;
-  ulong extraout_RDX_01;
-  ulong extraout_RDX_02;
-  ulong extraout_RDX_03;
-  ulong extraout_RDX_04;
-  ulong uVar13;
-  uint *puVar14;
-  ulong extraout_RDX_05;
-  ulong extraout_RDX_06;
-  int *piVar15;
-  ulong extraout_RDX_07;
-  ulong extraout_RDX_08;
-  ulong extraout_RDX_09;
-  undefined1 *puVar16;
-  ulong uVar17;
-  uint uVar18;
+  int *extraout_RDX;
+  int *extraout_RDX_00;
+  int *extraout_RDX_01;
+  int *extraout_RDX_02;
+  int *extraout_RDX_03;
+  int *extraout_RDX_04;
+  int *extraout_RDX_05;
+  int *extraout_RDX_06;
+  cchar_t *pcVar14;
+  int *extraout_RDX_07;
+  int *extraout_RDX_08;
+  int *extraout_RDX_09;
+  undefined1 *puVar15;
+  int wVar16;
+  int wVar17;
+  ulong uVar18;
+  uint uVar19;
   undefined7 in_register_00000081;
   ulong a4;
+  long in_R9;
+  int iVar20;
   long in_FS_OFFSET = (long)__fake_fs;
+  int *pwVar13;
 
-  puVar7 = (undefined1 *)(*(undefined1 (*)[6508])(__fp - 0x4030));
-  puVar16 = (undefined1 *)(*(undefined1 (*)[6508])(__fp - 0x4030)) + 0x1000;
-  uVar17 = CONCAT71(in_register_00000081,param_5) & 0xffffffff;
-  (*(long *)(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
-  uVar18 = (*(int *)((long)param_1 + 0x14) + 1) - (uint)((char)uVar17 == '\0');
-  iVar12 = *(int *)(param_1[4] + 0x18);
-  iVar1 = *(int *)((long)param_1 + 0x44);
-  (*(int *)(__fp - 0x4d4c)) = *(int *)((long)param_1 + 0xc);
-  p2 = (int)param_1[1];
-  if (param_3 == '\0') {
-    iVar8 = *(int *)(CRT_colors + 0x20);
+                    /* Unresolved local var: int size@[???]
+                       Unresolved local var: int scrollH@[???]
+                       Unresolved local var: int y@[???]
+                       Unresolved local var: int x@[???]
+                       Unresolved local var: int h@[???]
+                       Unresolved local var: int header_attr@[???]
+                       Unresolved local var: int headerLen@[???]
+                       Unresolved local var: int first@[???]
+                       Unresolved local var: int upTo@[???]
+                       Unresolved local var: int selectionColor@[???] */
+  puVar7 = (__fp - 0x30);
+  do {
+    puVar15 = puVar7;
+    *(undefined8 *)(puVar15 + -0x1000) = *(undefined8 *)(puVar15 + -0x1000);
+    puVar7 = puVar15 + -0x1000;
+  } while ((int *)(puVar15 + -0x1000) != (*(RichString (*))(__fp - 0x4d38)).chstr[0x76].chars + 3);
+  uVar18 = CONCAT71(in_register_00000081,hideFunctionBar) & 0xffffffff;
+  lVar2 = *(long *)(in_FS_OFFSET + 0x28);
+  uVar19 = (this->h + 1) - (uint)((char)uVar18 == '\0');
+  wVar17 = this->items->items;
+  wVar1 = this->scrollH;
+  (*(int (*))(__fp - 0x4d4c)) = this->y;
+  p2 = this->x;
+  if (focus) {
+    wVar16 = CRT_colors[7];
   }
   else {
-    iVar8 = *(int *)(CRT_colors + 0x1c);
+    wVar16 = CRT_colors[8];
   }
-  if (param_2 == '\0') {
-LAB_00127c20:
-    iVar11 = (int)param_1[0xc];
-    if (iVar11 < 1) goto LAB_00127c2d;
-LAB_001278ee:
-    wattrset(_stdscr,iVar8);
-    iVar8 = wmove(_stdscr,(*(int *)(__fp - 0x4d4c)),p2);
-    if (iVar8 != -1) {
-      lVar5 = param_1[2];
-      whline(_stdscr,0x20,(int)lVar5);
-    }
-    if (iVar1 < iVar11) {
-      iVar8 = wmove(_stdscr,(*(int *)(__fp - 0x4d4c)),p2);
-      if (iVar8 != -1) {
-        iVar8 = (int)param_1[2];
-        if (iVar11 - iVar1 <= (int)param_1[2]) {
-          iVar8 = iVar11 - iVar1;
-        }
-        lVar5 = param_1[0xd];
-        wadd_wchnstr(_stdscr,(void *)(lVar5 + (long)iVar1 * 0x1c),iVar8);
+  if (force_redraw) {
+    p_Var3 = (this->super).klass[1].delete;
+    if (p_Var3 == (Object_Delete)0x0) {
+      wVar9 = (this->header).chlen;
+                    /* Unresolved local var: int end@[???] */
+      wVar11 = 0;
+      if (-1 < wVar9) {
+        wVar11 = wVar9;
       }
-    }
-    iVar8 = *(int *)CRT_colors;
-    wattrset(_stdscr,iVar8);
-    (*(int *)(__fp - 0x4d3c)) = (int)param_1[8];
-    (*(int *)(__fp - 0x4d4c)) = (*(int *)(__fp - 0x4d4c)) + 1;
-    uVar17 = (ulong)(uVar18 - 1);
-    if (-1 < (*(int *)(__fp - 0x4d3c))) goto LAB_00127c3a;
-LAB_0012798e:
-    *(undefined4 *)(param_1 + 8) = 0;
-    (*(int *)(__fp - 0x4d3c)) = 0;
-    *(undefined1 *)(param_1 + 9) = 1;
-  }
-  else {
-    pcVar3 = *(code **)(*param_1 + 0x30);
-    if (pcVar3 == (code *)0x0) {
-      iVar11 = (int)param_1[0xc];
-      iVar9 = 0;
-      if (-1 < iVar11) {
-        iVar9 = iVar11;
-      }
-      if (0 < iVar11) {
-        piVar15 = (int *)param_1[0xd];
-        iVar11 = 0;
+                    /* Unresolved local var: int i@[???] */
+      if (0 < wVar9) {
+        pcVar14 = (this->header).chptr;
+        wVar9 = 0;
         do {
-          iVar11 = iVar11 + 1;
-          *piVar15 = iVar8;
-          piVar15 = piVar15 + 7;
-        } while (iVar11 < iVar9);
+          wVar9 = wVar9 + 1;
+          pcVar14->attr = wVar16;
+          pcVar14 = pcVar14 + 1;
+        } while (wVar9 < wVar11);
         goto LAB_00127c20;
       }
     }
     else {
-      (*pcVar3)((long)param_1,uVar17,CONCAT71(in_register_00000011,param_3),
-                CONCAT71(in_register_00000009,param_4),(ulong)uVar18,param_r9);
-      iVar11 = (int)param_1[0xc];
-      if (0 < iVar11) goto LAB_001278ee;
+      (*(code *)(p_Var3))(&this->super,uVar18,CONCAT71(in_register_00000011,focus),
+                CONCAT71(in_register_00000009,highlightSelected),(ulong)uVar19,in_R9);
+      wVar9 = (this->header).chlen;
+      if (0 < wVar9) goto LAB_001278ee;
     }
 LAB_00127c2d:
-    uVar17 = (ulong)uVar18;
-    (*(int *)(__fp - 0x4d3c)) = (int)param_1[8];
-    if ((*(int *)(__fp - 0x4d3c)) < 0) goto LAB_0012798e;
+    uVar18 = (ulong)uVar19;
+    (*(int (*))(__fp - 0x4d3c)) = this->scrollV;
+    if ((*(int (*))(__fp - 0x4d3c)) < 0) goto LAB_0012798e;
 LAB_00127c3a:
-    iVar8 = iVar12 - (int)uVar17;
-    if (iVar8 < (*(int *)(__fp - 0x4d3c))) {
-      *(undefined1 *)(param_1 + 9) = 1;
-      (*(int *)(__fp - 0x4d3c)) = 0;
-      if (-1 < iVar8) {
-        (*(int *)(__fp - 0x4d3c)) = iVar8;
+    wVar16 = wVar17 - (int)uVar18;
+    if (wVar16 < (*(int (*))(__fp - 0x4d3c))) {
+      this->needsRedraw = true;
+      (*(int (*))(__fp - 0x4d3c)) = 0;
+      if (-1 < wVar16) {
+        (*(int (*))(__fp - 0x4d3c)) = wVar16;
       }
-      *(int *)(param_1 + 8) = (*(int *)(__fp - 0x4d3c));
-    }
-  }
-  iVar8 = (int)param_1[5];
-  iVar11 = (int)uVar17;
-  if (iVar8 < (*(int *)(__fp - 0x4d3c))) {
-LAB_001279b9:
-    *(int *)(param_1 + 8) = iVar8;
-    iVar9 = iVar8 + iVar11;
-    *(undefined1 *)(param_1 + 9) = 1;
-    uVar13 = CRT_colors;
-    (*(int *)(__fp - 0x4d3c)) = iVar8;
-    if (param_3 == '\0') {
-      a3 = (ulong)*(uint *)(CRT_colors + 0x2c);
-    }
-    else {
-      a3 = (ulong)*(uint *)(CRT_colors + (ulong)*(uint *)(param_1 + 0x4db) * 4);
+      this->scrollV = (*(int (*))(__fp - 0x4d3c));
     }
   }
   else {
-    iVar9 = iVar11 + (*(int *)(__fp - 0x4d3c));
-    if (iVar9 <= iVar8) {
-      iVar8 = (iVar8 - iVar11) + 1;
-      goto LAB_001279b9;
+LAB_00127c20:
+    wVar9 = (this->header).chlen;
+    if (wVar9 < 1) goto LAB_00127c2d;
+LAB_001278ee:
+    wattrset(_stdscr,wVar16);
+    iVar8 = wmove(_stdscr,(*(int (*))(__fp - 0x4d4c)),p2);
+    if (iVar8 != -1) {
+      wVar16 = this->w;
+      whline(_stdscr,0x20,wVar16);
     }
-    uVar13 = (ulong)(byte)(param_2 | *(byte *)(param_1 + 9));
-    if (param_3 == '\0') {
-      uVar18 = *(uint *)(CRT_colors + 0x2c);
+    if (wVar1 < wVar9) {
+      iVar8 = wmove(_stdscr,(*(int (*))(__fp - 0x4d4c)),p2);
+      if (iVar8 != -1) {
+        wVar16 = this->w;
+        if (wVar9 - wVar1 <= this->w) {
+          wVar16 = wVar9 - wVar1;
+        }
+        pcVar14 = (this->header).chptr;
+        wadd_wchnstr(_stdscr,pcVar14 + wVar1,wVar16);
+      }
+    }
+    wVar16 = *CRT_colors;
+    wattrset(_stdscr,wVar16);
+    (*(int (*))(__fp - 0x4d3c)) = this->scrollV;
+    (*(int (*))(__fp - 0x4d4c)) = (*(int (*))(__fp - 0x4d4c)) + 1;
+    uVar18 = (ulong)(uVar19 - 1);
+    if (-1 < (*(int (*))(__fp - 0x4d3c))) goto LAB_00127c3a;
+LAB_0012798e:
+    this->scrollV = 0;
+    (*(int (*))(__fp - 0x4d3c)) = 0;
+    this->needsRedraw = true;
+  }
+  wVar16 = this->selected;
+  iVar8 = (int)uVar18;
+  if (wVar16 < (*(int (*))(__fp - 0x4d3c))) {
+LAB_001279b9:
+    this->scrollV = wVar16;
+    wVar9 = wVar16 + iVar8;
+    this->needsRedraw = true;
+    pwVar13 = CRT_colors;
+    (*(int (*))(__fp - 0x4d3c)) = wVar16;
+    if (focus) {
+      a3 = (ulong)(uint)CRT_colors[this->selectionColorId];
     }
     else {
-      uVar18 = *(uint *)(CRT_colors + (ulong)*(uint *)(param_1 + 0x4db) * 4);
+      a3 = (ulong)(uint)CRT_colors[0xb];
     }
-    a3 = (ulong)uVar18;
-    if ((byte)(param_2 | *(byte *)(param_1 + 9)) == 0) {
-      iVar12 = *(int *)((long)param_1 + 0x2c);
-      plVar4 = *(long **)(*(long *)param_1[4] + (long)iVar12 * 8);
-      (*(int * *)(__fp - 0x26b0)) = (int *)(*(undefined1 (*)[12])(__fp - 0x26a8));
-      ASSIGN_ARR((*(undefined1 (*)[12])(__fp - 0x26a8)), SUB1612((undefined16)0x0,0));
-      (*(undefined4 *)(__fp - 0x269c)) = 0;
-      ASSIGN_ARR((*(undefined1 (*)[12])(__fp - 0x2698)), SUB1612((undefined16)0x0,4));
-      (*(uint (*)[2])(__fp - 0x26b8))[0] = 0;
-      (*(int *)(__fp - 0x44)) = 0;
-      pcVar3 = *(code **)(*plVar4 + 8);
-      (*pcVar3)((long)plVar4,(long)(*(uint (*)[2])(__fp - 0x26b8)),(long)iVar12,a3,uVar17,param_r9);
-      uVar6 = (*(uint (*)[2])(__fp - 0x26b8))[0];
-      lVar5 = param_1[5];
-      plVar4 = *(long **)(*(long *)param_1[4] + (long)(int)lVar5 * 8);
-      (*(uint * *)(__fp - 0x4d30)) = (uint *)(*(undefined1 (*)[12])(__fp - 0x4d28));
-      ASSIGN_ARR((*(undefined1 (*)[12])(__fp - 0x4d28)), SUB1612((undefined16)0x0,0));
-      (*(undefined4 *)(__fp - 0x4d1c)) = 0;
-      ASSIGN_ARR((*(undefined1 (*)[12])(__fp - 0x4d18)), SUB1612((undefined16)0x0,4));
-      (*(int (*)[2])(__fp - 0x4d38))[0] = 0;
-      (*(undefined4 *)(__fp - 0x26c4)) = 0;
-      pcVar3 = *(code **)(*plVar4 + 8);
-      (*pcVar3)((long)plVar4,(long)(*(int (*)[2])(__fp - 0x4d38)),(long)(int)lVar5,a3,uVar17,param_r9);
-      iVar8 = (*(int (*)[2])(__fp - 0x4d38))[0];
+  }
+  else {
+    wVar9 = iVar8 + (*(int (*))(__fp - 0x4d3c));
+    if (wVar9 <= wVar16) {
+      wVar16 = (wVar16 - iVar8) + 1;
+      goto LAB_001279b9;
+    }
+    bVar12 = force_redraw | this->needsRedraw;
+    pwVar13 = (int *)(ulong)bVar12;
+    if (focus) {
+      wVar16 = CRT_colors[this->selectionColorId];
+    }
+    else {
+      wVar16 = CRT_colors[0xb];
+    }
+    a3 = (ulong)(uint)wVar16;
+    if (bVar12 == 0) {
+                    /* Unresolved local var: Object * oldObj@[???]
+                       Unresolved local var: int oldLen@[???]
+                       Unresolved local var: Object * newObj@[???]
+                       Unresolved local var: int newLen@[???] */
+      wVar17 = this->oldSelected;
+      pOVar5 = this->items->array[wVar17];
+      (*(RichString (*))(__fp - 0x26b8)).chptr = (*(RichString (*))(__fp - 0x26b8)).chstr;
+      (*(ulong *)((char *)&(*(RichString (*))(__fp - 0x26b8)).chstr[0] + 0)) = SUB1612((undefined16)0x0,0);
+      (*(RichString (*))(__fp - 0x26b8)).chstr[0].chars[2] = 0;
+      (*(ulong *)((char *)&(*(RichString (*))(__fp - 0x26b8)).chstr[0] + 16)) = SUB1612((undefined16)0x0,4);
+      (*(RichString (*))(__fp - 0x26b8)).chlen = 0;
+      (*(RichString (*))(__fp - 0x26b8)).highlightAttr = 0;
+      p_Var6 = pOVar5->klass->display;
+      (*(code *)(p_Var6))(pOVar5,&(*(RichString (*))(__fp - 0x26b8)),(long)wVar17,a3,uVar18,in_R9);
+      wVar11 = (*(RichString (*))(__fp - 0x26b8)).chlen;
+      wVar17 = this->selected;
+      pOVar5 = this->items->array[wVar17];
+      (*(RichString (*))(__fp - 0x4d38)).chptr = (*(RichString (*))(__fp - 0x4d38)).chstr;
+      (*(ulong *)((char *)&(*(RichString (*))(__fp - 0x4d38)).chstr[0] + 0)) = SUB1612((undefined16)0x0,0);
+      (*(RichString (*))(__fp - 0x4d38)).chstr[0].chars[2] = 0;
+      (*(ulong *)((char *)&(*(RichString (*))(__fp - 0x4d38)).chstr[0] + 16)) = SUB1612((undefined16)0x0,4);
+      (*(RichString (*))(__fp - 0x4d38)).chlen = 0;
+      (*(RichString (*))(__fp - 0x4d38)).highlightAttr = 0;
+      p_Var6 = pOVar5->klass->display;
+      (*(code *)(p_Var6))(pOVar5,&(*(RichString (*))(__fp - 0x4d38)),(long)wVar17,a3,uVar18,in_R9);
+      wVar9 = (*(RichString (*))(__fp - 0x4d38)).chlen;
       p0 = _stdscr;
-      iVar12 = *(int *)((long)param_1 + 0x2c);
-      *(int *)(param_1 + 6) = (*(int (*)[2])(__fp - 0x4d38))[0];
-      iVar12 = wmove(p0,((*(int *)(__fp - 0x4d4c)) + iVar12) - (*(int *)(__fp - 0x4d3c)),p2);
-      a4 = uVar17;
-      if (iVar12 != -1) {
-        lVar5 = param_1[2];
-        whline(_stdscr,0x20,(int)lVar5);
-        a4 = uVar17;
+      wVar17 = this->oldSelected;
+      this->selectedLen = (*(RichString (*))(__fp - 0x4d38)).chlen;
+      iVar8 = wmove(p0,((*(int (*))(__fp - 0x4d4c)) + wVar17) - (*(int (*))(__fp - 0x4d3c)),p2);
+      a4 = uVar18;
+      if (iVar8 != -1) {
+        wVar17 = this->w;
+        whline(_stdscr,0x20,wVar17);
+        a4 = uVar18;
       }
-      if (iVar1 < (int)uVar6) {
-        iVar12 = *(int *)((long)param_1 + 0x2c);
-        iVar12 = wmove(_stdscr,((*(int *)(__fp - 0x4d4c)) + iVar12) - (*(int *)(__fp - 0x4d3c)),p2);
-        if (iVar12 != -1) {
-          iVar11 = uVar6 - iVar1;
-          iVar12 = (int)param_1[2];
-          if (iVar11 <= (int)param_1[2]) {
-            iVar12 = iVar11;
+      if (wVar1 < wVar11) {
+        wVar17 = this->oldSelected;
+        iVar8 = wmove(_stdscr,((*(int (*))(__fp - 0x4d4c)) + wVar17) - (*(int (*))(__fp - 0x4d3c)),p2);
+        if (iVar8 != -1) {
+          wVar11 = wVar11 - wVar1;
+          wVar17 = this->w;
+          if (wVar11 <= this->w) {
+            wVar17 = wVar11;
           }
-          wadd_wchnstr(_stdscr,(*(int * *)(__fp - 0x26b0)) + (long)iVar1 * 7,iVar12);
+          wadd_wchnstr(_stdscr,(*(RichString (*))(__fp - 0x26b8)).chptr + wVar1,wVar17);
         }
       }
-      wattrset(_stdscr,uVar18);
-      lVar5 = param_1[5];
-      iVar12 = wmove(_stdscr,((*(int *)(__fp - 0x4d4c)) + (int)lVar5) - (*(int *)(__fp - 0x4d3c)),p2);
-      if (iVar12 != -1) {
-        lVar5 = param_1[2];
-        whline(_stdscr,0x20,(int)lVar5);
+      wattrset(_stdscr,wVar16);
+      wVar17 = this->selected;
+      iVar8 = wmove(_stdscr,((*(int (*))(__fp - 0x4d4c)) + wVar17) - (*(int (*))(__fp - 0x4d3c)),p2);
+      if (iVar8 != -1) {
+        wVar17 = this->w;
+        whline(_stdscr,0x20,wVar17);
       }
-      a3 = (ulong)uVar18;
-      iVar12 = 0;
-      if (-1 < (*(int (*)[2])(__fp - 0x4d38))[0]) {
-        iVar12 = (*(int (*)[2])(__fp - 0x4d38))[0];
+      a3 = (ulong)(uint)wVar16;
+                    /* Unresolved local var: int end@[???] */
+      wVar17 = 0;
+      if (-1 < (*(RichString (*))(__fp - 0x4d38)).chlen) {
+        wVar17 = (*(RichString (*))(__fp - 0x4d38)).chlen;
       }
-      if (0 < (*(int (*)[2])(__fp - 0x4d38))[0]) {
-        iVar11 = 0;
-        puVar14 = (*(uint * *)(__fp - 0x4d30));
+                    /* Unresolved local var: int i@[???] */
+      if (0 < (*(RichString (*))(__fp - 0x4d38)).chlen) {
+        wVar11 = 0;
+        pcVar14 = (*(RichString (*))(__fp - 0x4d38)).chptr;
         do {
-          iVar11 = iVar11 + 1;
-          *puVar14 = uVar18;
-          puVar14 = puVar14 + 7;
-        } while (iVar11 < iVar12);
+          wVar11 = wVar11 + 1;
+          pcVar14->attr = wVar16;
+          pcVar14 = pcVar14 + 1;
+        } while (wVar11 < wVar17);
       }
-      if (iVar1 < iVar8) {
-        lVar5 = param_1[5];
-        iVar12 = wmove(_stdscr,((*(int *)(__fp - 0x4d4c)) + (int)lVar5) - (*(int *)(__fp - 0x4d3c)),p2);
-        if (iVar12 != -1) {
-          a3 = (ulong)iVar1;
-          iVar8 = iVar8 - iVar1;
-          iVar12 = (int)param_1[2];
-          if (iVar8 <= (int)param_1[2]) {
-            iVar12 = iVar8;
+      if (wVar1 < wVar9) {
+        wVar17 = this->selected;
+        iVar8 = wmove(_stdscr,((*(int (*))(__fp - 0x4d4c)) + wVar17) - (*(int (*))(__fp - 0x4d3c)),p2);
+        if (iVar8 != -1) {
+          a3 = (ulong)wVar1;
+          wVar9 = wVar9 - wVar1;
+          wVar17 = this->w;
+          if (wVar9 <= this->w) {
+            wVar17 = wVar9;
           }
-          wadd_wchnstr(_stdscr,(*(uint * *)(__fp - 0x4d30)) + a3 * 7,iVar12);
+          wadd_wchnstr(_stdscr,(*(RichString (*))(__fp - 0x4d38)).chptr + a3,wVar17);
         }
       }
-      iVar12 = *(int *)CRT_colors;
-      wattrset(_stdscr,iVar12);
-      uVar13 = extraout_RDX_05;
-      if (0x15e < (*(int (*)[2])(__fp - 0x4d38))[0]) {
-        free((*(uint * *)(__fp - 0x4d30)));
-        uVar13 = extraout_RDX_09;
+      wVar17 = *CRT_colors;
+      wattrset(_stdscr,wVar17);
+      pwVar13 = extraout_RDX_05;
+      if (350 < (*(RichString (*))(__fp - 0x4d38)).chlen) {
+        free((*(RichString (*))(__fp - 0x4d38)).chptr);
+        pwVar13 = extraout_RDX_09;
       }
-      if (0x15e < (int)(*(uint (*)[2])(__fp - 0x26b8))[0]) {
-        free((*(int * *)(__fp - 0x26b0)));
-        uVar13 = extraout_RDX_06;
+      if (350 < (*(RichString (*))(__fp - 0x26b8)).chlen) {
+        free((*(RichString (*))(__fp - 0x26b8)).chptr);
+        pwVar13 = extraout_RDX_06;
       }
       goto LAB_00127e70;
     }
   }
-  if (iVar9 <= iVar12) {
-    iVar12 = iVar9;
+  if (wVar9 <= wVar17) {
+    wVar17 = wVar9;
   }
-  if ((iVar11 < 1) || (iVar12 <= (*(int *)(__fp - 0x4d3c)))) {
-    iVar8 = 0;
+                    /* Unresolved local var: int line@[???]
+                       Unresolved local var: int i@[???] */
+  if ((iVar8 < 1) || (wVar17 <= (*(int (*))(__fp - 0x4d3c)))) {
+    iVar20 = 0;
   }
   else {
-    iVar9 = (int)a3;
-    (*(ulong *)(__fp - 0x4d48)) = (long)(*(int *)(__fp - 0x4d3c)) * 8;
-    iVar8 = 0;
-    uVar13 = (long)iVar1;
-    a4 = uVar17;
+                    /* Unresolved local var: Object * itemObj@[???]
+                       Unresolved local var: int itemLen@[???]
+                       Unresolved local var: int amt@[???] */
+    wVar16 = (int)a3;
+    (*(ulong (*))(__fp - 0x4d48)) = (long)(*(int (*))(__fp - 0x4d3c)) * 8;
+    iVar20 = 0;
+    pwVar13 = (int *)(long)wVar1;
+    a4 = uVar18;
     do {
-      plVar4 = *(long **)(*(long *)param_1[4] + (*(ulong *)(__fp - 0x4d48)));
-      ASSIGN_ARR((*(undefined1 (*)[12])(__fp - 0x26a8)), SUB1612((undefined16)0x0,0));
-      (*(uint (*)[2])(__fp - 0x26b8))[0] = 0;
-      (*(int *)(__fp - 0x44)) = 0;
-      (*(undefined4 *)(__fp - 0x269c)) = 0;
-      ASSIGN_ARR((*(undefined1 (*)[12])(__fp - 0x2698)), SUB1612((undefined16)0x0,4));
-      pcVar3 = *(code **)(*plVar4 + 8);
-      a3 = (*(ulong *)(__fp - 0x4d48));
-      (*(int * *)(__fp - 0x26b0)) = (int *)(*(undefined1 (*)[12])(__fp - 0x26a8));
-      (*pcVar3)((long)plVar4,(long)(*(uint (*)[2])(__fp - 0x26b8)),uVar13,(*(ulong *)(__fp - 0x4d48)),a4,param_r9);
-      uVar18 = (*(uint (*)[2])(__fp - 0x26b8))[0];
-      iVar2 = (*(uint (*)[2])(__fp - 0x26b8))[0] - iVar1;
-      if ((int)param_1[2] < (int)((*(uint (*)[2])(__fp - 0x26b8))[0] - iVar1)) {
-        iVar2 = (int)param_1[2];
+      a0 = *(long **)((long)this->items->array + (*(ulong (*))(__fp - 0x4d48)));
+      (*(ulong *)((char *)&(*(RichString (*))(__fp - 0x26b8)).chstr[0] + 0)) = SUB1612((undefined16)0x0,0);
+      (*(RichString (*))(__fp - 0x26b8)).chlen = 0;
+      (*(RichString (*))(__fp - 0x26b8)).highlightAttr = 0;
+      (*(RichString (*))(__fp - 0x26b8)).chstr[0].chars[2] = 0;
+      (*(ulong *)((char *)&(*(RichString (*))(__fp - 0x26b8)).chstr[0] + 16)) = SUB1612((undefined16)0x0,4);
+      pcVar4 = *(code **)(*a0 + 8);
+      a3 = (*(ulong (*))(__fp - 0x4d48));
+      (*(RichString (*))(__fp - 0x26b8)).chptr = (*(RichString (*))(__fp - 0x26b8)).chstr;
+      (*pcVar4)((long)a0,(long)&(*(RichString (*))(__fp - 0x26b8)),(long)pwVar13,(*(ulong (*))(__fp - 0x4d48)),a4,in_R9);
+      wVar11 = (*(RichString (*))(__fp - 0x26b8)).chlen;
+      wVar9 = (*(RichString (*))(__fp - 0x26b8)).chlen - wVar1;
+      if (this->w < (*(RichString (*))(__fp - 0x26b8)).chlen - wVar1) {
+        wVar9 = this->w;
       }
-      if ((param_4 != '\0') && ((int)param_1[5] == (*(int *)(__fp - 0x4d3c)))) {
-        (*(int *)(__fp - 0x44)) = iVar9;
+      if ((highlightSelected) && (this->selected == (*(int (*))(__fp - 0x4d3c)))) {
+        (*(RichString (*))(__fp - 0x26b8)).highlightAttr = wVar16;
       }
-      if ((*(int *)(__fp - 0x44)) != 0) {
-        wattrset(_stdscr,(*(int *)(__fp - 0x44)));
+      if ((*(RichString (*))(__fp - 0x26b8)).highlightAttr != 0) {
+        wattrset(_stdscr,(*(RichString (*))(__fp - 0x26b8)).highlightAttr);
+                    /* Unresolved local var: int end@[???] */
         a3 = 0;
-        if (-1 < (int)(*(uint (*)[2])(__fp - 0x26b8))[0]) {
-          a3 = (ulong)(*(uint (*)[2])(__fp - 0x26b8))[0];
+        if (-1 < (*(RichString (*))(__fp - 0x26b8)).chlen) {
+          a3 = (ulong)(uint)(*(RichString (*))(__fp - 0x26b8)).chlen;
         }
-        if (0 < (int)(*(uint (*)[2])(__fp - 0x26b8))[0]) {
+                    /* Unresolved local var: int i@[???] */
+        if (0 < (*(RichString (*))(__fp - 0x26b8)).chlen) {
           iVar10 = 0;
-          piVar15 = (*(int * *)(__fp - 0x26b0));
+          pcVar14 = (*(RichString (*))(__fp - 0x26b8)).chptr;
           do {
             iVar10 = iVar10 + 1;
-            *piVar15 = (*(int *)(__fp - 0x44));
-            piVar15 = piVar15 + 7;
+            pcVar14->attr = (*(RichString (*))(__fp - 0x26b8)).highlightAttr;
+            pcVar14 = pcVar14 + 1;
           } while (iVar10 < (int)a3);
         }
-        *(uint *)(param_1 + 6) = uVar18;
+        this->selectedLen = wVar11;
       }
-      iVar10 = wmove(_stdscr,iVar8 + (*(int *)(__fp - 0x4d4c)),p2);
-      uVar13 = extraout_RDX;
+      iVar10 = wmove(_stdscr,iVar20 + (*(int (*))(__fp - 0x4d4c)),p2);
+      pwVar13 = extraout_RDX;
       if (iVar10 != -1) {
-        lVar5 = param_1[2];
-        whline(_stdscr,0x20,(int)lVar5);
-        uVar13 = extraout_RDX_00;
+        wVar11 = this->w;
+        whline(_stdscr,0x20,wVar11);
+        pwVar13 = extraout_RDX_00;
       }
-      if (0 < iVar2) {
-        iVar10 = wmove(_stdscr,iVar8 + (*(int *)(__fp - 0x4d4c)),p2);
-        uVar13 = extraout_RDX_01;
+      if (0 < wVar9) {
+        iVar10 = wmove(_stdscr,iVar20 + (*(int (*))(__fp - 0x4d4c)),p2);
+        pwVar13 = extraout_RDX_01;
         if (iVar10 != -1) {
-          wadd_wchnstr(_stdscr,(*(int * *)(__fp - 0x26b0)) + (long)iVar1 * 7,iVar2);
-          uVar13 = extraout_RDX_02;
+          wadd_wchnstr(_stdscr,(*(RichString (*))(__fp - 0x26b8)).chptr + wVar1,wVar9);
+          pwVar13 = extraout_RDX_02;
         }
       }
-      if ((*(int *)(__fp - 0x44)) != 0) {
-        iVar2 = *(int *)CRT_colors;
-        wattrset(_stdscr,iVar2);
-        uVar13 = extraout_RDX_03;
+      if ((*(RichString (*))(__fp - 0x26b8)).highlightAttr != 0) {
+        wVar9 = *CRT_colors;
+        wattrset(_stdscr,wVar9);
+        pwVar13 = extraout_RDX_03;
       }
-      if (0x15e < (int)(*(uint (*)[2])(__fp - 0x26b8))[0]) {
-        free((*(int * *)(__fp - 0x26b0)));
-        uVar13 = extraout_RDX_04;
+      if (350 < (*(RichString (*))(__fp - 0x26b8)).chlen) {
+        free((*(RichString (*))(__fp - 0x26b8)).chptr);
+        pwVar13 = extraout_RDX_04;
       }
-      (*(int *)(__fp - 0x4d3c)) = (*(int *)(__fp - 0x4d3c)) + 1;
-      iVar8 = iVar8 + 1;
-      (*(ulong *)(__fp - 0x4d48)) = (*(ulong *)(__fp - 0x4d48)) + 8;
-      if (iVar11 <= iVar8) goto LAB_00127e70;
-    } while ((*(int *)(__fp - 0x4d3c)) < iVar12);
+      (*(int (*))(__fp - 0x4d3c)) = (*(int (*))(__fp - 0x4d3c)) + 1;
+      iVar20 = iVar20 + 1;
+      (*(ulong (*))(__fp - 0x4d48)) = (*(ulong (*))(__fp - 0x4d48)) + 8;
+      if (iVar8 <= iVar20) goto LAB_00127e70;
+    } while ((*(int (*))(__fp - 0x4d3c)) < wVar17);
   }
-  a4 = uVar17;
-  if (iVar8 < iVar11) {
-    iVar8 = iVar8 + (*(int *)(__fp - 0x4d4c));
+  a4 = uVar18;
+  if (iVar20 < iVar8) {
+    iVar20 = iVar20 + (*(int (*))(__fp - 0x4d4c));
     do {
-      iVar12 = wmove(_stdscr,iVar8,p2);
-      uVar13 = extraout_RDX_07;
-      if (iVar12 != -1) {
-        lVar5 = param_1[2];
-        whline(_stdscr,0x20,(int)lVar5);
-        uVar13 = extraout_RDX_08;
+      iVar10 = wmove(_stdscr,iVar20,p2);
+      pwVar13 = extraout_RDX_07;
+      if (iVar10 != -1) {
+        wVar17 = this->w;
+        whline(_stdscr,0x20,wVar17);
+        pwVar13 = extraout_RDX_08;
       }
-      iVar8 = iVar8 + 1;
-    } while (iVar8 != (*(int *)(__fp - 0x4d4c)) + iVar11);
+      iVar20 = iVar20 + 1;
+    } while (iVar20 != (*(int (*))(__fp - 0x4d4c)) + iVar8);
   }
 LAB_00127e70:
-  if ((param_3 != '\0') &&
-     ((((char)param_1[9] != '\0' || (param_2 != '\0')) || (*(char *)((long)param_1 + 0x4a) == '\0'))
-     )) {
-    pcVar3 = *(code **)(*param_1 + 0x28);
-    if (pcVar3 == (code *)0x0) {
-      if (param_5 == '\0') {
-        piVar15 = (int *)param_1[10];
-        FunctionBar_drawExtra(piVar15,(char *)0x0,-1,'\0');
+  if ((focus) && (((this->needsRedraw != false || (force_redraw)) || (this->wasFocus == false)))) {
+    p_Var6 = (this->super).klass[1].display;
+    if (p_Var6 == (Object_Display)0x0) {
+      if (!hideFunctionBar) {
+        this_00 = this->currentBar;
+        FunctionBar_drawExtra(this_00,(char *)0x0,-1,false);
       }
     }
     else {
-      (*pcVar3)((long)param_1,(ulong)(byte)param_5,uVar13,a3,a4,param_r9);
+      (*(code *)(p_Var6))(&this->super,(RichString *)(ulong)hideFunctionBar,(long)pwVar13,a3,a4,in_R9);
     }
   }
-  *(undefined1 *)(param_1 + 9) = 0;
-  *(int *)((long)param_1 + 0x2c) = (int)param_1[5];
-  *(char *)((long)param_1 + 0x4a) = param_3;
-  if ((*(long *)(__fp - 0x40)) == *(long *)(in_FS_OFFSET + 0x28)) {
+  this->needsRedraw = false;
+  this->oldSelected = this->selected;
+  this->wasFocus = focus;
+  if (lVar2 == *(long *)(in_FS_OFFSET + 0x28)) {
     return;
   }
                     /* WARNING: Subroutine does not return */
@@ -1383,450 +1242,165 @@ LAB_00127e70:
 
 /* Panel_insert @ 0x129b20 */
 
-void Panel_insert(long param_1,int param_2,undefined8 param_3)
+/* DWARF original prototype: void Panel_insert(Panel * this, int i, Object * o) */
+
+void Panel_insert(Panel *this,int i,Object *o)
 
 {
-  Vector_insert(*(undefined8 **)(param_1 + 0x20),param_2,param_3);
-  *(undefined1 *)(param_1 + 0x48) = 1;
-  return;
-}
-
-
-/* FUN_00129b50 @ 0x129b50 */
-
-undefined8
-FUN_00129b50(long param_1,int param_2,long param_rdx,long param_rcx,long param_r8,long param_r9)
-
-{
-  long *plVar1;
-  undefined8 *puVar2;
-  uint uVar3;
-  code *a3;
-  byte bVar4;
-  int iVar5;
-  long lVar6;
-  long *plVar7;
-  undefined8 *puVar8;
-  int iVar9;
-  ulong uVar10;
-  uint *puVar11;
-  long extraout_RDX;
-  long extraout_RDX_00;
-  long extraout_RDX_01;
-  long extraout_RDX_02;
-  int iVar12;
-  undefined8 uVar13;
-
-  iVar12 = *(int *)(param_1 + 0x28);
-  if (0x111 < param_2) {
-    puVar11 = (uint *)param_rdx;
-    if (param_2 == 0x14a) {
-switchD_00129b93_caseD_111:
-      iVar5 = (int)(*(long **)(param_1 + 0x26e8))[3];
-      if (iVar5 == 0) {
-        return 2;
-      }
-      if (iVar12 < iVar5) {
-        Vector_remove(*(long **)(param_1 + 0x26e8),iVar12,(long)puVar11,param_rcx,param_r8,param_r9)
-        ;
-        Panel_remove(param_1,iVar12,extraout_RDX_02,param_rcx,param_r8,param_r9);
-      }
-      *(undefined1 *)(param_1 + 0x2708) = 0;
-      if ((0 < (int)(*(long **)(param_1 + 0x20))[3]) &&
-         (lVar6 = *(long *)(**(long **)(param_1 + 0x20) + (long)*(int *)(param_1 + 0x28) * 8),
-         lVar6 != 0)) {
-        *(undefined1 *)(lVar6 + 0x14) = 0;
-      }
-    }
-    else {
-      if (param_2 != 0x157) {
-        return 2;
-      }
-switchD_00129bf3_caseD_a:
-      if (*(int *)(*(long *)(param_1 + 0x26e8) + 0x18) == 0) {
-        return 2;
-      }
-      lVar6 = (*(long **)(param_1 + 0x20))[3];
-      bVar4 = *(byte *)(param_1 + 0x2708) ^ 1;
-      *(byte *)(param_1 + 0x2708) = bVar4;
-      if ((0 < (int)lVar6) &&
-         (lVar6 = *(long *)(**(long **)(param_1 + 0x20) + (long)iVar12 * 8), lVar6 != 0)) {
-        *(byte *)(lVar6 + 0x14) = bVar4;
-      }
-      lVar6 = LONG_0015c0c0;
-      if (bVar4 != 0) {
-        *(undefined4 *)(param_1 + 0x26d8) = 10;
-        *(long *)(param_1 + 0x50) = lVar6;
-        goto LAB_00129c3c;
-      }
-    }
-    *(undefined4 *)(param_1 + 0x26d8) = 9;
-    *(undefined8 *)(param_1 + 0x50) = *(undefined8 *)(param_1 + 0x58);
-    goto LAB_00129c3c;
-  }
-  if (param_2 < 0x102) {
-    if (param_2 < 0x2e) {
-      if (param_2 < 10) {
-LAB_00129bc6:
-        return 2;
-      }
-      switch(param_2) {
-      case 10:
-      case 0xd:
-        goto switchD_00129bf3_caseD_a;
-      default:
-        goto LAB_00129bc6;
-      case 0x20:
-        goto switchD_00129b93_caseD_10c;
-      case 0x2b:
-        goto switchD_00129b93_caseD_110;
-      case 0x2d:
-        goto switchD_00129b93_caseD_10f;
-      }
-    }
-    if (param_2 != 0x5d) {
-      if (param_2 == 0x74) goto switchD_00129b93_caseD_10c;
-      if (param_2 != 0x5b) {
-        return 2;
-      }
-      goto switchD_00129b93_caseD_10f;
-    }
-    goto switchD_00129b93_caseD_110;
-  }
-  puVar11 = &switchdataD_0014d768;
-  switch(param_2) {
-  case 0x102:
-    if (*(char *)(param_1 + 0x2708) == '\0') {
-      return 2;
-    }
-  case 0x110:
-switchD_00129b93_caseD_110:
-    if (iVar12 != (int)(*(long **)(param_1 + 0x26e8))[3] + -1) {
-      puVar8 = (undefined8 *)(**(long **)(param_1 + 0x26e8) + (long)iVar12 * 8);
-      uVar13 = *puVar8;
-      *puVar8 = puVar8[1];
-      puVar8[1] = uVar13;
-    }
-    Panel_moveSelectedDown(param_1);
-    break;
-  case 0x103:
-    if (*(char *)(param_1 + 0x2708) == '\0') {
-      return 2;
-    }
-  case 0x10f:
-switchD_00129b93_caseD_10f:
-    if (iVar12 != 0) {
-      lVar6 = (long)iVar12 * 8;
-      puVar8 = (undefined8 *)(**(long **)(param_1 + 0x26e8) + -8 + lVar6);
-      uVar13 = *puVar8;
-      puVar2 = (undefined8 *)(**(long **)(param_1 + 0x26e8) + -8 + lVar6);
-      *puVar2 = puVar8[1];
-      puVar2[1] = uVar13;
-      puVar8 = (undefined8 *)(**(long **)(param_1 + 0x20) + -8 + lVar6);
-      uVar13 = *puVar8;
-      puVar2 = (undefined8 *)(**(long **)(param_1 + 0x20) + -8 + lVar6);
-      *puVar2 = puVar8[1];
-      puVar2[1] = uVar13;
-      if (0 < iVar12) {
-        *(int *)(param_1 + 0x28) = iVar12 + -1;
-      }
-    }
-    break;
-  case 0x104:
-    if (*(char *)(param_1 + 0x2708) == '\0') {
-      return 2;
-    }
-    plVar1 = *(long **)(param_1 + 0x26f8);
-    goto joined_r0x00129d6d;
-  case 0x105:
-    if (*(char *)(param_1 + 0x2708) == '\0') {
-      return 2;
-    }
-    plVar1 = *(long **)(param_1 + 0x2700);
-joined_r0x00129d6d:
-    if ((plVar1 != (long *)0x0) && (plVar7 = *(long **)(param_1 + 0x26e8), iVar12 < (int)plVar7[3]))
-    {
-      *(undefined1 *)(param_1 + 0x2708) = 0;
-      uVar3 = *(uint *)(*(long **)(param_1 + 0x20) + 3);
-      uVar10 = (ulong)uVar3;
-      if ((0 < (int)uVar3) &&
-         (lVar6 = *(long *)(**(long **)(param_1 + 0x20) + (long)iVar12 * 8), lVar6 != 0)) {
-        *(undefined1 *)(lVar6 + 0x14) = 0;
-      }
-      *(undefined4 *)(param_1 + 0x26d8) = 9;
-      *(undefined8 *)(param_1 + 0x50) = *(undefined8 *)(param_1 + 0x58);
-      plVar7 = (long *)Vector_take(plVar7,iVar12);
-      Panel_remove(param_1,iVar12,extraout_RDX,uVar10,param_r8,param_r9);
-      Vector_insert((undefined8 *)plVar1[0x4dd],iVar12,plVar7);
-      puVar8 = Meter_toListItem(plVar7,0,extraout_RDX_00,uVar10,param_r8,param_r9);
-      Vector_insert((undefined8 *)plVar1[4],iVar12,puVar8);
-      plVar7 = (long *)plVar1[4];
-      *(undefined1 *)(plVar1 + 9) = 1;
-      iVar5 = (int)plVar7[3];
-      if (iVar5 <= iVar12) {
-        iVar12 = iVar5 + -1;
-      }
-      iVar9 = 0;
-      if (-1 < iVar12) {
-        iVar9 = iVar12;
-      }
-      *(int *)(plVar1 + 5) = iVar9;
-      a3 = *(code **)(*plVar1 + 0x20);
-      if (a3 != (code *)0x0) {
-        (*a3)((long)plVar1,0xffffffff,(long)plVar7,(long)a3,param_r8,param_r9);
-        plVar7 = (long *)plVar1[4];
-        iVar5 = (int)plVar7[3];
-      }
-      *(undefined1 *)(plVar1 + 0x4e1) = 1;
-      if ((0 < iVar5) && (lVar6 = *(long *)(*plVar7 + (long)(int)plVar1[5] * 8), lVar6 != 0)) {
-        *(undefined1 *)(lVar6 + 0x14) = 1;
-      }
-      lVar6 = LONG_0015c0c0;
-      *(undefined4 *)(plVar1 + 0x4db) = 10;
-      plVar1[10] = lVar6;
-      uVar13 = 2;
-      goto LAB_00129c42;
-    }
-    break;
-  default:
-    goto LAB_00129bc6;
-  case 0x10c:
-switchD_00129b93_caseD_10c:
-    if ((int)(*(long **)(param_1 + 0x26e8))[3] == 0) {
-      return 2;
-    }
-    plVar1 = *(long **)(**(long **)(param_1 + 0x26e8) + (long)iVar12 * 8);
-    iVar5 = (int)plVar1[4] + 1;
-    if ((int)plVar1[4] == 4) {
-      iVar5 = 1;
-    }
-    Meter_setMode(plVar1,iVar5,(long)iVar12,param_rcx,param_r8,param_r9);
-    puVar8 = Meter_toListItem(plVar1,*(undefined1 *)(param_1 + 0x2708),extraout_RDX_01,param_rcx,
-                              param_r8,param_r9);
-    Vector_set(*(long **)(param_1 + 0x20),iVar12,(long)puVar8,param_rcx,param_r8,param_r9);
-    break;
-  case 0x111:
-    goto switchD_00129b93_caseD_111;
-  }
-LAB_00129c3c:
-  uVar13 = 1;
-LAB_00129c42:
-  plVar7 = *(long **)(*(long *)(param_1 + 0x26f0) + 0x28);
-  lVar6 = *(long *)(param_1 + 0x26e0);
-  plVar1 = (long *)(lVar6 + 0x78);
-  *plVar1 = *plVar1 + 1;
-  *(undefined1 *)(lVar6 + 0x74) = 1;
-  Header_calculateHeight(plVar7);
-  ScreenManager_resize(*(int **)(param_1 + 0x26f0));
-  return uVar13;
-}
-
-
-/* FUN_00129fb0 @ 0x129fb0 */
-
-void FUN_00129fb0(long param_1)
-
-{
-  undefined1 __frame[0xe8] __attribute__((aligned(16)));
-  undefined1 *__fp = __frame + 0xa8;
-  char *buf;
-  long lVar1;
-  double *pdVar2;
-  int iVar3;
-  undefined8 uVar4;
-  ulong uVar5;
-  long in_FS_OFFSET = (long)__fake_fs;
-  bool bVar6;
-  double dVar7;
-  double dVar8;
-
-  lVar1 = *(long *)(param_1 + 0x10);
-  (*(long *)(__fp - 0x30)) = *(long *)(in_FS_OFFSET + 0x28);
-  uVar5 = *(long *)(lVar1 + 0x18) - LONG_0015d650;
-  if (uVar5 < 0x1f5) {
-LAB_00129ff5:
-    dVar8 = DOUBLE_0015d618;
-    iVar3 = INT_0015c060;
-    pdVar2 = *(double **)(param_1 + 0x160);
-    dVar7 = DOUBLE_0015d640 + DOUBLE_0015d618;
-    *pdVar2 = DOUBLE_0015d640;
-    pdVar2[1] = dVar8;
-    if (*(double *)(param_1 + 0x168) <= dVar7 && dVar7 != *(double *)(param_1 + 0x168)) {
-      *(double *)(param_1 + 0x168) = dVar7;
-    }
-    if (iVar3 != 2) {
-      buf = (char *)(param_1 + 0x60);
-      if (iVar3 == 1) {
-        xSnprintf(buf,0x100,((char *)(long)(__sec_rodata + 0x29bf) /* "init" */));
-      }
-      else if (iVar3 == 3) {
-        xSnprintf(buf,0x100,((char *)(long)&s_stale_001476d3 /* "stale" */));
-      }
-      else {
-        xSnprintf(buf,0x100,((char *)(long)&s_rx__siB_s_tx__siB_s__u__upkts_s_0014c4f8 /* "rx:%siB/s tx:%siB/s %u/%upkts/s" */),&DAT_0015d638,&DAT_0015d610,
-                  INT_0015d628,INT_0015d604);
-      }
-      goto LAB_0012a079;
-    }
-  }
-  else {
-    uVar4 = Platform_getNetworkIO((undefined1 (*) [16])&(*(ulong *)(__fp - 0x58)));
-    dVar8 = DOUBLE_0015d618;
-    if ((char)uVar4 != '\0') {
-      bVar6 = LONG_0015d650 == 0;
-      LONG_0015d650 = *(long *)(lVar1 + 0x18);
-      if (bVar6) {
-        INT_0015c060 = 1;
-      }
-      else {
-        INT_0015c060 = ~-(uint)(uVar5 < 0x7531) & 3;
-        if (ULONG_0015d648 < (*(ulong *)(__fp - 0x58))) {
-          DOUBLE_0015d640 = (double)(long)((((*(ulong *)(__fp - 0x58)) - ULONG_0015d648) * 1000) / uVar5);
-          dVar8 = DOUBLE_0015d640 * 0.0009765625;
-        }
-        else {
-          dVar8 = 0.0;
-          DOUBLE_0015d640 = 0.0;
-        }
-        Meter_humanUnit(dVar8,&DAT_0015d638,6);
-        INT_0015d628 = 0;
-        if (ULONG_0015d630 < (*(ulong *)(__fp - 0x50))) {
-          INT_0015d628 = (int)((((*(ulong *)(__fp - 0x50)) - ULONG_0015d630) * 1000) / uVar5);
-        }
-        if (ULONG_0015d620 < (*(ulong *)(__fp - 0x48))) {
-          DOUBLE_0015d618 = (double)(long)((((*(ulong *)(__fp - 0x48)) - ULONG_0015d620) * 1000) / uVar5);
-          dVar8 = DOUBLE_0015d618 * 0.0009765625;
-        }
-        else {
-          dVar8 = 0.0;
-          DOUBLE_0015d618 = 0.0;
-        }
-        Meter_humanUnit(dVar8,&DAT_0015d610,6);
-        if (ULONG_0015d608 < (*(ulong *)(__fp - 0x40))) {
-          INT_0015d604 = (int)((((*(ulong *)(__fp - 0x40)) - ULONG_0015d608) * 1000) / uVar5);
-        }
-        else {
-          INT_0015d604 = 0;
-        }
-      }
-      ULONG_0015d648 = (*(ulong *)(__fp - 0x58));
-      ULONG_0015d630 = (*(ulong *)(__fp - 0x50));
-      ULONG_0015d620 = (*(ulong *)(__fp - 0x48));
-      ULONG_0015d608 = (*(ulong *)(__fp - 0x40));
-      goto LAB_00129ff5;
-    }
-    LONG_0015d650 = *(long *)(lVar1 + 0x18);
-    INT_0015c060 = 2;
-    pdVar2 = *(double **)(param_1 + 0x160);
-    dVar7 = DOUBLE_0015d618 + DOUBLE_0015d640;
-    *pdVar2 = DOUBLE_0015d640;
-    pdVar2[1] = dVar8;
-    if (*(double *)(param_1 + 0x168) <= dVar7 && dVar7 != *(double *)(param_1 + 0x168)) {
-      *(double *)(param_1 + 0x168) = dVar7;
-    }
-  }
-  xSnprintf((char *)(param_1 + 0x60),0x100,((char *)(long)&s_no_data_001476cb /* "no data" */));
-LAB_0012a079:
-  if ((*(long *)(__fp - 0x30)) != *(long *)(in_FS_OFFSET + 0x28)) {
-                    /* WARNING: Subroutine does not return */
-    __stack_chk_fail();
-  }
+  Vector_insert(this->items,i,o);
+  this->needsRedraw = true;
   return;
 }
 
 
 /* Panel_add @ 0x12a340 */
 
-void Panel_add(long param_1,long param_2,long param_rdx,long param_rcx,long param_r8,long param_r9)
+/* DWARF original prototype: void Panel_add(Panel * this, Object * o) */
+
+void Panel_add(Panel *this,Object *o)
 
 {
-  int iVar1;
-  long *plVar2;
-  long *a0;
-  void *pvVar3;
+  int wVar1;
+  Vector *pVVar2;
+  Object *pOVar3;
+  Object **ppOVar4;
   long a3;
-  int iVar4;
-  ulong a1;
-  long *plVar5;
-  uint uVar6;
-  long lVar7;
+  int wVar5;
+  size_t prevmemb;
+  int wVar6;
+  long in_R9;
 
-  plVar2 = *(long **)(param_1 + 0x20);
-  iVar1 = (int)plVar2[3];
-  a1 = (ulong)(int)plVar2[2];
-  pvVar3 = (void *)*plVar2;
-  uVar6 = iVar1 + 1;
-  lVar7 = (long)iVar1 * 8;
-  if ((int)plVar2[2] < (int)uVar6) {
-    iVar4 = uVar6 + *(int *)((long)plVar2 + 0x14);
+  pVVar2 = this->items;
+                    /* Unresolved local var: Object * data@[???]
+                       Unresolved local var: int i@[???] */
+  wVar1 = pVVar2->items;
+                    /* Unresolved local var: Object * data@[???] */
+  prevmemb = (size_t)pVVar2->arraySize;
+                    /* Unresolved local var: int oldSize@[???] */
+  ppOVar4 = pVVar2->array;
+  wVar6 = wVar1 + 1;
+                    /* Unresolved local var: Object * removed@[???] */
+  if (pVVar2->arraySize < wVar6) {
+    wVar5 = wVar6 + pVVar2->growthRate;
     a3 = 8;
-    *(int *)(plVar2 + 2) = iVar4;
-    pvVar3 = xReallocArrayZero(pvVar3,a1,(long)iVar4,8);
-    *plVar2 = (long)pvVar3;
-    if (iVar1 < (int)plVar2[3]) {
-      plVar5 = (long *)((long)pvVar3 + lVar7);
-      if ((*(char *)((long)plVar2 + 0x24) != '\0') && (a0 = (long *)*plVar5, a0 != (long *)0x0)) {
-        (**(code **)(*a0 + 0x10))((long)a0,a1,*a0,a3,(ulong)uVar6,param_r9);
-        plVar5 = (long *)(*plVar2 + lVar7);
+    pVVar2->arraySize = wVar5;
+    ppOVar4 = xReallocArrayZero(ppOVar4,prevmemb,(long)wVar5,8);
+    pVVar2->array = ppOVar4;
+    if (wVar1 < pVVar2->items) {
+      ppOVar4 = ppOVar4 + wVar1;
+      if ((pVVar2->owner != false) && (pOVar3 = *ppOVar4, pOVar3 != (Object *)0x0)) {
+        (*(code *)(pOVar3->klass->delete))(pOVar3,prevmemb,(long)pOVar3->klass,a3,(ulong)(uint)wVar6,in_R9);
+        ppOVar4 = pVVar2->array + wVar1;
       }
       goto LAB_0012a381;
     }
   }
-  *(uint *)(plVar2 + 3) = uVar6;
-  plVar5 = (long *)((long)pvVar3 + lVar7);
+  pVVar2->items = wVar6;
+  ppOVar4 = ppOVar4 + wVar1;
 LAB_0012a381:
-  *plVar5 = param_2;
-  *(undefined1 *)(param_1 + 0x48) = 1;
+  *ppOVar4 = o;
+  this->needsRedraw = true;
   return;
 }
 
 
 /* Panel_set @ 0x12c310 */
 
-void Panel_set(long param_1,int param_2,long param_3,long param_rcx,long param_r8,long param_r9)
+/* DWARF original prototype: void Panel_set(Panel * this, int i, Object * o) */
+
+void Panel_set(Panel *this,int i,Object *o)
 
 {
-  long *plVar1;
-  long *a0;
-  void *pvVar2;
-  int iVar3;
-  ulong a1;
-  long *plVar4;
-  int iVar5;
+  Vector *pVVar1;
+  Object *pOVar2;
+  Object **ppOVar3;
+  long in_RCX;
+  int wVar4;
+  size_t prevmemb;
+  long in_R8;
+  long in_R9;
+  int wVar5;
 
-  iVar5 = param_2 + 1;
-  plVar1 = *(long **)(param_1 + 0x20);
-  a1 = (ulong)(int)plVar1[2];
-  pvVar2 = (void *)*plVar1;
-  if ((int)plVar1[2] < iVar5) {
-    param_rcx = 8;
-    iVar3 = *(int *)((long)plVar1 + 0x14) + iVar5;
-    *(int *)(plVar1 + 2) = iVar3;
-    pvVar2 = xReallocArrayZero(pvVar2,a1,(long)iVar3,8);
-    *plVar1 = (long)pvVar2;
+                    /* Unresolved local var: Object * data@[???] */
+  wVar5 = i + 1;
+  pVVar1 = this->items;
+  prevmemb = (size_t)pVVar1->arraySize;
+                    /* Unresolved local var: int oldSize@[???] */
+  ppOVar3 = pVVar1->array;
+  if (pVVar1->arraySize < wVar5) {
+    in_RCX = 8;
+    wVar4 = pVVar1->growthRate + wVar5;
+    pVVar1->arraySize = wVar4;
+    ppOVar3 = xReallocArrayZero(ppOVar3,prevmemb,(long)wVar4,8);
+    pVVar1->array = ppOVar3;
   }
-  plVar4 = (long *)((long)pvVar2 + (long)param_2 * 8);
-  if (param_2 < (int)plVar1[3]) {
-    if ((*(char *)((long)plVar1 + 0x24) != '\0') && (a0 = (long *)*plVar4, a0 != (long *)0x0)) {
-      (**(code **)(*a0 + 0x10))((long)a0,a1,*a0,param_rcx,param_r8,param_r9);
-      plVar4 = (long *)(*plVar1 + (long)param_2 * 8);
+                    /* Unresolved local var: Object * removed@[???] */
+  ppOVar3 = ppOVar3 + i;
+  if (i < pVVar1->items) {
+    if ((pVVar1->owner != false) && (pOVar2 = *ppOVar3, pOVar2 != (Object *)0x0)) {
+      (*(code *)(pOVar2->klass->delete))(pOVar2,prevmemb,(long)pOVar2->klass,in_RCX,in_R8,in_R9);
+      ppOVar3 = pVVar1->array + i;
     }
   }
   else {
-    *(int *)(plVar1 + 3) = iVar5;
+    pVVar1->items = wVar5;
   }
-  *plVar4 = param_3;
+  *ppOVar3 = o;
   return;
 }
 
 
 /* Panel_splice @ 0x12c3b0 */
 
-void Panel_splice(long param_1,long *param_2)
+/* DWARF original prototype: void Panel_splice(Panel * this, Vector * from) */
+
+void Panel_splice(Panel *this,Vector *from)
 
 {
-  Vector_splice(*(long **)(param_1 + 0x20),param_2);
-  *(undefined1 *)(param_1 + 0x48) = 1;
+  Vector_splice(this->items,from);
+  this->needsRedraw = true;
+  return;
+}
+
+
+/* startRenaming @ 0x12d550 */
+
+void startRenaming(ScreensPanel_ *super)
+
+{
+  char *__dest;
+  int wVar1;
+  Vector *pVVar2;
+  ListItem *pLVar3;
+  char *__src;
+  size_t sVar4;
+
+                    /* Unresolved local var: ScreensPanel * this@[DW_OP_reg5(RDI)]
+                       Unresolved local var: ListItem * item@[???]
+                       Unresolved local var: char * name@[???] */
+  pVVar2 = (super->super).items;
+  if (0 < pVVar2->items) {
+    wVar1 = (super->super).selected;
+    pLVar3 = (ListItem *)pVVar2->array[wVar1];
+    if (pLVar3 != (ListItem *)0x0) {
+      __src = pLVar3->value;
+      (super->super).cursorOn = true;
+      __dest = super->buffer;
+      super->renamingItem = pLVar3;
+      super->saved = __src;
+      strncpy(__dest,__src,0x14);
+      super->buffer[0x14] = '\0';
+      sVar4 = strlen(__dest);
+      super->cursor = (int)sVar4;
+      pLVar3->value = __dest;
+      (super->super).selectionColorId = PANEL_EDIT;
+      sVar4 = strlen(__dest);
+      (super->super).selectedLen = (int)sVar4;
+      (super->super).cursorY = ((wVar1 + (super->super).y) - (super->super).scrollV) + 1;
+      (super->super).cursorX = ((int)sVar4 + (super->super).x) - (super->super).scrollH;
+    }
+    return;
+  }
   return;
 }
 

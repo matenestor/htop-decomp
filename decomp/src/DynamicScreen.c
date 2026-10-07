@@ -1,53 +1,67 @@
 #include "htop.h"
 
-/* DynamicScreen_done @ 0x116e70 */
+/* DynamicScreens_new @ 0x116e60 */
 
-void DynamicScreen_done(long param_1)
+undefined8 DynamicScreens_new(void)
 
 {
-  free(*(void **)(param_1 + 0x28));
-  free(*(void **)(param_1 + 0x30));
-  free(*(void **)(param_1 + 0x20));
-  free(*(void **)(param_1 + 0x38));
-  free(*(void **)(param_1 + 0x40));
+  return 0;
+}
+
+
+/* DynamicScreen_done @ 0x116e70 */
+
+/* DWARF original prototype: void DynamicScreen_done(DynamicScreen * this) */
+
+void DynamicScreen_done(DynamicScreen *this)
+
+{
+  free(this->caption);
+  free(this->fields);
+  free(this->heading);
+  free(this->sortKey);
+  free(this->columnKeys);
   return;
 }
 
 
 /* DynamicScreen_search @ 0x116ec0 */
 
-undefined1 DynamicScreen_search(long *param_1,char *param_2,undefined4 *param_3)
+_Bool DynamicScreen_search(Hashtable_2 *screens,char *name,ht_key_t *key)
 
 {
   undefined1 __frame[0xc8] __attribute__((aligned(16)));
   undefined1 *__fp = __frame + 0x88;
-  undefined4 *puVar1;
+  HashtableItem *pHVar1;
   int iVar2;
-  undefined4 *puVar3;
-  undefined4 uVar4;
+  HashtableItem *pHVar3;
+  ht_key_t hVar4;
 
-  if ((param_1 == (long *)0x0) || (*param_1 == 0)) {
-    (*(undefined1 *)(__fp - 0x39)) = 0;
-    uVar4 = 0;
+                    /* Unresolved local var: size_t i@[???] */
+  if ((screens == (Hashtable_2 *)0x0) || (screens->size == 0)) {
+    (*(_Bool (*))(__fp - 0x39)) = false;
+    hVar4 = 0;
   }
   else {
-    puVar3 = (undefined4 *)param_1[1];
-    (*(undefined1 *)(__fp - 0x39)) = 0;
-    uVar4 = 0;
-    puVar1 = puVar3 + *param_1 * 6;
+    pHVar3 = screens->buckets;
+    (*(_Bool (*))(__fp - 0x39)) = false;
+    hVar4 = 0;
+    pHVar1 = pHVar3 + screens->size;
     do {
-      if ((*(char **)(puVar3 + 4) != (char *)0x0) &&
-         (iVar2 = strcmp(param_2,*(char **)(puVar3 + 4)), iVar2 == 0)) {
-        (*(undefined1 *)(__fp - 0x39)) = 1;
-        uVar4 = *puVar3;
+                    /* Unresolved local var: HashtableItem * walk@[???] */
+                    /* Unresolved local var: DynamicMeter * meter@[???]
+                       Unresolved local var: DynamicIterator_conflict1 * iter@[???] */
+      if ((pHVar3->value != (char *)0x0) && (iVar2 = strcmp(name,pHVar3->value), iVar2 == 0)) {
+        (*(_Bool (*))(__fp - 0x39)) = true;
+        hVar4 = pHVar3->key;
       }
-      puVar3 = puVar3 + 6;
-    } while (puVar3 != puVar1);
+      pHVar3 = pHVar3 + 1;
+    } while (pHVar3 != pHVar1);
   }
-  if (param_3 != (undefined4 *)0x0) {
-    *param_3 = uVar4;
+  if (key != (ht_key_t *)0x0) {
+    *key = hVar4;
   }
-  return (*(undefined1 *)(__fp - 0x39));
+  return (*(_Bool (*))(__fp - 0x39));
 }
 
 
@@ -92,5 +106,20 @@ long DynamicScreen_lookup(ulong *param_1,uint param_2)
     } while (lVar5 != 0);
   }
   return 0;
+}
+
+
+/* DynamicScreens_delete @ 0x117520 */
+
+void DynamicScreens_delete(Hashtable *param_1)
+
+{
+  if (param_1 != (Hashtable *)0x0) {
+    Hashtable_clear(param_1);
+    free(param_1->buckets);
+    free(param_1);
+    return;
+  }
+  return;
 }
 

@@ -2,26 +2,31 @@
 
 /* UsersTable_foreach @ 0x12e2e0 */
 
-void UsersTable_foreach(long *param_1,undefined *param_2,long param_3,long param_rcx,long param_r8,
-                       long param_r9)
+/* DWARF original prototype: void UsersTable_foreach(UsersTable * this, Hashtable_PairFunction f,
+   void * userData) */
+
+void UsersTable_foreach(UsersTable *this,Hashtable_PairFunction f,void *userData)
 
 {
-  uint *puVar1;
-  ulong *puVar2;
-  long a1;
+  Hashtable_2 *pHVar1;
+  void *pvVar2;
+  long in_RCX;
   ulong uVar3;
+  long in_R8;
+  long in_R9;
 
-  puVar2 = (ulong *)*param_1;
-  if (*puVar2 != 0) {
+  pHVar1 = this->users;
+                    /* Unresolved local var: size_t i@[???] */
+  if (pHVar1->size != 0) {
     uVar3 = 0;
     do {
-      puVar1 = (uint *)(puVar2[1] + uVar3 * 0x18);
-      a1 = *(long *)(puVar1 + 4);
-      if (a1 != 0) {
-        (*(code *)param_2)((ulong)*puVar1,a1,param_3,param_rcx,param_r8,param_r9);
+                    /* Unresolved local var: HashtableItem * walk@[???] */
+      pvVar2 = pHVar1->buckets[uVar3].value;
+      if (pvVar2 != (void *)0x0) {
+        (*(code *)(f))(pHVar1->buckets[uVar3].key,pvVar2,userData,in_RCX,in_R8,in_R9);
       }
       uVar3 = uVar3 + 1;
-    } while (uVar3 < *puVar2);
+    } while (uVar3 < pHVar1->size);
   }
   return;
 }
@@ -29,33 +34,38 @@ void UsersTable_foreach(long *param_1,undefined *param_2,long param_3,long param
 
 /* UsersTable_delete @ 0x12f9d0 */
 
-void UsersTable_delete(undefined8 *param_1)
+/* DWARF original prototype: void UsersTable_delete(UsersTable * this) */
+
+void UsersTable_delete(UsersTable *this)
 
 {
-  ulong *__ptr;
+  Hashtable *this_00;
 
-  __ptr = (ulong *)*param_1;
-  Hashtable_clear(__ptr);
-  free((void *)__ptr[1]);
-  free(__ptr);
-  free(param_1);
+  this_00 = this->users;
+  Hashtable_clear(this_00);
+  free(this_00->buckets);
+  free(this_00);
+  free(this);
   return;
 }
 
 
 /* UsersTable_new @ 0x132c60 */
 
-undefined8 * UsersTable_new(void)
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
+UsersTable * UsersTable_new(void)
 
 {
-  undefined8 *puVar1;
-  ulong *puVar2;
+  UsersTable *pUVar1;
+  Hashtable *pHVar2;
 
-  puVar1 = malloc(8);
-  if (puVar1 != (undefined8 *)0x0) {
-    puVar2 = Hashtable_new(10,1);
-    *puVar1 = puVar2;
-    return puVar1;
+                    /* Unresolved local var: void * data@[???] */
+  pUVar1 = malloc(8);
+  if (pUVar1 != (UsersTable *)0x0) {
+    pHVar2 = Hashtable_new(10,true);
+    pUVar1->users = pHVar2;
+    return pUVar1;
   }
                     /* WARNING: Subroutine does not return */
   fail();
@@ -64,53 +74,61 @@ undefined8 * UsersTable_new(void)
 
 /* UsersTable_getRef @ 0x132ca0 */
 
-char * UsersTable_getRef(long *param_1,uint param_2)
+/* DWARF original prototype: char * UsersTable_getRef(UsersTable * this, uint uid) */
+
+char * UsersTable_getRef(UsersTable *this,uint uid)
 
 {
   ulong uVar1;
-  uint *puVar2;
+  HashtableItem *pHVar2;
   passwd *ppVar3;
   char *pcVar4;
-  uint *puVar5;
+  HashtableItem *pHVar5;
   ulong uVar6;
   ulong uVar7;
 
-  uVar1 = *(ulong *)*param_1;
-  puVar2 = (uint *)((ulong *)*param_1)[1];
-  uVar6 = (ulong)param_2 % uVar1;
-  pcVar4 = *(char **)(puVar2 + uVar6 * 6 + 4);
+                    /* Unresolved local var: size_t index@[???]
+                       Unresolved local var: size_t probe@[???]
+                       Unresolved local var: void * res@[???] */
+  uVar1 = this->users->size;
+  pHVar2 = this->users->buckets;
+  uVar6 = (ulong)uid % uVar1;
+  pcVar4 = pHVar2[uVar6].value;
   if (pcVar4 != (char *)0x0) {
     uVar7 = 0;
-    puVar5 = puVar2 + uVar6 * 6;
+    pHVar5 = pHVar2 + uVar6;
     do {
       while( true ) {
-        if (param_2 == *puVar5) {
+        if (uid == pHVar5->key) {
           return pcVar4;
         }
-        if (*(ulong *)(puVar5 + 2) < uVar7) goto LAB_00132d20;
+        if (pHVar5->probe < uVar7) goto LAB_00132d20;
         uVar6 = uVar6 + 1;
         if (uVar1 != uVar6) break;
         uVar6 = 0;
         uVar7 = uVar7 + 1;
-        pcVar4 = *(char **)(puVar2 + 4);
-        puVar5 = puVar2;
+        pcVar4 = pHVar2->value;
+        pHVar5 = pHVar2;
         if (pcVar4 == (char *)0x0) goto LAB_00132d20;
       }
       uVar7 = uVar7 + 1;
-      puVar5 = puVar2 + uVar6 * 6;
-      pcVar4 = *(char **)(puVar5 + 4);
+      pHVar5 = pHVar2 + uVar6;
+      pcVar4 = pHVar5->value;
     } while (pcVar4 != (char *)0x0);
   }
 LAB_00132d20:
-  ppVar3 = getpwuid(param_2);
+                    /* Unresolved local var: char * name@[???]
+                       Unresolved local var: passwd * userData@[???] */
+  ppVar3 = getpwuid(uid);
   pcVar4 = (char *)0x0;
   if (ppVar3 != (passwd *)0x0) {
+                    /* Unresolved local var: char * data@[???] */
     pcVar4 = strdup(ppVar3->pw_name);
     if (pcVar4 == (char *)0x0) {
                     /* WARNING: Subroutine does not return */
       fail();
     }
-    Hashtable_put((ulong *)*param_1,param_2,pcVar4);
+    Hashtable_put(this->users,uid,pcVar4);
   }
   return pcVar4;
 }

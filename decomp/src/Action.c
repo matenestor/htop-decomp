@@ -1,930 +1,946 @@
 #include "htop.h"
 
-/* Action_follow @ 0x113f20 */
+/* tagAllChildren @ 0x1139b0 */
 
-undefined8 Action_follow(long *param_1)
-
-{
-  long lVar1;
-  long lVar2;
-  undefined4 uVar3;
-
-  lVar1 = param_1[1];
-  uVar3 = 0xffffffff;
-  if ((0 < (int)(*(long **)(lVar1 + 0x20))[3]) &&
-     (lVar2 = *(long *)(**(long **)(lVar1 + 0x20) + (long)*(int *)(lVar1 + 0x28) * 8), lVar2 != 0))
-  {
-    uVar3 = *(undefined4 *)(lVar2 + 0x10);
-  }
-  *(undefined4 *)(*(long *)(*param_1 + 0xa8) + 0x34) = uVar3;
-  *(undefined4 *)(lVar1 + 0x26d8) = 10;
-  return 8;
-}
-
-
-/* FUN_00113f70 @ 0x113f70 */
-
-undefined8 FUN_00113f70(long param_1)
+void tagAllChildren(Panel *panel,Row *parent)
 
 {
-  byte *pbVar1;
-  int iVar2;
-  long lVar3;
-  long lVar4;
-  int iVar5;
+  Object **ppOVar1;
+  int wVar2;
+  Vector *pVVar3;
+  Row *parent_00;
+  int wVar4;
+  Object **ppOVar5;
 
-  lVar3 = *(long *)(param_1 + 8);
-  iVar2 = (int)(*(long **)(lVar3 + 0x20))[3];
-  if (0 < iVar2) {
-    iVar5 = *(int *)(lVar3 + 0x28);
-    lVar4 = *(long *)(**(long **)(lVar3 + 0x20) + (long)iVar5 * 8);
-    if (lVar4 != 0) {
-      pbVar1 = (byte *)(lVar4 + 0x1d);
-      *pbVar1 = *pbVar1 ^ 1;
-      iVar5 = iVar5 + 1;
-      if (iVar5 < 0) {
-        *(undefined4 *)(lVar3 + 0x28) = 0;
-        *(undefined1 *)(lVar3 + 0x48) = 1;
-        return 0;
-      }
-      if (iVar5 < iVar2) {
-        *(int *)(lVar3 + 0x28) = iVar5;
-        return 0;
-      }
-      *(undefined1 *)(lVar3 + 0x48) = 1;
-      *(int *)(lVar3 + 0x28) = iVar2 + -1;
-    }
-  }
-  return 0;
-}
-
-
-/* FUN_00113fd0 @ 0x113fd0 */
-
-undefined8 FUN_00113fd0(long param_1)
-
-{
-  *(byte *)(param_1 + 0x18) = *(byte *)(param_1 + 0x18) ^ 1;
-  return 0x21;
-}
-
-
-/* FUN_00113fe0 @ 0x113fe0 */
-
-undefined8 FUN_00113fe0(long param_1)
-
-{
-  long *plVar1;
-  int iVar2;
-  long lVar3;
-  long *plVar4;
-
-  plVar4 = *(long **)(*(long *)(param_1 + 8) + 0x20);
-  iVar2 = (int)plVar4[3];
-  if (0 < iVar2) {
-    plVar4 = (long *)*plVar4;
-    plVar1 = plVar4 + iVar2;
+                    /* Unresolved local var: int parent_id@[???]
+                       Unresolved local var: int i@[???] */
+  pVVar3 = panel->items;
+  parent->tag = true;
+  wVar4 = pVVar3->items;
+  if (0 < wVar4) {
+    ppOVar5 = pVVar3->array;
+    wVar2 = parent->id;
+    ppOVar1 = ppOVar5 + wVar4;
     do {
-      lVar3 = *plVar4;
-      plVar4 = plVar4 + 1;
-      *(undefined1 *)(lVar3 + 0x1d) = 0;
-    } while (plVar4 != plVar1);
+                    /* Unresolved local var: Row * row@[???] */
+      parent_00 = (Row *)*ppOVar5;
+      if (parent_00->tag == false) {
+        wVar4 = parent_00->group;
+        if (wVar4 == parent_00->id) {
+          wVar4 = parent_00->parent;
+        }
+        if (wVar2 == wVar4) {
+          tagAllChildren(panel,parent_00);
+        }
+      }
+      ppOVar5 = ppOVar5 + 1;
+    } while (ppOVar1 != ppOVar5);
+    return;
   }
-  return 1;
-}
-
-
-/* FUN_00114020 @ 0x114020 */
-
-undefined8 FUN_00114020(long param_1)
-
-{
-  long lVar1;
-  long lVar2;
-
-  lVar1 = *(long *)(param_1 + 8);
-  if ((0 < (int)(*(long **)(lVar1 + 0x20))[3]) &&
-     (lVar2 = *(long *)(**(long **)(lVar1 + 0x20) + (long)*(int *)(lVar1 + 0x28) * 8), lVar2 != 0))
-  {
-    FUN_001139b0(lVar1,lVar2);
-    return 0;
-  }
-  return 0;
-}
-
-
-/* FUN_00114060 @ 0x114060 */
-
-void FUN_00114060(void)
-
-{
   return;
 }
 
 
-/* FUN_00114070 @ 0x114070 */
+/* actionSortByPID @ 0x113a20 */
 
-void FUN_00114070(long *param_1,long param_rsi,long param_rdx,long param_rcx,long param_r8,
-                 long param_r9)
+Htop_Reaction actionSortByPID(State_2 *st)
 
 {
-  long *plVar1;
-  byte bVar2;
-  uint uVar3;
-  long *a0;
-  ulong uVar4;
-  ulong a3;
-  ulong a2;
-  ulong extraout_RDX;
-  long *plVar5;
+  ScreenSettings_2 *pSVar1;
 
-  plVar5 = *(long **)((uint *)param_1[0x2e] + 2);
-  uVar3 = *(uint *)param_1[0x2e];
-  a3 = (ulong)(int)uVar3;
-  bVar2 = **(byte **)(*param_1 + 0x70);
-  a2 = (ulong)bVar2;
-  if (bVar2 == 0x4c) {
-    uVar4 = (ulong)(uVar3 + 1 >> 1);
+  pSVar1 = st->host->settings->ss;
+  if ((pSVar1->treeViewAlwaysByPID == false) && (pSVar1->treeView != false)) {
+    pSVar1->treeSortKey = 1;
+    pSVar1->treeDirection = 1;
+    return 0x4d;
+  }
+  pSVar1->sortKey = 1;
+  pSVar1->direction = 1;
+  pSVar1->treeView = false;
+  return 0x4d;
+}
+
+
+/* actionSortByMemory @ 0x113a70 */
+
+Htop_Reaction actionSortByMemory(State_2 *st)
+
+{
+  ScreenSettings_2 *pSVar1;
+
+  pSVar1 = st->host->settings->ss;
+  if ((pSVar1->treeViewAlwaysByPID == false) && (pSVar1->treeView != false)) {
+    pSVar1->treeSortKey = 0x30;
+    pSVar1->treeDirection = -1;
+    return 0x4d;
+  }
+  pSVar1->sortKey = 0x30;
+  pSVar1->direction = -1;
+  pSVar1->treeView = false;
+  return 0x4d;
+}
+
+
+/* actionSortByCPU @ 0x113ac0 */
+
+Htop_Reaction actionSortByCPU(State_2 *st)
+
+{
+  ScreenSettings_2 *pSVar1;
+
+  pSVar1 = st->host->settings->ss;
+  if ((pSVar1->treeViewAlwaysByPID == false) && (pSVar1->treeView != false)) {
+    pSVar1->treeSortKey = 0x2f;
+    pSVar1->treeDirection = -1;
+    return 0x4d;
+  }
+  pSVar1->sortKey = 0x2f;
+  pSVar1->direction = -1;
+  pSVar1->treeView = false;
+  return 0x4d;
+}
+
+
+/* actionSortByTime @ 0x113b10 */
+
+Htop_Reaction actionSortByTime(State_2 *st)
+
+{
+  ScreenSettings_2 *pSVar1;
+
+  pSVar1 = st->host->settings->ss;
+  if ((pSVar1->treeViewAlwaysByPID == false) && (pSVar1->treeView != false)) {
+    pSVar1->treeSortKey = 0x32;
+    pSVar1->treeDirection = -1;
+    return 0x4d;
+  }
+  pSVar1->sortKey = 0x32;
+  pSVar1->direction = -1;
+  pSVar1->treeView = false;
+  return 0x4d;
+}
+
+
+/* actionToggleRunningInContainer @ 0x113b60 */
+
+Htop_Reaction actionToggleRunningInContainer(State_2 *st)
+
+{
+  _Bool *p_Var1;
+  uint64_t *puVar2;
+  Settings__2 *pSVar3;
+
+  pSVar3 = st->host->settings;
+  p_Var1 = &pSVar3->hideRunningInContainer;
+  *p_Var1 = (_Bool)(*p_Var1 ^ 1);
+  puVar2 = &pSVar3->lastUpdate;
+  *puVar2 = *puVar2 + 1;
+  return HTOP_KEEP_FOLLOWING|HTOP_SAVE_SETTINGS|HTOP_RECALCULATE;
+}
+
+
+/* actionToggleProgramPath @ 0x113b80 */
+
+Htop_Reaction actionToggleProgramPath(State_2 *st)
+
+{
+  _Bool *p_Var1;
+  uint64_t *puVar2;
+  Settings__2 *pSVar3;
+
+  pSVar3 = st->host->settings;
+  p_Var1 = &pSVar3->showProgramPath;
+  *p_Var1 = (_Bool)(*p_Var1 ^ 1);
+  puVar2 = &pSVar3->lastUpdate;
+  *puVar2 = *puVar2 + 1;
+  return HTOP_KEEP_FOLLOWING|HTOP_SAVE_SETTINGS|HTOP_REFRESH;
+}
+
+
+/* actionToggleMergedCommand @ 0x113ba0 */
+
+Htop_Reaction actionToggleMergedCommand(State_2 *st)
+
+{
+  _Bool *p_Var1;
+  uint64_t *puVar2;
+  Settings__2 *pSVar3;
+
+  pSVar3 = st->host->settings;
+  p_Var1 = &pSVar3->showMergedCommand;
+  *p_Var1 = (_Bool)(*p_Var1 ^ 1);
+  puVar2 = &pSVar3->lastUpdate;
+  *puVar2 = *puVar2 + 1;
+  return 0x4d;
+}
+
+
+/* actionToggleTreeView @ 0x113bc0 */
+
+Htop_Reaction actionToggleTreeView(State_2 *st)
+
+{
+  _Bool *p_Var1;
+  Object **ppOVar2;
+  int wVar3;
+  Table *pTVar4;
+  ScreenSettings_2 *pSVar5;
+  Object *pOVar6;
+  Object **ppOVar7;
+
+  pTVar4 = st->host->activeTable;
+  pSVar5 = st->host->settings->ss;
+  p_Var1 = &pSVar5->treeView;
+  *p_Var1 = (_Bool)(*p_Var1 ^ 1);
+  if (pSVar5->allBranchesCollapsed == false) {
+                    /* Unresolved local var: int size@[???] */
+    wVar3 = pTVar4->rows->items;
+                    /* Unresolved local var: int i@[???] */
+    if (0 < wVar3) {
+      ppOVar7 = pTVar4->rows->array;
+      ppOVar2 = ppOVar7 + wVar3;
+      do {
+                    /* Unresolved local var: Row * row@[???] */
+        pOVar6 = *ppOVar7;
+        ppOVar7 = ppOVar7 + 1;
+        *(undefined1 *)&pOVar6[4].klass = 1;
+      } while (ppOVar7 != ppOVar2);
+      pTVar4->needsSort = true;
+      return 0x6d;
+    }
+  }
+  pTVar4->needsSort = true;
+  return 0x6d;
+}
+
+
+/* actionToggleHideMeters @ 0x113c30 */
+
+Htop_Reaction actionToggleHideMeters(State_2 *st)
+
+{
+  st->hideMeters = (_Bool)(st->hideMeters ^ 1);
+  return 0xe9;
+}
+
+
+/* actionInvertSortOrder @ 0x113c40 */
+
+Htop_Reaction actionInvertSortOrder(State_2 *st)
+
+{
+  Machine *pMVar1;
+  ScreenSettings_2 *pSVar2;
+  int wVar3;
+  int *pwVar4;
+
+  pMVar1 = st->host;
+  pSVar2 = pMVar1->settings->ss;
+                    /* Unresolved local var: int * attr@[???] */
+  if (pSVar2->treeView == false) {
+    pwVar4 = &pSVar2->direction;
+    wVar3 = pSVar2->direction;
   }
   else {
-    uVar4 = (ulong)(uVar3 >> 1);
-    if (bVar2 != 0x52) {
-      uVar4 = a3;
+    pwVar4 = &pSVar2->treeDirection;
+    wVar3 = pSVar2->treeDirection;
+  }
+  *pwVar4 = ((wVar3 != 1) - 1) + (uint)(wVar3 != 1);
+  pMVar1->activeTable->needsSort = true;
+  return 0x4d;
+}
+
+
+/* actionExpandOrCollapse @ 0x113c90 */
+
+Htop_Reaction actionExpandOrCollapse(State_2 *st)
+
+{
+  Vector *pVVar1;
+  Object *pOVar2;
+
+  if (st->host->settings->ss->treeView != false) {
+                    /* Unresolved local var: Row * row@[???] */
+    pVVar1 = (st->mainPanel->super).items;
+    if ((0 < pVVar1->items) &&
+       (pOVar2 = pVVar1->array[(st->mainPanel->super).selected], pOVar2 != (Object *)0x0)) {
+      pOVar2 = pOVar2 + 4;
+      *(byte *)&pOVar2->klass = *(byte *)&pOVar2->klass ^ 1;
+      return HTOP_RECALCULATE;
     }
   }
-  if (0 < (int)uVar4) {
-    plVar1 = plVar5 + uVar4;
-    do {
-      a0 = (long *)*plVar5;
-      plVar5 = plVar5 + 1;
-      (**(code **)(*a0 + 0x38))((long)a0,param_rsi,a2,a3,param_r8,param_r9);
-      a2 = extraout_RDX;
-    } while (plVar1 != plVar5);
-  }
-  return;
+  return HTOP_OK;
 }
 
 
-/* FUN_001140e0 @ 0x1140e0 */
+/* actionCollapseIntoParent @ 0x113ce0 */
 
-void FUN_001140e0(long *param_1,int param_2,int param_3,int param_4,int param_5,long param_r9)
+Htop_Reaction actionCollapseIntoParent(State_2 *st)
 
 {
-  long *plVar1;
-  long a0;
-  long lVar2;
-  ulong uVar3;
-  int iVar4;
-  int iVar5;
-  uint uVar6;
-  uint uVar7;
-  undefined4 in_register_00000084;
-  int iVar8;
-  int iVar9;
-  ulong uVar10;
+  int wVar1;
+  MainPanel__2 *a0;
+  Vector *pVVar2;
+  Object **ppOVar3;
+  Object *pOVar4;
+  code *pcVar5;
+  long lVar6;
+  int iVar7;
+  long in_R9;
 
-  plVar1 = *(long **)((uint *)param_1[0x2e] + 2);
-  uVar6 = *(uint *)param_1[0x2e];
-  if (**(char **)(*param_1 + 0x70) == 'L') {
-    uVar6 = uVar6 + 1 >> 1;
-  }
-  else if (**(char **)(*param_1 + 0x70) == 'R') {
-    uVar6 = uVar6 >> 1;
-  }
-  uVar7 = (param_4 - param_5) / param_5 + 1;
-  iVar8 = param_4 - param_5 * uVar7;
-  iVar9 = (int)((uVar6 - 1) + param_5) / param_5;
-  if (0 < (int)uVar6) {
-    uVar10 = 0;
-    do {
-      a0 = plVar1[uVar10];
-      lVar2 = (long)iVar9;
-      uVar3 = (ulong)(uint)((int)uVar10 >> 0x1f) << 0x20 | uVar10 & 0xffffffff;
-      iVar4 = (int)((long)uVar3 / lVar2);
-      iVar5 = iVar4;
-      if (iVar8 < iVar4) {
-        iVar5 = iVar8;
+  if (st->host->settings->ss->treeView != false) {
+    a0 = st->mainPanel;
+                    /* Unresolved local var: Row * r@[???]
+                       Unresolved local var: int parent_id@[???] */
+    pVVar2 = (a0->super).items;
+    wVar1 = pVVar2->items;
+    if (0 < wVar1) {
+      ppOVar3 = pVVar2->array;
+      pOVar4 = ppOVar3[(a0->super).selected];
+      if (pOVar4 != (Object *)0x0) {
+        iVar7 = *(int *)((long)&pOVar4[2].klass + 4);
+        if (iVar7 == *(int *)&pOVar4[2].klass) {
+          iVar7 = *(int *)&pOVar4[3].klass;
+        }
+                    /* Unresolved local var: int i@[???] */
+        lVar6 = 0;
+                    /* Unresolved local var: Row * row@[???] */
+        while (pOVar4 = ppOVar3[lVar6], *(int *)&pOVar4[2].klass != iVar7) {
+          lVar6 = lVar6 + 1;
+          if (lVar6 == wVar1) {
+            return HTOP_OK;
+          }
+        }
+        *(undefined1 *)&pOVar4[4].klass = 0;
+                    /* Unresolved local var: int size@[???] */
+        (a0->super).selected = (int)lVar6;
+        pcVar5 = (a0->super).super.klass[1].extends;
+        if (pcVar5 != (code *)0x0) {
+          (*pcVar5)((long)a0,0xffffffff,(long)pOVar4,(long)wVar1,(long)a0,in_R9);
+          return HTOP_RECALCULATE;
+        }
+        return HTOP_RECALCULATE;
       }
-      uVar10 = uVar10 + 1;
-      (**(code **)(a0 + 8))
-                (a0,(ulong)(iVar4 * uVar7 + param_2 + iVar5),
-                 (ulong)(uint)((int)((long)uVar3 % lVar2) * *(int *)(*plVar1 + 0x48) + param_3),
-                 (ulong)uVar7,CONCAT44(in_register_00000084,param_5),param_r9);
-    } while ((long)(int)uVar6 != uVar10);
+    }
   }
-  return;
+  return HTOP_OK;
 }
 
 
-/* FUN_001141b0 @ 0x1141b0 */
+/* actionNextScreen @ 0x113d90 */
 
-void FUN_001141b0(long *param_1,int param_2,int param_3,int param_4,long param_r8,long param_r9)
+Htop_Reaction actionNextScreen(State_2 *st)
 
 {
-  FUN_001140e0(param_1,param_2,param_3,param_4,2,param_r9);
-  return;
+  Machine *pMVar1;
+  Settings__2 *pSVar2;
+  ScreenSettings_2 *pSVar3;
+  Table_ *pTVar4;
+  _Bool _Var5;
+  MainPanel__2 *pMVar6;
+  uint uVar7;
+  FunctionBar *pFVar8;
+  long lVar9;
+
+  pMVar1 = st->host;
+  pSVar2 = pMVar1->settings;
+  uVar7 = pSVar2->ssIndex + 1;
+                    /* Unresolved local var: Machine * host@[???]
+                       Unresolved local var: _Bool readonly@[???] */
+  lVar9 = (ulong)uVar7 << 3;
+  if (uVar7 == pSVar2->nScreens) {
+    lVar9 = 0;
+    uVar7 = 0;
+  }
+  pSVar2->ssIndex = uVar7;
+  _Var5 = readonly;
+  pSVar3 = *(ScreenSettings_2 **)((long)pSVar2->screens + lVar9);
+  pSVar2->ss = pSVar3;
+  pTVar4 = pSVar3->table;
+  if (pTVar4 == (Table_ *)0x0) {
+    pTVar4 = pMVar1->processTable;
+    pSVar3->table = pTVar4;
+    pMVar1->activeTable = pTVar4;
+    if (_Var5 == false) {
+      pMVar6 = st->mainPanel;
+      pFVar8 = pMVar6->processBar;
+      goto LAB_00113de5;
+    }
+  }
+  else {
+    pMVar1->activeTable = pTVar4;
+    if ((_Var5 == false) && (pTVar4 == pMVar1->processTable)) {
+      pMVar6 = st->mainPanel;
+      pFVar8 = pMVar6->processBar;
+      goto LAB_00113de5;
+    }
+  }
+  pMVar6 = st->mainPanel;
+  pFVar8 = pMVar6->readonlyBar;
+LAB_00113de5:
+  (pMVar6->super).defaultBar = pFVar8;
+  pMVar6->inc->defaultBar = pFVar8;
+  return 0x61;
 }
 
 
-/* FUN_001141c0 @ 0x1141c0 */
+/* actionPrevScreen @ 0x113e50 */
 
-void FUN_001141c0(long *param_1,int param_2,int param_3,int param_4,long param_r8,long param_r9)
-
-{
-  FUN_001140e0(param_1,param_2,param_3,param_4,4,param_r9);
-  return;
-}
-
-
-/* FUN_001141d0 @ 0x1141d0 */
-
-void FUN_001141d0(long *param_1,int param_2,int param_3,int param_4,long param_r8,long param_r9)
-
-{
-  FUN_001140e0(param_1,param_2,param_3,param_4,8,param_r9);
-  return;
-}
-
-
-/* FUN_001141e0 @ 0x1141e0 */
-
-void FUN_001141e0(long *param_1,uint param_2,int param_3,uint param_4,long param_r8,long param_r9)
+Htop_Reaction actionPrevScreen(State_2 *st)
 
 {
   uint uVar1;
-  long *plVar2;
-  ulong uVar3;
-  long *plVar4;
-  long *plVar5;
+  Machine *pMVar2;
+  Settings__2 *pSVar3;
+  ScreenSettings_2 *pSVar4;
+  Table_ *pTVar5;
+  _Bool _Var6;
+  MainPanel__2 *pMVar7;
+  FunctionBar *pFVar8;
 
-  plVar2 = *(long **)((uint *)param_1[0x2e] + 2);
-  uVar1 = *(uint *)param_1[0x2e];
-  if (**(char **)(*param_1 + 0x70) == 'L') {
-    uVar3 = (ulong)(uVar1 + 1 >> 1);
+  pMVar2 = st->host;
+  pSVar3 = pMVar2->settings;
+  uVar1 = pSVar3->ssIndex;
+  if (uVar1 == 0) {
+    uVar1 = pSVar3->nScreens;
   }
-  else {
-    uVar3 = (ulong)(uVar1 >> 1);
-    if (**(char **)(*param_1 + 0x70) != 'R') {
-      uVar3 = (long)(int)uVar1;
+                    /* Unresolved local var: Machine * host@[???]
+                       Unresolved local var: _Bool readonly@[???] */
+  pSVar3->ssIndex = uVar1 - 1;
+  _Var6 = readonly;
+  pSVar4 = pSVar3->screens[uVar1 - 1];
+  pSVar3->ss = pSVar4;
+  pTVar5 = pSVar4->table;
+  if (pTVar5 == (Table_ *)0x0) {
+    pTVar5 = pMVar2->processTable;
+    pSVar4->table = pTVar5;
+    pMVar2->activeTable = pTVar5;
+    if (_Var6 == false) {
+      pMVar7 = st->mainPanel;
+      pFVar8 = pMVar7->processBar;
+      goto LAB_00113ea0;
     }
   }
-  if (0 < (int)uVar3) {
-    plVar4 = plVar2;
-    do {
-      plVar5 = plVar4 + 1;
-      (**(code **)(*plVar4 + 8))
-                (*plVar4,(ulong)param_2,(ulong)(uint)param_3,(ulong)param_4,param_r8,param_r9);
-      param_3 = param_3 + *(int *)(*plVar4 + 0x48);
-      plVar4 = plVar5;
-    } while (plVar5 != plVar2 + uVar3);
-  }
-  return;
-}
-
-
-/* FUN_00114270 @ 0x114270 */
-
-void FUN_00114270(void)
-
-{
-  return;
-}
-
-
-/* FUN_00114280 @ 0x114280 */
-
-void FUN_00114280(void)
-
-{
-  return;
-}
-
-
-/* FUN_00114290 @ 0x114290 */
-
-long FUN_00114290(long param_1)
-
-{
-  ulong *puVar1;
-  ulong uVar2;
-  uint *puVar3;
-  uint *puVar4;
-  long lVar5;
-  ulong uVar6;
-  ulong uVar7;
-  long lVar8;
-
-  puVar1 = *(ulong **)(**(long **)(param_1 + 0x10) + 0x20);
-  uVar2 = *puVar1;
-  puVar3 = (uint *)puVar1[1];
-  uVar7 = (ulong)*(uint *)(param_1 + 0x24) % uVar2;
-  lVar8 = *(long *)(puVar3 + uVar7 * 6 + 4);
-  if (lVar8 != 0) {
-    uVar6 = 0;
-    puVar4 = puVar3 + uVar7 * 6;
-    do {
-      while( true ) {
-        if (*(uint *)(param_1 + 0x24) == *puVar4) {
-          lVar5 = *(long *)(lVar8 + 0x20);
-          if (*(long *)(lVar8 + 0x20) == 0) {
-            lVar5 = lVar8;
-          }
-          return lVar5;
-        }
-        if (*(ulong *)(puVar4 + 2) < uVar6) goto LAB_0011430b;
-        uVar7 = uVar7 + 1;
-        if (uVar2 != uVar7) break;
-        uVar7 = 0;
-        uVar6 = uVar6 + 1;
-        lVar8 = *(long *)(puVar3 + 4);
-        puVar4 = puVar3;
-        if (lVar8 == 0) goto LAB_0011430b;
-      }
-      uVar6 = uVar6 + 1;
-      puVar4 = puVar3 + uVar7 * 6;
-      lVar8 = *(long *)(puVar4 + 4);
-    } while (lVar8 != 0);
-  }
-LAB_0011430b:
-  return *(long *)(param_1 + 0x18);
-}
-
-
-/* FUN_00114320 @ 0x114320 */
-
-void FUN_00114320(long *param_1,int param_2,int param_3,long param_rcx,long param_r8)
-
-{
-  undefined1 __frame[0xc8] __attribute__((aligned(16)));
-  undefined1 *__fp = __frame + 0x88;
-  undefined8 *puVar1;
-  uint uVar2;
-  code *a5;
-  long lVar3;
-  uint uVar4;
-  ulong a3;
-  undefined8 *extraout_RDX;
-  undefined8 *a2;
-  undefined8 *extraout_RDX_00;
-  long lVar5;
-  long *a0;
-  undefined8 *puVar6;
-
-  (*(uint *)(__fp - 0x3c)) = *(uint *)param_1[0x2e];
-  a2 = *(undefined8 **)((uint *)param_1[0x2e] + 2);
-  *(int *)(param_1 + 4) = param_2;
-  uVar2 = *(uint *)(*(long *)(Meter_modes + (long)param_2 * 8) + 0x10);
-  if (**(char **)(*param_1 + 0x70) == 'L') {
-    uVar4 = uVar2;
-    (*(uint *)(__fp - 0x3c)) = (*(uint *)(__fp - 0x3c)) + 1 >> 1;
-  }
   else {
-    uVar4 = (*(uint *)(__fp - 0x3c)) >> 1;
-    if (**(char **)(*param_1 + 0x70) == 'R') {
-      (*(uint *)(__fp - 0x3c)) = uVar4;
+    pMVar2->activeTable = pTVar5;
+    if ((_Var6 == false) && (pTVar5 == pMVar2->processTable)) {
+      pMVar7 = st->mainPanel;
+      pFVar8 = pMVar7->processBar;
+      goto LAB_00113ea0;
     }
   }
-  a3 = (ulong)uVar4;
-  if (0 < (int)(*(uint *)(__fp - 0x3c))) {
-    puVar1 = a2 + (int)(*(uint *)(__fp - 0x3c));
-    puVar6 = a2;
-    do {
-      while( true ) {
-        a0 = (long *)*puVar6;
-        if (0 < param_2) break;
-        lVar5 = *a0;
-        a3 = 1;
-        if (param_2 != 0) {
-          a3 = (ulong)(uint)param_2;
-        }
-        uVar4 = (uint)a3;
-        if (*(int *)(lVar5 + 0x58) == 0) goto LAB_001143b9;
-LAB_00114401:
-        puVar6 = puVar6 + 1;
-        free((void *)a0[8]);
-        a0[8] = 0;
-        a0[7] = 0;
-        lVar5 = **(long **)(Meter_modes + (long)(int)uVar4 * 8);
-        lVar3 = (*(long **)(Meter_modes + (long)(int)uVar4 * 8))[2];
-        *(uint *)(a0 + 4) = uVar4;
-        a0[1] = lVar5;
-        *(int *)(a0 + 9) = (int)lVar3;
-        a2 = extraout_RDX_00;
-        if (puVar1 == puVar6) goto LAB_00114449;
-      }
-      while (param_2 == (int)a0[4]) {
-        puVar6 = puVar6 + 1;
-        if (puVar1 == puVar6) goto LAB_00114449;
-        a0 = (long *)*puVar6;
-      }
-      lVar5 = *a0;
-      uVar4 = param_2;
-      if (*(int *)(lVar5 + 0x58) != 0) goto LAB_00114401;
-LAB_001143b9:
-      a5 = *(code **)(lVar5 + 0x30);
-      a0[1] = *(long *)(lVar5 + 0x40);
-      if (a5 != (code *)0x0) {
-        (*a5)((long)a0,(ulong)uVar4,(long)a2,a3,param_r8,(long)a5);
-        a2 = extraout_RDX;
-      }
-      puVar6 = puVar6 + 1;
-      *(uint *)(a0 + 4) = uVar4;
-    } while (puVar1 != puVar6);
+  pMVar7 = st->mainPanel;
+  pFVar8 = pMVar7->readonlyBar;
+LAB_00113ea0:
+  (pMVar7->super).defaultBar = pFVar8;
+  pMVar7->inc->defaultBar = pFVar8;
+  return 0x61;
+}
+
+
+/* actionQuit @ 0x113f10 */
+
+Htop_Reaction actionQuit(State_2 *st)
+
+{
+  return HTOP_QUIT;
+}
+
+
+/* Action_follow @ 0x113f20 */
+
+Htop_Reaction Action_follow(State_2 *st)
+
+{
+  MainPanel__2 *pMVar1;
+  Vector *pVVar2;
+  Object *pOVar3;
+  int wVar4;
+
+  pMVar1 = st->mainPanel;
+                    /* Unresolved local var: Row * row@[???] */
+  pVVar2 = (pMVar1->super).items;
+  wVar4 = -1;
+  if ((0 < pVVar2->items) &&
+     (pOVar3 = pVVar2->array[(pMVar1->super).selected], pOVar3 != (Object *)0x0)) {
+    wVar4 = *(int *)&pOVar3[2].klass;
   }
-LAB_00114449:
-  *(uint *)(param_1 + 9) = ((int)(((*(uint *)(__fp - 0x3c)) - 1) + param_3) / param_3) * uVar2;
-  return;
+  st->host->activeTable->following = wVar4;
+  (pMVar1->super).selectionColorId = PANEL_SELECTION_FOLLOW;
+  return HTOP_KEEP_FOLLOWING;
 }
 
 
-/* FUN_001144a0 @ 0x1144a0 */
+/* actionTag @ 0x113f70 */
 
-void FUN_001144a0(long *param_1,int param_2,long param_rdx,long param_rcx,long param_r8)
-
-{
-  FUN_00114320(param_1,param_2,1,param_rcx,param_r8);
-  return;
-}
-
-
-/* FUN_001144b0 @ 0x1144b0 */
-
-void FUN_001144b0(long *param_1,int param_2,long param_rdx,long param_rcx,long param_r8)
+Htop_Reaction actionTag(State_2 *st)
 
 {
-  FUN_00114320(param_1,param_2,2,param_rcx,param_r8);
-  return;
-}
+  byte *pbVar1;
+  int wVar2;
+  MainPanel__2 *pMVar3;
+  Vector *pVVar4;
+  Object *pOVar5;
+  int wVar6;
 
-
-/* FUN_001144c0 @ 0x1144c0 */
-
-void FUN_001144c0(long *param_1,int param_2,long param_rdx,long param_rcx,long param_r8)
-
-{
-  FUN_00114320(param_1,param_2,4,param_rcx,param_r8);
-  return;
-}
-
-
-/* FUN_001144d0 @ 0x1144d0 */
-
-void FUN_001144d0(long *param_1,int param_2,long param_rdx,long param_rcx,long param_r8)
-
-{
-  FUN_00114320(param_1,param_2,8,param_rcx,param_r8);
-  return;
-}
-
-
-/* FUN_001144e0 @ 0x1144e0 */
-
-void FUN_001144e0(long *param_1,long param_rsi,long param_rdx,long param_rcx,long param_r8,
-                 long param_r9)
-
-{
-  undefined8 *puVar1;
-  byte bVar2;
-  uint uVar3;
-  uint *__ptr;
-  long *plVar4;
-  ulong uVar5;
-  ulong uVar6;
-  ulong uVar7;
-  ulong extraout_RDX;
-  undefined8 *__ptr_00;
-
-  __ptr = (uint *)param_1[0x2e];
-  __ptr_00 = *(undefined8 **)(__ptr + 2);
-  uVar3 = *__ptr;
-  uVar6 = (ulong)(int)uVar3;
-  bVar2 = **(byte **)(*param_1 + 0x70);
-  uVar7 = (ulong)bVar2;
-  if (bVar2 == 0x4c) {
-    uVar5 = (ulong)(uVar3 + 1 >> 1);
-  }
-  else {
-    uVar5 = (ulong)(uVar3 >> 1);
-    if (bVar2 != 0x52) {
-      uVar5 = uVar6;
+  pMVar3 = st->mainPanel;
+  pVVar4 = (pMVar3->super).items;
+  wVar2 = pVVar4->items;
+  if (0 < wVar2) {
+    wVar6 = (pMVar3->super).selected;
+    pOVar5 = pVVar4->array[wVar6];
+    if (pOVar5 != (Object *)0x0) {
+      pbVar1 = (byte *)((long)&pOVar5[3].klass + 5);
+      *pbVar1 = *pbVar1 ^ 1;
+                    /* Unresolved local var: int size@[???] */
+      wVar6 = wVar6 + 1;
+      if (wVar6 < 0) {
+        (pMVar3->super).selected = 0;
+        (pMVar3->super).needsRedraw = true;
+        return HTOP_OK;
+      }
+      if (wVar6 < wVar2) {
+        (pMVar3->super).selected = wVar6;
+        return HTOP_OK;
+      }
+      (pMVar3->super).needsRedraw = true;
+      (pMVar3->super).selected = wVar2 + -1;
     }
   }
-  if (0 < (int)uVar5) {
-    puVar1 = __ptr_00 + uVar5;
-    do {
-      plVar4 = (long *)*__ptr_00;
-      __ptr_00 = __ptr_00 + 1;
-      Meter_delete(plVar4,param_rsi,uVar7,uVar6,param_r8,param_r9);
-      uVar7 = extraout_RDX;
-    } while (__ptr_00 != puVar1);
-    __ptr_00 = *(undefined8 **)(__ptr + 2);
-  }
-  free(__ptr_00);
-  free(__ptr);
-  return;
+  return HTOP_OK;
 }
 
 
-/* FUN_00114570 @ 0x114570 */
+/* actionTogglePauseUpdate @ 0x113fd0 */
 
-void FUN_00114570(ulong *param_1,uint param_2,void *param_3)
+Htop_Reaction actionTogglePauseUpdate(State_2 *st)
 
 {
-  uint *puVar1;
-  uint uVar2;
-  ulong uVar3;
-  ulong uVar4;
-  void *__ptr;
-  ulong uVar5;
-  ulong uVar6;
+  st->pauseUpdate = (_Bool)(st->pauseUpdate ^ 1);
+  return HTOP_REDRAW_BAR|HTOP_REFRESH;
+}
+
+
+/* actionUntagAll @ 0x113fe0 */
+
+Htop_Reaction actionUntagAll(State_2 *st)
+
+{
+  Object **ppOVar1;
+  int wVar2;
+  Vector *pVVar3;
+  Object *pOVar4;
+  Object **ppOVar5;
+
+                    /* Unresolved local var: int i@[???] */
+  pVVar3 = (st->mainPanel->super).items;
+  wVar2 = pVVar3->items;
+  if (0 < wVar2) {
+    ppOVar5 = pVVar3->array;
+    ppOVar1 = ppOVar5 + wVar2;
+    do {
+                    /* Unresolved local var: Row * row@[???] */
+      pOVar4 = *ppOVar5;
+      ppOVar5 = ppOVar5 + 1;
+      *(undefined1 *)((long)&pOVar4[3].klass + 5) = 0;
+    } while (ppOVar5 != ppOVar1);
+  }
+  return HTOP_REFRESH;
+}
+
+
+/* actionTagAllChildren @ 0x114020 */
+
+Htop_Reaction actionTagAllChildren(State_2 *st)
+
+{
+  MainPanel__2 *panel;
+  Vector *pVVar1;
+  Row *parent;
+
+  panel = st->mainPanel;
+  pVVar1 = (panel->super).items;
+  if ((0 < pVVar1->items) &&
+     (parent = (Row *)pVVar1->array[(panel->super).selected], parent != (Row *)0x0)) {
+    tagAllChildren(&panel->super,parent);
+    return HTOP_OK;
+  }
+  return HTOP_OK;
+}
+
+
+/* actionHigherPriority @ 0x114650 */
+
+Htop_Reaction actionHigherPriority(State_2 *st)
+
+{
+  MainPanel__2 *pMVar1;
+  Process *pPVar2;
+  _Bool _Var3;
+  _Bool _Var4;
+  Vector *pVVar5;
+  Htop_Reaction HVar6;
   long lVar7;
-  ulong uVar8;
-  ulong uVar9;
+  byte bVar8;
+  byte bVar9;
 
-  uVar9 = (ulong)param_2;
-  uVar8 = 0;
-  uVar3 = *param_1;
-  uVar4 = param_1[1];
-  uVar6 = uVar9 % uVar3;
-  lVar7 = uVar6 * 0x18;
-  puVar1 = (uint *)(uVar4 + lVar7);
-  __ptr = *(void **)(puVar1 + 4);
-  while( true ) {
-    if (__ptr == (void *)0x0) {
-      param_1[2] = param_1[2] + 1;
-      *puVar1 = param_2;
-      *(ulong *)(puVar1 + 2) = uVar8;
-      *(void **)(puVar1 + 4) = param_3;
-      return;
-    }
-    uVar2 = *puVar1;
-    if (uVar2 == (uint)uVar9) break;
-    uVar5 = *(ulong *)(puVar1 + 2);
-    if (uVar5 < uVar8) {
-      *puVar1 = (uint)uVar9;
-      *(ulong *)(puVar1 + 2) = uVar8;
-      *(void **)(puVar1 + 4) = param_3;
-      uVar8 = uVar5;
-      uVar9 = (ulong)uVar2;
-      param_3 = __ptr;
-    }
-    param_2 = (uint)uVar9;
-    uVar8 = uVar8 + 1;
-    uVar6 = (uVar6 + 1) % uVar3;
-    lVar7 = uVar6 * 0x18;
-    puVar1 = (uint *)(uVar4 + lVar7);
-    __ptr = *(void **)(puVar1 + 4);
-  }
-  if ((__ptr == param_3) || ((char)param_1[3] == '\0')) {
-    *(void **)(uVar4 + 0x10 + lVar7) = param_3;
-  }
-  else {
-    free(__ptr);
-    *(void **)(param_1[1] + 0x10 + lVar7) = param_3;
-  }
-  return;
-}
-
-
-/* FUN_00114650 @ 0x114650 */
-
-char FUN_00114650(undefined8 *param_1)
-
-{
-  char cVar1;
-  long lVar2;
-  long lVar3;
-  bool bVar4;
-  long *plVar5;
-  long lVar6;
-  byte bVar7;
-  char cVar8;
-
-  cVar8 = '\0';
-  if ((CHAR____0015c0d9 == '\0') &&
-     (cVar8 = '\0', *(long *)(*(long *)(*(long *)*param_1 + 0x40) + 8) == 0)) {
-    lVar2 = param_1[1];
-    plVar5 = *(long **)(lVar2 + 0x20);
-    if (0 < (int)plVar5[3]) {
-      lVar6 = 0;
-      bVar7 = 1;
-      cVar8 = '\0';
+                    /* Unresolved local var: Settings * settings@[???]
+                       Unresolved local var: _Bool readonly@[???] */
+  HVar6 = HTOP_OK;
+  if ((!readonly) && (HVar6 = HTOP_OK, st->host->settings->ss->dynamic == (char *)0x0)) {
+    pMVar1 = st->mainPanel;
+                    /* Unresolved local var: _Bool changed@[???]
+                       Unresolved local var: _Bool anyTagged@[???]
+                       Unresolved local var: _Bool ok@[???]
+                       Unresolved local var: Panel * super@[???]
+                       Unresolved local var: int i@[???] */
+    pVVar5 = (pMVar1->super).items;
+    if (0 < pVVar5->items) {
+      lVar7 = 0;
+      bVar8 = 1;
+      bVar9 = readonly;
       do {
-        lVar3 = *(long *)(*plVar5 + lVar6 * 8);
-        cVar1 = *(char *)(lVar3 + 0x1d);
-        if (cVar1 != '\0') {
-          bVar4 = FUN_00122f10(lVar3,*(int *)(lVar3 + 200) + -1);
-          bVar7 = bVar7 & bVar4;
-          plVar5 = *(long **)(lVar2 + 0x20);
-          cVar8 = cVar1;
+                    /* Unresolved local var: Row * row@[???] */
+        pPVar2 = (Process *)pVVar5->array[lVar7];
+        _Var4 = (pPVar2->super).tag;
+        if (_Var4 != false) {
+                    /* Unresolved local var: Process * this@[???]
+                       Unresolved local var: int old_prio@[???]
+                       Unresolved local var: int err@[???] */
+          _Var3 = Process_setPriority(pPVar2,(int)pPVar2->nice + -1);
+          bVar8 = bVar8 & _Var3;
+          pVVar5 = (pMVar1->super).items;
+          bVar9 = _Var4;
         }
-        lVar6 = lVar6 + 1;
-      } while ((int)lVar6 < (int)plVar5[3]);
-      if (((cVar8 != '\x01') && (0 < (int)plVar5[3])) &&
-         (lVar2 = *(long *)(*plVar5 + (long)*(int *)(lVar2 + 0x28) * 8), lVar2 != 0)) {
-        bVar4 = FUN_00122f10(lVar2,*(int *)(lVar2 + 200) + -1);
-        bVar7 = bVar7 & bVar4;
+        lVar7 = lVar7 + 1;
+      } while ((int)lVar7 < pVVar5->items);
+                    /* Unresolved local var: Row * row@[???] */
+      if (((bVar9 != 1) && (0 < pVVar5->items)) &&
+         (pPVar2 = (Process *)pVVar5->array[(pMVar1->super).selected], pPVar2 != (Process *)0x0)) {
+                    /* Unresolved local var: Process * this@[???]
+                       Unresolved local var: int old_prio@[???]
+                       Unresolved local var: int err@[???] */
+        _Var4 = Process_setPriority(pPVar2,(int)pPVar2->nice + -1);
+        bVar8 = bVar8 & _Var4;
       }
-      if (bVar7 == 0) {
+      if (bVar8 == 0) {
         beep();
       }
+      HVar6 = (Htop_Reaction)bVar9;
     }
   }
-  return cVar8;
+  return HVar6;
 }
 
 
-/* FUN_00114740 @ 0x114740 */
+/* actionLowerPriority @ 0x114740 */
 
-char FUN_00114740(undefined8 *param_1)
+Htop_Reaction actionLowerPriority(State_2 *st)
 
 {
-  char cVar1;
-  long lVar2;
-  long lVar3;
-  bool bVar4;
-  long *plVar5;
-  long lVar6;
-  byte bVar7;
-  char cVar8;
+  MainPanel__2 *pMVar1;
+  Process *pPVar2;
+  _Bool _Var3;
+  _Bool _Var4;
+  Vector *pVVar5;
+  Htop_Reaction HVar6;
+  long lVar7;
+  byte bVar8;
+  byte bVar9;
 
-  cVar8 = '\0';
-  if ((CHAR____0015c0d9 == '\0') &&
-     (cVar8 = '\0', *(long *)(*(long *)(*(long *)*param_1 + 0x40) + 8) == 0)) {
-    lVar2 = param_1[1];
-    plVar5 = *(long **)(lVar2 + 0x20);
-    if (0 < (int)plVar5[3]) {
-      lVar6 = 0;
-      bVar7 = 1;
-      cVar8 = '\0';
+                    /* Unresolved local var: Settings * settings@[???]
+                       Unresolved local var: _Bool readonly@[???] */
+  HVar6 = HTOP_OK;
+  if ((!readonly) && (HVar6 = HTOP_OK, st->host->settings->ss->dynamic == (char *)0x0)) {
+    pMVar1 = st->mainPanel;
+                    /* Unresolved local var: _Bool changed@[???]
+                       Unresolved local var: _Bool anyTagged@[???]
+                       Unresolved local var: _Bool ok@[???]
+                       Unresolved local var: Panel * super@[???]
+                       Unresolved local var: int i@[???] */
+    pVVar5 = (pMVar1->super).items;
+    if (0 < pVVar5->items) {
+      lVar7 = 0;
+      bVar8 = 1;
+      bVar9 = readonly;
       do {
-        lVar3 = *(long *)(*plVar5 + lVar6 * 8);
-        cVar1 = *(char *)(lVar3 + 0x1d);
-        if (cVar1 != '\0') {
-          bVar4 = FUN_00122f10(lVar3,*(int *)(lVar3 + 200) + 1);
-          bVar7 = bVar7 & bVar4;
-          plVar5 = *(long **)(lVar2 + 0x20);
-          cVar8 = cVar1;
+                    /* Unresolved local var: Row * row@[???] */
+        pPVar2 = (Process *)pVVar5->array[lVar7];
+        _Var4 = (pPVar2->super).tag;
+        if (_Var4 != false) {
+                    /* Unresolved local var: Process * this@[???]
+                       Unresolved local var: int old_prio@[???]
+                       Unresolved local var: int err@[???] */
+          _Var3 = Process_setPriority(pPVar2,(int)pPVar2->nice + 1);
+          bVar8 = bVar8 & _Var3;
+          pVVar5 = (pMVar1->super).items;
+          bVar9 = _Var4;
         }
-        lVar6 = lVar6 + 1;
-      } while ((int)lVar6 < (int)plVar5[3]);
-      if (((cVar8 != '\x01') && (0 < (int)plVar5[3])) &&
-         (lVar2 = *(long *)(*plVar5 + (long)*(int *)(lVar2 + 0x28) * 8), lVar2 != 0)) {
-        bVar4 = FUN_00122f10(lVar2,*(int *)(lVar2 + 200) + 1);
-        bVar7 = bVar7 & bVar4;
+        lVar7 = lVar7 + 1;
+      } while ((int)lVar7 < pVVar5->items);
+                    /* Unresolved local var: Row * row@[???] */
+      if (((bVar9 != 1) && (0 < pVVar5->items)) &&
+         (pPVar2 = (Process *)pVVar5->array[(pMVar1->super).selected], pPVar2 != (Process *)0x0)) {
+                    /* Unresolved local var: Process * this@[???]
+                       Unresolved local var: int old_prio@[???]
+                       Unresolved local var: int err@[???] */
+        _Var4 = Process_setPriority(pPVar2,(int)pPVar2->nice + 1);
+        bVar8 = bVar8 & _Var4;
       }
-      if (bVar7 == 0) {
+      if (bVar8 == 0) {
         beep();
       }
+      HVar6 = (Htop_Reaction)bVar9;
     }
   }
-  return cVar8;
+  return HVar6;
 }
 
 
-/* FUN_00114830 @ 0x114830 */
+/* actionRedraw @ 0x114830 */
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-undefined8 FUN_00114830(void)
+Htop_Reaction actionRedraw(State_2 *st)
 
 {
   wclear(_stdscr);
-  return 0x23;
+  return HTOP_REDRAW_BAR|HTOP_RECALCULATE;
 }
 
 
-/* FUN_00114850 @ 0x114850 */
+/* actionHelp @ 0x114850 */
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-undefined8 FUN_00114850(undefined8 *param_1)
+Htop_Reaction actionHelp(State_2 *st)
 
 {
-  char cVar1;
-  long lVar2;
+  _Bool _Var1;
+  int *pwVar2;
   int iVar3;
   int iVar4;
   int iVar5;
   byte bVar6;
-  char *pcVar7;
-  int iVar8;
-  byte *pbVar9;
-  char *pcVar10;
+  int wVar7;
+  char *pcVar8;
+  int iVar9;
+  _Bool *p_Var10;
 
-  iVar8 = 0;
+  iVar9 = 0;
   wclear(_stdscr);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0x11c));
+  wattrset(_stdscr,CRT_colors[0x47]);
+                    /* Unresolved local var: int i@[???] */
   if (1 < _LINES) {
     do {
-      iVar3 = wmove(_stdscr,iVar8,0);
+      iVar3 = wmove(_stdscr,iVar9,0);
       if (iVar3 != -1) {
         whline(_stdscr,0x20,_COLS);
       }
-      iVar8 = iVar8 + 1;
-    } while (iVar8 < _LINES + -1);
+      iVar9 = iVar9 + 1;
+    } while (iVar9 < _LINES + -1);
   }
-  iVar8 = wmove(_stdscr,0,0);
-  if (iVar8 != -1) {
+  iVar9 = wmove(_stdscr,0,0);
+  if (iVar9 != -1) {
     waddnstr(_stdscr,((char *)(long)&s_htop_3_3_0____C__2004_2019_Hisha_0014a288 /* "htop 3.3.0 - (C) 2004-2019 Hisham Muhammad. (C) 2020-2024 htop dev team." */),-1);
   }
-  iVar8 = wmove(_stdscr,1,0);
-  if (iVar8 != -1) {
+  iVar9 = wmove(_stdscr,1,0);
+  if (iVar9 != -1) {
     waddnstr(_stdscr,((char *)(long)(__sec_rodata + 0x32d8) /* "Released under the GNU GPLv2+. See \'man\' page for more info." */),-1);
   }
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
-  iVar8 = wmove(_stdscr,3,0);
-  if (iVar8 != -1) {
+  wattrset(_stdscr,CRT_colors[1]);
+  iVar9 = wmove(_stdscr,3,0);
+  if (iVar9 != -1) {
     waddnstr(_stdscr,((char *)(long)&s_CPU_usage_bar__0014702c /* "CPU usage bar: " */),-1);
   }
-  wattrset(_stdscr,*(int *)(CRT_colors + 0xbc));
+  wattrset(_stdscr,CRT_colors[0x2f]);
   waddnstr(_stdscr,((char *)(long)&DAT_0014703c /* "[" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  wattrset(_stdscr,CRT_colors[1]);
   waddnstr(_stdscr,((char *)(long)&DAT_00149c0c /* "" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 300));
+  wattrset(_stdscr,CRT_colors[0x4b]);
   waddnstr(_stdscr,((char *)(long)(__sec_rodata + 0x217) /* "low" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  wattrset(_stdscr,CRT_colors[1]);
   waddnstr(_stdscr,((char *)(long)(__sec_rodata + 0x17c2) /* "/" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0x130));
+  wattrset(_stdscr,CRT_colors[0x4c]);
   waddnstr(_stdscr,((char *)(long)&s_normal_0014703e /* "normal" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  wattrset(_stdscr,CRT_colors[1]);
   waddnstr(_stdscr,((char *)(long)(__sec_rodata + 0x17c2) /* "/" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0x134));
+  wattrset(_stdscr,CRT_colors[0x4d]);
   waddnstr(_stdscr,((char *)(long)&s_kernel_00147045 /* "kernel" */),-1);
-  if (*(char *)(*(long *)*param_1 + 0x51) == '\0') {
-    wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  if (st->host->settings->detailedCPUTime == false) {
+    wattrset(_stdscr,CRT_colors[1]);
     waddnstr(_stdscr,((char *)(long)(__sec_rodata + 0x17c2) /* "/" */),-1);
-    wattrset(_stdscr,*(int *)(CRT_colors + 0x148));
+    wattrset(_stdscr,CRT_colors[0x52]);
     waddnstr(_stdscr,((char *)(long)&s_guest_0014705b /* "guest" */),-1);
-    wattrset(_stdscr,*(int *)(CRT_colors + 4));
-    pcVar7 = ((char *)(long)&DAT_001470cc /* "                  " */);
+    wattrset(_stdscr,CRT_colors[1]);
+    pcVar8 = ((char *)(long)&DAT_001470cc /* "                  " */);
   }
   else {
-    wattrset(_stdscr,*(int *)(CRT_colors + 4));
+    wattrset(_stdscr,CRT_colors[1]);
     waddnstr(_stdscr,((char *)(long)(__sec_rodata + 0x17c2) /* "/" */),-1);
-    wattrset(_stdscr,*(int *)(CRT_colors + 0x13c));
+    wattrset(_stdscr,CRT_colors[0x4f]);
     waddnstr(_stdscr,((char *)(long)&DAT_00147051 /* "irq" */),-1);
-    wattrset(_stdscr,*(int *)(CRT_colors + 4));
+    wattrset(_stdscr,CRT_colors[1]);
     waddnstr(_stdscr,((char *)(long)(__sec_rodata + 0x17c2) /* "/" */),-1);
-    wattrset(_stdscr,*(int *)(CRT_colors + 0x140));
+    wattrset(_stdscr,CRT_colors[0x50]);
     waddnstr(_stdscr,((char *)(long)&DAT_0014704c /* "soft-irq" */),-1);
-    wattrset(_stdscr,*(int *)(CRT_colors + 4));
+    wattrset(_stdscr,CRT_colors[1]);
     waddnstr(_stdscr,((char *)(long)(__sec_rodata + 0x17c2) /* "/" */),-1);
-    wattrset(_stdscr,*(int *)(CRT_colors + 0x144));
+    wattrset(_stdscr,CRT_colors[0x51]);
     waddnstr(_stdscr,((char *)(long)&s_steal_00147055 /* "steal" */),-1);
-    wattrset(_stdscr,*(int *)(CRT_colors + 4));
+    wattrset(_stdscr,CRT_colors[1]);
     waddnstr(_stdscr,((char *)(long)(__sec_rodata + 0x17c2) /* "/" */),-1);
-    wattrset(_stdscr,*(int *)(CRT_colors + 0x148));
+    wattrset(_stdscr,CRT_colors[0x52]);
     waddnstr(_stdscr,((char *)(long)&s_guest_0014705b /* "guest" */),-1);
-    wattrset(_stdscr,*(int *)(CRT_colors + 4));
+    wattrset(_stdscr,CRT_colors[1]);
     waddnstr(_stdscr,((char *)(long)(__sec_rodata + 0x17c2) /* "/" */),-1);
-    wattrset(_stdscr,*(int *)(CRT_colors + 0x138));
+    wattrset(_stdscr,CRT_colors[0x4e]);
     waddnstr(_stdscr,((char *)(long)&s_io_wait_00147061 /* "io-wait" */),-1);
-    wattrset(_stdscr,*(int *)(CRT_colors + 4));
-    pcVar7 = ((char *)(long)&DAT_001470dd /* " " */);
+    wattrset(_stdscr,CRT_colors[1]);
+    pcVar8 = ((char *)(long)&DAT_001470dd /* " " */);
   }
-  waddnstr(_stdscr,pcVar7,-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0xc0));
+  waddnstr(_stdscr,pcVar8,-1);
+  wattrset(_stdscr,CRT_colors[0x30]);
   waddnstr(_stdscr,((char *)(long)&s_used__00147069 /* "used%" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0xbc));
+  wattrset(_stdscr,CRT_colors[0x2f]);
   waddnstr(_stdscr,((char *)(long)&DAT_00149a61 /* "]" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
-  iVar8 = wmove(_stdscr,4,0);
-  if (iVar8 != -1) {
+  wattrset(_stdscr,CRT_colors[1]);
+  iVar9 = wmove(_stdscr,4,0);
+  if (iVar9 != -1) {
     waddnstr(_stdscr,((char *)(long)&s_Memory_bar__0014706f /* "Memory bar:    " */),-1);
   }
-  wattrset(_stdscr,*(int *)(CRT_colors + 0xbc));
+  wattrset(_stdscr,CRT_colors[0x2f]);
   waddnstr(_stdscr,((char *)(long)&DAT_0014703c /* "[" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  wattrset(_stdscr,CRT_colors[1]);
   waddnstr(_stdscr,((char *)(long)&DAT_00149c0c /* "" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0xcc));
+  wattrset(_stdscr,CRT_colors[0x33]);
   waddnstr(_stdscr,((char *)(long)&DAT_0014707f /* "used" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  wattrset(_stdscr,CRT_colors[1]);
   waddnstr(_stdscr,((char *)(long)(__sec_rodata + 0x17c2) /* "/" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0xdc));
+  wattrset(_stdscr,CRT_colors[0x37]);
   waddnstr(_stdscr,((char *)(long)&s_shared_00147084 /* "shared" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  wattrset(_stdscr,CRT_colors[1]);
   waddnstr(_stdscr,((char *)(long)(__sec_rodata + 0x17c2) /* "/" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0xe0));
+  wattrset(_stdscr,CRT_colors[0x38]);
   waddnstr(_stdscr,((char *)(long)&s_compressed_0014708b /* "compressed" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  wattrset(_stdscr,CRT_colors[1]);
   waddnstr(_stdscr,((char *)(long)(__sec_rodata + 0x17c2) /* "/" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0xd4));
+  wattrset(_stdscr,CRT_colors[0x35]);
   waddnstr(_stdscr,((char *)(long)&s_buffers_00147096 /* "buffers" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  wattrset(_stdscr,CRT_colors[1]);
   waddnstr(_stdscr,((char *)(long)(__sec_rodata + 0x17c2) /* "/" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0xd8));
+  wattrset(_stdscr,CRT_colors[0x36]);
   waddnstr(_stdscr,((char *)(long)&s_cache_0014709e /* "cache" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  wattrset(_stdscr,CRT_colors[1]);
   waddnstr(_stdscr,((char *)(long)&DAT_001470d4 /* "          " */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0xc0));
+  wattrset(_stdscr,CRT_colors[0x30]);
   waddnstr(_stdscr,((char *)(long)&DAT_0014707f /* "used" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  wattrset(_stdscr,CRT_colors[1]);
   waddnstr(_stdscr,((char *)(long)(__sec_rodata + 0x17c2) /* "/" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0xc0));
+  wattrset(_stdscr,CRT_colors[0x30]);
   waddnstr(_stdscr,((char *)(long)&s_total_001470a4 /* "total" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0xbc));
+  wattrset(_stdscr,CRT_colors[0x2f]);
   waddnstr(_stdscr,((char *)(long)&DAT_00149a61 /* "]" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
-  iVar8 = wmove(_stdscr,5,0);
-  if (iVar8 != -1) {
+  wattrset(_stdscr,CRT_colors[1]);
+  iVar9 = wmove(_stdscr,5,0);
+  if (iVar9 != -1) {
     waddnstr(_stdscr,((char *)(long)&s_Swap_bar__001470aa /* "Swap bar:      " */),-1);
   }
-  wattrset(_stdscr,*(int *)(CRT_colors + 0xbc));
+  wattrset(_stdscr,CRT_colors[0x2f]);
   waddnstr(_stdscr,((char *)(long)&DAT_0014703c /* "[" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  wattrset(_stdscr,CRT_colors[1]);
   waddnstr(_stdscr,((char *)(long)&DAT_00149c0c /* "" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0x68));
+  wattrset(_stdscr,CRT_colors[0x1a]);
   waddnstr(_stdscr,((char *)(long)&DAT_0014707f /* "used" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  wattrset(_stdscr,CRT_colors[1]);
   waddnstr(_stdscr,((char *)(long)(__sec_rodata + 0x17c2) /* "/" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0x6c));
+  wattrset(_stdscr,CRT_colors[0x1b]);
   waddnstr(_stdscr,((char *)(long)&s_cache_0014709e /* "cache" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  wattrset(_stdscr,CRT_colors[1]);
   waddnstr(_stdscr,((char *)(long)(__sec_rodata + 0x17c2) /* "/" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0x70));
+  wattrset(_stdscr,CRT_colors[0x1c]);
   waddnstr(_stdscr,((char *)(long)&s_frontswap_001470ba /* "frontswap" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  wattrset(_stdscr,CRT_colors[1]);
   waddnstr(_stdscr,((char *)(long)&DAT_001470c4 /* "                          " */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0xc0));
+  wattrset(_stdscr,CRT_colors[0x30]);
   waddnstr(_stdscr,((char *)(long)&DAT_0014707f /* "used" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  wattrset(_stdscr,CRT_colors[1]);
   waddnstr(_stdscr,((char *)(long)(__sec_rodata + 0x17c2) /* "/" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0xc0));
+  wattrset(_stdscr,CRT_colors[0x30]);
   waddnstr(_stdscr,((char *)(long)&s_total_001470a4 /* "total" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0xbc));
+  wattrset(_stdscr,CRT_colors[0x2f]);
   waddnstr(_stdscr,((char *)(long)&DAT_00149a61 /* "]" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
-  iVar8 = wmove(_stdscr,7,0);
-  if (iVar8 != -1) {
+  wattrset(_stdscr,CRT_colors[1]);
+  iVar9 = wmove(_stdscr,7,0);
+  if (iVar9 != -1) {
     waddnstr(_stdscr,((char *)(long)&s_Type_and_layout_of_header_meters_0014a318 /* "Type and layout of header meters are configurable in the setup screen." */),-1);
   }
-  if ((CRT_colorScheme == 1) && (iVar8 = wmove(_stdscr,8,0), iVar8 != -1)) {
+  if ((CRT_colorScheme == COLORSCHEME_MONOCHROME) && (iVar9 = wmove(_stdscr,8,0), iVar9 != -1)) {
     waddnstr(_stdscr,((char *)(long)&s_In_monochrome__meters_display_as_0014a360 /* "In monochrome, meters display as different chars, in order: |#*@$%&." */),-1);
   }
-  iVar8 = wmove(_stdscr,9,0);
-  if (iVar8 != -1) {
+  iVar9 = wmove(_stdscr,9,0);
+  if (iVar9 != -1) {
     waddnstr(_stdscr,((char *)(long)&s_Process_state__001470df /* "Process state: " */),-1);
   }
-  pbVar9 = &DAT_00156388;
-  iVar8 = 0;
-  pcVar7 = ((char *)(long)&s____00147018 /* "      #: " */);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0x8c));
+  p_Var10 = &helpLeft_0__roInactive;
+  iVar9 = 0;
+  pcVar8 = ((char *)(long)&s____00147018 /* "      #: " */);
+  wattrset(_stdscr,CRT_colors[0x23]);
   waddnstr(_stdscr,((char *)(long)&DAT_001471ab /* "R" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  wattrset(_stdscr,CRT_colors[1]);
   waddnstr(_stdscr,((char *)(long)&s___running__001470ef /* ": running; " */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0x78));
+  wattrset(_stdscr,CRT_colors[0x1e]);
   waddnstr(_stdscr,((char *)(long)&DAT_0014716d /* "S" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  wattrset(_stdscr,CRT_colors[1]);
   waddnstr(_stdscr,((char *)(long)&s___sleeping__001470fb /* ": sleeping; " */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0x8c));
+  wattrset(_stdscr,CRT_colors[0x23]);
   waddnstr(_stdscr,((char *)(long)(__sec_rodata + 0x2e7a) /* "t" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  wattrset(_stdscr,CRT_colors[1]);
   waddnstr(_stdscr,((char *)(long)&s___traced_stopped__00147108 /* ": traced/stopped; " */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0x90));
+  wattrset(_stdscr,CRT_colors[0x24]);
   waddnstr(_stdscr,((char *)(long)&DAT_00149691 /* "Z" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  wattrset(_stdscr,CRT_colors[1]);
   waddnstr(_stdscr,((char *)(long)&s___zombie__0014711b /* ": zombie; " */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 0x90));
+  wattrset(_stdscr,CRT_colors[0x24]);
   waddnstr(_stdscr,((char *)(long)(__sec_rodata + 0x1783) /* "D" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
+  wattrset(_stdscr,CRT_colors[1]);
   waddnstr(_stdscr,((char *)(long)&s___disk_sleep_00147126 /* ": disk sleep" */),-1);
-  wattrset(_stdscr,*(int *)(CRT_colors + 4));
-  cVar1 = CHAR____0015c0d9;
+  wattrset(_stdscr,CRT_colors[1]);
+  _Var1 = readonly;
   do {
-    iVar3 = iVar8 + 0xb;
-    bVar6 = cVar1 & *pbVar9;
+    iVar3 = iVar9 + 0xb;
+    bVar6 = _Var1 & *p_Var10;
     if (bVar6 == 0) {
-      wattrset(_stdscr,*(int *)(CRT_colors + 4));
+      wattrset(_stdscr,CRT_colors[1]);
       iVar4 = wmove(_stdscr,iVar3,10);
       if (iVar4 != -1) {
-        waddnstr(_stdscr,*(char **)(pbVar9 + 8),-1);
+        waddnstr(_stdscr,*(char **)(p_Var10 + 8),-1);
       }
-      iVar4 = *(int *)(CRT_colors + 0x11c);
+      wVar7 = CRT_colors[0x47];
     }
     else {
-      wattrset(_stdscr,*(int *)(CRT_colors + 0x120));
+      wattrset(_stdscr,CRT_colors[0x48]);
       iVar4 = wmove(_stdscr,iVar3,10);
       if (iVar4 != -1) {
-        waddnstr(_stdscr,*(char **)(pbVar9 + 8),-1);
+        waddnstr(_stdscr,*(char **)(p_Var10 + 8),-1);
       }
-      iVar4 = *(int *)(CRT_colors + 0x120);
+      wVar7 = CRT_colors[0x48];
     }
-    wattrset(_stdscr,iVar4);
+    wattrset(_stdscr,wVar7);
     iVar4 = wmove(_stdscr,iVar3,1);
     if (iVar4 != -1) {
-      waddnstr(_stdscr,pcVar7,-1);
+      waddnstr(_stdscr,pcVar8,-1);
     }
-    iVar4 = strcmp(pcVar7,((char *)(long)&s_H__00147133 /* "      H: " */));
-    lVar2 = CRT_colors;
+    iVar4 = strcmp(pcVar8,((char *)(long)&s_H__00147133 /* "      H: " */));
+    pwVar2 = CRT_colors;
     if (iVar4 == 0) {
       if (bVar6 == 0) {
-        iVar4 = *(int *)(CRT_colors + 0xa8);
+        wVar7 = CRT_colors[0x2a];
       }
       else {
-        iVar4 = *(int *)(CRT_colors + 0x120);
+        wVar7 = CRT_colors[0x48];
       }
-      wattrset(_stdscr,iVar4);
+      wattrset(_stdscr,wVar7);
       iVar3 = wmove(_stdscr,iVar3,0x21);
 joined_r0x001152ab:
       if (iVar3 != -1) {
@@ -932,353 +948,248 @@ joined_r0x001152ab:
       }
     }
     else {
-      iVar4 = strcmp(pcVar7,((char *)(long)&s_K__0014713d /* "      K: " */));
+      iVar4 = strcmp(pcVar8,((char *)(long)&s_K__0014713d /* "      K: " */));
       if (iVar4 == 0) {
         if (bVar6 == 0) {
-          iVar4 = *(int *)(lVar2 + 0xa8);
+          wVar7 = pwVar2[0x2a];
         }
         else {
-          iVar4 = *(int *)(lVar2 + 0x120);
+          wVar7 = pwVar2[0x48];
         }
-        wattrset(_stdscr,iVar4);
+        wattrset(_stdscr,wVar7);
         iVar3 = wmove(_stdscr,iVar3,0x1b);
         goto joined_r0x001152ab;
       }
     }
-    pcVar7 = *(char **)(pbVar9 + 0x10);
-    pbVar9 = pbVar9 + 0x18;
-    iVar8 = iVar8 + 1;
-    if (pcVar7 == (char *)0x0) {
-      pcVar10 = ((char *)(long)&DAT_001561a8 /* "" */);
-      pcVar7 = ((char *)(long)&s_S_Tab__00147022 /* "  S-Tab: " */);
+    pcVar8 = *(char **)(p_Var10 + 0x10);
+    p_Var10 = p_Var10 + 0x18;
+    iVar9 = iVar9 + 1;
+    if (pcVar8 == (char *)0x0) {
+      p_Var10 = &helpRight_0__roInactive;
+      pcVar8 = ((char *)(long)&s_S_Tab__00147022 /* "  S-Tab: " */);
       iVar3 = 0;
       do {
         iVar4 = iVar3 + 0xb;
-        if ((*pcVar10 == '\0') || (cVar1 == '\0')) {
-          wattrset(_stdscr,*(int *)(CRT_colors + 0x11c));
+        if ((*p_Var10 == false) || (_Var1 == false)) {
+          wattrset(_stdscr,CRT_colors[0x47]);
           iVar5 = wmove(_stdscr,iVar4,0x2b);
           if (iVar5 != -1) {
-            waddnstr(_stdscr,pcVar7,-1);
+            waddnstr(_stdscr,pcVar8,-1);
           }
-          iVar5 = *(int *)(CRT_colors + 4);
+          wVar7 = CRT_colors[1];
         }
         else {
-          wattrset(_stdscr,*(int *)(CRT_colors + 0x120));
+          wattrset(_stdscr,CRT_colors[0x48]);
           iVar5 = wmove(_stdscr,iVar4,0x2b);
           if (iVar5 != -1) {
-            waddnstr(_stdscr,pcVar7,-1);
+            waddnstr(_stdscr,pcVar8,-1);
           }
-          iVar5 = *(int *)(CRT_colors + 0x120);
+          wVar7 = CRT_colors[0x48];
         }
-        wattrset(_stdscr,iVar5);
+        wattrset(_stdscr,wVar7);
         iVar4 = wmove(_stdscr,iVar4,0x34);
         if (iVar4 != -1) {
-          waddnstr(_stdscr,*(char **)(pcVar10 + 8),-1);
+          waddnstr(_stdscr,*(char **)(p_Var10 + 8),-1);
         }
-        pcVar7 = *(char **)(pcVar10 + 0x10);
-        pcVar10 = pcVar10 + 0x18;
+        pcVar8 = *(char **)(p_Var10 + 0x10);
+        p_Var10 = p_Var10 + 0x18;
         iVar3 = iVar3 + 1;
-      } while (pcVar7 != (char *)0x0);
-      wattrset(_stdscr,*(int *)(CRT_colors + 0x11c));
-      if (iVar8 <= iVar3) {
-        iVar8 = iVar3;
+      } while (pcVar8 != (char *)0x0);
+      wattrset(_stdscr,CRT_colors[0x47]);
+      if (iVar9 <= iVar3) {
+        iVar9 = iVar3;
       }
-      iVar8 = wmove(_stdscr,iVar8 + 0xc,0);
-      if (iVar8 != -1) {
+      iVar9 = wmove(_stdscr,iVar9 + 0xc,0);
+      if (iVar9 != -1) {
         waddnstr(_stdscr,((char *)(long)&s_Press_any_key_to_return__00147147 /* "Press any key to return." */),-1);
       }
-      wattrset(_stdscr,*(int *)(CRT_colors + 4));
+      wattrset(_stdscr,CRT_colors[1]);
       wrefresh(_stdscr);
+                    /* Unresolved local var: int ret@[???] */
       nocbreak();
       cbreak();
       nodelay(_stdscr,0);
       wgetch(_stdscr);
-      halfdelay(*PTR_0015c0d0);
+      halfdelay(*CRT_delay);
       wclear(_stdscr);
-      return 0x2b;
+      return HTOP_REDRAW_BAR|HTOP_KEEP_FOLLOWING|HTOP_RECALCULATE;
     }
   } while( true );
 }
 
 
-/* FUN_00115660 @ 0x115660 */
-
-void FUN_00115660(long param_1)
-
-{
-  undefined1 __frame[0xe8] __attribute__((aligned(16)));
-  undefined1 *__fp = __frame + 0xa8;
-  tm *__tp;
-  long in_FS_OFFSET = (long)__fake_fs;
-
-  (*(long *)(__fp - 0x20)) = *(long *)(in_FS_OFFSET + 0x28);
-  __tp = localtime_r((time_t *)(*(long *)(param_1 + 0x10) + 8),&(*(tm *)(__fp - 0x58)));
-  **(double **)(param_1 + 0x160) = (double)(__tp->tm_hour * 0x3c + __tp->tm_min);
-  strftime((char *)(param_1 + 0x60),0x100,((char *)(long)&DAT_00147166 /* "%H:%M:%S" */),__tp);
-  if ((*(long *)(__fp - 0x20)) == *(long *)(in_FS_OFFSET + 0x28)) {
-    return;
-  }
-                    /* WARNING: Subroutine does not return */
-  __stack_chk_fail();
-}
-
-
-/* FUN_001156e0 @ 0x1156e0 */
-
-void FUN_001156e0(long param_1)
-
-{
-  undefined1 __frame[0xe8] __attribute__((aligned(16)));
-  undefined1 *__fp = __frame + 0xa8;
-  int iVar1;
-  uint uVar2;
-  tm *__tp;
-  long in_FS_OFFSET = (long)__fake_fs;
-  undefined8 uVar3;
-
-  (*(long *)(__fp - 0x20)) = *(long *)(in_FS_OFFSET + 0x28);
-  __tp = localtime_r((time_t *)(*(long *)(param_1 + 0x10) + 8),&(*(tm *)(__fp - 0x58)));
-  **(double **)(param_1 + 0x160) = (double)__tp->tm_yday;
-  uVar2 = __tp->tm_year;
-  iVar1 = uVar2 + 0x76c;
-  if ((((uVar2 & 3) != 0) ||
-      (uVar3 = 0x4076e00000000000,
-      (iVar1 * -0x3d70a3d7 + 0x51eb850U >> 2 | uVar2 * 0x40000000) < 0x28f5c29)) &&
-     (uVar3 = 0x4076e00000000000,
-     0xa3d70a < (iVar1 * -0x3d70a3d7 + 0x51eb850U >> 4 | iVar1 * -0x70000000))) {
-    uVar3 = 0x4076d00000000000;
-  }
-  *(undefined8 *)(param_1 + 0x168) = uVar3;
-  strftime((char *)(param_1 + 0x60),0x100,((char *)(long)&DAT_00147160 /* "%F" */),__tp);
-  if ((*(long *)(__fp - 0x20)) == *(long *)(in_FS_OFFSET + 0x28)) {
-    return;
-  }
-                    /* WARNING: Subroutine does not return */
-  __stack_chk_fail();
-}
-
-
-/* FUN_001157c0 @ 0x1157c0 */
-
-void FUN_001157c0(long param_1)
-
-{
-  undefined1 __frame[0xe8] __attribute__((aligned(16)));
-  undefined1 *__fp = __frame + 0xa8;
-  int iVar1;
-  uint uVar2;
-  tm *__tp;
-  long in_FS_OFFSET = (long)__fake_fs;
-  undefined8 uVar3;
-
-  (*(long *)(__fp - 0x20)) = *(long *)(in_FS_OFFSET + 0x28);
-  __tp = localtime_r((time_t *)(*(long *)(param_1 + 0x10) + 8),&(*(tm *)(__fp - 0x58)));
-  uVar2 = __tp->tm_year;
-  iVar1 = uVar2 + 0x76c;
-  if ((((uVar2 & 3) != 0) ||
-      (uVar3 = 0x4076e00000000000,
-      (iVar1 * -0x3d70a3d7 + 0x51eb850U >> 2 | uVar2 * 0x40000000) < 0x28f5c29)) &&
-     (uVar3 = 0x4076e00000000000,
-     0xa3d70a < (iVar1 * -0x3d70a3d7 + 0x51eb850U >> 4 | iVar1 * -0x70000000))) {
-    uVar3 = 0x4076d00000000000;
-  }
-  *(undefined8 *)(param_1 + 0x168) = uVar3;
-  **(double **)(param_1 + 0x160) = (double)__tp->tm_yday;
-  strftime((char *)(param_1 + 0x60),0x100,((char *)(long)&DAT_00147163 /* "%F %H:%M:%S" */),__tp);
-  if ((*(long *)(__fp - 0x20)) == *(long *)(in_FS_OFFSET + 0x28)) {
-    return;
-  }
-                    /* WARNING: Subroutine does not return */
-  __stack_chk_fail();
-}
-
-
-/* FUN_001158a0 @ 0x1158a0 */
-
-void FUN_001158a0(void)
-
-{
-  undefined1 __frame[0x8b8] __attribute__((aligned(16)));
-  undefined1 *__fp = __frame + 0x878;
-  int p1;
-  long in_FS_OFFSET = (long)__fake_fs;
-
-  (*(long *)(__fp - 0x20)) = *(long *)(in_FS_OFFSET + 0x28);
-  p1 = backtrace((*(void * (*)[257])(__fp - 0x828)),0x100);
-  backtrace_symbols_fd((*(void * (*)[257])(__fp - 0x828)),p1,2);
-  if ((*(long *)(__fp - 0x20)) == *(long *)(in_FS_OFFSET + 0x28)) {
-    return;
-  }
-                    /* WARNING: Subroutine does not return */
-  __stack_chk_fail();
-}
-
-
 /* Action_setUserOnly @ 0x115900 */
 
-undefined8 Action_setUserOnly(char *param_1,__uid_t *param_2)
+_Bool Action_setUserOnly(char *userName,uid_t *userId)
 
 {
   passwd *ppVar1;
 
-  ppVar1 = getpwnam(param_1);
+  ppVar1 = getpwnam(userName);
   if (ppVar1 != (passwd *)0x0) {
-    *param_2 = ppVar1->pw_uid;
-    return 1;
+    *userId = ppVar1->pw_uid;
+    return true;
   }
-  *param_2 = 0xffffffff;
-  return 0;
+  *userId = 0xffffffff;
+  return false;
 }
 
 
 /* Action_setSortKey @ 0x115940 */
 
-undefined8 Action_setSortKey(long param_1,int param_2)
+Htop_Reaction Action_setSortKey(Settings_2 *settings,ProcessField sortKey)
 
 {
-  char cVar1;
-  long lVar2;
+  _Bool _Var1;
+  ScreenSettings_2 *pSVar2;
 
-  lVar2 = *(long *)(param_1 + 0x40);
-  cVar1 = Process_fields[(long)param_2 * 0x20 + 0x1d];
-  if ((*(char *)(lVar2 + 0x35) == '\0') && (*(char *)(lVar2 + 0x34) != '\0')) {
-    *(int *)(lVar2 + 0x30) = param_2;
-    *(uint *)(lVar2 + 0x28) = (-(uint)(cVar1 == '\0') & 2) - 1;
+  pSVar2 = settings->ss;
+  _Var1 = Process_fields[sortKey].defaultSortDesc;
+  if ((pSVar2->treeViewAlwaysByPID == false) && (pSVar2->treeView != false)) {
+    pSVar2->treeSortKey = sortKey;
+    pSVar2->treeDirection = (-(uint)(_Var1 == false) & 2) + -1;
     return 0x4d;
   }
-  *(int *)(lVar2 + 0x2c) = param_2;
-  *(undefined1 *)(lVar2 + 0x34) = 0;
-  *(uint *)(lVar2 + 0x24) = (-(uint)(cVar1 == '\0') & 2) - 1;
+  pSVar2->sortKey = sortKey;
+  pSVar2->treeView = false;
+  pSVar2->direction = (-(uint)(_Var1 == false) & 2) + -1;
   return 0x4d;
 }
 
 
 /* Action_setScreenTab @ 0x115a20 */
 
-undefined8 Action_setScreenTab(long *param_1,int param_2)
+Htop_Reaction Action_setScreenTab(State_2 *st,int x)
 
 {
   uint uVar1;
-  long *plVar2;
-  undefined8 *puVar3;
-  char cVar4;
-  size_t sVar5;
-  long lVar6;
-  undefined8 uVar7;
-  long *plVar8;
-  int iVar9;
-  uint uVar10;
+  Machine *pMVar2;
+  Settings__2 *pSVar3;
+  ScreenSettings_2 *pSVar4;
+  Table_ *pTVar5;
+  _Bool _Var6;
+  size_t sVar7;
+  MainPanel__2 *pMVar8;
+  FunctionBar *pFVar9;
+  ScreenSettings_2 **ppSVar10;
+  int wVar11;
+  uint uVar12;
 
-  plVar2 = (long *)*param_1;
-  lVar6 = *plVar2;
-  uVar1 = *(uint *)(lVar6 + 0x38);
-  if ((uVar1 != 0) && (1 < param_2)) {
-    plVar8 = *(long **)(lVar6 + 0x30);
-    uVar10 = 0;
-    iVar9 = 2;
+  pMVar2 = st->host;
+  pSVar3 = pMVar2->settings;
+                    /* Unresolved local var: uint i@[???] */
+  uVar1 = pSVar3->nScreens;
+                    /* Unresolved local var: char * tab@[???]
+                       Unresolved local var: int len@[???] */
+  if ((uVar1 != 0) && (1 < x)) {
+    ppSVar10 = pSVar3->screens;
+    uVar12 = 0;
+    wVar11 = 2;
     do {
-      puVar3 = (undefined8 *)*plVar8;
-      sVar5 = strlen((char *)*puVar3);
-      cVar4 = CHAR____0015c0d9;
-      if (param_2 <= iVar9 + 1 + (int)sVar5) {
-        *(uint *)(lVar6 + 0x3c) = uVar10;
-        *(undefined8 **)(lVar6 + 0x40) = puVar3;
-        lVar6 = puVar3[2];
-        if (lVar6 == 0) {
-          lVar6 = plVar2[0x16];
-          puVar3[2] = lVar6;
-          plVar2[0x15] = lVar6;
-          if (cVar4 == '\0') goto LAB_00115b46;
+      pSVar4 = *ppSVar10;
+      sVar7 = strlen(pSVar4->heading);
+      _Var6 = readonly;
+      if (x <= wVar11 + 1 + (int)sVar7) {
+                    /* Unresolved local var: Machine * host@[???]
+                       Unresolved local var: _Bool readonly@[???] */
+        pSVar3->ssIndex = uVar12;
+        pSVar3->ss = pSVar4;
+        pTVar5 = pSVar4->table;
+        if (pTVar5 == (Table_ *)0x0) {
+          pTVar5 = pMVar2->processTable;
+          pSVar4->table = pTVar5;
+          pMVar2->activeTable = pTVar5;
+          if (_Var6 == false) goto LAB_00115b46;
         }
         else {
-          plVar2[0x15] = lVar6;
-          if ((cVar4 == '\0') && (lVar6 == plVar2[0x16])) {
+          pMVar2->activeTable = pTVar5;
+          if ((_Var6 == false) && (pTVar5 == pMVar2->processTable)) {
 LAB_00115b46:
-            lVar6 = param_1[1];
-            uVar7 = *(undefined8 *)(lVar6 + 0x26f8);
+            pMVar8 = st->mainPanel;
+            pFVar9 = pMVar8->processBar;
             goto LAB_00115aeb;
           }
         }
-        lVar6 = param_1[1];
-        uVar7 = *(undefined8 *)(lVar6 + 0x2700);
+        pMVar8 = st->mainPanel;
+        pFVar9 = pMVar8->readonlyBar;
 LAB_00115aeb:
-        *(undefined8 *)(lVar6 + 0x58) = uVar7;
-        *(undefined8 *)(*(long *)(lVar6 + 0x26e8) + 0x140) = uVar7;
+        (pMVar8->super).defaultBar = pFVar9;
+        pMVar8->inc->defaultBar = pFVar9;
         return 0x61;
       }
-      iVar9 = iVar9 + 3 + (int)sVar5;
-      uVar10 = uVar10 + 1;
-      plVar8 = plVar8 + 1;
-    } while ((uVar10 < uVar1) && (iVar9 <= param_2));
+      wVar11 = wVar11 + 3 + (int)sVar7;
+      uVar12 = uVar12 + 1;
+      ppSVar10 = ppSVar10 + 1;
+    } while ((uVar12 < uVar1) && (wVar11 <= x));
   }
-  return 0;
+  return HTOP_OK;
 }
 
 
 /* Action_setBindings @ 0x115c90 */
 
-void Action_setBindings(long param_1)
+void Action_setBindings(Htop_Action_2 *keys)
 
 {
-  *(code **)(param_1 + 0x230) = Action_follow;
-  *(code **)(param_1 + 0x340) = FUN_00114850;
-  *(code **)(param_1 + 0x150) = FUN_00119b50;
-  *(code **)(param_1 + 0x158) = FUN_00113c90;
-  *(code **)(param_1 + 0x218) = FUN_0011a860;
-  *(code **)(param_1 + 0x170) = FUN_001185a0;
-  *(code **)(param_1 + 0x178) = FUN_00119c50;
-  *(code **)(param_1 + 0x100) = FUN_00113f70;
-  *(code **)(param_1 + 0x1f0) = FUN_001185a0;
-  *(code **)(param_1 + 0x1f8) = FUN_00114850;
-  *(code **)(param_1 + 0x848) = FUN_00114850;
-  *(code **)(param_1 + 0x850) = FUN_0011a860;
-  *(code **)(param_1 + 0x160) = FUN_001185a0;
-  *(code **)(param_1 + 0x168) = FUN_00113c90;
-  *(code **)(param_1 + 0x240) = FUN_00119b20;
-  *(code **)(param_1 + 0x248) = FUN_00113c40;
-  *(code **)(param_1 + 0x118) = FUN_00113c30;
-  *(code **)(param_1 + 0x268) = FUN_00113a70;
-  *(code **)(param_1 + 0x270) = FUN_00113a20;
-  *(code **)(param_1 + 600) = FUN_00119af0;
-  *(code **)(param_1 + 0x278) = FUN_00113b60;
-  *(code **)(param_1 + 0x280) = FUN_00113ac0;
-  *(code **)(param_1 + 0x60) = FUN_00114830;
-  *(code **)(param_1 + 0x2a8) = FUN_00113fe0;
-  *(code **)(param_1 + 0x298) = FUN_0011a860;
-  *(code **)(param_1 + 0x2a0) = FUN_00113b10;
-  *(code **)(param_1 + 0x308) = FUN_0011b7a0;
-  *(code **)(param_1 + 0x2c8) = FUN_00119cb0;
-  *(code **)(param_1 + 0x2d0) = FUN_00113fd0;
-  *(code **)(param_1 + 0x3f8) = FUN_00113ce0;
-  *(code **)(param_1 + 0x2d8) = FUN_00114740;
-  *(code **)(param_1 + 0x2e0) = FUN_00119bd0;
-  *(code **)(param_1 + 0x318) = FUN_00114020;
-  *(code **)(param_1 + 0x358) = FUN_0011a000;
-  *(code **)(param_1 + 0x360) = FUN_0011a9d0;
-  *(code **)(param_1 + 0x328) = FUN_0011abf0;
-  *(code **)(param_1 + 0x368) = FUN_00113ba0;
-  *(code **)(param_1 + 0x380) = FUN_00113b80;
-  *(code **)(param_1 + 0x388) = FUN_00113f10;
-  *(code **)(param_1 + 0x3a8) = FUN_0011a490;
-  *(code **)(param_1 + 0x398) = FUN_0011aaf0;
-  *(code **)(param_1 + 0x3a0) = FUN_00113bc0;
-  *(code **)(param_1 + 0x2e8) = FUN_00114650;
-  *(code **)(param_1 + 0x1e0) = FUN_001185a0;
-  *(code **)(param_1 + 0x1e8) = FUN_00113c90;
-  *(code **)(param_1 + 0x3b8) = FUN_0011ad20;
-  *(code **)(param_1 + 0x3c0) = FUN_0011aa60;
-  *(code **)(param_1 + 0x858) = FUN_00119c50;
-  *(code **)(param_1 + 0x860) = FUN_00119bd0;
-  *(code **)(param_1 + 0x8d0) = FUN_001189d0;
-  *(code **)(param_1 + 0x868) = FUN_00113bc0;
-  *(code **)(param_1 + 0x870) = FUN_001185a0;
-  *(code **)(param_1 + 0x48) = FUN_00113d90;
-  *(code **)(param_1 + 0x878) = FUN_00114650;
-  *(code **)(param_1 + 0x880) = FUN_00114740;
-  *(code **)(param_1 + 0x888) = FUN_0011a000;
-  *(code **)(param_1 + 0x890) = FUN_00113f10;
-  *(code **)(param_1 + 0x940) = FUN_00113c90;
-  *(code **)(param_1 + 0x948) = FUN_00113e50;
+  keys[0x46] = Action_follow;
+  keys[0x68] = actionHelp;
+  keys[0x2a] = actionExpandOrCollapseAllBranches;
+  keys[0x2b] = actionExpandOrCollapse;
+  keys[0x43] = actionSetup;
+  keys[0x2e] = actionSetSortColumn;
+  keys[0x2f] = actionIncSearch;
+  keys[0x20] = actionTag;
+  keys[0x3e] = actionSetSortColumn;
+  keys[0x3f] = actionHelp;
+  keys[0x109] = actionHelp;
+  keys[0x10a] = actionSetup;
+  keys[0x2c] = actionSetSortColumn;
+  keys[0x2d] = actionExpandOrCollapse;
+  keys[0x48] = actionToggleUserlandThreads;
+  keys[0x49] = actionInvertSortOrder;
+  keys[0x23] = actionToggleHideMeters;
+  keys[0x4d] = actionSortByMemory;
+  keys[0x4e] = actionSortByPID;
+  keys[0x4b] = actionToggleKernelThreads;
+  keys[0x4f] = actionToggleRunningInContainer;
+  keys[0x50] = actionSortByCPU;
+  keys[0xc] = actionRedraw;
+  keys[0x55] = actionUntagAll;
+  keys[0x53] = actionSetup;
+  keys[0x54] = actionSortByTime;
+  keys[0x61] = actionSetAffinity;
+  keys[0x59] = actionSetSchedPolicy;
+  keys[0x5a] = actionTogglePauseUpdate;
+  keys[0x7f] = actionCollapseIntoParent;
+  keys[0x5b] = actionLowerPriority;
+  keys[0x5c] = actionIncFilter;
+  keys[99] = actionTagAllChildren;
+  keys[0x6b] = actionKill;
+  keys[0x6c] = actionLsof;
+  keys[0x65] = actionShowEnvScreen;
+  keys[0x6d] = actionToggleMergedCommand;
+  keys[0x70] = actionToggleProgramPath;
+  keys[0x71] = actionQuit;
+  keys[0x75] = actionFilterByUser;
+  keys[0x73] = actionStrace;
+  keys[0x74] = actionToggleTreeView;
+  keys[0x5d] = actionHigherPriority;
+  keys[0x3c] = actionSetSortColumn;
+  keys[0x3d] = actionExpandOrCollapse;
+  keys[0x77] = actionShowCommandScreen;
+  keys[0x78] = actionShowLocks;
+  keys[0x10b] = actionIncSearch;
+  keys[0x10c] = actionIncFilter;
+  keys[0x11a] = actionExpandCollapseOrSortColumn;
+  keys[0x10d] = actionToggleTreeView;
+  keys[0x10e] = actionSetSortColumn;
+  keys[9] = actionNextScreen;
+  keys[0x10f] = actionHigherPriority;
+  keys[0x110] = actionLowerPriority;
+  keys[0x111] = actionKill;
+  keys[0x112] = actionQuit;
+  keys[0x128] = actionExpandOrCollapse;
+  keys[0x129] = actionPrevScreen;
   return;
 }
 
@@ -1287,88 +1198,1481 @@ void Action_setBindings(long param_1)
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-undefined8
-Action_pickFromVector
-          (long *param_1,long param_2,int param_3,char param_4,long param_r8,long param_r9)
+Object * Action_pickFromVector(State_2 *st,MainPanel_ *list,int x,_Bool follow)
 
 {
   undefined1 __frame[0xe8] __attribute__((aligned(16)));
   undefined1 *__fp = __frame + 0xa8;
-  uint uVar1;
-  long lVar2;
-  int *__ptr;
-  undefined8 uVar3;
-  long lVar4;
-  long extraout_RDX;
-  long lVar5;
-  long extraout_RDX_00;
-  long *plVar6;
-  int iVar7;
+  Machine *host;
+  MainPanel__2 *item;
+  Vector *pVVar1;
+  ScreenManager *this;
+  Object *pOVar2;
+  int wVar3;
   long in_FS_OFFSET = (long)__fake_fs;
 
-  lVar5 = *param_1;
-  lVar2 = param_1[1];
-  uVar1 = *(uint *)(lVar2 + 0xc);
-  (*(long *)(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
-  __ptr = (int *)ScreenManager_new(param_1[2],lVar5,param_1,0);
-  *(undefined1 *)(__ptr + 0x10) = 0;
-  ScreenManager_insert(__ptr,param_2,param_3,*(int *)(*(long *)(__ptr + 4) + 0x18));
-  ScreenManager_insert(__ptr,lVar2,-1,*(int *)(*(long *)(__ptr + 4) + 0x18));
-  if (param_4 == '\0') {
-    plVar6 = &(*(long *)(__fp - 0x48));
-    lVar4 = 0;
-    ScreenManager_run(__ptr,plVar6,&(*(uint *)(__fp - 0x4c)),0,param_r8,param_r9);
-    (*(int *)(__fp - 0x60)) = -1;
-    lVar5 = extraout_RDX;
-  }
-  else {
-    (*(int *)(__fp - 0x60)) = -1;
-    if ((0 < (int)(*(long **)(lVar2 + 0x20))[3]) &&
-       (lVar4 = *(long *)(**(long **)(lVar2 + 0x20) + (long)*(int *)(lVar2 + 0x28) * 8), lVar4 != 0)
-       ) {
-      (*(int *)(__fp - 0x60)) = *(int *)(lVar4 + 0x10);
+  host = st->host;
+  item = st->mainPanel;
+  wVar3 = (item->super).y;
+  (*(long (*))(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
+  this = (ScreenManager *)
+         ScreenManager_new((Header_4 *)st->header,(Machine_2 *)host,(State *)st,false);
+  this->allowFocusChange = false;
+  ScreenManager_insert(this,&list->super,x,this->panels->items);
+  ScreenManager_insert(this,&item->super,-1,this->panels->items);
+  if (follow) {
+                    /* Unresolved local var: Row * row@[???] */
+    pVVar1 = (item->super).items;
+    (*(int (*))(__fp - 0x60)) = -1;
+    if ((0 < pVVar1->items) &&
+       (pOVar2 = pVVar1->array[(item->super).selected], pOVar2 != (Object *)0x0)) {
+      (*(int (*))(__fp - 0x60)) = *(int *)&pOVar2[2].klass;
     }
-    if (*(int *)(*(long *)(lVar5 + 0xa8) + 0x34) == -1) {
-      plVar6 = &(*(long *)(__fp - 0x48));
-      lVar4 = 0;
-      *(int *)(*(long *)(lVar5 + 0xa8) + 0x34) = (*(int *)(__fp - 0x60));
-      ScreenManager_run(__ptr,plVar6,&(*(uint *)(__fp - 0x4c)),0,param_r8,param_r9);
-      lVar5 = *(long *)(lVar5 + 0xa8);
-      *(undefined4 *)(lVar5 + 0x34) = 0xffffffff;
+    if (((Table_2 *)host->activeTable)->following == -1) {
+      ((Table_2 *)host->activeTable)->following = (*(int (*))(__fp - 0x60));
+      ScreenManager_run(this,&(*(Panel *(*))(__fp - 0x48)),&(*(int (*))(__fp - 0x4c)),(char *)0x0);
+      ((Table_2 *)host->activeTable)->following = -1;
     }
     else {
-      plVar6 = &(*(long *)(__fp - 0x48));
-      lVar4 = 0;
-      ScreenManager_run(__ptr,plVar6,&(*(uint *)(__fp - 0x4c)),0,param_r8,param_r9);
-      lVar5 = extraout_RDX_00;
+      ScreenManager_run(this,&(*(Panel *(*))(__fp - 0x48)),&(*(int (*))(__fp - 0x4c)),(char *)0x0);
     }
   }
-  Vector_delete(*(long **)(__ptr + 4),(long)plVar6,lVar5,lVar4,param_r8,param_r9);
-  free(__ptr);
-  *(uint *)(lVar2 + 0xc) = uVar1;
-  *(undefined4 *)(lVar2 + 8) = 0;
-  iVar7 = ~uVar1 + _LINES;
-  *(undefined1 *)(lVar2 + 0x48) = 1;
-  *(int *)(lVar2 + 0x14) = iVar7;
-  *(undefined4 *)(lVar2 + 0x10) = _COLS;
-  if (((*(long *)(__fp - 0x48)) == param_2) && ((*(uint *)(__fp - 0x4c)) == 0xd)) {
-    if ((param_4 == '\0') ||
-       (((0 < (int)(*(long **)(lVar2 + 0x20))[3] &&
-         (lVar5 = *(long *)(**(long **)(lVar2 + 0x20) + (long)*(int *)(lVar2 + 0x28) * 8),
-         lVar5 != 0)) && (*(int *)(lVar5 + 0x10) == (*(int *)(__fp - 0x60)))))) {
-      if (0 < (int)(*(long **)(param_2 + 0x20))[3]) {
-        uVar3 = *(undefined8 *)(**(long **)(param_2 + 0x20) + (long)*(int *)(param_2 + 0x28) * 8);
+  else {
+    ScreenManager_run(this,&(*(Panel *(*))(__fp - 0x48)),&(*(int (*))(__fp - 0x4c)),(char *)0x0);
+    (*(int (*))(__fp - 0x60)) = -1;
+  }
+  Vector_delete(this->panels);
+  free(this);
+  (item->super).y = wVar3;
+  (item->super).x = 0;
+  wVar3 = ~wVar3 + _LINES;
+  (item->super).needsRedraw = true;
+  (item->super).h = wVar3;
+  (item->super).w = _COLS;
+  if (((MainPanel_ *)(*(Panel *(*))(__fp - 0x48)) == list) && ((*(int (*))(__fp - 0x4c)) == 13)) {
+                    /* Unresolved local var: Row * selected@[???] */
+    if ((follow) &&
+       (((pVVar1 = (item->super).items, pVVar1->items < 1 ||
+         (pOVar2 = pVVar1->array[(item->super).selected], pOVar2 == (Object *)0x0)) ||
+        (*(int *)&pOVar2[2].klass != (*(int (*))(__fp - 0x60)))))) {
+      beep();
+    }
+    else {
+      pVVar1 = (list->super).items;
+      if (0 < pVVar1->items) {
+        pOVar2 = pVVar1->array[(list->super).selected];
         goto LAB_00117a1a;
       }
     }
-    else {
-      beep();
+  }
+  pOVar2 = (Object *)0x0;
+LAB_00117a1a:
+  if ((*(long (*))(__fp - 0x40)) == *(long *)(in_FS_OFFSET + 0x28)) {
+    return pOVar2;
+  }
+                    /* WARNING: Subroutine does not return */
+  __stack_chk_fail();
+}
+
+
+/* actionSetSortColumn @ 0x1185a0 */
+
+/* WARNING: Removing unreachable block (ram,0x00118661) */
+/* WARNING: Heritage AFTER dead removal. Example location: s0xffffffffffffff70 : 0x0011867e */
+/* WARNING: Type propagation algorithm not settling */
+/* WARNING: Restarted to delay deadcode elimination for space: stack */
+
+Htop_Reaction actionSetSortColumn(State_2 *st)
+
+{
+  undefined1 __frame[0x138] __attribute__((aligned(16)));
+  undefined1 *__fp = __frame + 0xf8;
+  _Bool _Var1;
+  int wVar2;
+  int __wc;
+  ht_key_t hVar3;
+  uint uVar4;
+  long lVar5;
+  ht_key_t *phVar6;
+  Object_Delete p_Var7;
+  Vector *this;
+  code *pcVar8;
+  ObjectClass **ppOVar9;
+  Machine *pMVar10;
+  Hashtable_2 *pHVar11;
+  State_2 *st_00;
+  int wVar12;
+  int iVar13;
+  FunctionBar *fuBar;
+  MainPanel_ *list;
+  size_t sVar14;
+  Hashtable_2 *pHVar15;
+  Object *pOVar16;
+  undefined8 *puVar17;
+  char *pcVar18;
+  char *pcVar19;
+  HashtableItem *pHVar20;
+  uint uVar21;
+  MainPanel_ *pMVar22;
+  ScreenSettings_2 *extraout_RDX;
+  ScreenSettings_2 *pSVar23;
+  int *pwVar24;
+  MainPanel_ *pMVar25;
+  MainPanel_ *pMVar26;
+  MainPanel_ *pMVar27;
+  Hashtable_2 *a5;
+  Htop_Reaction HVar28;
+  cchar_t *pcVar29;
+  long lVar30;
+  long in_FS_OFFSET = (long)__fake_fs;
+
+  pMVar25 = (MainPanel_ *)&(*(undefined8 (*))(__fp - 0x88));
+  lVar5 = *(long *)(in_FS_OFFSET + 0x28);
+  (*(char *(*) [3])(__fp - 0x58))[2] = (char *)0x0;
+  (*(char *(*) [3])(__fp - 0x58))[0] = ((char *)(long)&s_Sort_0014721b /* "Sort   " */);
+  (*(char *(*) [3])(__fp - 0x58))[1] = ((char *)(long)&s_Cancel_00147223 /* "Cancel " */);
+  (*(State_2 *(*))(__fp - 0x78)) = st;
+  fuBar = FunctionBar_new((*(char *(*) [3])(__fp - 0x58)),FunctionBar_EnterEscKeys,((char *)(long)&FunctionBar_EnterEscEvents /* L"\r\x1b" */));
+                    /* Unresolved local var: Panel * this@[???]
+                       Unresolved local var: void * data@[???] */
+  list = malloc(0x26e0);
+  if (list != (MainPanel_ *)0x0) {
+    (list->super).super.klass = &Panel_class.super;
+    Panel_init(&list->super,0,0,0,0,&ListItem_class,true,fuBar);
+    wVar2 = CRT_colors[7];
+                    /* Unresolved local var: int[33847] data@[???]
+                       Unresolved local var: int newLen@[???] */
+    (*(MainPanel_ *(*))(__fp - 0x60)) = (MainPanel_ *)&(*(undefined8 (*))(__fp - 0x88));
+    pwVar24 = (*(int (*) [4])(__fp - 0xa8));
+    (*(MainPanel_ *(*))(__fp - 0x60)) = (MainPanel_ *)&(*(undefined8 (*))(__fp - 0x88));
+    sVar14 = mbstowcs((*(int (*) [4])(__fp - 0xa8)),((char *)(long)&s_Sort_by_0014722b /* "Sort by" */),7);
+    wVar12 = (int)sVar14;
+    if (0 < wVar12) {
+                    /* Unresolved local var: int i@[???]
+                       Unresolved local var: int j@[???] */
+      RichString_setLen(&(list->super).header,wVar12);
+      (*(MainPanel_ *(*))(__fp - 0x68)) = list;
+      pcVar29 = (list->super).header.chptr;
+      do {
+        __wc = *pwVar24;
+        iVar13 = iswprint(__wc);
+        pcVar29->attr = 0;
+        pcVar29->chars[0] = 0;
+        pcVar29->chars[1] = 0;
+        pcVar29->chars[2] = 0;
+        if (iVar13 == 0) {
+          __wc = 65533;
+        }
+        pwVar24 = pwVar24 + 1;
+        pcVar29->attr = wVar2 & 0xffffff;
+        *(undefined16 *)(*(undefined1 (*) [16])(pcVar29->chars + 2)) = (undefined16)0x0;
+        pcVar29->chars[0] = __wc;
+        list = (*(MainPanel_ *(*))(__fp - 0x68));
+        pcVar29 = pcVar29 + 1;
+      } while (pwVar24 != (*(int (*) [4])(__fp - 0xa8)) + (ulong)(uint)(wVar12 + -1) + 1);
+    }
+    pMVar25 = (*(MainPanel_ *(*))(__fp - 0x60));
+    (list->super).needsRedraw = true;
+                    /* Unresolved local var: int i@[???] */
+    lVar30 = 0;
+    pMVar27 = (MainPanel_ *)(*(State_2 *(*))(__fp - 0x78))->host->settings;
+    a5 = *(Hashtable_2 **)&(pMVar27->super).cursorX;
+    phVar6 = (ht_key_t *)(*(ScreenSettings_2 **)&(pMVar27->super).scrollV)->fields;
+    hVar3 = *phVar6;
+    pMVar10 = (*(State_2 *(*))(__fp - 0x78))->host;
+    pMVar22 = pMVar27;
+    pHVar11 = a5;
+    st_00 = (*(State_2 *(*))(__fp - 0x78));
+    pMVar26 = (*(MainPanel_ *(*))(__fp - 0x60));
+    do {
+      while( true ) {
+        (*(MainPanel_ *(*))(__fp - 0x60)) = pMVar22;
+        (*(State_2 *(*))(__fp - 0x78)) = st_00;
+        if (hVar3 == 0) {
+          lVar30 = 0;
+          HVar28 = 0x61;
+          pMVar26 = list;
+          pOVar16 = Action_pickFromVector(st_00,list,14,false);
+          pMVar27 = (*(MainPanel_ *(*))(__fp - 0x60));
+          pSVar23 = extraout_RDX;
+          if (pOVar16 != (Object *)0x0) {
+            iVar13 = *(int *)&pOVar16[2].klass;
+            lVar30 = (long)iVar13;
+            pSVar23 = *(ScreenSettings_2 **)&((*(MainPanel_ *(*))(__fp - 0x60))->super).scrollV;
+            _Var1 = Process_fields[lVar30].defaultSortDesc;
+            if ((pSVar23->treeViewAlwaysByPID == false) && (pSVar23->treeView != false)) {
+              pSVar23->treeSortKey = iVar13;
+              pSVar23->treeDirection = (-(uint)(_Var1 == false) & 2) + -1;
+            }
+            else {
+              pSVar23->sortKey = iVar13;
+              pSVar23->treeView = false;
+              pSVar23->direction = (-(uint)(_Var1 == false) & 2) + -1;
+            }
+            HVar28 = 0x6d;
+          }
+          p_Var7 = ((list->super).super.klass)->delete;
+          (*(code *)(p_Var7))((Object *)list,(long)pMVar26,(long)pSVar23,lVar30,(long)pMVar27,(long)a5);
+          pMVar10->activeTable->needsSort = true;
+          if (lVar5 != *(long *)(in_FS_OFFSET + 0x28)) {
+                    /* WARNING: Subroutine does not return */
+            __stack_chk_fail();
+          }
+          return HVar28;
+        }
+                    /* Unresolved local var: char * name@[???] */
+        (*(Machine *(*))(__fp - 0x80)) = pMVar10;
+        (*(Hashtable_2 *(*))(__fp - 0x70)) = pHVar11;
+        (*(MainPanel_ *(*))(__fp - 0x68)) = (*(MainPanel_ *(*))(__fp - 0x60));
+        if ((int)hVar3 < 0x84) break;
+                    /* Unresolved local var: DynamicColumn * column@[???]
+                       Unresolved local var: size_t index@[???]
+                       Unresolved local var: size_t probe@[???]
+                       Unresolved local var: void * res@[???] */
+        pMVar27 = (MainPanel_ *)pHVar11->size;
+        a5 = (Hashtable_2 *)pHVar11->buckets;
+        pMVar22 = (MainPanel_ *)((ulong)(long)(int)hVar3 % (ulong)pMVar27);
+        pcVar19 = (char *)((Hashtable_2 *)(&a5->size + (long)pMVar22 * 3))->items;
+        if (pcVar19 != (char *)0x0) {
+          pHVar20 = (HashtableItem *)0x0;
+          pHVar15 = (Hashtable_2 *)(&a5->size + (long)pMVar22 * 3);
+          do {
+            while( true ) {
+              if (hVar3 == (ht_key_t)pHVar15->size) {
+                pcVar18 = *(char **)(pcVar19 + 0x28);
+                if (*(char **)(pcVar19 + 0x28) == (char *)0x0) {
+                  pcVar18 = pcVar19;
+                }
+                    /* Unresolved local var: char * data@[???] */
+                (*(MainPanel_ *(*))(__fp - 0x60)) = pMVar26;
+                pcVar19 = strdup(pcVar18);
+                if (pcVar19 != (char *)0x0) goto LAB_001188a6;
+                goto LAB_0011899f;
+              }
+              if (pHVar15->buckets < pHVar20) goto LAB_001187d0;
+              ppOVar9 = &(pMVar22->super).super.klass;
+              pMVar22 = (MainPanel_ *)((long)ppOVar9 + 1);
+              if (pMVar27 != pMVar22) break;
+              pMVar22 = (MainPanel_ *)0x0;
+              pHVar20 = (HashtableItem *)((long)&pHVar20->key + 1);
+              pcVar19 = (char *)a5->items;
+              pHVar15 = a5;
+              if (pcVar19 == (char *)0x0) goto LAB_001187d0;
+            }
+            pHVar20 = (HashtableItem *)((long)&pHVar20->key + 1);
+            pHVar15 = (Hashtable_2 *)(&a5->owner + (long)ppOVar9 * 0x18);
+            pcVar19 = (char *)pHVar15->items;
+          } while (pcVar19 != (char *)0x0);
+        }
+LAB_001187d0:
+        lVar30 = lVar30 + 1;
+        hVar3 = phVar6[lVar30];
+        pMVar22 = (*(MainPanel_ *(*))(__fp - 0x60));
+      }
+      pcVar19 = Process_fields[(int)hVar3].name;
+      (*(MainPanel_ *(*))(__fp - 0x60)) = pMVar26;
+      pcVar19 = String_trim(pcVar19);
+LAB_001188a6:
+                    /* Unresolved local var: ListItem * this@[???]
+                       Unresolved local var: void * data@[???] */
+      hVar3 = phVar6[lVar30];
+      puVar17 = malloc(0x18);
+      if (puVar17 == (undefined8 *)0x0) break;
+                    /* Unresolved local var: char * data@[???] */
+      *puVar17 = &ListItem_class;
+      (*(MainPanel_ *(*))(__fp - 0x60)) = (MainPanel_ *)puVar17;
+      pcVar18 = strdup(pcVar19);
+      pMVar26 = (*(MainPanel_ *(*))(__fp - 0x60));
+      if (pcVar18 == (char *)0x0) break;
+      this = (list->super).items;
+      *(char **)((long)(*(MainPanel_ *(*))(__fp - 0x60)) + 8) = pcVar18;
+                    /* Unresolved local var: Object * data@[???]
+                       Unresolved local var: int i@[???] */
+      wVar2 = this->items;
+      *(ht_key_t *)((long)(*(MainPanel_ *(*))(__fp - 0x60)) + 0x10) = hVar3;
+      *(undefined1 *)((long)(*(MainPanel_ *(*))(__fp - 0x60)) + 0x14) = 0;
+      Vector_set(this,wVar2,pMVar26);
+      (list->super).needsRedraw = true;
+      uVar4 = phVar6[lVar30];
+      pSVar23 = *(ScreenSettings_2 **)&((*(MainPanel_ *(*))(__fp - 0x68))->super).scrollV;
+      if (pSVar23->treeView == false) {
+        uVar21 = pSVar23->sortKey;
+      }
+      else {
+        uVar21 = 1;
+        if (pSVar23->treeViewAlwaysByPID == false) {
+          uVar21 = pSVar23->treeSortKey;
+        }
+      }
+      if (uVar4 == uVar21) {
+                    /* Unresolved local var: int size@[???] */
+        wVar2 = ((list->super).items)->items;
+        wVar12 = wVar2 + -1;
+        if ((int)lVar30 < wVar2) {
+          wVar12 = (int)lVar30;
+        }
+        if (wVar12 < 0) {
+          wVar12 = 0;
+        }
+        (list->super).selected = wVar12;
+        pcVar8 = (list->super).super.klass[1].extends;
+        if (pcVar8 != (code *)0x0) {
+          (*pcVar8)((long)list,0xffffffff,0,(ulong)uVar4,(long)pMVar27,(long)a5);
+        }
+      }
+      lVar30 = lVar30 + 1;
+      free(pcVar19);
+      hVar3 = phVar6[lVar30];
+      pMVar10 = (*(Machine *(*))(__fp - 0x80));
+      pMVar22 = (*(MainPanel_ *(*))(__fp - 0x68));
+      pHVar11 = (*(Hashtable_2 *(*))(__fp - 0x70));
+      st_00 = (*(State_2 *(*))(__fp - 0x78));
+      pMVar26 = (*(MainPanel_ *(*))(__fp - 0x60));
+    } while( true );
+  }
+LAB_0011899f:
+                    /* WARNING: Subroutine does not return */
+  fail();
+}
+
+
+/* actionExpandCollapseOrSortColumn @ 0x1189d0 */
+
+Htop_Reaction actionExpandCollapseOrSortColumn(State_2 *st)
+
+{
+  Vector *pVVar1;
+  Object *pOVar2;
+  Htop_Reaction HVar3;
+
+  if (st->host->settings->ss->treeView == false) {
+    HVar3 = actionSetSortColumn(st);
+    return HVar3;
+  }
+                    /* Unresolved local var: _Bool changed@[???] */
+                    /* Unresolved local var: Row * row@[???] */
+  pVVar1 = (st->mainPanel->super).items;
+  if ((0 < pVVar1->items) &&
+     (pOVar2 = pVVar1->array[(st->mainPanel->super).selected], pOVar2 != (Object *)0x0)) {
+    pOVar2 = pOVar2 + 4;
+    *(byte *)&pOVar2->klass = *(byte *)&pOVar2->klass ^ 1;
+    return HTOP_RECALCULATE;
+  }
+  return HTOP_OK;
+}
+
+
+/* actionToggleKernelThreads @ 0x119af0 */
+
+Htop_Reaction actionToggleKernelThreads(State_2 *st)
+
+{
+  _Bool *p_Var1;
+  uint64_t *puVar2;
+  Machine *this;
+  Settings__2 *pSVar3;
+
+  this = st->host;
+  pSVar3 = this->settings;
+  p_Var1 = &pSVar3->hideKernelThreads;
+  *p_Var1 = (_Bool)(*p_Var1 ^ 1);
+  puVar2 = &pSVar3->lastUpdate;
+  *puVar2 = *puVar2 + 1;
+  Machine_scanTables(this);
+  return HTOP_KEEP_FOLLOWING|HTOP_SAVE_SETTINGS|HTOP_RECALCULATE;
+}
+
+
+/* actionToggleUserlandThreads @ 0x119b20 */
+
+Htop_Reaction actionToggleUserlandThreads(State_2 *st)
+
+{
+  _Bool *p_Var1;
+  uint64_t *puVar2;
+  Machine *this;
+  Settings__2 *pSVar3;
+
+  this = st->host;
+  pSVar3 = this->settings;
+  p_Var1 = &pSVar3->hideUserlandThreads;
+  *p_Var1 = (_Bool)(*p_Var1 ^ 1);
+  puVar2 = &pSVar3->lastUpdate;
+  *puVar2 = *puVar2 + 1;
+  Machine_scanTables(this);
+  return HTOP_KEEP_FOLLOWING|HTOP_SAVE_SETTINGS|HTOP_RECALCULATE;
+}
+
+
+/* actionExpandOrCollapseAllBranches @ 0x119b50 */
+
+Htop_Reaction actionExpandOrCollapseAllBranches(State_2 *st)
+
+{
+  Object **ppOVar1;
+  int wVar2;
+  ScreenSettings_2 *pSVar3;
+  Table *this;
+  Vector *pVVar4;
+  Object *pOVar5;
+  Object **ppOVar6;
+  _Bool _Var7;
+
+  pSVar3 = st->host->settings->ss;
+  if (pSVar3->treeView == false) {
+    return HTOP_OK;
+  }
+  this = st->host->activeTable;
+  _Var7 = (_Bool)(pSVar3->allBranchesCollapsed ^ 1);
+  pSVar3->allBranchesCollapsed = _Var7;
+  if (_Var7 == false) {
+                    /* Unresolved local var: int size@[???] */
+    pVVar4 = this->rows;
+    wVar2 = pVVar4->items;
+                    /* Unresolved local var: int i@[???] */
+    if (0 < wVar2) {
+      ppOVar6 = pVVar4->array;
+      ppOVar1 = ppOVar6 + wVar2;
+      do {
+                    /* Unresolved local var: Row * row@[???] */
+        pOVar5 = *ppOVar6;
+        ppOVar6 = ppOVar6 + 1;
+        *(undefined1 *)&pOVar5[4].klass = 1;
+      } while (ppOVar6 != ppOVar1);
+    }
+    return HTOP_SAVE_SETTINGS|HTOP_REFRESH;
+  }
+  Table_collapseAllBranches(this);
+  return HTOP_SAVE_SETTINGS|HTOP_REFRESH;
+}
+
+
+/* actionIncFilter @ 0x119bd0 */
+
+Htop_Reaction actionIncFilter(State_2 *st)
+
+{
+  MainPanel__2 *pMVar1;
+  Machine *pMVar2;
+  IncSet *this;
+  FunctionBar *pFVar3;
+  IncMode *pIVar4;
+
+  pMVar1 = st->mainPanel;
+  pMVar2 = st->host;
+  this = pMVar1->inc;
+  pFVar3 = this->modes[1].bar;
+  this->active = this->modes + 1;
+  (pMVar1->super).currentBar = pFVar3;
+  (pMVar1->super).cursorOn = true;
+  this->panel = &pMVar1->super;
+  IncSet_drawBar(this,CRT_colors[2]);
+  pIVar4 = this->modes + 1;
+  if (this->filtering == false) {
+    pIVar4 = (IncMode *)0x0;
+  }
+  pMVar2->activeTable->incFilter = pIVar4->buffer;
+  return HTOP_KEEP_FOLLOWING|HTOP_REFRESH;
+}
+
+
+/* actionIncSearch @ 0x119c50 */
+
+Htop_Reaction actionIncSearch(State_2 *st)
+
+{
+  MainPanel__2 *pMVar1;
+  IncSet *this;
+  FunctionBar *pFVar2;
+
+  pMVar1 = st->mainPanel;
+  this = pMVar1->inc;
+  pFVar2 = this->modes[0].bar;
+  this->modes[0].buffer[0] = '\0';
+  this->modes[0].index = 0;
+  this->active = this->modes;
+  (pMVar1->super).currentBar = pFVar2;
+  (pMVar1->super).cursorOn = true;
+  this->panel = &pMVar1->super;
+  IncSet_drawBar(this,CRT_colors[2]);
+  return HTOP_KEEP_FOLLOWING|HTOP_REFRESH;
+}
+
+
+/* actionSetSchedPolicy @ 0x119cb0 */
+
+Htop_Reaction actionSetSchedPolicy(State_2 *st)
+
+{
+  undefined1 __frame[0xd8] __attribute__((aligned(16)));
+  undefined1 *__fp = __frame + 0x98;
+  char cVar1;
+  int wVar2;
+  long lVar3;
+  MainPanel__2 *pMVar4;
+  bool bVar5;
+  Htop_Reaction HVar6;
+  int iVar7;
+  MainPanel_ *list;
+  Object *pOVar8;
+  ObjectClass *pOVar9;
+  MainPanel_ *list_00;
+  Vector *pVVar10;
+  byte bVar11;
+  long lVar12;
+  int __policy;
+  int __policy_00;
+  char *__s2;
+  long lVar13;
+  long in_FS_OFFSET = (long)__fake_fs;
+
+                    /* Unresolved local var: Settings * settings@[???]
+                       Unresolved local var: _Bool readonly@[???] */
+  (*(char (*))(__fp - 0x49)) = readonly;
+  lVar3 = *(long *)(in_FS_OFFSET + 0x28);
+  if (readonly) {
+    HVar6 = HTOP_KEEP_FOLLOWING;
+  }
+  else {
+    HVar6 = HTOP_KEEP_FOLLOWING;
+    if (st->host->settings->ss->dynamic == (char *)0x0) {
+                    /* Unresolved local var: Panel * schedPanel@[???]
+                       Unresolved local var: ListItem * policy@[???] */
+      list = (MainPanel_ *)Scheduling_newPolicyPanel(preSelectedPolicy);
+LAB_00119d48:
+      pOVar8 = Action_pickFromVector(st,list,18,true);
+      if (pOVar8 != (Object *)0x0) {
+        wVar2 = *(int *)&pOVar8[2].klass;
+        if (wVar2 == -1) {
+                    /* Unresolved local var: ListItem * item@[???] */
+          __s2 = ((char *)(long)&s_Reset_on_fork__on_001473a6 /* "Reset on fork: on" */);
+          bVar11 = reset_on_fork ^ 1;
+          if (reset_on_fork == true) {
+            __s2 = ((char *)(long)&s_Reset_on_fork__off_001473b8 /* "Reset on fork: off" */);
+          }
+          pOVar8 = *((list->super).items)->array;
+          pOVar9 = pOVar8[1].klass;
+          reset_on_fork = (_Bool)bVar11;
+          if (pOVar9 != (ObjectClass *)0x0) goto code_r0x00119da8;
+          goto LAB_00119db7;
+        }
+        preSelectedPolicy = wVar2;
+                    /* Unresolved local var: Panel * prioPanel@[???]
+                       Unresolved local var: SchedulingArg v@[???]
+                       Unresolved local var: _Bool ok@[???] */
+        list_00 = (MainPanel_ *)Scheduling_newPriorityPanel(wVar2,preSelectedPriority);
+        if (list_00 != (MainPanel_ *)0x0) {
+                    /* Unresolved local var: ListItem * prio@[???] */
+          pOVar8 = Action_pickFromVector(st,list_00,14,true);
+          if (pOVar8 != (Object *)0x0) {
+            preSelectedPriority = *(int *)&pOVar8[2].klass;
+          }
+                    /* Unresolved local var: Panel * super@[???]
+                       Unresolved local var: AvailableColumnsPanel * this@[???] */
+          free((list_00->super).eventHandlerState);
+          Vector_delete((list_00->super).items);
+          FunctionBar_delete((list_00->super).defaultBar);
+          if (350 < (list_00->super).header.chlen) {
+            free((list_00->super).header.chptr);
+          }
+          free(list_00);
+        }
+        __policy_00 = preSelectedPolicy;
+        wVar2 = preSelectedPriority;
+                    /* Unresolved local var: Panel * super@[???]
+                       Unresolved local var: _Bool ok@[???]
+                       Unresolved local var: _Bool anyTagged@[???]
+                       Unresolved local var: int i@[???] */
+        lVar13 = 0;
+        bVar5 = true;
+        pMVar4 = st->mainPanel;
+        pVVar10 = (pMVar4->super).items;
+        if (0 < pVVar10->items) {
+                    /* Unresolved local var: Row * row@[???]
+                       Unresolved local var: Process * p@[???]
+                       Unresolved local var: SchedulingArg * sarg@[???]
+                       Unresolved local var: int policy@[???]
+                       Unresolved local var: int r@[???] */
+          lVar12 = (long)preSelectedPolicy;
+          do {
+            cVar1 = *(char *)((long)&pVVar10->array[lVar13][3].klass + 5);
+            if (cVar1 != '\0') {
+              (*(sched_param (*))(__fp - 0x44)).sched_priority = 0;
+              if (policies[lVar12].prioritySupport != false) {
+                (*(sched_param (*))(__fp - 0x44)).sched_priority = wVar2;
+              }
+              __policy = __policy_00;
+              if (reset_on_fork != false) {
+                __policy = __policy_00 & 0x40000000;
+              }
+              iVar7 = sched_setscheduler(*(__pid_t *)&pVVar10->array[lVar13][2].klass,__policy,
+                                         (sched_param_2 *)&(*(sched_param (*))(__fp - 0x44)));
+              bVar5 = (bool)(bVar5 & iVar7 != -1);
+              pVVar10 = (pMVar4->super).items;
+              (*(char (*))(__fp - 0x49)) = cVar1;
+            }
+            lVar13 = lVar13 + 1;
+          } while ((int)lVar13 < pVVar10->items);
+                    /* Unresolved local var: Row * row@[???] */
+          if ((((*(char (*))(__fp - 0x49)) != '\x01') && (0 < pVVar10->items)) &&
+             (pVVar10->array[(pMVar4->super).selected] != (Object *)0x0)) {
+                    /* Unresolved local var: Process * p@[???] */
+                    /* Unresolved local var: SchedulingArg * sarg@[???]
+                       Unresolved local var: int policy@[???]
+                       Unresolved local var: int r@[???] */
+            (*(sched_param (*))(__fp - 0x44)).sched_priority = 0;
+            if (policies[__policy_00].prioritySupport != false) {
+              (*(sched_param (*))(__fp - 0x44)).sched_priority = wVar2;
+            }
+            if (reset_on_fork != false) {
+              __policy_00 = __policy_00 & 0x40000000;
+            }
+            iVar7 = sched_setscheduler(*(__pid_t *)
+                                        &pVVar10->array[(pMVar4->super).selected][2].klass,
+                                       __policy_00,(sched_param_2 *)&(*(sched_param (*))(__fp - 0x44)));
+            bVar5 = (bool)(bVar5 & iVar7 != -1);
+          }
+          if (!bVar5) {
+            beep();
+          }
+        }
+      }
+                    /* Unresolved local var: Panel * super@[???]
+                       Unresolved local var: AvailableColumnsPanel * this@[???] */
+      free((list->super).eventHandlerState);
+      Vector_delete((list->super).items);
+      FunctionBar_delete((list->super).defaultBar);
+      if (350 < (list->super).header.chlen) {
+        free((list->super).header.chptr);
+      }
+      free(list);
+      HVar6 = HTOP_REDRAW_BAR|HTOP_KEEP_FOLLOWING|HTOP_REFRESH;
     }
   }
-  uVar3 = 0;
-LAB_00117a1a:
-  if ((*(long *)(__fp - 0x40)) == *(long *)(in_FS_OFFSET + 0x28)) {
-    return uVar3;
+  if (lVar3 == *(long *)(in_FS_OFFSET + 0x28)) {
+    return HVar6;
+  }
+                    /* WARNING: Subroutine does not return */
+  __stack_chk_fail();
+code_r0x00119da8:
+  iVar7 = strcmp((char *)pOVar9,__s2);
+  if (iVar7 != 0) {
+LAB_00119db7:
+    free(pOVar9);
+                    /* Unresolved local var: char * data@[???] */
+    pOVar9 = (ObjectClass *)strdup(__s2);
+    if (pOVar9 == (ObjectClass *)0x0) {
+                    /* WARNING: Subroutine does not return */
+      fail();
+    }
+    pOVar8[1].klass = pOVar9;
+  }
+  goto LAB_00119d48;
+}
+
+
+/* actionKill @ 0x11a000 */
+
+/* WARNING: Removing unreachable block (ram,0x0011a109) */
+/* WARNING: Heritage AFTER dead removal. Example location: s0xffffffffffffff80 : 0x0011a126 */
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* WARNING: Restarted to delay deadcode elimination for space: stack */
+
+Htop_Reaction actionKill(State_2 *st)
+
+{
+  undefined1 __frame[0x138] __attribute__((aligned(16)));
+  undefined1 *__fp = __frame + 0xf8;
+  char cVar1;
+  int wVar2;
+  __pid_t _Var3;
+  void *__ptr;
+  FunctionBar *this;
+  bool bVar4;
+  Htop_Reaction HVar5;
+  int iVar6;
+  MainPanel_ *list;
+  Object *pOVar7;
+  MainPanel__2 *pMVar8;
+  Vector *pVVar9;
+  cchar_t *pcVar10;
+  undefined1 **ppuVar11;
+  _Bool hideFunctionBar;
+  long lVar12;
+  cchar_t *pcVar13;
+  char cVar14;
+  long in_FS_OFFSET = (long)__fake_fs;
+
+  cVar14 = readonly;
+                    /* Unresolved local var: Settings * settings@[???]
+                       Unresolved local var: _Bool readonly@[???] */
+  (*(long (*))(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
+  ppuVar11 = &(*(undefined1 *(*))(__fp - 0x78));
+  HVar5 = HTOP_OK;
+  if ((!readonly) &&
+     (ppuVar11 = &(*(undefined1 *(*))(__fp - 0x78)), HVar5 = HTOP_OK, st->host->settings->ss->dynamic == (char *)0x0)) {
+                    /* Unresolved local var: Panel * signalsPanel@[???]
+                       Unresolved local var: ListItem * sgn@[???] */
+    list = (MainPanel_ *)SignalsPanel_new(preSelectedSignal);
+    pOVar7 = Action_pickFromVector(st,list,14,true);
+    ppuVar11 = &(*(undefined1 *(*))(__fp - 0x78));
+    if ((pOVar7 != (Object *)0x0) && (ppuVar11 = &(*(undefined1 *(*))(__fp - 0x78)), *(int *)&pOVar7[2].klass != 0))
+    {
+                    /* Unresolved local var: _Bool ok@[???] */
+      (*(MainPanel__2 *(*))(__fp - 0x70)) = st->mainPanel;
+                    /* Unresolved local var: int[52958] data@[???]
+                       Unresolved local var: int newLen@[???] */
+      (*(undefined1 *(*))(__fp - 0x78)) = (undefined1 *)&(*(undefined1 *(*))(__fp - 0x78));
+      wVar2 = CRT_colors[7];
+      (*(cchar_t *(*))(__fp - 0x58)) = &(*(cchar_t (*))(__fp - 0xa8));
+      preSelectedSignal = *(int *)&pOVar7[2].klass;
+      (*(undefined1 *(*))(__fp - 0x78)) = (undefined1 *)&(*(undefined1 *(*))(__fp - 0x78));
+      pMVar8 = (MainPanel__2 *)mbstowcs((int *)&(*(cchar_t (*))(__fp - 0xa8)),((char *)(long)&s_Sending____001473cb /* "Sending..." */),10);
+      if (0 < (int)pMVar8) {
+                    /* Unresolved local var: int i@[???]
+                       Unresolved local var: int j@[???] */
+        (*(MainPanel__2 *(*))(__fp - 0x50)) = pMVar8;
+        RichString_setLen(&((*(MainPanel__2 *(*))(__fp - 0x70))->super).header,(int)pMVar8);
+        pcVar10 = ((*(MainPanel__2 *(*))(__fp - 0x70))->super).header.chptr;
+        (*(int *(*))(__fp - 0x68)) = (*(cchar_t *(*))(__fp - 0x58))->chars + ((int)(*(MainPanel__2 *(*))(__fp - 0x50)) - 1);
+        pcVar13 = (*(cchar_t *(*))(__fp - 0x58));
+        (*(attr_t (*))(__fp - 0x5c)) = wVar2 & 0xffffff;
+        do {
+          (*(MainPanel__2 *(*))(__fp - 0x50)) = (MainPanel__2 *)CONCAT44((*(uint *)((char *)&(*(MainPanel__2 *(*))(__fp - 0x50)) + 4)),pcVar13->attr);
+          (*(cchar_t *(*))(__fp - 0x58)) = pcVar10;
+          iVar6 = iswprint(pcVar13->attr);
+          wVar2 = (int)(*(MainPanel__2 *(*))(__fp - 0x50));
+          if (iVar6 == 0) {
+            wVar2 = 65533;
+          }
+          (*(cchar_t *(*))(__fp - 0x58))->attr = 0;
+          (*(cchar_t *(*))(__fp - 0x58))->chars[0] = 0;
+          (*(cchar_t *(*))(__fp - 0x58))->chars[1] = 0;
+          (*(cchar_t *(*))(__fp - 0x58))->chars[2] = 0;
+          pcVar13 = (cchar_t *)pcVar13->chars;
+          *(undefined16 *)(*(undefined1 (*) [16])((*(cchar_t *(*))(__fp - 0x58))->chars + 2)) = (undefined16)0x0;
+          pcVar10 = (*(cchar_t *(*))(__fp - 0x58)) + 1;
+          (*(cchar_t *(*))(__fp - 0x58))->attr = (*(attr_t (*))(__fp - 0x5c));
+          (*(cchar_t *(*))(__fp - 0x58))->chars[0] = wVar2;
+        } while ((cchar_t *)(*(int *(*))(__fp - 0x68)) != pcVar13);
+      }
+      ppuVar11 = (undefined1 **)(*(undefined1 *(*))(__fp - 0x78));
+                    /* Unresolved local var: Settings * settings@[???] */
+      hideFunctionBar = true;
+      ((*(MainPanel__2 *(*))(__fp - 0x70))->super).needsRedraw = true;
+      wVar2 = st->host->settings->hideFunctionBar;
+      if ((wVar2 != 2) && (hideFunctionBar = false, wVar2 == 1)) {
+        hideFunctionBar = st->hideSelection;
+      }
+      pMVar8 = st->mainPanel;
+      Panel_draw(&pMVar8->super,false,true,true,hideFunctionBar);
+      wrefresh(_stdscr);
+      (*(cchar_t *(*))(__fp - 0x58)) = (cchar_t *)CONCAT44((*(uint *)((char *)&(*(cchar_t *(*))(__fp - 0x58)) + 4)),*(undefined4 *)&pOVar7[2].klass);
+      (*(MainPanel__2 *(*))(__fp - 0x50)) = st->mainPanel;
+                    /* Unresolved local var: Panel * super@[???]
+                       Unresolved local var: _Bool ok@[???]
+                       Unresolved local var: _Bool anyTagged@[???]
+                       Unresolved local var: int i@[???] */
+      pVVar9 = ((*(MainPanel__2 *(*))(__fp - 0x50))->super).items;
+      if (0 < pVVar9->items) {
+        lVar12 = 0;
+        bVar4 = true;
+        do {
+                    /* Unresolved local var: Row * row@[???] */
+          cVar1 = *(char *)((long)&pVVar9->array[lVar12][3].klass + 5);
+          if (cVar1 != '\0') {
+                    /* Unresolved local var: Process * this@[???] */
+            _Var3 = *(__pid_t *)&pVVar9->array[lVar12][2].klass;
+            iVar6 = (int)(*(cchar_t *(*))(__fp - 0x58));
+            iVar6 = kill(_Var3,iVar6);
+            bVar4 = (bool)(bVar4 & iVar6 == 0);
+            pVVar9 = ((*(MainPanel__2 *(*))(__fp - 0x50))->super).items;
+            cVar14 = cVar1;
+          }
+          lVar12 = lVar12 + 1;
+        } while ((int)lVar12 < pVVar9->items);
+                    /* Unresolved local var: Row * row@[???] */
+        if (((cVar14 != '\x01') && (0 < pVVar9->items)) &&
+           (pVVar9->array[((*(MainPanel__2 *(*))(__fp - 0x50))->super).selected] != (Object *)0x0)) {
+                    /* Unresolved local var: Process * this@[???] */
+          _Var3 = *(__pid_t *)&pVVar9->array[((*(MainPanel__2 *(*))(__fp - 0x50))->super).selected][2].klass;
+          iVar6 = (int)(*(cchar_t *(*))(__fp - 0x58));
+          iVar6 = kill(_Var3,iVar6);
+          bVar4 = (bool)(bVar4 & iVar6 == 0);
+        }
+        if (!bVar4) {
+          beep();
+        }
+      }
+      napms(500);
+    }
+                    /* Unresolved local var: Panel * super@[???]
+                       Unresolved local var: AvailableColumnsPanel * this@[???] */
+    __ptr = (list->super).eventHandlerState;
+    free(__ptr);
+    pVVar9 = (list->super).items;
+    Vector_delete(pVVar9);
+    this = (list->super).defaultBar;
+    FunctionBar_delete(this);
+    if (350 < (list->super).header.chlen) {
+      pcVar10 = (list->super).header.chptr;
+      free(pcVar10);
+    }
+    free(list);
+    HVar5 = 0x61;
+  }
+  if ((*(long (*))(__fp - 0x40)) != *(long *)(in_FS_OFFSET + 0x28)) {
+                    /* WARNING: Subroutine does not return */
+    __stack_chk_fail();
+  }
+  return HVar5;
+}
+
+
+/* actionFilterByUser @ 0x11a490 */
+
+/* WARNING: Removing unreachable block (ram,0x0011a551) */
+/* WARNING: Heritage AFTER dead removal. Example location: s0xffffffffffffff70 : 0x0011a56e */
+/* WARNING: Restarted to delay deadcode elimination for space: stack */
+
+Htop_Reaction actionFilterByUser(State_2 *st)
+
+{
+  undefined1 __frame[0x168] __attribute__((aligned(16)));
+  undefined1 *__fp = __frame + 0x128;
+  int wVar1;
+  long lVar2;
+  Hashtable_2 *pHVar3;
+  Vector *pVVar4;
+  long *a0;
+  code *pcVar5;
+  void *__ptr;
+  State_2 *st_00;
+  int iVar6;
+  FunctionBar *pFVar7;
+  MainPanel_ *list;
+  size_t sVar8;
+  undefined8 *puVar9;
+  char *pcVar10;
+  Object **ptr;
+  long *plVar11;
+  Object *data_;
+  ObjectClass *pOVar12;
+  Object *pOVar13;
+  passwd *ppVar14;
+  long a3;
+  int wVar15;
+  long a2;
+  int *pwVar16;
+  MainPanel_ *pMVar17;
+  long a4;
+  MainPanel_ *pMVar18;
+  int wVar19;
+  cchar_t *pcVar20;
+  ulong uVar21;
+  Machine *pMVar22;
+  long in_FS_OFFSET = (long)__fake_fs;
+
+  pMVar17 = (MainPanel_ *)(*(undefined1 (*) [16])(__fp - 0x88));
+  lVar2 = *(long *)(in_FS_OFFSET + 0x28);
+  (*(char *(*) [3])(__fp - 0x58))[2] = (char *)0x0;
+  (*(char *(*) [3])(__fp - 0x58))[0] = ((char *)(long)&s_Show_001473d6 /* "Show   " */);
+  (*(char *(*) [3])(__fp - 0x58))[1] = ((char *)(long)&s_Cancel_00147223 /* "Cancel " */);
+  (*(State_2 *(*))(__fp - 0x78)) = st;
+  pFVar7 = FunctionBar_new((*(char *(*) [3])(__fp - 0x58)),FunctionBar_EnterEscKeys,((char *)(long)&FunctionBar_EnterEscEvents /* L"\r\x1b" */));
+                    /* Unresolved local var: Panel * this@[???]
+                       Unresolved local var: void * data@[???] */
+  list = malloc(0x26e0);
+  if (list != (MainPanel_ *)0x0) {
+    a4 = 0;
+    (list->super).super.klass = &Panel_class.super;
+    Panel_init(&list->super,0,0,0,0,&ListItem_class,true,pFVar7);
+    wVar1 = CRT_colors[7];
+                    /* Unresolved local var: int[54854] data@[???]
+                       Unresolved local var: int newLen@[???] */
+    (*(MainPanel_ *(*))(__fp - 0x60)) = (MainPanel_ *)(*(undefined1 (*) [16])(__fp - 0x88));
+    pwVar16 = (*(int (*) [16])(__fp - 0xd8));
+    (*(MainPanel_ *(*))(__fp - 0x60)) = (MainPanel_ *)(*(undefined1 (*) [16])(__fp - 0x88));
+    sVar8 = mbstowcs((*(int (*) [16])(__fp - 0xd8)),((char *)(long)&s_Show_processes_of__001473de /* "Show processes of:" */),0x12);
+    wVar15 = (int)sVar8;
+    if (0 < wVar15) {
+                    /* Unresolved local var: int i@[???]
+                       Unresolved local var: int j@[???] */
+      RichString_setLen(&(list->super).header,wVar15);
+      (*(MainPanel_ *(*))(__fp - 0x68)) = list;
+      pcVar20 = (list->super).header.chptr;
+      do {
+        wVar19 = *pwVar16;
+        iVar6 = iswprint(wVar19);
+        pcVar20->attr = 0;
+        pcVar20->chars[0] = 0;
+        pcVar20->chars[1] = 0;
+        pcVar20->chars[2] = 0;
+        if (iVar6 == 0) {
+          wVar19 = 65533;
+        }
+        pwVar16 = pwVar16 + 1;
+        pcVar20->attr = wVar1 & 0xffffff;
+        *(undefined16 *)(*(undefined1 (*) [16])(pcVar20->chars + 2)) = (undefined16)0x0;
+        pcVar20->chars[0] = wVar19;
+        list = (*(MainPanel_ *(*))(__fp - 0x68));
+        pcVar20 = pcVar20 + 1;
+      } while ((*(int (*) [16])(__fp - 0xd8)) + (ulong)(uint)(wVar15 + -1) + 1 != pwVar16);
+    }
+    pMVar17 = (*(MainPanel_ *(*))(__fp - 0x60));
+                    /* Unresolved local var: size_t i@[???] */
+    uVar21 = 0;
+    (list->super).needsRedraw = true;
+    pMVar22 = (*(State_2 *(*))(__fp - 0x78))->host;
+    pHVar3 = pMVar22->usersTable->users;
+    if (pHVar3->size != 0) {
+      do {
+        (*(ulong *)((char *)&(*(undefined1 (*) [16])(__fp - 0x88)) + 8)) = pMVar22;
+        pcVar10 = pHVar3->buckets[uVar21].value;
+        if (pcVar10 != (char *)0x0) {
+                    /* Unresolved local var: ListItem * this@[???]
+                       Unresolved local var: void * data@[???] */
+          (*(MainPanel_ *(*))(__fp - 0x60)) = (MainPanel_ *)CONCAT44((*(uint *)((char *)&(*(MainPanel_ *(*))(__fp - 0x60)) + 4)),pHVar3->buckets[uVar21].key);
+          pMVar17[-1].idSearch = 0x11a671;
+          pMVar17[-1].field_0x270c = 0;
+          pMVar17[-1].field_0x270d = 0;
+          pMVar17[-1].field_0x270e = 0;
+          pMVar17[-1].field_0x270f = 0;
+          puVar9 = malloc(0x18);
+          if (puVar9 == (undefined8 *)0x0) goto LAB_0011a84b;
+                    /* Unresolved local var: char * data@[???] */
+          *puVar9 = &ListItem_class;
+          pMVar17[-1].idSearch = 0x11a68f;
+          pMVar17[-1].field_0x270c = 0;
+          pMVar17[-1].field_0x270d = 0;
+          pMVar17[-1].field_0x270e = 0;
+          pMVar17[-1].field_0x270f = 0;
+          pcVar10 = strdup(pcVar10);
+          if (pcVar10 == (char *)0x0) goto LAB_0011a84b;
+          pVVar4 = (list->super).items;
+          puVar9[1] = pcVar10;
+          *(undefined1 *)((long)puVar9 + 0x14) = 0;
+          wVar1 = pVVar4->items;
+          wVar15 = pVVar4->arraySize;
+          sVar8 = (size_t)wVar15;
+          *(int *)(puVar9 + 2) = (int)(*(MainPanel_ *(*))(__fp - 0x60));
+                    /* Unresolved local var: int oldSize@[???] */
+          ptr = pVVar4->array;
+          wVar19 = wVar1 + 1;
+                    /* Unresolved local var: Object * removed@[???] */
+          pMVar18 = (MainPanel_ *)((long)wVar1 << 3);
+          if (wVar15 < wVar19) {
+            wVar15 = wVar19 + pVVar4->growthRate;
+            a3 = 8;
+            pVVar4->arraySize = wVar15;
+            (*(MainPanel_ *(*))(__fp - 0x60)) = (MainPanel_ *)CONCAT44((*(uint *)((char *)&(*(MainPanel_ *(*))(__fp - 0x60)) + 4)),wVar19);
+            (*(int (*))(__fp - 0x6c)) = wVar1;
+            (*(MainPanel_ *(*))(__fp - 0x68)) = (MainPanel_ *)((long)wVar1 << 3);
+            pMVar17[-1].idSearch = 0x11a6f2;
+            pMVar17[-1].field_0x270c = 0;
+            pMVar17[-1].field_0x270d = 0;
+            pMVar17[-1].field_0x270e = 0;
+            pMVar17[-1].field_0x270f = 0;
+            ptr = xReallocArrayZero(ptr,sVar8,(long)wVar15,8);
+            pMVar18 = (*(MainPanel_ *(*))(__fp - 0x68));
+            pVVar4->array = ptr;
+            wVar19 = (int)(*(MainPanel_ *(*))(__fp - 0x60));
+            if (pVVar4->items <= (*(int (*))(__fp - 0x6c))) goto LAB_0011a630;
+            plVar11 = (long *)((long)ptr + (long)(*(MainPanel_ *(*))(__fp - 0x68)));
+            (*(MainPanel_ *(*))(__fp - 0x60)) = (*(MainPanel_ *(*))(__fp - 0x68));
+            if ((pVVar4->owner != false) && (a0 = (long *)*plVar11, a0 != (long *)0x0)) {
+              pcVar5 = *(code **)(*a0 + 0x10);
+              pMVar17[-1].idSearch = 0x11a72f;
+              pMVar17[-1].field_0x270c = 0;
+              pMVar17[-1].field_0x270d = 0;
+              pMVar17[-1].field_0x270e = 0;
+              pMVar17[-1].field_0x270f = 0;
+              (*pcVar5)((long)a0,sVar8,a2,a3,a4,(long)pMVar18);
+              plVar11 = (long *)((long)pVVar4->array +
+                                (long)(&((*(MainPanel_ *(*))(__fp - 0x60))->super).header + -1) + 0x2618);
+            }
+          }
+          else {
+LAB_0011a630:
+                    /* Unresolved local var: HashtableItem * walk@[???]
+                       Unresolved local var: char * user@[???]
+                       Unresolved local var: Panel * panel@[???]
+                       Unresolved local var: Object * data@[???]
+                       Unresolved local var: int i@[???] */
+            pVVar4->items = wVar19;
+            plVar11 = (long *)((long)ptr + (long)pMVar18);
+          }
+          *plVar11 = (long)puVar9;
+          (list->super).needsRedraw = true;
+        }
+        uVar21 = uVar21 + 1;
+        pMVar22 = (Machine *)(*(ulong *)((char *)&(*(undefined1 (*) [16])(__fp - 0x88)) + 8));
+      } while (uVar21 < pHVar3->size);
+    }
+    pVVar4 = (list->super).items;
+    pMVar17[-1].idSearch = 0x11a74d;
+    pMVar17[-1].field_0x270c = 0;
+    pMVar17[-1].field_0x270d = 0;
+    pMVar17[-1].field_0x270e = 0;
+    pMVar17[-1].field_0x270f = 0;
+    Vector_insertionSort(pVVar4);
+                    /* Unresolved local var: ListItem * this@[???]
+                       Unresolved local var: void * data@[???] */
+    pMVar17[-1].idSearch = 0x11a757;
+    pMVar17[-1].field_0x270c = 0;
+    pMVar17[-1].field_0x270d = 0;
+    pMVar17[-1].field_0x270e = 0;
+    pMVar17[-1].field_0x270f = 0;
+    data_ = malloc(0x18);
+    if (data_ != (Object *)0x0) {
+                    /* Unresolved local var: char * data@[???] */
+      data_->klass = &ListItem_class;
+      pMVar17[-1].idSearch = 0x11a77a;
+      pMVar17[-1].field_0x270c = 0;
+      pMVar17[-1].field_0x270d = 0;
+      pMVar17[-1].field_0x270e = 0;
+      pMVar17[-1].field_0x270f = 0;
+      pOVar12 = (ObjectClass *)strdup(((char *)(long)&s_All_users_001473f1 /* "All users" */));
+      if (pOVar12 != (ObjectClass *)0x0) {
+        data_[1].klass = pOVar12;
+        pVVar4 = (list->super).items;
+        *(undefined4 *)&data_[2].klass = 0xffffffff;
+        *(undefined1 *)((long)&data_[2].klass + 4) = 0;
+        pMVar17[-1].idSearch = 0x11a7a5;
+        pMVar17[-1].field_0x270c = 0;
+        pMVar17[-1].field_0x270d = 0;
+        pMVar17[-1].field_0x270e = 0;
+        pMVar17[-1].field_0x270f = 0;
+        Vector_insert(pVVar4,0,data_);
+        st_00 = (*(State_2 *(*))(__fp - 0x78));
+        (list->super).needsRedraw = true;
+        pMVar17[-1].idSearch = 0x11a7bc;
+        pMVar17[-1].field_0x270c = 0;
+        pMVar17[-1].field_0x270d = 0;
+        pMVar17[-1].field_0x270e = 0;
+        pMVar17[-1].field_0x270f = 0;
+        pOVar13 = Action_pickFromVector(st_00,list,19,false);
+        if (pOVar13 != (Object *)0x0) {
+          if (pOVar13 != data_) {
+                    /* Unresolved local var: passwd * user@[???] */
+            pOVar12 = pOVar13[1].klass;
+            pMVar17[-1].idSearch = 0x11a7cf;
+            pMVar17[-1].field_0x270c = 0;
+            pMVar17[-1].field_0x270d = 0;
+            pMVar17[-1].field_0x270e = 0;
+            pMVar17[-1].field_0x270f = 0;
+            ppVar14 = getpwnam((char *)pOVar12);
+            if (ppVar14 != (passwd *)0x0) {
+              pMVar22->userId = ppVar14->pw_uid;
+              goto LAB_0011a7de;
+            }
+          }
+          pMVar22->userId = 0xffffffff;
+        }
+LAB_0011a7de:
+                    /* Unresolved local var: Panel * super@[???]
+                       Unresolved local var: AvailableColumnsPanel * this@[???] */
+        __ptr = (list->super).eventHandlerState;
+        pMVar17[-1].idSearch = 0x11a7e7;
+        pMVar17[-1].field_0x270c = 0;
+        pMVar17[-1].field_0x270d = 0;
+        pMVar17[-1].field_0x270e = 0;
+        pMVar17[-1].field_0x270f = 0;
+        free(__ptr);
+        pVVar4 = (list->super).items;
+        pMVar17[-1].idSearch = 0x11a7f0;
+        pMVar17[-1].field_0x270c = 0;
+        pMVar17[-1].field_0x270d = 0;
+        pMVar17[-1].field_0x270e = 0;
+        pMVar17[-1].field_0x270f = 0;
+        Vector_delete(pVVar4);
+        pFVar7 = (list->super).defaultBar;
+        pMVar17[-1].idSearch = 0x11a7f9;
+        pMVar17[-1].field_0x270c = 0;
+        pMVar17[-1].field_0x270d = 0;
+        pMVar17[-1].field_0x270e = 0;
+        pMVar17[-1].field_0x270f = 0;
+        FunctionBar_delete(pFVar7);
+        if (350 < (list->super).header.chlen) {
+          pcVar20 = (list->super).header.chptr;
+          pMVar17[-1].idSearch = 0x11a849;
+          pMVar17[-1].field_0x270c = 0;
+          pMVar17[-1].field_0x270d = 0;
+          pMVar17[-1].field_0x270e = 0;
+          pMVar17[-1].field_0x270f = 0;
+          free(pcVar20);
+        }
+        pMVar17[-1].idSearch = 0x11a80a;
+        pMVar17[-1].field_0x270c = 0;
+        pMVar17[-1].field_0x270d = 0;
+        pMVar17[-1].field_0x270e = 0;
+        pMVar17[-1].field_0x270f = 0;
+        free(list);
+        if (lVar2 == *(long *)(in_FS_OFFSET + 0x28)) {
+          return 0x61;
+        }
+                    /* WARNING: Subroutine does not return */
+        __stack_chk_fail();
+      }
+    }
+  }
+LAB_0011a84b:
+                    /* WARNING: Subroutine does not return */
+  pMVar17[-1].idSearch = 0x11a850;
+  pMVar17[-1].field_0x270c = 0;
+  pMVar17[-1].field_0x270d = 0;
+  pMVar17[-1].field_0x270e = 0;
+  pMVar17[-1].field_0x270f = 0;
+  fail();
+}
+
+
+/* actionSetup @ 0x11a860 */
+
+Htop_Reaction actionSetup(State_2 *st)
+
+{
+  Machine *host;
+  Header_4 *header;
+  Settings__2 *pSVar1;
+  ScreenManager *this;
+  Vector *pVVar2;
+  Object **ppOVar3;
+
+                    /* Unresolved local var: Settings * settings@[???]
+                       Unresolved local var: ScreenManager * scr@[???] */
+  host = st->host;
+  header = (Header_4 *)st->header;
+                    /* Unresolved local var: ScreenManager * this@[???]
+                       Unresolved local var: void * data@[???] */
+  pSVar1 = host->settings;
+  this = malloc(0x48);
+  if (this != (ScreenManager *)0x0) {
+                    /* Unresolved local var: Vector * this@[???]
+                       Unresolved local var: void * data@[???] */
+    this->x1 = 0;
+    this->y1 = 0;
+    this->x2 = 0;
+    this->y2 = -1;
+    pVVar2 = malloc(0x28);
+    if (pVVar2 != (Vector *)0x0) {
+      pVVar2->growthRate = 10;
+                    /* Unresolved local var: void * data@[???] */
+      ppOVar3 = calloc(10,8);
+      if (ppOVar3 != (Object **)0x0) {
+        pVVar2->array = ppOVar3;
+        pVVar2->arraySize = 10;
+        pVVar2->type = &Panel_class.super;
+        pVVar2->owner = true;
+        pVVar2->items = 0;
+        pVVar2->dirty_index = -1;
+        pVVar2->dirty_count = 0;
+        this->panels = pVVar2;
+        this->panelCount = 0;
+        this->state = st;
+        this->allowFocusChange = true;
+        this->header = (Header_2 *)header;
+        this->host = host;
+        CategoriesPanel_new((ScreenManager_3 *)this,header,(Machine_2 *)host);
+        ScreenManager_run(this,(Panel **)0x0,(int *)0x0,((char *)(long)&s_Setup_001473fb /* "Setup" */));
+        Vector_delete(this->panels);
+        free(this);
+        if (pSVar1->changed != false) {
+          if (pSVar1->enableMouse == false) {
+            mousemask(0,(ulong *)0x0);
+          }
+          else {
+            mousemask(0x210001,(ulong *)0x0);
+          }
+          Header_writeBackToSettings((Header *)st->header);
+        }
+        return HTOP_RESIZE;
+      }
+    }
+  }
+                    /* WARNING: Subroutine does not return */
+  fail();
+}
+
+
+/* actionLsof @ 0x11a9d0 */
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+Htop_Reaction actionLsof(State_2 *st)
+
+{
+  Vector *pVVar1;
+  Process *process;
+  OpenFilesScreen *this;
+
+                    /* Unresolved local var: Settings * settings@[???]
+                       Unresolved local var: _Bool readonly@[???] */
+  if ((!readonly) && (st->host->settings->ss->dynamic == (char *)0x0)) {
+    pVVar1 = (st->mainPanel->super).items;
+    if ((0 < pVVar1->items) &&
+       (process = (Process *)pVVar1->array[(st->mainPanel->super).selected],
+       process != (Process *)0x0)) {
+      this = OpenFilesScreen_new(process);
+      InfoScreen_run(&this->super);
+      CommandScreen_delete((Object *)this);
+      wclear(_stdscr);
+      halfdelay(*CRT_delay);
+      return HTOP_REDRAW_BAR|HTOP_REFRESH;
+    }
+  }
+  return HTOP_OK;
+}
+
+
+/* actionShowLocks @ 0x11aa60 */
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+Htop_Reaction actionShowLocks(State_2 *st)
+
+{
+  Vector *pVVar1;
+  Process_2 *process;
+  ProcessLocksScreen *this;
+
+                    /* Unresolved local var: Settings * settings@[???] */
+  if (st->host->settings->ss->dynamic == (char *)0x0) {
+    pVVar1 = (st->mainPanel->super).items;
+    if ((0 < pVVar1->items) &&
+       (process = (Process_2 *)pVVar1->array[(st->mainPanel->super).selected],
+       process != (Process_2 *)0x0)) {
+      this = ProcessLocksScreen_new(process);
+      InfoScreen_run(&this->super);
+      CommandScreen_delete((Object *)this);
+      wclear(_stdscr);
+      halfdelay(*CRT_delay);
+      return HTOP_REDRAW_BAR|HTOP_REFRESH;
+    }
+  }
+  return HTOP_OK;
+}
+
+
+/* actionStrace @ 0x11aaf0 */
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+Htop_Reaction actionStrace(State_2 *st)
+
+{
+  Vector *pVVar1;
+  Process *process;
+  _Bool _Var2;
+  TraceScreen *this;
+
+                    /* Unresolved local var: Settings * settings@[???]
+                       Unresolved local var: _Bool readonly@[???] */
+  if ((!readonly) && (st->host->settings->ss->dynamic == (char *)0x0)) {
+    pVVar1 = (st->mainPanel->super).items;
+    if ((0 < pVVar1->items) &&
+       (process = (Process *)pVVar1->array[(st->mainPanel->super).selected],
+       process != (Process *)0x0)) {
+      this = TraceScreen_new(process);
+      _Var2 = TraceScreen_forkTracer(this);
+      if (_Var2) {
+        InfoScreen_run(&this->super);
+      }
+      TraceScreen_delete(this);
+      wclear(_stdscr);
+      halfdelay(*CRT_delay);
+      return HTOP_REDRAW_BAR|HTOP_REFRESH;
+    }
+  }
+  return HTOP_OK;
+}
+
+
+/* actionShowEnvScreen @ 0x11abf0 */
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+Htop_Reaction actionShowEnvScreen(State_2 *st)
+
+{
+  Vector *pVVar1;
+  Process *process;
+  Htop_Reaction HVar2;
+  InfoScreen *this;
+  InfoScreen_2 *this_00;
+
+                    /* Unresolved local var: Settings * settings@[???] */
+  HVar2 = HTOP_OK;
+  if (st->host->settings->ss->dynamic == (char *)0x0) {
+    pVVar1 = (st->mainPanel->super).items;
+    if (0 < pVVar1->items) {
+      process = (Process *)pVVar1->array[(st->mainPanel->super).selected];
+      if (process != (Process *)0x0) {
+                    /* Unresolved local var: EnvScreen * this@[???]
+                       Unresolved local var: void * data@[???] */
+        this = malloc(0x28);
+        if (this == (InfoScreen *)0x0) {
+                    /* WARNING: Subroutine does not return */
+          fail();
+        }
+        (this->super).klass = &EnvScreen_class.super;
+        this_00 = InfoScreen_init(this,process,(FunctionBar *)0x0,_LINES + -2,((char *)(long)&DAT_001470dd /* " " */));
+        InfoScreen_run((InfoScreen *)this_00);
+        CommandScreen_delete(&this_00->super);
+        wclear(_stdscr);
+        halfdelay(*CRT_delay);
+        HVar2 = HTOP_REDRAW_BAR|HTOP_REFRESH;
+      }
+      return HVar2;
+    }
+  }
+  return HTOP_OK;
+}
+
+
+/* actionShowCommandScreen @ 0x11ad20 */
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+
+Htop_Reaction actionShowCommandScreen(State_2 *st)
+
+{
+  Vector *pVVar1;
+  Process *process;
+  Htop_Reaction HVar2;
+  InfoScreen *this;
+  InfoScreen_2 *this_00;
+
+                    /* Unresolved local var: Settings * settings@[???] */
+  HVar2 = HTOP_OK;
+  if (st->host->settings->ss->dynamic == (char *)0x0) {
+    pVVar1 = (st->mainPanel->super).items;
+    if (0 < pVVar1->items) {
+      process = (Process *)pVVar1->array[(st->mainPanel->super).selected];
+      if (process != (Process *)0x0) {
+                    /* Unresolved local var: CommandScreen * this@[???]
+                       Unresolved local var: void * data@[???] */
+        this = malloc(0x28);
+        if (this == (InfoScreen *)0x0) {
+                    /* WARNING: Subroutine does not return */
+          fail();
+        }
+        (this->super).klass = &CommandScreen_class.super;
+        this_00 = InfoScreen_init(this,process,(FunctionBar *)0x0,_LINES + -2,((char *)(long)&DAT_001470dd /* " " */));
+        InfoScreen_run((InfoScreen *)this_00);
+        CommandScreen_delete(&this_00->super);
+        wclear(_stdscr);
+        halfdelay(*CRT_delay);
+        HVar2 = HTOP_REDRAW_BAR|HTOP_REFRESH;
+      }
+      return HVar2;
+    }
+  }
+  return HTOP_OK;
+}
+
+
+/* actionSetAffinity @ 0x11b7a0 */
+
+Htop_Reaction actionSetAffinity(State_2 *st)
+
+{
+  undefined1 __frame[0xd8] __attribute__((aligned(16)));
+  undefined1 *__fp = __frame + 0x98;
+  _Bool _Var1;
+  _Bool _Var2;
+  Htop_Reaction HVar3;
+  Affinity *affinity;
+  Arg list;
+  Object *pOVar4;
+  Arg AVar5;
+  Vector *pVVar6;
+  MainPanel__2 *a3;
+  MainPanel__2 *pMVar7;
+  long extraout_RDX;
+  long extraout_RDX_00;
+  long lVar8;
+  Arg host;
+  long in_R8;
+  long in_R9;
+  char cVar9;
+  byte bVar10;
+  long in_FS_OFFSET = (long)__fake_fs;
+
+  cVar9 = readonly;
+  host = ((Arg){.v = (void *)(st->host)});
+                    /* Unresolved local var: Settings * settings@[???]
+                       Unresolved local var: _Bool readonly@[???] */
+  (*(long (*))(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
+  if (((!readonly) && (*(long *)(*(long *)(*(long *)host.v + 0x40) + 8) == 0)) &&
+     (*(int *)((long)host.v + 0x78) != 1)) {
+    pVVar6 = (st->mainPanel->super).items;
+    if ((0 < pVVar6->items) &&
+       (pOVar4 = pVVar6->array[(st->mainPanel->super).selected], pOVar4 != (Object *)0x0)) {
+                    /* Unresolved local var: Process * p@[???] */
+      affinity = (Affinity *)Affinity_get((Process *)(ulong)*(uint *)&pOVar4[2].klass,host.v);
+      if (affinity != (Affinity *)0x0) {
+        list.v = AffinityPanel_new(host.v,affinity,&(*(int (*))(__fp - 0x44)));
+        free(affinity->cpus);
+        free(affinity);
+        a3 = (MainPanel__2 *)0x1;
+        AVar5.v = list.v;
+        pOVar4 = Action_pickFromVector(st,list.v,(*(int (*))(__fp - 0x44)),true);
+        lVar8 = extraout_RDX;
+        if (pOVar4 != (Object *)0x0) {
+                    /* Unresolved local var: Affinity * affinity2@[???]
+                       Unresolved local var: _Bool ok@[???] */
+          AVar5.v = AffinityPanel_getAffinity(list.v,host.v);
+          pMVar7 = st->mainPanel;
+                    /* Unresolved local var: Panel * super@[???]
+                       Unresolved local var: _Bool ok@[???]
+                       Unresolved local var: _Bool anyTagged@[???]
+                       Unresolved local var: int i@[???] */
+          pVVar6 = (pMVar7->super).items;
+          if (0 < pVVar6->items) {
+            lVar8 = 0;
+            bVar10 = 1;
+            do {
+                    /* Unresolved local var: Row * row@[???] */
+              _Var2 = (((Process_ *)pVVar6->array[lVar8])->super).tag;
+              if (_Var2 != false) {
+                host.v = AVar5.v;
+                _Var1 = Affinity_rowSet((Process_ *)pVVar6->array[lVar8],AVar5);
+                bVar10 = bVar10 & _Var1;
+                pVVar6 = (pMVar7->super).items;
+                cVar9 = _Var2;
+              }
+              lVar8 = lVar8 + 1;
+            } while ((int)lVar8 < pVVar6->items);
+                    /* Unresolved local var: Row * row@[???] */
+            if ((cVar9 != '\x01') && (0 < pVVar6->items)) {
+              a3 = pMVar7;
+              if ((Process_ *)pVVar6->array[(pMVar7->super).selected] != (Process_ *)0x0) {
+                host.v = AVar5.v;
+                _Var2 = Affinity_rowSet((Process_ *)pVVar6->array[(pMVar7->super).selected],AVar5);
+                bVar10 = bVar10 & _Var2;
+                a3 = pMVar7;
+              }
+            }
+            if (bVar10 == 0) {
+              beep();
+            }
+          }
+          free(*(void **)((long)AVar5.v + 0x10));
+          free(AVar5.v);
+          lVar8 = extraout_RDX_00;
+          AVar5 = host;
+        }
+        (**(code **)(*(long *)list.v + 0x10))(list.v,*(long *)&AVar5,lVar8,(long)a3,in_R8,in_R9);
+        HVar3 = 0x61;
+        goto LAB_0011b7e5;
+      }
+    }
+  }
+  HVar3 = HTOP_OK;
+LAB_0011b7e5:
+  if ((*(long (*))(__fp - 0x40)) == *(long *)(in_FS_OFFSET + 0x28)) {
+    return HVar3;
   }
                     /* WARNING: Subroutine does not return */
   __stack_chk_fail();

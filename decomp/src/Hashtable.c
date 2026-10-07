@@ -1,69 +1,139 @@
 #include "htop.h"
 
-/* Hashtable_get @ 0x1159a0 */
+/* insert @ 0x114570 */
 
-long Hashtable_get(ulong *param_1,uint param_2)
+/* DWARF original prototype: void insert(Hashtable * this, ht_key_t key, void * value) */
+
+void insert(Hashtable *this,ht_key_t key,void *value)
 
 {
-  uint *puVar1;
-  uint *puVar2;
+  HashtableItem *pHVar1;
+  uint uVar2;
+  ulong uVar3;
+  HashtableItem *pHVar4;
+  void *__ptr;
+  ulong uVar5;
+  ulong uVar6;
+  ulong uVar7;
+  ulong uVar8;
+
+                    /* Unresolved local var: size_t index@[???]
+                       Unresolved local var: size_t probe@[???] */
+  uVar8 = (ulong)key;
+  uVar7 = 0;
+  uVar3 = this->size;
+  pHVar4 = this->buckets;
+  uVar6 = uVar8 % uVar3;
+  pHVar1 = pHVar4 + uVar6;
+  __ptr = pHVar1->value;
+  while( true ) {
+    if (__ptr == (void *)0x0) {
+      this->items = this->items + 1;
+      pHVar1->key = key;
+      pHVar1->probe = uVar7;
+      pHVar1->value = value;
+      return;
+    }
+    uVar2 = pHVar1->key;
+    if (uVar2 == (uint)uVar8) break;
+    uVar5 = pHVar1->probe;
+    if (uVar5 < uVar7) {
+                    /* Unresolved local var: HashtableItem tmp@[???] */
+      pHVar1->key = (uint)uVar8;
+      pHVar1->probe = uVar7;
+      pHVar1->value = value;
+      uVar7 = uVar5;
+      uVar8 = (ulong)uVar2;
+      value = __ptr;
+    }
+    key = (ht_key_t)uVar8;
+    uVar7 = uVar7 + 1;
+    uVar6 = (uVar6 + 1) % uVar3;
+    pHVar1 = pHVar4 + uVar6;
+    __ptr = pHVar1->value;
+  }
+  if ((__ptr == value) || (this->owner == false)) {
+    pHVar4[uVar6].value = value;
+  }
+  else {
+    free(__ptr);
+    this->buckets[uVar6].value = value;
+  }
+  return;
+}
+
+
+/* Hashtable_get @ 0x1159a0 */
+
+/* DWARF original prototype: void * Hashtable_get(Hashtable * this, ht_key_t key) */
+
+void * Hashtable_get(Hashtable *this,ht_key_t key)
+
+{
+  HashtableItem *pHVar1;
+  HashtableItem *pHVar2;
   ulong uVar3;
   ulong uVar4;
-  long lVar5;
+  void *pvVar5;
 
-  puVar1 = (uint *)param_1[1];
-  uVar4 = (ulong)param_2 % *param_1;
-  lVar5 = *(long *)(puVar1 + uVar4 * 6 + 4);
-  if (lVar5 != 0) {
+  pHVar1 = this->buckets;
+  uVar4 = (ulong)key % this->size;
+  pvVar5 = pHVar1[uVar4].value;
+  if (pvVar5 != (void *)0x0) {
     uVar3 = 0;
-    puVar2 = puVar1 + uVar4 * 6;
+    pHVar2 = pHVar1 + uVar4;
     do {
       while( true ) {
-        if (*puVar2 == param_2) {
-          return lVar5;
+        if (pHVar2->key == key) {
+          return pvVar5;
         }
-        if (*(ulong *)(puVar2 + 2) < uVar3) {
-          return 0;
+        if (pHVar2->probe < uVar3) {
+          return (void *)0x0;
         }
         uVar4 = uVar4 + 1;
-        if (*param_1 != uVar4) break;
+        if (this->size != uVar4) break;
         uVar4 = 0;
         uVar3 = uVar3 + 1;
-        lVar5 = *(long *)(puVar1 + 4);
-        puVar2 = puVar1;
-        if (lVar5 == 0) {
-          return 0;
+        pvVar5 = pHVar1->value;
+        pHVar2 = pHVar1;
+        if (pvVar5 == (void *)0x0) {
+          return (void *)0x0;
         }
       }
       uVar3 = uVar3 + 1;
-      puVar2 = puVar1 + uVar4 * 6;
-      lVar5 = *(long *)(puVar2 + 4);
-    } while (lVar5 != 0);
+      pHVar2 = pHVar1 + uVar4;
+      pvVar5 = pHVar2->value;
+    } while (pvVar5 != (void *)0x0);
   }
-  return 0;
+  return (void *)0x0;
 }
 
 
 /* Hashtable_foreach @ 0x115ba0 */
 
-void Hashtable_foreach(ulong *param_1,undefined *param_2,long param_3,long param_rcx,long param_r8,
-                      long param_r9)
+/* DWARF original prototype: void Hashtable_foreach(Hashtable * this, Hashtable_PairFunction f, void
+   * userData) */
+
+void Hashtable_foreach(Hashtable *this,Hashtable_PairFunction f,void *userData)
 
 {
-  uint *puVar1;
-  long a1;
+  void *pvVar1;
+  long in_RCX;
   ulong uVar2;
+  long in_R8;
+  long in_R9;
 
-  if (*param_1 != 0) {
+                    /* Unresolved local var: size_t i@[???] */
+  if (this->size != 0) {
     uVar2 = 0;
     do {
-      puVar1 = (uint *)(param_1[1] + uVar2 * 0x18);
-      a1 = *(long *)(puVar1 + 4);
-      if (a1 != 0) {
-        (*(code *)param_2)((ulong)*puVar1,a1,param_3,param_rcx,param_r8,param_r9);
+                    /* Unresolved local var: HashtableItem * walk@[???] */
+      pvVar1 = this->buckets[uVar2].value;
+      if (pvVar1 != (void *)0x0) {
+        (*(code *)(f))(this->buckets[uVar2].key,pvVar1,userData,in_RCX,in_R8,in_R9);
       }
       uVar2 = uVar2 + 1;
-    } while (uVar2 < *param_1);
+    } while (uVar2 < this->size);
     return;
   }
   return;
@@ -72,77 +142,85 @@ void Hashtable_foreach(ulong *param_1,undefined *param_2,long param_3,long param
 
 /* Hashtable_clear @ 0x117400 */
 
-void Hashtable_clear(ulong *param_1)
+/* DWARF original prototype: void Hashtable_clear(Hashtable * this) */
+
+void Hashtable_clear(Hashtable *this)
 
 {
   ulong uVar1;
   ulong uVar2;
   ulong uVar3;
 
-  uVar1 = *param_1;
-  if (((char)param_1[3] != '\0') && (uVar1 != 0)) {
+                    /* Unresolved local var: size_t i@[???] */
+  uVar1 = this->size;
+  if ((this->owner != false) && (uVar1 != 0)) {
     uVar2 = 0;
     do {
       uVar3 = uVar2 + 1;
-      free(*(void **)(param_1[1] + uVar2 * 0x18 + 0x10));
-      uVar1 = *param_1;
+      free(this->buckets[uVar2].value);
+      uVar1 = this->size;
       uVar2 = uVar3;
     } while (uVar3 < uVar1);
   }
-  memset((void *)param_1[1],0,uVar1 * 0x18);
-  param_1[2] = 0;
+  memset(this->buckets,0,uVar1 * 0x18);
+  this->items = 0;
   return;
 }
 
 
 /* Hashtable_delete @ 0x117470 */
 
-void Hashtable_delete(ulong *param_1)
+/* DWARF original prototype: void Hashtable_delete(Hashtable * this) */
+
+void Hashtable_delete(Hashtable *this)
 
 {
-  Hashtable_clear(param_1);
-  free((void *)param_1[1]);
-  free(param_1);
+  Hashtable_clear(this);
+  free(this->buckets);
+  free(this);
   return;
 }
 
 
 /* Hashtable_new @ 0x1180a0 */
 
-ulong * Hashtable_new(ulong param_1,undefined1 param_2)
+Hashtable * Hashtable_new(size_t size,_Bool owner)
 
 {
-  ulong *puVar1;
-  ulong *puVar2;
-  void *pvVar3;
+  Hashtable *pHVar1;
+  uint64_t *puVar2;
+  HashtableItem *pHVar3;
   ulong __nmemb;
 
-  puVar1 = malloc(0x20);
-  if (puVar1 != (ulong *)0x0) {
-    puVar1[2] = 0;
-    puVar2 = &DAT_0014d120;
-    if (param_1 != 0) {
+                    /* Unresolved local var: void * data@[???] */
+  pHVar1 = malloc(0x20);
+  if (pHVar1 != (Hashtable *)0x0) {
+    pHVar1->items = 0;
+    puVar2 = OEISprimes;
+    if (size != 0) {
       do {
         __nmemb = *puVar2;
         if (__nmemb == 0xffffffffffffffff) break;
-        if (param_1 <= __nmemb) {
-          *puVar1 = __nmemb;
+        if (size <= __nmemb) {
+          pHVar1->size = __nmemb;
           if (0xaaaaaaaaaaaaaaa < __nmemb) goto LAB_0011814a;
           goto LAB_001180f5;
         }
+                    /* Unresolved local var: size_t i@[???] */
         puVar2 = puVar2 + 1;
-      } while (puVar2 != (ulong *)&DAT_0014d238);
+      } while (puVar2 != (uint64_t *)&DAT_0014d238);
                     /* WARNING: Subroutine does not return */
       CRT_fatalError(((char *)(long)&s_Hashtable__no_prime_found_001471e8 /* "Hashtable: no prime found" */));
     }
-    *puVar1 = 0xd;
+    pHVar1->size = 0xd;
+                    /* Unresolved local var: void * data@[???] */
     __nmemb = 0xd;
 LAB_001180f5:
-    pvVar3 = calloc(__nmemb,0x18);
-    if (pvVar3 != (void *)0x0) {
-      puVar1[1] = (ulong)pvVar3;
-      *(undefined1 *)(puVar1 + 3) = param_2;
-      return puVar1;
+    pHVar3 = calloc(__nmemb,0x18);
+    if (pHVar3 != (HashtableItem *)0x0) {
+      pHVar1->buckets = pHVar3;
+      pHVar1->owner = owner;
+      return pHVar1;
     }
   }
 LAB_0011814a:
@@ -151,44 +229,51 @@ LAB_0011814a:
 }
 
 
-/* FUN_00118160 @ 0x118160 */
+/* Hashtable_setSize @ 0x118160 */
 
-void FUN_00118160(ulong *param_1,ulong param_2)
+/* DWARF original prototype: void Hashtable_setSize(Hashtable * this, size_t size) */
+
+void Hashtable_setSize(Hashtable *this,size_t size)
 
 {
   ulong uVar1;
-  uint *__ptr;
-  ulong *puVar2;
-  void *pvVar3;
-  uint *puVar4;
-  ulong uVar5;
+  HashtableItem *__ptr;
+  uint64_t *puVar2;
+  HashtableItem *pHVar3;
+  ulong uVar4;
 
-  puVar2 = &DAT_0014d120;
+                    /* Unresolved local var: size_t newSize@[???]
+                       Unresolved local var: HashtableItem * oldBuckets@[???]
+                       Unresolved local var: size_t oldSize@[???]
+                       Unresolved local var: size_t i@[???] */
+  puVar2 = OEISprimes;
   do {
-    uVar5 = *puVar2;
-    if (uVar5 == 0xffffffffffffffff) break;
-    if (param_2 <= uVar5) {
-      uVar1 = *param_1;
-      if (uVar1 == uVar5) {
+    uVar4 = *puVar2;
+    if (uVar4 == 0xffffffffffffffff) break;
+    if (size <= uVar4) {
+      uVar1 = this->size;
+      if (uVar1 == uVar4) {
         return;
       }
-      *param_1 = uVar5;
-      __ptr = (uint *)param_1[1];
-      if (uVar5 < 0xaaaaaaaaaaaaaab) {
-        pvVar3 = calloc(uVar5,0x18);
-        if (pvVar3 != (void *)0x0) {
-          param_1[1] = (ulong)pvVar3;
-          param_1[2] = 0;
+                    /* Unresolved local var: void * data@[???] */
+      this->size = uVar4;
+      __ptr = this->buckets;
+      if (uVar4 < 0xaaaaaaaaaaaaaab) {
+        pHVar3 = calloc(uVar4,0x18);
+        if (pHVar3 != (HashtableItem *)0x0) {
+          this->buckets = pHVar3;
+          this->items = 0;
+                    /* Unresolved local var: size_t i@[???] */
           if (uVar1 != 0) {
-            uVar5 = 0;
-            puVar4 = __ptr;
+            uVar4 = 0;
+            pHVar3 = __ptr;
             do {
-              if (*(void **)(puVar4 + 4) != (void *)0x0) {
-                FUN_00114570(param_1,*puVar4,*(void **)(puVar4 + 4));
+              if (pHVar3->value != (void *)0x0) {
+                insert(this,pHVar3->key,pHVar3->value);
               }
-              uVar5 = uVar5 + 1;
-              puVar4 = puVar4 + 6;
-            } while (uVar1 != uVar5);
+              uVar4 = uVar4 + 1;
+              pHVar3 = pHVar3 + 1;
+            } while (uVar1 != uVar4);
           }
           free(__ptr);
           return;
@@ -198,126 +283,150 @@ void FUN_00118160(ulong *param_1,ulong param_2)
       fail();
     }
     puVar2 = puVar2 + 1;
-  } while (puVar2 != (ulong *)&DAT_0014d238);
+  } while (puVar2 != (uint64_t *)&DAT_0014d238);
                     /* WARNING: Subroutine does not return */
   CRT_fatalError(((char *)(long)&s_Hashtable__no_prime_found_001471e8 /* "Hashtable: no prime found" */));
 }
 
 
-/* Hashtable_setSize @ 0x118260 */
+/* Hashtable_setSize_118260 @ 0x118260 */
 
-void Hashtable_setSize(ulong *param_1,ulong param_2)
+/* DWARF original prototype: void Hashtable_setSize(Hashtable * this, size_t size) */
+
+void __thiscall Hashtable_setSize_118260(void *this,size_t size)
 
 {
-  if (param_2 <= param_1[2]) {
+  if (size <= *(ulong *)((long)this + 0x10)) {
     return;
   }
-  FUN_00118160(param_1,param_2);
+  Hashtable_setSize(this,size);
   return;
 }
 
 
 /* Hashtable_put @ 0x118280 */
 
-void Hashtable_put(ulong *param_1,uint param_2,void *param_3)
+/* DWARF original prototype: void Hashtable_put(Hashtable * this, ht_key_t key, void * value) */
+
+void Hashtable_put(Hashtable *this,ht_key_t key,void *value)
 
 {
-  ulong uVar1;
+  size_t sVar1;
 
-  uVar1 = *param_1;
-  if (uVar1 * 7 < param_1[2] * 10) {
-    if ((long)uVar1 < 0) {
+  sVar1 = this->size;
+  if (sVar1 * 7 < this->items * 10) {
+    if ((long)sVar1 < 0) {
                     /* WARNING: Subroutine does not return */
       CRT_fatalError(((char *)(long)&s_Hashtable__size_overflow_00147202 /* "Hashtable: size overflow" */));
     }
-    if (param_1[2] < uVar1 * 2) {
-      FUN_00118160(param_1,uVar1 * 2);
+                    /* Unresolved local var: size_t newSize@[???]
+                       Unresolved local var: HashtableItem * oldBuckets@[???]
+                       Unresolved local var: size_t oldSize@[???] */
+    if (this->items < sVar1 * 2) {
+      Hashtable_setSize(this,sVar1 * 2);
     }
   }
-  FUN_00114570(param_1,param_2,param_3);
+  insert(this,key,value);
   return;
 }
 
 
 /* Hashtable_remove @ 0x118300 */
 
-void * Hashtable_remove(ulong *param_1,uint param_2)
+/* DWARF original prototype: void * Hashtable_remove(Hashtable * this, ht_key_t key) */
+
+void * Hashtable_remove(Hashtable *this,ht_key_t key)
 
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  long lVar3;
-  undefined8 uVar4;
-  ulong uVar5;
-  uint *puVar6;
-  ulong uVar7;
-  ulong uVar8;
+  HashtableItem *pHVar1;
+  size_t sVar2;
+  ulong uVar3;
+  byte bVar4;
+  byte bVar5;
+  byte bVar6;
+  byte bVar7;
+  HashtableItem *pHVar8;
   ulong uVar9;
   ulong uVar10;
-  void *__ptr;
-  void *pvVar11;
+  ulong uVar11;
+  HashtableItem *pHVar12;
+  size_t sVar13;
+  void *pvVar14;
+  void *pvVar15;
 
-  uVar7 = *param_1;
-  uVar10 = param_1[1];
-  uVar8 = (ulong)param_2 % uVar7;
-  puVar6 = (uint *)(uVar10 + uVar8 * 0x18);
-  __ptr = *(void **)(puVar6 + 4);
-  if (__ptr != (void *)0x0) {
-    uVar9 = 0;
+  uVar9 = this->size;
+  pHVar12 = this->buckets;
+  uVar10 = (ulong)key % uVar9;
+  pHVar8 = pHVar12 + uVar10;
+  pvVar14 = pHVar8->value;
+  if (pvVar14 != (void *)0x0) {
+    uVar11 = 0;
     do {
-      if (*puVar6 == param_2) {
-        pvVar11 = __ptr;
-        if ((char)param_1[3] != '\0') {
-          pvVar11 = (void *)0x0;
-          free(__ptr);
-          uVar10 = param_1[1];
-          uVar7 = *param_1;
+      if (pHVar8->key == key) {
+                    /* Unresolved local var: size_t next@[???] */
+        pvVar15 = pvVar14;
+        if (this->owner != false) {
+          pvVar15 = (void *)0x0;
+          free(pvVar14);
+          pHVar12 = this->buckets;
+          uVar9 = this->size;
         }
-        uVar9 = (uVar8 + 1) % uVar7;
-        puVar1 = (undefined8 *)(uVar10 + uVar9 * 0x18);
-        lVar3 = puVar1[2];
+        uVar11 = (uVar10 + 1) % uVar9;
+        pHVar8 = pHVar12 + uVar11;
+        pvVar14 = pHVar8->value;
         goto joined_r0x001183a0;
       }
-      if (*(ulong *)(puVar6 + 2) < uVar9) {
-        uVar9 = param_1[2];
-        __ptr = (void *)0x0;
+      if (pHVar8->probe < uVar11) {
+        sVar13 = this->items;
+        pvVar14 = (void *)0x0;
         goto LAB_00118417;
       }
-      uVar9 = uVar9 + 1;
-      uVar8 = (uVar8 + 1) % uVar7;
-      puVar6 = (uint *)(uVar10 + uVar8 * 0x18);
-      __ptr = *(void **)(puVar6 + 4);
-    } while (__ptr != (void *)0x0);
+      uVar11 = uVar11 + 1;
+      uVar10 = (uVar10 + 1) % uVar9;
+      pHVar8 = pHVar12 + uVar10;
+      pvVar14 = pHVar8->value;
+    } while (pvVar14 != (void *)0x0);
   }
-  uVar9 = param_1[2];
+  sVar13 = this->items;
 LAB_00118417:
-  if ((uVar9 * 8 < uVar7) && (uVar9 < uVar7 / 3)) {
-    FUN_00118160(param_1,uVar7 / 3);
+                    /* Unresolved local var: size_t newSize@[???]
+                       Unresolved local var: HashtableItem * oldBuckets@[???]
+                       Unresolved local var: size_t oldSize@[???] */
+  if ((sVar13 * 8 < uVar9) && (sVar13 < uVar9 / 3)) {
+    Hashtable_setSize(this,uVar9 / 3);
   }
-  return __ptr;
+  return pvVar14;
 joined_r0x001183a0:
-  uVar5 = uVar9;
-  if (lVar3 == 0) goto LAB_001183ff;
-  lVar3 = puVar1[1];
-  puVar2 = (undefined8 *)(uVar10 + uVar8 * 0x18);
-  if (lVar3 == 0) goto LAB_001183ff;
-  uVar4 = puVar1[1];
-  *puVar2 = *puVar1;
-  puVar2[1] = uVar4;
-  uVar4 = puVar1[2];
-  puVar2[1] = lVar3 + -1;
-  puVar2[2] = uVar4;
-  uVar9 = (uVar5 + 1) % uVar7;
-  puVar1 = (undefined8 *)(uVar10 + uVar9 * 0x18);
-  lVar3 = puVar1[2];
-  uVar8 = uVar5;
+  uVar3 = uVar11;
+  if (pvVar14 == (void *)0x0) goto LAB_001183ff;
+  sVar13 = pHVar8->probe;
+  pHVar1 = pHVar12 + uVar10;
+  if (sVar13 == 0) goto LAB_001183ff;
+  bVar4 = pHVar8->field_0x4;
+  bVar5 = pHVar8->field_0x5;
+  bVar6 = pHVar8->field_0x6;
+  bVar7 = pHVar8->field_0x7;
+  sVar2 = pHVar8->probe;
+  pHVar1->key = pHVar8->key;
+  pHVar1->field_0x4 = bVar4;
+  pHVar1->field_0x5 = bVar5;
+  pHVar1->field_0x6 = bVar6;
+  pHVar1->field_0x7 = bVar7;
+  pHVar1->probe = sVar2;
+  pvVar14 = pHVar8->value;
+  pHVar1->probe = sVar13 - 1;
+  pHVar1->value = pvVar14;
+  uVar11 = (uVar3 + 1) % uVar9;
+  pHVar8 = pHVar12 + uVar11;
+  pvVar14 = pHVar8->value;
+  uVar10 = uVar3;
   goto joined_r0x001183a0;
 LAB_001183ff:
-  uVar9 = param_1[2];
-  *(undefined8 *)(uVar10 + 0x10 + uVar8 * 0x18) = 0;
-  uVar9 = uVar9 - 1;
-  param_1[2] = uVar9;
-  __ptr = pvVar11;
+  sVar13 = this->items;
+  pHVar12[uVar10].value = (void *)0x0;
+  sVar13 = sVar13 - 1;
+  this->items = sVar13;
+  pvVar14 = pvVar15;
   goto LAB_00118417;
 }
 

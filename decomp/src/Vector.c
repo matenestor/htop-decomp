@@ -1,56 +1,128 @@
 #include "htop.h"
 
-/* Vector_remove @ 0x12de20 */
+/* quickSort @ 0x12d260 */
 
-long * Vector_remove(long *param_1,int param_2,long param_rdx,long param_rcx,long param_r8,
-                    long param_r9)
+void quickSort(Object **array,int left,int right,Object_Compare compare)
 
 {
-  long *__dest;
-  char cVar1;
-  long *a0;
-  long a3;
-  int iVar2;
-  undefined4 in_register_00000034;
-  void *__src;
+  undefined1 __frame[0xd8] __attribute__((aligned(16)));
+  undefined1 *__fp = __frame + 0x98;
+  Object **ppOVar1;
+  ObjectClass **ppOVar2;
+  int wVar3;
+  long lVar4;
+  Object *pOVar5;
+  ulong a2;
+  ulong extraout_RDX;
+  int wVar6;
+  long in_R8;
+  long in_R9;
+  Object *pOVar7;
+  Object **ppOVar8;
 
-  __src = (void *)CONCAT44(in_register_00000034,param_2);
-  a3 = *param_1;
-  __dest = (long *)(a3 + (long)param_2 * 8);
-  iVar2 = (int)param_1[3] + -1;
-  a0 = (long *)*__dest;
-  *(int *)(param_1 + 3) = iVar2;
-  if (param_2 < iVar2) {
-    __src = (void *)(a3 + 8 + (long)param_2 * 8);
-    memmove(__dest,__src,(long)(iVar2 - param_2) << 3);
-    a3 = *param_1;
-    iVar2 = (int)param_1[3];
+                    /* Unresolved local var: int pivotIndex@[???]
+                       Unresolved local var: int pivotNewIndex@[???] */
+  if (left < right) {
+                    /* Unresolved local var: Object * pivotValue@[???]
+                       Unresolved local var: int storeIndex@[???]
+                       Unresolved local var: Object * tmp@[???] */
+    ppOVar1 = array + right;
+    (*(int (*))(__fp - 0x44)) = left;
+    do {
+      pOVar7 = array[(right + (*(int (*))(__fp - 0x44))) / 2];
+      array[(right + (*(int (*))(__fp - 0x44))) / 2] = *ppOVar1;
+                    /* Unresolved local var: int i@[???] */
+      a2 = (ulong)(uint)right;
+      *ppOVar1 = pOVar7;
+      wVar6 = (*(int (*))(__fp - 0x44));
+      if ((*(int (*))(__fp - 0x44)) < right) {
+        pOVar5 = (Object *)(long)(*(int (*))(__fp - 0x44));
+        ppOVar8 = array + (long)pOVar5;
+        ppOVar2 = &pOVar5->klass;
+        do {
+          wVar3 = (*(code *)(compare))(*ppOVar8,pOVar7,a2,(long)pOVar5,in_R8,in_R9);
+          if (wVar3 < 1) {
+                    /* Unresolved local var: Object * tmp@[???] */
+            lVar4 = (long)wVar6;
+            pOVar5 = *ppOVar8;
+            wVar6 = wVar6 + 1;
+            *ppOVar8 = array[lVar4];
+            array[lVar4] = pOVar5;
+          }
+          ppOVar8 = ppOVar8 + 1;
+          a2 = extraout_RDX;
+        } while (array + (long)ppOVar2 + (ulong)(uint)(right - (*(int (*))(__fp - 0x44))) != ppOVar8);
+                    /* Unresolved local var: Object * tmp@[???] */
+        pOVar7 = *ppOVar1;
+      }
+      pOVar5 = array[wVar6];
+      array[wVar6] = pOVar7;
+      *ppOVar1 = pOVar5;
+      quickSort(array,(*(int (*))(__fp - 0x44)),wVar6 + -1,compare);
+      (*(int (*))(__fp - 0x44)) = wVar6 + 1;
+    } while ((*(int (*))(__fp - 0x44)) < right);
   }
-  cVar1 = *(char *)((long)param_1 + 0x24);
-  *(undefined8 *)(a3 + (long)iVar2 * 8) = 0;
-  if (cVar1 == '\0') {
-    return a0;
+  return;
+}
+
+
+/* Vector_remove @ 0x12de20 */
+
+/* DWARF original prototype: Object * Vector_remove(Vector * this, int idx) */
+
+Object * Vector_remove(Vector *this,int idx)
+
+{
+  _Bool _Var1;
+  Object *pOVar2;
+  Object **a3;
+  int wVar3;
+  undefined4 in_register_00000034;
+  Object **__src;
+  long in_R8;
+  long in_R9;
+
+                    /* Unresolved local var: Object * removed@[???] */
+  __src = (Object **)CONCAT44(in_register_00000034,idx);
+  a3 = this->array;
+                    /* Unresolved local var: Object * removed@[???] */
+  wVar3 = this->items + -1;
+  pOVar2 = a3[idx];
+  this->items = wVar3;
+  if (idx < wVar3) {
+    __src = a3 + (long)idx + 1;
+    memmove(a3 + idx,__src,(long)(wVar3 - idx) << 3);
+    a3 = this->array;
+    wVar3 = this->items;
   }
-  (**(code **)(*a0 + 0x10))((long)a0,(long)__src,(long)iVar2,a3,param_r8,param_r9);
-  return (long *)0x0;
+  _Var1 = this->owner;
+  a3[wVar3] = (Object *)0x0;
+  if (_Var1 == false) {
+    return pOVar2;
+  }
+  (*(code *)(pOVar2->klass->delete))(pOVar2,(long)__src,(long)wVar3,(long)a3,in_R8,in_R9);
+  return (Object *)0x0;
 }
 
 
 /* Vector_moveUp @ 0x12dfa0 */
 
-void Vector_moveUp(long *param_1,int param_2)
+/* DWARF original prototype: void Vector_moveUp(Vector * this, int idx) */
+
+void Vector_moveUp(Vector *this,int idx)
 
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  undefined8 uVar3;
+  Object **ppOVar1;
+  Object **ppOVar2;
+  Object *pOVar3;
 
-  if (param_2 != 0) {
-    puVar1 = (undefined8 *)(*param_1 + -8 + (long)param_2 * 8);
-    uVar3 = *puVar1;
-    puVar2 = (undefined8 *)(*param_1 + -8 + (long)param_2 * 8);
-    *puVar2 = puVar1[1];
-    puVar2[1] = uVar3;
+  if (idx != 0) {
+                    /* Unresolved local var: Object * temp@[???] */
+    ppOVar1 = this->array + (long)idx + -1;
+    pOVar3 = *ppOVar1;
+    ppOVar2 = this->array + (long)idx + -1;
+    *ppOVar2 = ppOVar1[1];
+    ppOVar2[1] = pOVar3;
   }
   return;
 }
@@ -58,151 +130,171 @@ void Vector_moveUp(long *param_1,int param_2)
 
 /* Vector_softRemove @ 0x12e220 */
 
-long * Vector_softRemove(long *param_1,int param_2,long param_rdx,long param_rcx,long param_r8,
-                        long param_r9)
+/* DWARF original prototype: Object * Vector_softRemove(Vector * this, int idx) */
+
+Object * Vector_softRemove(Vector *this,int idx)
 
 {
-  long *plVar1;
-  long *a0;
+  Object *pOVar1;
+  long in_RCX;
   undefined4 in_register_00000034;
+  long in_R8;
+  long in_R9;
 
-  plVar1 = (long *)(*param_1 + (long)param_2 * 8);
-  a0 = (long *)*plVar1;
-  if (a0 == (long *)0x0) {
-    return (long *)0x0;
+  pOVar1 = this->array[idx];
+  if (pOVar1 == (Object *)0x0) {
+    return (Object *)0x0;
   }
-  *plVar1 = 0;
-  *(int *)(param_1 + 4) = (int)param_1[4] + 1;
-  if ((param_2 < *(int *)((long)param_1 + 0x1c)) || (*(int *)((long)param_1 + 0x1c) < 0)) {
-    *(int *)((long)param_1 + 0x1c) = param_2;
+  this->array[idx] = (Object *)0x0;
+  this->dirty_count = this->dirty_count + 1;
+  if ((idx < this->dirty_index) || (this->dirty_index < 0)) {
+    this->dirty_index = idx;
   }
-  if (*(char *)((long)param_1 + 0x24) == '\0') {
-    return a0;
+  if (this->owner == false) {
+    return pOVar1;
   }
-  (**(code **)(*a0 + 0x10))
-            ((long)a0,CONCAT44(in_register_00000034,param_2),*a0,param_rcx,param_r8,param_r9);
-  return (long *)0x0;
+  (*(code *)(pOVar1->klass->delete))
+            (pOVar1,CONCAT44(in_register_00000034,idx),(long)pOVar1->klass,in_RCX,in_R8,in_R9);
+  return (Object *)0x0;
 }
 
 
 /* Vector_quickSortCustomCompare @ 0x12e280 */
 
-void Vector_quickSortCustomCompare
-               (long *param_1,undefined *param_2,long param_rdx,long param_rcx,long param_r8,
-               long param_r9)
+/* DWARF original prototype: void Vector_quickSortCustomCompare(Vector * this, Object_Compare
+   compare) */
+
+void Vector_quickSortCustomCompare(Vector *this,Object_Compare compare)
 
 {
-  FUN_0012d260(*param_1,0,(int)param_1[3] + -1,param_2,param_r8,param_r9);
+  quickSort(this->array,0,this->items + -1,compare);
   return;
 }
 
 
 /* Vector_delete @ 0x12e330 */
 
-void Vector_delete(long *param_1,long param_rsi,long param_rdx,long param_rcx,long param_r8,
-                  long param_r9)
+/* DWARF original prototype: void Vector_delete(Vector * this) */
+
+void Vector_delete(Vector *this)
 
 {
-  long *a0;
-  void *__ptr;
+  Object *pOVar1;
+  Object **__ptr;
+  long in_RCX;
   ulong a2;
   ulong extraout_RDX;
-  long lVar1;
+  long lVar2;
+  long in_RSI;
+  long in_R8;
+  long in_R9;
 
-  __ptr = (void *)*param_1;
-  if ((*(char *)((long)param_1 + 0x24) != '\0') &&
-     (a2 = (ulong)*(uint *)(param_1 + 3), 0 < (int)*(uint *)(param_1 + 3))) {
-    lVar1 = 0;
+  __ptr = this->array;
+                    /* Unresolved local var: int i@[???] */
+  if ((this->owner != false) && (a2 = (ulong)(uint)this->items, 0 < this->items)) {
+    lVar2 = 0;
     do {
-      a0 = *(long **)((long)__ptr + lVar1 * 8);
-      if (a0 != (long *)0x0) {
-        (**(code **)(*a0 + 0x10))((long)a0,param_rsi,a2,param_rcx,param_r8,param_r9);
-        __ptr = (void *)*param_1;
+      pOVar1 = __ptr[lVar2];
+      if (pOVar1 != (Object *)0x0) {
+        (*(code *)(pOVar1->klass->delete))(pOVar1,in_RSI,a2,in_RCX,in_R8,in_R9);
+        __ptr = this->array;
         a2 = extraout_RDX;
       }
-      lVar1 = lVar1 + 1;
-    } while ((int)lVar1 < (int)param_1[3]);
+      lVar2 = lVar2 + 1;
+    } while ((int)lVar2 < this->items);
   }
   free(__ptr);
-  free(param_1);
+  free(this);
   return;
 }
 
 
 /* Vector_prune @ 0x12e3c0 */
 
-void Vector_prune(long *param_1,long param_rsi,long param_rdx,long param_rcx,long param_r8,
-                 long param_r9)
+/* DWARF original prototype: void Vector_prune(Vector * this) */
+
+void Vector_prune(Vector *this)
 
 {
-  long *a0;
-  void *__s;
+  Object *pOVar1;
+  Object **__s;
+  long in_RCX;
   ulong a2;
   ulong extraout_RDX;
-  long lVar1;
+  long lVar2;
+  long in_RSI;
+  long in_R8;
+  long in_R9;
 
-  __s = (void *)*param_1;
-  if ((*(char *)((long)param_1 + 0x24) != '\0') &&
-     (a2 = (ulong)*(uint *)(param_1 + 3), 0 < (int)*(uint *)(param_1 + 3))) {
-    lVar1 = 0;
+  __s = this->array;
+                    /* Unresolved local var: int i@[???] */
+  if ((this->owner != false) && (a2 = (ulong)(uint)this->items, 0 < this->items)) {
+    lVar2 = 0;
     do {
-      a0 = *(long **)((long)__s + lVar1 * 8);
-      if (a0 != (long *)0x0) {
-        (**(code **)(*a0 + 0x10))((long)a0,param_rsi,a2,param_rcx,param_r8,param_r9);
-        __s = (void *)*param_1;
+      pOVar1 = __s[lVar2];
+      if (pOVar1 != (Object *)0x0) {
+        (*(code *)(pOVar1->klass->delete))(pOVar1,in_RSI,a2,in_RCX,in_R8,in_R9);
+        __s = this->array;
         a2 = extraout_RDX;
       }
-      lVar1 = lVar1 + 1;
-    } while ((int)lVar1 < (int)param_1[3]);
+      lVar2 = lVar2 + 1;
+    } while ((int)lVar2 < this->items);
   }
-  *(undefined4 *)(param_1 + 4) = 0;
-  param_1[3] = -0x100000000;
-  memset(__s,0,(long)(int)param_1[2] << 3);
+  this->dirty_count = 0;
+  this->items = 0;
+  this->dirty_index = -1;
+  memset(__s,0,(long)this->arraySize << 3);
   return;
 }
 
 
 /* Vector_insertionSort @ 0x12e430 */
 
-void Vector_insertionSort
-               (long *param_1,long param_rsi,long param_rdx,long param_rcx,long param_r8,
-               long param_r9)
+/* DWARF original prototype: void Vector_insertionSort(Vector * this) */
+
+void Vector_insertionSort(Vector *this)
 
 {
-  long *plVar1;
-  code *pcVar2;
-  long a1;
-  long lVar3;
-  long *plVar4;
-  ulong uVar5;
+  Object **ppOVar1;
+  Object_Compare p_Var2;
+  Object *pOVar3;
+  int wVar4;
+  Object **ppOVar5;
+  long in_RCX;
   ulong uVar6;
-  ulong extraout_RDX;
   ulong uVar7;
+  ulong extraout_RDX;
   ulong uVar8;
+  long in_R8;
+  long in_R9;
+  ulong uVar9;
 
-  plVar1 = (long *)*param_1;
-  pcVar2 = *(code **)(param_1[1] + 0x18);
-  uVar5 = (ulong)((int)param_1[3] - 1);
-  if (1 < (int)param_1[3]) {
-    uVar8 = 0;
-    uVar6 = uVar5;
+  ppOVar1 = this->array;
+  p_Var2 = this->type->compare;
+  uVar6 = (ulong)(uint)(this->items + -1);
+                    /* Unresolved local var: int i@[???] */
+  if (1 < this->items) {
+    uVar9 = 0;
+    uVar7 = uVar6;
     do {
-      a1 = plVar1[uVar8 + 1];
-      uVar7 = uVar8;
+                    /* Unresolved local var: Object * t@[???]
+                       Unresolved local var: int j@[???] */
+      pOVar3 = ppOVar1[uVar9 + 1];
+      uVar8 = uVar9;
       do {
-        lVar3 = (*pcVar2)(plVar1[uVar7],a1,uVar6,param_rcx,param_r8,param_r9);
-        uVar6 = extraout_RDX;
-        if ((int)lVar3 < 1) {
-          plVar4 = plVar1 + ((int)uVar7 + 1);
+        wVar4 = (*(code *)(p_Var2))(ppOVar1[uVar8],pOVar3,uVar7,in_RCX,in_R8,in_R9);
+        uVar7 = extraout_RDX;
+        if (wVar4 < 1) {
+          ppOVar5 = ppOVar1 + ((int)uVar8 + 1);
           break;
         }
-        plVar1[uVar7 + 1] = plVar1[uVar7];
-        uVar7 = uVar7 - 1;
-        plVar4 = plVar1;
-      } while ((int)uVar7 != -1);
-      *plVar4 = a1;
-      uVar8 = uVar8 + 1;
-    } while (uVar5 != uVar8);
+        ppOVar1[uVar8 + 1] = ppOVar1[uVar8];
+        uVar8 = uVar8 - 1;
+        ppOVar5 = ppOVar1;
+      } while ((int)uVar8 != -1);
+      *ppOVar5 = pOVar3;
+      uVar9 = uVar9 + 1;
+    } while (uVar6 != uVar9);
   }
   return;
 }
@@ -210,88 +302,91 @@ void Vector_insertionSort
 
 /* Vector_take @ 0x12e4d0 */
 
-undefined8 Vector_take(long *param_1,int param_2)
+/* DWARF original prototype: Object * Vector_take(Vector * this, int idx) */
+
+Object * Vector_take(Vector *this,int idx)
 
 {
-  undefined8 *__dest;
-  undefined8 uVar1;
-  long lVar2;
-  int iVar3;
+  Object *pOVar1;
+  Object **ppOVar2;
+  int wVar3;
 
-  lVar2 = *param_1;
-  __dest = (undefined8 *)(lVar2 + (long)param_2 * 8);
-  iVar3 = (int)param_1[3] + -1;
-  uVar1 = *__dest;
-  *(int *)(param_1 + 3) = iVar3;
-  if (param_2 < iVar3) {
-    memmove(__dest,(void *)(lVar2 + 8 + (long)param_2 * 8),(long)(iVar3 - param_2) << 3);
-    lVar2 = *param_1;
-    iVar3 = (int)param_1[3];
+  ppOVar2 = this->array;
+  wVar3 = this->items + -1;
+  pOVar1 = ppOVar2[idx];
+  this->items = wVar3;
+  if (idx < wVar3) {
+    memmove(ppOVar2 + idx,ppOVar2 + (long)idx + 1,(long)(wVar3 - idx) << 3);
+    ppOVar2 = this->array;
+    wVar3 = this->items;
   }
-  *(undefined8 *)(lVar2 + (long)iVar3 * 8) = 0;
-  return uVar1;
+  ppOVar2[wVar3] = (Object *)0x0;
+  return pOVar1;
 }
 
 
 /* Vector_compact @ 0x12e5f0 */
 
-void Vector_compact(long *param_1)
+/* DWARF original prototype: void Vector_compact(Vector * this) */
+
+void Vector_compact(Vector *this)
 
 {
-  long lVar1;
-  long lVar2;
-  int iVar3;
-  long lVar4;
-  int iVar5;
-  long lVar6;
+  Object **ppOVar1;
+  int wVar2;
+  long lVar3;
+  int wVar4;
+  long lVar5;
 
-  if ((int)param_1[4] < 1) {
+  if (this->dirty_count < 1) {
     return;
   }
-  iVar3 = (int)param_1[3];
-  iVar5 = *(int *)((long)param_1 + 0x1c);
-  lVar1 = *param_1;
-  if ((int)param_1[4] == 1) {
-    lVar4 = (long)iVar5 * 8 + 8;
-    memmove((void *)(lVar1 + -8 + lVar4),(void *)(lVar1 + lVar4),(long)((iVar3 - iVar5) + -1) << 3);
-    iVar3 = (int)param_1[3];
-    *(undefined8 *)(*param_1 + -8 + (long)iVar3 * 8) = 0;
+  wVar2 = this->items;
+  wVar4 = this->dirty_index;
+  ppOVar1 = this->array;
+  if (this->dirty_count == 1) {
+    memmove(ppOVar1 + wVar4,ppOVar1 + (long)wVar4 + 1,(long)((wVar2 - wVar4) + -1) << 3);
+    wVar2 = this->items;
+    this->array[(long)wVar2 + -1] = (Object *)0x0;
   }
   else {
-    if (iVar5 + 1 < iVar3) {
-      lVar4 = (long)(iVar5 + 1);
+                    /* Unresolved local var: int i@[???] */
+    if (wVar4 + 1 < wVar2) {
+      lVar3 = (long)(wVar4 + 1);
       do {
-        lVar2 = *(long *)(lVar1 + lVar4 * 8);
-        if (lVar2 != 0) {
-          lVar6 = (long)iVar5;
-          iVar5 = iVar5 + 1;
-          *(long *)(lVar1 + lVar6 * 8) = lVar2;
+        if (ppOVar1[lVar3] != (Object *)0x0) {
+          lVar5 = (long)wVar4;
+          wVar4 = wVar4 + 1;
+          ppOVar1[lVar5] = ppOVar1[lVar3];
         }
-        lVar4 = lVar4 + 1;
-      } while ((int)lVar4 < iVar3);
+        lVar3 = lVar3 + 1;
+      } while ((int)lVar3 < wVar2);
     }
-    memset((void *)(lVar1 + (long)iVar5 * 8),0,(long)(iVar3 - iVar5) << 3);
-    iVar3 = (int)param_1[3];
+    memset(ppOVar1 + wVar4,0,(long)(wVar2 - wVar4) << 3);
+    wVar2 = this->items;
   }
-  *(int *)(param_1 + 3) = iVar3 - (int)param_1[4];
-  *(undefined8 *)((long)param_1 + 0x1c) = 0xffffffff;
+  this->items = wVar2 - this->dirty_count;
+  this->dirty_index = -1;
+  this->dirty_count = 0;
   return;
 }
 
 
 /* Vector_moveDown @ 0x12e6c0 */
 
-void Vector_moveDown(long *param_1,int param_2)
+/* DWARF original prototype: void Vector_moveDown(Vector * this, int idx) */
+
+void Vector_moveDown(Vector *this,int idx)
 
 {
-  undefined8 *puVar1;
-  undefined8 uVar2;
+  Object **ppOVar1;
+  Object *pOVar2;
 
-  if ((int)param_1[3] + -1 != param_2) {
-    puVar1 = (undefined8 *)(*param_1 + (long)param_2 * 8);
-    uVar2 = *puVar1;
-    *puVar1 = puVar1[1];
-    puVar1[1] = uVar2;
+  if (this->items + -1 != idx) {
+    ppOVar1 = this->array + idx;
+    pOVar2 = *ppOVar1;
+    *ppOVar1 = ppOVar1[1];
+    ppOVar1[1] = pOVar2;
   }
   return;
 }
@@ -299,65 +394,74 @@ void Vector_moveDown(long *param_1,int param_2)
 
 /* Vector_indexOf @ 0x12e6f0 */
 
-ulong Vector_indexOf(long *param_1,long param_2,undefined *param_3,long param_rcx,long param_r8,
-                    long param_r9)
+/* DWARF original prototype: int Vector_indexOf(Vector * this, void * search_, Object_Compare
+   compare) */
+
+int Vector_indexOf(Vector *this,void *search_,Object_Compare compare)
 
 {
-  long lVar1;
-  undefined *a2;
-  undefined *extraout_RDX;
-  ulong uVar2;
+  int wVar1;
+  long in_RCX;
+  Object_Compare a2;
+  Object_Compare extraout_RDX;
+  long lVar2;
+  long in_R8;
+  long in_R9;
 
-  if ((int)param_1[3] < 1) {
-    return 0xffffffff;
+                    /* Unresolved local var: int i@[???] */
+  if (this->items < 1) {
+    return -1;
   }
-  uVar2 = 0;
-  a2 = param_3;
+  lVar2 = 0;
+  a2 = compare;
   do {
-    lVar1 = (*(code *)param_3)(param_2,*(long *)(*param_1 + uVar2 * 8),(long)a2,param_rcx,param_r8,
-                               param_r9);
-    if ((int)lVar1 == 0) {
-      return uVar2 & 0xffffffff;
+                    /* Unresolved local var: Object * o@[???] */
+    wVar1 = (*(code *)(compare))(search_,this->array[lVar2],(long)a2,in_RCX,in_R8,in_R9);
+    if (wVar1 == 0) {
+      return (int)lVar2;
     }
-    uVar2 = uVar2 + 1;
+    lVar2 = lVar2 + 1;
     a2 = extraout_RDX;
-  } while ((int)uVar2 < (int)param_1[3]);
-  return 0xffffffff;
+  } while ((int)lVar2 < this->items);
+  return -1;
 }
 
 
 /* Vector_new @ 0x132d60 */
 
-undefined8 * Vector_new(undefined8 param_1,undefined1 param_2,int param_3)
+Vector * Vector_new(ObjectClass *type,_Bool owner,int size)
 
 {
-  undefined8 *puVar1;
-  void *pvVar2;
+  Vector *pVVar1;
+  Object **ppOVar2;
   size_t __nmemb;
 
-  if (param_3 == -1) {
-    puVar1 = malloc(0x28);
-    if (puVar1 == (undefined8 *)0x0) goto LAB_00132e06;
-    *(undefined4 *)((long)puVar1 + 0x14) = 10;
-    param_3 = 10;
+  if (size == -1) {
+    pVVar1 = malloc(0x28);
+    if (pVVar1 == (Vector *)0x0) goto LAB_00132e06;
+    pVVar1->growthRate = 10;
+    size = 10;
     __nmemb = 10;
   }
   else {
-    puVar1 = malloc(0x28);
-    if (puVar1 == (undefined8 *)0x0) goto LAB_00132e06;
-    __nmemb = (size_t)param_3;
-    *(int *)((long)puVar1 + 0x14) = param_3;
+                    /* Unresolved local var: void * data@[???] */
+    pVVar1 = malloc(0x28);
+    if (pVVar1 == (Vector *)0x0) goto LAB_00132e06;
+    __nmemb = (size_t)size;
+    pVVar1->growthRate = size;
+                    /* Unresolved local var: void * data@[???] */
     if (__nmemb >> 0x3d != 0) goto LAB_00132e06;
   }
-  pvVar2 = calloc(__nmemb,8);
-  if (pvVar2 != (void *)0x0) {
-    *puVar1 = pvVar2;
-    *(int *)(puVar1 + 2) = param_3;
-    puVar1[3] = 0xffffffff00000000;
-    puVar1[1] = param_1;
-    *(undefined1 *)((long)puVar1 + 0x24) = param_2;
-    *(undefined4 *)(puVar1 + 4) = 0;
-    return puVar1;
+  ppOVar2 = calloc(__nmemb,8);
+  if (ppOVar2 != (Object **)0x0) {
+    pVVar1->array = ppOVar2;
+    pVVar1->arraySize = size;
+    pVVar1->items = 0;
+    pVVar1->dirty_index = -1;
+    pVVar1->type = type;
+    pVVar1->owner = owner;
+    pVVar1->dirty_count = 0;
+    return pVVar1;
   }
 LAB_00132e06:
                     /* WARNING: Subroutine does not return */
@@ -367,152 +471,124 @@ LAB_00132e06:
 
 /* Vector_insert @ 0x132ee0 */
 
-void Vector_insert(undefined8 *param_1,int param_2,undefined8 param_3)
+/* DWARF original prototype: void Vector_insert(Vector * this, int idx, void * data_) */
+
+void Vector_insert(Vector *this,int idx,void *data_)
 
 {
-  int iVar1;
-  void *pvVar2;
-  int iVar3;
+  int wVar1;
+  Object **ptr;
+  int wVar2;
 
-  iVar3 = *(int *)(param_1 + 3);
-  if (iVar3 <= param_2) {
-    param_2 = iVar3;
+  wVar2 = this->items;
+  if (wVar2 <= idx) {
+    idx = wVar2;
   }
-  iVar1 = *(int *)(param_1 + 2);
-  pvVar2 = (void *)*param_1;
-  if (iVar1 < iVar3 + 1) {
-    iVar3 = iVar3 + 1 + *(int *)((long)param_1 + 0x14);
-    *(int *)(param_1 + 2) = iVar3;
-    pvVar2 = xReallocArrayZero(pvVar2,(long)iVar1,(long)iVar3,8);
-    *param_1 = pvVar2;
-    iVar3 = *(int *)(param_1 + 3);
+  wVar1 = this->arraySize;
+                    /* Unresolved local var: int oldSize@[???] */
+  ptr = this->array;
+  if (wVar1 < wVar2 + 1) {
+    wVar2 = wVar2 + 1 + this->growthRate;
+    this->arraySize = wVar2;
+    ptr = xReallocArrayZero(ptr,(long)wVar1,(long)wVar2,8);
+    this->array = ptr;
+    wVar2 = this->items;
   }
-  if (param_2 < iVar3) {
-    memmove((void *)((long)pvVar2 + (long)param_2 * 8 + 8),
-            (void *)((long)pvVar2 + (long)param_2 * 8),(long)(iVar3 - param_2) << 3);
-    pvVar2 = (void *)*param_1;
-    iVar3 = *(int *)(param_1 + 3);
+  if (idx < wVar2) {
+    memmove(ptr + (long)idx + 1,ptr + idx,(long)(wVar2 - idx) << 3);
+    ptr = this->array;
+    wVar2 = this->items;
   }
-  *(undefined8 *)((long)pvVar2 + (long)param_2 * 8) = param_3;
-  *(int *)(param_1 + 3) = iVar3 + 1;
-  return;
-}
-
-
-/* Vector_set @ 0x1330c0 */
-
-void Vector_set(long *param_1,int param_2,long param_3,long param_rcx,long param_r8,long param_r9)
-
-{
-  long *a0;
-  void *pvVar1;
-  int iVar2;
-  ulong a1;
-  long *plVar3;
-  int iVar4;
-
-  iVar4 = param_2 + 1;
-  a1 = (ulong)(int)param_1[2];
-  pvVar1 = (void *)*param_1;
-  if ((int)param_1[2] < iVar4) {
-    param_rcx = 8;
-    iVar2 = *(int *)((long)param_1 + 0x14) + iVar4;
-    *(int *)(param_1 + 2) = iVar2;
-    pvVar1 = xReallocArrayZero(pvVar1,a1,(long)iVar2,8);
-    *param_1 = (long)pvVar1;
-  }
-  plVar3 = (long *)((long)pvVar1 + (long)param_2 * 8);
-  if (param_2 < (int)param_1[3]) {
-    if ((*(char *)((long)param_1 + 0x24) != '\0') && (a0 = (long *)*plVar3, a0 != (long *)0x0)) {
-      (**(code **)(*a0 + 0x10))((long)a0,a1,*a0,param_rcx,param_r8,param_r9);
-      plVar3 = (long *)(*param_1 + (long)param_2 * 8);
-    }
-  }
-  else {
-    *(int *)(param_1 + 3) = iVar4;
-  }
-  *plVar3 = param_3;
+  ptr[idx] = data_;
+  this->items = wVar2 + 1;
   return;
 }
 
 
 /* Vector_add @ 0x135420 */
 
-void Vector_add(long *param_1,long param_2,long param_rdx,long param_rcx,long param_r8,long param_r9
-               )
+/* DWARF original prototype: void Vector_add(Vector * this, void * data_) */
+
+void Vector_add(Vector *this,void *data_)
 
 {
-  int iVar1;
-  long *a0;
-  void *pvVar2;
+  int wVar1;
+  Object *pOVar2;
+  Object **ppOVar3;
   long a3;
-  int iVar3;
-  ulong a1;
-  long *plVar4;
-  long lVar5;
-  int iVar6;
+  int wVar4;
+  size_t prevmemb;
+  long in_R8;
+  long in_R9;
+  int wVar5;
 
-  iVar1 = (int)param_1[3];
-  a1 = (ulong)(int)param_1[2];
-  pvVar2 = (void *)*param_1;
-  iVar6 = iVar1 + 1;
-  lVar5 = (long)iVar1 * 8;
-  if ((int)param_1[2] < iVar6) {
+  wVar1 = this->items;
+                    /* Unresolved local var: Object * data@[???] */
+  prevmemb = (size_t)this->arraySize;
+                    /* Unresolved local var: int oldSize@[???] */
+  ppOVar3 = this->array;
+  wVar5 = wVar1 + 1;
+                    /* Unresolved local var: Object * removed@[???] */
+  if (this->arraySize < wVar5) {
     a3 = 8;
-    iVar3 = *(int *)((long)param_1 + 0x14) + iVar6;
-    *(int *)(param_1 + 2) = iVar3;
-    pvVar2 = xReallocArrayZero(pvVar2,a1,(long)iVar3,8);
-    *param_1 = (long)pvVar2;
-    if (iVar1 < (int)param_1[3]) {
-      plVar4 = (long *)((long)pvVar2 + lVar5);
-      if ((*(char *)((long)param_1 + 0x24) != '\0') && (a0 = (long *)*plVar4, a0 != (long *)0x0)) {
-        (**(code **)(*a0 + 0x10))((long)a0,a1,*a0,a3,param_r8,param_r9);
-        plVar4 = (long *)(*param_1 + lVar5);
+    wVar4 = this->growthRate + wVar5;
+    this->arraySize = wVar4;
+    ppOVar3 = xReallocArrayZero(ppOVar3,prevmemb,(long)wVar4,8);
+    this->array = ppOVar3;
+    if (wVar1 < this->items) {
+      ppOVar3 = ppOVar3 + wVar1;
+      if ((this->owner != false) && (pOVar2 = *ppOVar3, pOVar2 != (Object *)0x0)) {
+        (*(code *)(pOVar2->klass->delete))(pOVar2,prevmemb,(long)pOVar2->klass,a3,in_R8,in_R9);
+        ppOVar3 = this->array + wVar1;
       }
       goto LAB_0013545e;
     }
   }
-  *(int *)(param_1 + 3) = iVar6;
-  plVar4 = (long *)((long)pvVar2 + lVar5);
+  this->items = wVar5;
+  ppOVar3 = ppOVar3 + wVar1;
 LAB_0013545e:
-  *plVar4 = param_2;
+  *ppOVar3 = data_;
   return;
 }
 
 
 /* Vector_splice @ 0x1354c0 */
 
-void Vector_splice(long *param_1,long *param_2)
+/* DWARF original prototype: void Vector_splice(Vector * this, Vector * from) */
+
+void Vector_splice(Vector *this,Vector *from)
 
 {
-  long lVar1;
-  long lVar2;
-  long lVar3;
+  int wVar1;
+  int wVar2;
+  Object **ppOVar3;
   long lVar4;
-  long lVar5;
-  void *pvVar6;
-  int iVar7;
+  Object **ppOVar5;
+  int wVar6;
 
-  lVar3 = param_1[3];
-  lVar4 = param_1[2];
-  iVar7 = (int)param_2[3] + (int)lVar3;
-  if ((int)lVar4 < iVar7) {
-    iVar7 = iVar7 + *(int *)((long)param_1 + 0x14);
-    *(int *)(param_1 + 2) = iVar7;
-    pvVar6 = xReallocArrayZero((void *)*param_1,(long)(int)lVar4,(long)iVar7,8);
-    iVar7 = (int)param_2[3] + (int)param_1[3];
-    *param_1 = (long)pvVar6;
+  wVar1 = this->items;
+  wVar2 = this->arraySize;
+  wVar6 = from->items + wVar1;
+  if (wVar2 < wVar6) {
+                    /* Unresolved local var: int oldSize@[???] */
+    wVar6 = wVar6 + this->growthRate;
+    this->arraySize = wVar6;
+    ppOVar5 = xReallocArrayZero(this->array,(long)wVar2,(long)wVar6,8);
+    wVar6 = from->items + this->items;
+    this->array = ppOVar5;
   }
-  *(int *)(param_1 + 3) = iVar7;
-  lVar4 = param_2[3];
-  if (0 < (int)lVar4) {
-    lVar1 = *param_1;
-    lVar2 = *param_2;
-    lVar5 = 0;
+  this->items = wVar6;
+                    /* Unresolved local var: int j@[???] */
+  wVar2 = from->items;
+  if (0 < wVar2) {
+    ppOVar5 = this->array;
+    ppOVar3 = from->array;
+    lVar4 = 0;
     do {
-      *(undefined8 *)(lVar1 + (long)(int)lVar3 * 8 + lVar5) = *(undefined8 *)(lVar2 + lVar5);
-      lVar5 = lVar5 + 8;
-    } while ((long)(int)lVar4 * 8 != lVar5);
+      *(undefined8 *)((long)ppOVar5 + lVar4 + (long)wVar1 * 8) =
+           *(undefined8 *)((long)ppOVar3 + lVar4);
+      lVar4 = lVar4 + 8;
+    } while ((long)wVar2 * 8 != lVar4);
   }
   return;
 }

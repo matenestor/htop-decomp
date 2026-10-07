@@ -2,62 +2,71 @@
 
 /* Affinity_delete @ 0x115b60 */
 
-void Affinity_delete(void *param_1)
+/* DWARF original prototype: void Affinity_delete(Affinity * this) */
+
+void Affinity_delete(Affinity *this)
 
 {
-  free(*(void **)((long)param_1 + 0x10));
-  free(param_1);
+  free(this->cpus);
+  free(this);
   return;
 }
 
 
 /* Affinity_rowGet @ 0x115b90 */
 
-void Affinity_rowGet(long param_1,long param_2)
+Affinity_2 * Affinity_rowGet(Process_ *row,Machine *host)
 
 {
-  FUN_00140160(*(__pid_t *)(param_1 + 0x10),param_2);
-  return;
+  Affinity_2 *pAVar1;
+
+  pAVar1 = Affinity_get((Process *)(ulong)(uint)(row->super).id,host);
+  return pAVar1;
 }
 
 
 /* Affinity_rowSet @ 0x115fc0 */
 
-undefined8 Affinity_rowSet(long param_1,long param_2)
+_Bool Affinity_rowSet(Process_ *row,Arg arg)
 
 {
   undefined1 __frame[0x128] __attribute__((aligned(16)));
   undefined1 *__fp = __frame + 0xe8;
   uint *puVar1;
   uint uVar2;
-  int iVar3;
-  uint *puVar4;
-  undefined4 extraout_var;
-  long lVar5;
-  __cpu_mask *p_Var6;
+  long lVar3;
+  int iVar4;
+  uint *puVar5;
+  long lVar6;
+  __cpu_mask *p_Var7;
   long in_FS_OFFSET = (long)__fake_fs;
 
-  (*(long *)(__fp - 0x10)) = *(long *)(in_FS_OFFSET + 0x28);
-  p_Var6 = (*(__cpu_mask (*)[17])(__fp - 0x98));
-  for (lVar5 = 0x10; lVar5 != 0; lVar5 = lVar5 + -1) {
-    *p_Var6 = 0;
-    p_Var6 = p_Var6 + 1;
+  lVar3 = *(long *)(in_FS_OFFSET + 0x28);
+                    /* Unresolved local var: Affinity * this@[???]
+                       Unresolved local var: _Bool ok@[???] */
+  lVar6 = 0x10;
+  p_Var7 = (*(cpu_set_t (*))(__fp - 0x98)).__bits;
+  for (; lVar6 != 0; lVar6 = lVar6 + -1) {
+    *p_Var7 = 0;
+    p_Var7 = p_Var7 + 1;
   }
-  if (*(uint *)(param_2 + 0xc) != 0) {
-    puVar4 = *(uint **)(param_2 + 0x10);
-    puVar1 = puVar4 + *(uint *)(param_2 + 0xc);
+                    /* Unresolved local var: uint i@[???] */
+  if (*(uint *)((long)arg.v + 0xc) != 0) {
+    puVar5 = *(uint **)((long)arg.v + 0x10);
+                    /* Unresolved local var: size_t __cpu@[???] */
+    puVar1 = puVar5 + *(uint *)((long)arg.v + 0xc);
     do {
-      uVar2 = *puVar4;
+      uVar2 = *puVar5;
       if (uVar2 < 0x400) {
-        p_Var6 = (*(__cpu_mask (*)[17])(__fp - 0x98)) + (uVar2 >> 6);
-        *p_Var6 = *p_Var6 | 1L << ((byte)uVar2 & 0x3f);
+        p_Var7 = (__cpu_mask *)((long)&(*(cpu_set_t (*))(__fp - 0x98)) + (ulong)(uVar2 >> 6) * 8);
+        *p_Var7 = *p_Var7 | 1L << ((byte)uVar2 & 0x3f);
       }
-      puVar4 = puVar4 + 1;
-    } while (puVar4 != puVar1);
+      puVar5 = puVar5 + 1;
+    } while (puVar5 != puVar1);
   }
-  iVar3 = sched_setaffinity(*(__pid_t *)(param_1 + 0x10),8,(cpu_set_t *)(*(__cpu_mask (*)[17])(__fp - 0x98)));
-  if ((*(long *)(__fp - 0x10)) == *(long *)(in_FS_OFFSET + 0x28)) {
-    return CONCAT71((int7)(CONCAT44(extraout_var,iVar3) >> 8),iVar3 == 0);
+  iVar4 = sched_setaffinity((row->super).id,8,&(*(cpu_set_t (*))(__fp - 0x98)));
+  if (lVar3 == *(long *)(in_FS_OFFSET + 0x28)) {
+    return iVar4 == 0;
   }
                     /* WARNING: Subroutine does not return */
   __stack_chk_fail();
@@ -66,20 +75,22 @@ undefined8 Affinity_rowSet(long param_1,long param_2)
 
 /* Affinity_new @ 0x117af0 */
 
-undefined8 * Affinity_new(undefined8 param_1)
+Affinity_2 * Affinity_new(Machine *host)
 
 {
-  undefined8 *puVar1;
-  void *pvVar2;
+  Affinity_2 *pAVar1;
+  uint *puVar2;
 
-  puVar1 = calloc(1,0x18);
-  if (puVar1 != (undefined8 *)0x0) {
-    *(undefined4 *)(puVar1 + 1) = 8;
-    pvVar2 = calloc(8,4);
-    if (pvVar2 != (void *)0x0) {
-      puVar1[2] = pvVar2;
-      *puVar1 = param_1;
-      return puVar1;
+                    /* Unresolved local var: void * data@[???] */
+  pAVar1 = calloc(1,0x18);
+  if (pAVar1 != (Affinity_2 *)0x0) {
+    pAVar1->size = 8;
+                    /* Unresolved local var: void * data@[???] */
+    puVar2 = calloc(8,4);
+    if (puVar2 != (uint *)0x0) {
+      pAVar1->cpus = puVar2;
+      pAVar1->host = host;
+      return pAVar1;
     }
   }
                     /* WARNING: Subroutine does not return */
@@ -89,29 +100,108 @@ undefined8 * Affinity_new(undefined8 param_1)
 
 /* Affinity_add @ 0x117b50 */
 
-void Affinity_add(long param_1,undefined4 param_2)
+/* DWARF original prototype: void Affinity_add(Affinity * this, uint id) */
+
+void Affinity_add(Affinity *this,uint id)
 
 {
   uint uVar1;
-  void *__ptr;
-  void *pvVar2;
+  uint *__ptr;
+  uint *puVar2;
 
-  uVar1 = *(uint *)(param_1 + 0xc);
-  __ptr = *(void **)(param_1 + 0x10);
-  pvVar2 = __ptr;
-  if (uVar1 == *(uint *)(param_1 + 8)) {
-    *(uint *)(param_1 + 8) = uVar1 * 2;
-    pvVar2 = realloc(__ptr,(ulong)(uVar1 * 2) * 4);
-    if (pvVar2 == (void *)0x0) {
+  uVar1 = this->used;
+  __ptr = this->cpus;
+  puVar2 = __ptr;
+  if (uVar1 == this->size) {
+    this->size = uVar1 * 2;
+                    /* Unresolved local var: void * data@[???] */
+    puVar2 = realloc(__ptr,(ulong)(uVar1 * 2) * 4);
+    if (puVar2 == (uint *)0x0) {
       free(__ptr);
                     /* WARNING: Subroutine does not return */
       fail();
     }
-    *(void **)(param_1 + 0x10) = pvVar2;
-    uVar1 = *(uint *)(param_1 + 0xc);
+    this->cpus = puVar2;
+    uVar1 = this->used;
   }
-  *(undefined4 *)((long)pvVar2 + (ulong)uVar1 * 4) = param_2;
-  *(int *)(param_1 + 0xc) = *(int *)(param_1 + 0xc) + 1;
+  puVar2[uVar1] = id;
+  this->used = this->used + 1;
   return;
+}
+
+
+/* Affinity_get @ 0x140160 */
+
+Affinity_2 * Affinity_get(Process *p,Machine *host)
+
+{
+  undefined1 __frame[0x158] __attribute__((aligned(16)));
+  undefined1 *__fp = __frame + 0x118;
+  uint uVar1;
+  long lVar2;
+  int iVar3;
+  Affinity_2 *pAVar4;
+  uint *puVar5;
+  uint *puVar6;
+  ulong uVar7;
+  ulong uVar8;
+  long in_FS_OFFSET = (long)__fake_fs;
+
+  lVar2 = *(long *)(in_FS_OFFSET + 0x28);
+  iVar3 = sched_getaffinity((__pid_t)p,0x80,&(*(cpu_set_t (*))(__fp - 0xc8)));
+  if (iVar3 != 0) {
+    pAVar4 = (Affinity_2 *)0x0;
+LAB_00140250:
+    if (lVar2 == *(long *)(in_FS_OFFSET + 0x28)) {
+      return pAVar4;
+    }
+                    /* WARNING: Subroutine does not return */
+    __stack_chk_fail();
+  }
+                    /* Unresolved local var: Affinity * this@[???]
+                       Unresolved local var: void * data@[???] */
+  pAVar4 = calloc(1,0x18);
+  if (pAVar4 != (Affinity_2 *)0x0) {
+    pAVar4->size = 8;
+                    /* Unresolved local var: void * data@[???] */
+    puVar5 = calloc(8,4);
+    if (puVar5 != (uint *)0x0) {
+      pAVar4->cpus = puVar5;
+                    /* Unresolved local var: uint i@[???] */
+      uVar1 = host->existingCPUs;
+      pAVar4->host = host;
+      if (uVar1 != 0) {
+        uVar7 = 0;
+        do {
+                    /* Unresolved local var: size_t __cpu@[???] */
+          while ((uVar7 < 0x400 && (((*(cpu_set_t (*))(__fp - 0xc8)).__bits[uVar7 >> 6] >> (uVar7 & 0x3f) & 1) != 0))) {
+            uVar1 = pAVar4->used;
+            puVar5 = pAVar4->cpus;
+            puVar6 = puVar5;
+            if (uVar1 == pAVar4->size) {
+                    /* Unresolved local var: void * data@[???] */
+              pAVar4->size = uVar1 * 2;
+              puVar6 = realloc(puVar5,(ulong)(uVar1 * 2) * 4);
+              if (puVar6 == (uint *)0x0) {
+                free(puVar5);
+                goto LAB_001402bb;
+              }
+              pAVar4->cpus = puVar6;
+            }
+            uVar8 = uVar7 + 1;
+            puVar6[uVar1] = (uint)uVar7;
+            pAVar4->used = uVar1 + 1;
+            uVar7 = uVar8;
+            if (host->existingCPUs <= (uint)uVar8) goto LAB_00140250;
+          }
+          uVar7 = uVar7 + 1;
+        } while ((uint)uVar7 < host->existingCPUs);
+      }
+      goto LAB_00140250;
+    }
+  }
+LAB_001402bb:
+                    /* WARNING: Subroutine does not return */
+  fail();
 }
 

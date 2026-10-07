@@ -2,20 +2,21 @@
 
 /* Object_isA @ 0x1207e0 */
 
-undefined8 Object_isA(long *param_1,long *param_2)
+_Bool Object_isA(Object *o,ObjectClass *klass)
 
 {
-  long *plVar1;
+  ObjectClass *pOVar1;
 
-  if ((param_1 != (long *)0x0) && (plVar1 = (long *)*param_1, plVar1 != (long *)0x0)) {
+                    /* Unresolved local var: ObjectClass * type@[???] */
+  if ((o != (Object *)0x0) && (pOVar1 = o->klass, pOVar1 != (ObjectClass *)0x0)) {
     do {
-      if (plVar1 == param_2) {
-        return 1;
+      if (pOVar1 == klass) {
+        return true;
       }
-      plVar1 = (long *)*plVar1;
-    } while (plVar1 != (long *)0x0);
-    return 0;
+      pOVar1 = pOVar1->extends;
+    } while (pOVar1 != (ObjectClass *)0x0);
+    return false;
   }
-  return 0;
+  return false;
 }
 

@@ -2,83 +2,93 @@
 
 /* Row_display @ 0x11fc90 */
 
-void Row_display(long *param_1,int *param_2,long param_rdx,long param_rcx,long param_r8,
-                long param_r9)
+void Row_display(Row_ *cast,RichString *out)
 
 {
   char cVar1;
   uint uVar2;
-  undefined4 uVar3;
-  long lVar4;
-  ulong uVar5;
-  int iVar6;
-  long lVar7;
-  int iVar8;
-  undefined4 *puVar9;
-  uint *puVar10;
-  int *a1;
+  int wVar3;
+  Settings__2 *pSVar4;
+  code *pcVar5;
+  ulong uVar6;
+  int wVar7;
+  long lVar8;
+  int wVar9;
+  long in_RCX;
+  cchar_t *pcVar10;
+  uint *puVar11;
+  RichString *a1;
+  long in_R8;
+  long in_R9;
 
-  lVar4 = *(long *)param_1[1];
-  puVar10 = *(uint **)(*(long *)(lVar4 + 0x40) + 0x18);
-  uVar2 = *puVar10;
-  a1 = param_2;
+  pSVar4 = cast->host->settings;
+  puVar11 = (uint *)pSVar4->ss->fields;
+                    /* Unresolved local var: int i@[???] */
+  uVar2 = *puVar11;
+  a1 = out;
   while (uVar2 != 0) {
-    puVar10 = puVar10 + 1;
-    a1 = param_2;
-    (**(code **)(*param_1 + 0x30))
-              ((long)param_1,(long)param_2,(ulong)uVar2,param_rcx,param_r8,param_r9);
-    uVar2 = *puVar10;
+    puVar11 = puVar11 + 1;
+    a1 = out;
+    (*(code *)((cast->super).klass[1].delete))(&cast->super,(long)out,(ulong)uVar2,in_RCX,in_R8,in_R9);
+    uVar2 = *puVar11;
   }
-  if ((*(code **)(*param_1 + 0x20) == (code *)0x0) ||
-     (lVar7 = (**(code **)(*param_1 + 0x20))((long)param_1,(long)a1,0,param_rcx,param_r8,param_r9),
-     (char)lVar7 == '\0')) {
-    cVar1 = *(char *)((long)param_1 + 0x1d);
+  pcVar5 = (cast->super).klass[1].extends;
+  if ((pcVar5 == (code *)0x0) ||
+     (lVar8 = (*pcVar5)((long)cast,(long)a1,0,in_RCX,in_R8,in_R9), (char)lVar8 == '\0')) {
+    cVar1 = cast->tag;
   }
   else {
-    uVar3 = *(undefined4 *)(CRT_colors + 0x78);
-    iVar6 = *param_2;
-    iVar8 = 0;
-    if (-1 < iVar6) {
-      iVar8 = iVar6;
+                    /* Unresolved local var: int end@[???] */
+    wVar3 = CRT_colors[0x1e];
+    wVar7 = out->chlen;
+    wVar9 = 0;
+    if (-1 < wVar7) {
+      wVar9 = wVar7;
     }
-    if (iVar6 < 1) goto LAB_0011fcfb;
-    puVar9 = *(undefined4 **)(param_2 + 2);
-    iVar6 = 0;
+                    /* Unresolved local var: int i@[???] */
+    if (wVar7 < 1) goto LAB_0011fcfb;
+    pcVar10 = out->chptr;
+    wVar7 = 0;
     do {
-      iVar6 = iVar6 + 1;
-      *puVar9 = uVar3;
-      puVar9 = puVar9 + 7;
-    } while (iVar6 < iVar8);
-    cVar1 = *(char *)((long)param_1 + 0x1d);
+      wVar7 = wVar7 + 1;
+      pcVar10->attr = wVar3;
+      pcVar10 = pcVar10 + 1;
+    } while (wVar7 < wVar9);
+    cVar1 = cast->tag;
   }
   if (cVar1 != '\0') {
-    uVar3 = *(undefined4 *)(CRT_colors + 0x7c);
-    iVar6 = *param_2;
-    iVar8 = 0;
-    if (-1 < iVar6) {
-      iVar8 = iVar6;
+                    /* Unresolved local var: int end@[???] */
+    wVar3 = CRT_colors[0x1f];
+    wVar7 = out->chlen;
+    wVar9 = 0;
+    if (-1 < wVar7) {
+      wVar9 = wVar7;
     }
-    if (0 < iVar6) {
-      puVar9 = *(undefined4 **)(param_2 + 2);
-      iVar6 = 0;
+                    /* Unresolved local var: int i@[???] */
+    if (0 < wVar7) {
+      pcVar10 = out->chptr;
+      wVar7 = 0;
       do {
-        iVar6 = iVar6 + 1;
-        *puVar9 = uVar3;
-        puVar9 = puVar9 + 7;
-      } while (iVar6 < iVar8);
+        wVar7 = wVar7 + 1;
+        pcVar10->attr = wVar3;
+        pcVar10 = pcVar10 + 1;
+      } while (wVar7 < wVar9);
     }
   }
 LAB_0011fcfb:
-  if (*(char *)(lVar4 + 0x61) != '\0') {
-    if (param_1[7] == 0) {
-      uVar5 = ((long *)param_1[1])[4];
-      if (((ulong)param_1[6] <= uVar5) &&
-         (uVar5 - param_1[6] <= (ulong)((long)*(int *)(*(long *)param_1[1] + 100) * 1000))) {
-        param_2[0x99d] = *(int *)(CRT_colors + 0xa0);
+  if (pSVar4->highlightChanges != false) {
+    if (cast->tombStampMs == 0) {
+                    /* Unresolved local var: Machine * host@[???]
+                       Unresolved local var: Settings * settings@[???] */
+      uVar6 = cast->host->monotonicMs;
+      if ((cast->seenStampMs <= uVar6) &&
+         (uVar6 - cast->seenStampMs <=
+          (ulong)((long)cast->host->settings->highlightDelaySecs * 1000))) {
+        out->highlightAttr = CRT_colors[0x28];
       }
     }
     else {
-      param_2[0x99d] = *(int *)(CRT_colors + 0xa4);
+      out->highlightAttr = CRT_colors[0x29];
     }
   }
   return;
@@ -87,16 +97,16 @@ LAB_0011fcfb:
 
 /* Row_setPidColumnWidth @ 0x120fe0 */
 
-void Row_setPidColumnWidth(int param_1)
+void Row_setPidColumnWidth(pid_t maxPid)
 
 {
   double dVar1;
 
-  if (param_1 < 100000) {
+  if (maxPid < 100000) {
     Row_pidDigits = 5;
     return;
   }
-  dVar1 = log10((double)param_1);
+  dVar1 = log10((double)maxPid);
   Row_pidDigits = (int)dVar1 + 1;
   return;
 }
@@ -104,16 +114,16 @@ void Row_setPidColumnWidth(int param_1)
 
 /* Row_setUidColumnWidth @ 0x121260 */
 
-void Row_setUidColumnWidth(uint param_1)
+void Row_setUidColumnWidth(uid_t maxUid)
 
 {
   double dVar1;
 
-  if (param_1 < 100000) {
+  if (maxUid < 100000) {
     Row_uidDigits = 5;
     return;
   }
-  dVar1 = log10((double)param_1);
+  dVar1 = log10((double)maxUid);
   Row_uidDigits = (int)dVar1 + 1;
   return;
 }
@@ -121,74 +131,61 @@ void Row_setUidColumnWidth(uint param_1)
 
 /* Row_resetFieldWidths @ 0x1212b0 */
 
+/* WARNING: Unknown calling convention -- yet parameter storage is locked */
+
 void Row_resetFieldWidths(void)
 
 {
   size_t sVar1;
-  undefined **ppuVar2;
-  undefined1 *puVar3;
+  char **ppcVar2;
+  uint8_t *puVar3;
 
-  puVar3 = &Row_fieldWidths;
-  ppuVar2 = (undefined **)(Process_fields + 8);
+                    /* Unresolved local var: size_t i@[???] */
+  puVar3 = Row_fieldWidths;
+  ppcVar2 = &Process_fields_0__title;
   do {
-    if (*(char *)((long)ppuVar2 + 0x16) != '\0') {
-      sVar1 = strlen(*ppuVar2);
-      *puVar3 = (char)sVar1;
+                    /* Unresolved local var: size_t len@[???] */
+    if (*(_Bool *)((long)ppcVar2 + 0x16) != false) {
+      sVar1 = strlen(*ppcVar2);
+      *puVar3 = (uint8_t)sVar1;
     }
-    ppuVar2 = ppuVar2 + 4;
+    ppcVar2 = ppcVar2 + 4;
     puVar3 = puVar3 + 1;
-  } while (ppuVar2 != &PTR_s_Enter_00157668);
+  } while (ppcVar2 != MetersMovingKeys + 1);
   return;
 }
 
 
 /* Row_init @ 0x122880 */
 
-void Row_init(long param_1,undefined8 param_2)
+/* DWARF original prototype: void Row_init(Row * this, Machine * host) */
+
+void Row_init(Row *this,Machine_2 *host)
 
 {
-  *(undefined8 *)(param_1 + 8) = param_2;
-  *(undefined4 *)(param_1 + 0x1d) = 0x1000100;
-  *(undefined1 *)(param_1 + 0x21) = 0;
+  this->host = (Machine_ *)host;
+  this->tag = false;
+  this->show = true;
+  this->wasShown = false;
+  this->showChildren = true;
+  this->updated = false;
   return;
 }
 
 
 /* Row_updateFieldWidth @ 0x122ed0 */
 
-void Row_updateFieldWidth(int param_1,ulong param_2)
+void Row_updateFieldWidth(RowField key,size_t width)
 
 {
-  if (0xff < param_2) {
-    (&Row_fieldWidths)[param_1] = 0xff;
+  if (0xff < width) {
+    Row_fieldWidths[key] = 0xff;
     return;
   }
-  if ((byte)(&Row_fieldWidths)[param_1] < param_2) {
-    (&Row_fieldWidths)[param_1] = (char)param_2;
+  if (Row_fieldWidths[key] < width) {
+    Row_fieldWidths[key] = (uint8_t)width;
   }
   return;
-}
-
-
-/* FUN_00122f10 @ 0x122f10 */
-
-bool FUN_00122f10(long param_1,int param_2)
-
-{
-  int iVar1;
-  int iVar2;
-  int iVar3;
-
-  iVar1 = getpriority(PRIO_PROCESS,*(id_t *)(param_1 + 0x10));
-  iVar2 = setpriority(PRIO_PROCESS,*(id_t *)(param_1 + 0x10),param_2);
-  if (iVar2 == 0) {
-    iVar3 = getpriority(PRIO_PROCESS,*(id_t *)(param_1 + 0x10));
-    if (iVar1 != iVar3) {
-      *(long *)(param_1 + 200) = (long)param_2;
-      return true;
-    }
-  }
-  return iVar2 == 0;
 }
 
 
@@ -201,219 +198,309 @@ void Row_done(void)
 }
 
 
-/* Row_compare @ 0x12d200 */
+/* RowField_alignedTitle @ 0x128b40 */
 
-int Row_compare(long param_1,long param_2)
+char * RowField_alignedTitle(Settings_4 *settings,RowField field)
 
 {
-  return (uint)(*(int *)(param_2 + 0x10) < *(int *)(param_1 + 0x10)) -
-         (uint)(*(int *)(param_1 + 0x10) < *(int *)(param_2 + 0x10));
+  ulong uVar1;
+  HashtableItem *pHVar2;
+  int wVar3;
+  ulong uVar4;
+  int va0;
+  HashtableItem *pHVar5;
+  ulong uVar6;
+  int *pwVar7;
+  void *pvVar8;
+  char *va2;
+
+  if (0x83 < field) {
+                    /* Unresolved local var: DynamicColumn * column@[???]
+                       Unresolved local var: int width@[???]
+                       Unresolved local var: size_t index@[???]
+                       Unresolved local var: size_t probe@[???]
+                       Unresolved local var: void * res@[???] */
+    uVar1 = settings->dynamicColumns->size;
+    pHVar2 = settings->dynamicColumns->buckets;
+    uVar6 = (ulong)(long)field % uVar1;
+                    /* Unresolved local var: char * title@[???] */
+    pvVar8 = pHVar2[uVar6].value;
+    if (pvVar8 == (void *)0x0) {
+      return ((char *)(long)&DAT_00147411 /* "- " */);
+    }
+    uVar4 = 0;
+    pHVar5 = pHVar2 + uVar6;
+    do {
+      while( true ) {
+        if (field == pHVar5->key) {
+          va0 = *(int *)((long)pvVar8 + 0x38);
+          if (va0 == 0) {
+            va0 = -5;
+          }
+          else {
+            wVar3 = -va0;
+            if (-va0 < 0) {
+              wVar3 = va0;
+            }
+            if ('@' < wVar3) {
+              va0 = -5;
+            }
+          }
+          va2 = *(char **)((long)pvVar8 + 0x20);
+          goto LAB_00128bfd;
+        }
+        if (pHVar5->probe < uVar4) goto LAB_00128bd0;
+        uVar6 = uVar6 + 1;
+        if (uVar1 != uVar6) break;
+        uVar6 = 0;
+        uVar4 = uVar4 + 1;
+        pvVar8 = pHVar2->value;
+        pHVar5 = pHVar2;
+        if (pvVar8 == (void *)0x0) goto LAB_00128bd0;
+      }
+      uVar4 = uVar4 + 1;
+      pHVar5 = pHVar2 + uVar6;
+      pvVar8 = pHVar5->value;
+    } while (pvVar8 != (void *)0x0);
+LAB_00128bd0:
+    return ((char *)(long)&DAT_00147411 /* "- " */);
+  }
+  va2 = Process_fields[field].title;
+  if (va2 == (char *)0x0) goto LAB_00128bd0;
+  if (Process_fields[field].pidColumn == false) {
+    if (field == 0x2e) {
+      pwVar7 = &Row_uidDigits;
+      goto LAB_00128c9f;
+    }
+    if (Process_fields[field].autoWidth == false) {
+      return va2;
+    }
+    if (field != 0x2f) {
+      xSnprintf(titleBuffer,0x101,((char *)(long)&s______s_0014884c /* "%-*.*s " */),(uint)Row_fieldWidths[field],
+                (uint)Row_fieldWidths[field],va2);
+      goto LAB_00128c17;
+    }
+    va0 = (int)Row_fieldWidths[0x2f];
+  }
+  else {
+    pwVar7 = &Row_pidDigits;
+LAB_00128c9f:
+    va0 = *pwVar7;
+  }
+LAB_00128bfd:
+  xSnprintf(titleBuffer,0x101,((char *)(long)&DAT_00148847 /* "%*s " */),va0,va2);
+LAB_00128c17:
+  return titleBuffer;
+}
+
+
+/* RowField_keyAt @ 0x128cc0 */
+
+RowField RowField_keyAt(Settings_4 *settings,int at)
+
+{
+  int field;
+  char *__s;
+  size_t sVar1;
+  int wVar2;
+  int *piVar3;
+
+  wVar2 = 0;
+  piVar3 = settings->ss->fields;
+                    /* Unresolved local var: int i@[???] */
+  field = *piVar3;
+  while( true ) {
+    if (field == 0) {
+      return 2;
+    }
+    piVar3 = piVar3 + 1;
+    __s = RowField_alignedTitle(settings,field);
+    sVar1 = strlen(__s);
+    if ((wVar2 <= at) && (at <= wVar2 + (int)sVar1)) break;
+    wVar2 = wVar2 + (int)sVar1;
+    field = *piVar3;
+  }
+  return field;
+}
+
+
+/* Row_compare @ 0x12d200 */
+
+int Row_compare(void *v1,void *v2)
+
+{
+  return (uint)(*(int *)((long)v2 + 0x10) < *(int *)((long)v1 + 0x10)) -
+         (uint)(*(int *)((long)v1 + 0x10) < *(int *)((long)v2 + 0x10));
 }
 
 
 /* Row_toggleTag @ 0x12da70 */
 
-void Row_toggleTag(long param_1)
+/* DWARF original prototype: void Row_toggleTag(Row * this) */
+
+void Row_toggleTag(Row *this)
 
 {
-  *(byte *)(param_1 + 0x1d) = *(byte *)(param_1 + 0x1d) ^ 1;
+  this->tag = (_Bool)(this->tag ^ 1);
   return;
 }
 
 
 /* Row_compareByParent_Base @ 0x12da80 */
 
-int Row_compareByParent_Base(long param_1,long param_2)
+int Row_compareByParent_Base(void *v1,void *v2)
 
 {
   char cVar1;
   bool bVar2;
   uint uVar3;
   uint uVar4;
-  int iVar5;
+  int wVar5;
   uint uVar6;
   int iVar7;
+  int iVar8;
 
-  cVar1 = *(char *)(param_2 + 0x1c);
-  if (*(char *)(param_1 + 0x1c) == '\0') {
-    iVar5 = *(int *)(param_1 + 0x14);
-    iVar7 = iVar5;
-    if (*(int *)(param_1 + 0x10) == iVar5) {
-      iVar7 = *(int *)(param_1 + 0x18);
+  cVar1 = *(char *)((long)v2 + 0x1c);
+  if (*(char *)((long)v1 + 0x1c) == '\0') {
+    iVar8 = *(int *)((long)v1 + 0x14);
+    iVar7 = iVar8;
+    if (*(int *)((long)v1 + 0x10) == iVar8) {
+      iVar7 = *(int *)((long)v1 + 0x18);
       uVar4 = (uint)(0 < iVar7);
       uVar6 = 0;
       if (cVar1 == '\0') goto LAB_0012dae0;
     }
     else if (cVar1 == '\0') {
 LAB_0012dae0:
-      uVar6 = *(uint *)(param_2 + 0x14);
-      if (uVar6 == *(uint *)(param_2 + 0x10)) {
-        bVar2 = *(int *)(param_2 + 0x18) < iVar7;
+      uVar6 = *(uint *)((long)v2 + 0x14);
+      if (uVar6 == *(uint *)((long)v2 + 0x10)) {
+        bVar2 = *(int *)((long)v2 + 0x18) < iVar7;
         uVar4 = (uint)bVar2;
         uVar3 = (uint)bVar2;
-        if (*(int *)(param_1 + 0x10) == iVar5) {
+        if (*(int *)((long)v1 + 0x10) == iVar8) {
 LAB_0012dafd:
           uVar4 = uVar3;
-          iVar5 = *(int *)(param_1 + 0x18);
-          iVar7 = iVar5;
-          if (uVar6 != *(uint *)(param_2 + 0x10)) goto LAB_0012daa7;
+          iVar8 = *(int *)((long)v1 + 0x18);
+          iVar7 = iVar8;
+          if (uVar6 != *(uint *)((long)v2 + 0x10)) goto LAB_0012daa7;
         }
-        uVar6 = *(uint *)(param_2 + 0x18);
-        iVar7 = iVar5;
+        uVar6 = *(uint *)((long)v2 + 0x18);
+        iVar7 = iVar8;
       }
       else {
         uVar4 = (uint)((int)uVar6 < iVar7);
-        iVar7 = iVar5;
+        iVar7 = iVar8;
         uVar3 = uVar4;
-        if (iVar5 == *(int *)(param_1 + 0x10)) goto LAB_0012dafd;
+        if (iVar8 == *(int *)((long)v1 + 0x10)) goto LAB_0012dafd;
       }
     }
     else {
-      uVar4 = (uint)(0 < iVar5);
+      uVar4 = (uint)(0 < iVar8);
       uVar6 = 0;
     }
   }
   else {
     if (cVar1 != '\0') goto LAB_0012dab8;
-    uVar6 = *(uint *)(param_2 + 0x14);
-    if (uVar6 == *(uint *)(param_2 + 0x10)) {
-      uVar6 = *(uint *)(param_2 + 0x18);
+    uVar6 = *(uint *)((long)v2 + 0x14);
+    if (uVar6 == *(uint *)((long)v2 + 0x10)) {
+      uVar6 = *(uint *)((long)v2 + 0x18);
     }
     uVar4 = uVar6 >> 0x1f;
     iVar7 = 0;
   }
 LAB_0012daa7:
-  iVar5 = uVar4 - (iVar7 < (int)uVar6);
-  if (iVar5 != 0) {
-    return iVar5;
+  wVar5 = uVar4 - (iVar7 < (int)uVar6);
+  if (wVar5 != 0) {
+    return wVar5;
   }
 LAB_0012dab8:
-  return (uint)(*(int *)(param_2 + 0x10) < *(int *)(param_1 + 0x10)) -
-         (uint)(*(int *)(param_1 + 0x10) < *(int *)(param_2 + 0x10));
-}
-
-
-/* FUN_0012db60 @ 0x12db60 */
-
-void FUN_0012db60(long *param_1,long param_2,long param_rdx,long param_rcx,long param_r8,
-                 long param_r9)
-
-{
-  if (*(code **)(*param_1 + 0x48) != (code *)0x0) {
-                    /* WARNING: Could not recover jumptable at 0x0012db70. Too many branches */
-                    /* WARNING: Treating indirect jump as call */
-    (**(code **)(*param_1 + 0x48))((long)param_1,param_2,param_rdx,param_rcx,param_r8,param_r9);
-    return;
-  }
-  Row_compareByParent_Base((long)param_1,param_2);
-  return;
+                    /* Unresolved local var: Row * r1@[???]
+                       Unresolved local var: Row * r2@[???] */
+  return (uint)(*(int *)((long)v2 + 0x10) < *(int *)((long)v1 + 0x10)) -
+         (uint)(*(int *)((long)v1 + 0x10) < *(int *)((long)v2 + 0x10));
 }
 
 
 /* Row_printPercentage @ 0x12e760 */
 
-void Row_printPercentage(float param_1,char *param_2,ulong param_3,byte param_4,undefined4 *param_5)
+int Row_printPercentage(float val,char *buffer,size_t n,uint8_t width,int *attr)
 
 {
   uint va0;
+  int wVar1;
   int va1;
   double va2;
 
-  va0 = (uint)param_4;
-  if (param_1 < 0.0) {
-    *param_5 = *(undefined4 *)(CRT_colors + 0x78);
-    xSnprintf(param_2,param_3,((char *)(long)&s_____s_00148c24 /* "%*.*s " */),va0,va0,&DAT_001474de);
-    return;
+  va0 = (uint)width;
+                    /* Unresolved local var: int precision@[???] */
+  if (val < 0.0) {
+    *attr = CRT_colors[0x1e];
+    wVar1 = xSnprintf(buffer,n,((char *)(long)&s_____s_00148c24 /* "%*.*s " */),va0,va0,&DAT_001474de);
+    return wVar1;
   }
-  if (0.05 <= param_1) {
-    if ((99.9 <= param_1) && (*param_5 = *(undefined4 *)(CRT_colors + 0x80), param_4 == 4)) {
+  if (0.05 <= val) {
+    if ((99.9 <= val) && (*attr = CRT_colors[0x20], width == '\x04')) {
       va1 = 0;
       va2 = 100.0;
-      if (99.9 < param_1) goto LAB_0012e79e;
+      if (99.9 < val) goto LAB_0012e79e;
     }
     va1 = 1;
-    va2 = (double)param_1;
+    va2 = (double)val;
   }
   else {
     va1 = 1;
-    va2 = (double)param_1;
-    *param_5 = *(undefined4 *)(CRT_colors + 0x78);
+    va2 = (double)val;
+    *attr = CRT_colors[0x1e];
   }
 LAB_0012e79e:
-  xSnprintf(param_2,param_3,((char *)(long)&s_____f_00148c1d /* "%*.*f " */),va0,va1,va2);
-  return;
-}
-
-
-/* FUN_0012e840 @ 0x12e840 */
-
-void FUN_0012e840(long param_1)
-
-{
-  uint va0;
-  uint uVar1;
-  uint uVar2;
-  uint va1;
-  double *pdVar3;
-  long lVar4;
-
-  pdVar3 = *(double **)(param_1 + 0x160);
-  lVar4 = *(long *)(*(long *)(param_1 + 0x10) + 0xb0);
-  va0 = *(uint *)(*(long *)(param_1 + 0x10) + 0x78);
-  uVar1 = *(uint *)(lVar4 + 0x54);
-  uVar2 = *(uint *)(lVar4 + 0x50);
-  va1 = *(uint *)(lVar4 + 0x48);
-  if (*(uint *)(lVar4 + 0x4c) < va0) {
-    va0 = *(uint *)(lVar4 + 0x4c);
-  }
-  *pdVar3 = (double)uVar1;
-  pdVar3[1] = (double)uVar2;
-  pdVar3[2] = (double)(va1 - (uVar1 + uVar2));
-  pdVar3[3] = (double)va0;
-  *(double *)(param_1 + 0x168) = (double)va1;
-  xSnprintf((char *)(param_1 + 0x60),0x100,((char *)(long)&s__u__u_00148c2b /* "%u/%u" */),va0,va1);
-  return;
+  wVar1 = xSnprintf(buffer,n,((char *)(long)&s_____f_00148c1d /* "%*.*f " */),va0,va1,va2);
+  return wVar1;
 }
 
 
 /* Row_printLeftAlignedField @ 0x130530 */
 
-void Row_printLeftAlignedField(int *param_1,uint param_2,char *param_3,int param_4)
+void Row_printLeftAlignedField(RichString *str,int attr,char *content,uint width)
 
 {
   undefined1 __frame[0xd8] __attribute__((aligned(16)));
   undefined1 *__fp = __frame + 0x98;
   uint uVar1;
-  int iVar2;
-  long lVar3;
-  undefined1 (*pauVar4) [16];
-  size_t sVar5;
-  undefined1 (*pauVar6) [16];
-  int iVar7;
+  int wVar2;
+  cchar_t *pcVar3;
+  size_t sVar4;
+  cchar_t *pcVar5;
+  cchar_t *pcVar6;
+  int len;
   long in_FS_OFFSET = (long)__fake_fs;
 
-  (*(long *)(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
-  (*(int *)(__fp - 0x44)) = param_4;
-  sVar5 = strlen(param_3);
-  RichString_appendnWideColumns(param_1,param_2,param_3,(int)sVar5,&(*(int *)(__fp - 0x44)));
-  uVar1 = (param_4 - (*(int *)(__fp - 0x44))) + 1;
-  iVar2 = *param_1;
-  iVar7 = uVar1 + iVar2;
-  FUN_00130130(param_1,iVar7);
-  if (iVar2 < iVar7) {
-    lVar3 = *(long *)(param_1 + 2);
-    pauVar6 = (undefined1 (*) [16])(lVar3 + (long)iVar2 * 0x1c);
+  (*(long (*))(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
+  (*(int (*))(__fp - 0x44)) = width;
+  sVar4 = strlen(content);
+  RichString_appendnWideColumns(str,attr,content,(int)sVar4,&(*(int (*))(__fp - 0x44)));
+  uVar1 = (width - (*(int (*))(__fp - 0x44))) + 1;
+                    /* Unresolved local var: int from@[???]
+                       Unresolved local var: int newLen@[???] */
+  wVar2 = str->chlen;
+  len = uVar1 + wVar2;
+  RichString_setLen(str,len);
+                    /* Unresolved local var: int i@[???] */
+  if (wVar2 < len) {
+    pcVar3 = str->chptr;
+    pcVar5 = pcVar3 + wVar2;
     do {
-      *(undefined16 *)(*pauVar6) = (undefined16)0x0;
-      pauVar4 = pauVar6 + 1;
-      *(undefined16 *)(*(undefined1 (*) [16])(*pauVar6 + 0xc)) = (undefined16)0x0;
-      *(uint *)*pauVar6 = param_2;
-      *(undefined4 *)(*pauVar6 + 4) = 0x20;
-      pauVar6 = (undefined1 (*) [16])(*pauVar4 + 0xc);
-    } while ((undefined1 (*) [16])(*pauVar4 + 0xc) !=
-             (undefined1 (*) [16])(lVar3 + ((ulong)uVar1 + (long)iVar2) * 0x1c));
+      pcVar5->attr = 0;
+      pcVar5->chars[0] = 0;
+      pcVar5->chars[1] = 0;
+      pcVar5->chars[2] = 0;
+      pcVar6 = pcVar5 + 1;
+      *(undefined16 *)(*(undefined1 (*) [16])(pcVar5->chars + 2)) = (undefined16)0x0;
+      pcVar5->attr = attr;
+      pcVar5->chars[0] = ' ';
+      pcVar5 = pcVar6;
+    } while (pcVar6 != pcVar3 + (ulong)uVar1 + (long)wVar2);
   }
-  if ((*(long *)(__fp - 0x40)) == *(long *)(in_FS_OFFSET + 0x28)) {
+  if ((*(long (*))(__fp - 0x40)) == *(long *)(in_FS_OFFSET + 0x28)) {
     return;
   }
                     /* WARNING: Subroutine does not return */
@@ -423,101 +510,104 @@ void Row_printLeftAlignedField(int *param_1,uint param_2,char *param_3,int param
 
 /* Row_printKBytes @ 0x130b70 */
 
-void Row_printKBytes(int *param_1,ulong param_2,char param_3)
+void Row_printKBytes(RichString *str,ulonglong number,_Bool coloring)
 
 {
   undefined1 __frame[0xf8] __attribute__((aligned(16)));
   undefined1 *__fp = __frame + 0xb8;
   char cVar1;
-  uint uVar2;
-  uint uVar3;
-  uint uVar4;
-  int iVar5;
-  char *pcVar6;
-  long lVar7;
-  ulong uVar8;
+  long lVar2;
+  int wVar3;
+  int wVar4;
+  int wVar5;
+  int iVar6;
+  char *pcVar7;
+  long lVar8;
+  ulong uVar9;
   int va0;
   long in_FS_OFFSET = (long)__fake_fs;
 
-  (*(long *)(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
-  uVar3 = *(uint *)(CRT_colors + 0x74);
-  (*(undefined8 *)(__fp - 0x68)) = CONCAT44(*(uint *)(CRT_colors + 0x80),uVar3);
-  (*(undefined8 *)(__fp - 0x60)) = CONCAT44(*(undefined4 *)(CRT_colors + 0x30),*(undefined4 *)(CRT_colors + 0x84));
-  if (param_2 == 0xffffffffffffffff) {
-    if (param_3 != '\0') {
-      uVar3 = *(uint *)(CRT_colors + 0x78);
+  lVar2 = *(long *)(in_FS_OFFSET + 0x28);
+  wVar4 = CRT_colors[0x1d];
+  (*(int (*) [4])(__fp - 0x68))[0] = wVar4;
+  (*(int (*) [4])(__fp - 0x68))[1] = CRT_colors[0x20];
+  (*(int (*) [4])(__fp - 0x68))[2] = CRT_colors[0x21];
+  (*(int (*) [4])(__fp - 0x68))[3] = CRT_colors[0xc];
+  if (number == 0xffffffffffffffff) {
+    if (coloring) {
+      wVar4 = CRT_colors[0x1e];
     }
-    if ((*(long *)(__fp - 0x40)) == *(long *)(in_FS_OFFSET + 0x28)) {
-      RichString_appendAscii(param_1,uVar3,((char *)(long)&DAT_00149092 /* "  N/A " */));
+    if (lVar2 == *(long *)(in_FS_OFFSET + 0x28)) {
+      RichString_appendAscii(str,wVar4,((char *)(long)&DAT_00149092 /* "  N/A " */));
       return;
     }
   }
   else {
-    uVar4 = *(uint *)(CRT_colors + 0x80);
-    if (param_3 == '\0') {
-      uVar4 = uVar3;
+    wVar5 = CRT_colors[0x20];
+    if (!coloring) {
+      wVar5 = wVar4;
     }
-    if (param_2 < 1000) {
-      uVar4 = xSnprintf((*(char (*)[24])(__fp - 0x58)),0x10,((char *)(long)&DAT_00149063 /* "%5u " */),(int)param_2);
-      RichString_appendnAscii(param_1,uVar3,(*(char (*)[24])(__fp - 0x58)),uVar4);
+    if (number < 1000) {
+      wVar5 = xSnprintf((*(char (*) [16])(__fp - 0x58)),0x10,((char *)(long)&DAT_00149063 /* "%5u " */),(int)number);
+      RichString_appendnAscii(str,wVar4,(*(char (*) [16])(__fp - 0x58)),wVar5);
     }
-    else if (param_2 < 100000) {
-      iVar5 = (int)(param_2 / 1000);
-      uVar2 = xSnprintf((*(char (*)[24])(__fp - 0x58)),0x10,((char *)(long)&DAT_00149068 /* "%2u" */),iVar5);
-      RichString_appendnAscii(param_1,uVar4,(*(char (*)[24])(__fp - 0x58)),uVar2);
-      uVar4 = xSnprintf((*(char (*)[24])(__fp - 0x58)),0x10,((char *)(long)&s__03u_0014906c /* "%03u " */),(int)param_2 + iVar5 * -1000);
-      RichString_appendnAscii(param_1,uVar3,(*(char (*)[24])(__fp - 0x58)),uVar4);
+    else if (number < 100000) {
+      iVar6 = (int)(number / 1000);
+      wVar3 = xSnprintf((*(char (*) [16])(__fp - 0x58)),0x10,((char *)(long)&DAT_00149068 /* "%2u" */),iVar6);
+      RichString_appendnAscii(str,wVar5,(*(char (*) [16])(__fp - 0x58)),wVar3);
+      wVar5 = xSnprintf((*(char (*) [16])(__fp - 0x58)),0x10,((char *)(long)&s__03u_0014906c /* "%03u " */),(int)number + iVar6 * -1000);
+      RichString_appendnAscii(str,wVar4,(*(char (*) [16])(__fp - 0x58)),wVar5);
     }
     else {
-      lVar7 = 1;
-      uVar8 = ((param_2 & 0xff) * 0x19 >> 8) + (param_2 >> 8) * 0x19;
+      lVar8 = 1;
+      uVar9 = ((number & 0xff) * 0x19 >> 8) + (number >> 8) * 0x19;
       while( true ) {
-        uVar2 = uVar4;
-        if ((param_3 != '\0') && (lVar7 + 1U < 4)) {
-          uVar2 = *(uint *)((long)&(*(undefined8 *)(__fp - 0x68)) + lVar7 * 4 + 4);
+        wVar3 = wVar5;
+        if ((coloring) && (lVar8 + 1U < 4)) {
+          wVar3 = (*(int (*) [4])(__fp - 0x68))[lVar8 + 1];
         }
-        if (uVar8 < 1000000) break;
-        uVar8 = uVar8 >> 10;
-        lVar7 = lVar7 + 1;
-        uVar3 = uVar4;
-        uVar4 = uVar2;
+        if (uVar9 < 1000000) break;
+        uVar9 = uVar9 >> 10;
+        lVar8 = lVar8 + 1;
+        wVar4 = wVar5;
+        wVar5 = wVar3;
       }
-      iVar5 = (int)(uVar8 / 100);
-      if (uVar8 < 10000) {
-        va0 = (int)(uVar8 % 100);
-        if (uVar8 < 1000) {
-          uVar2 = xSnprintf((*(char (*)[24])(__fp - 0x58)),0x10,((char *)(long)&DAT_00149079 /* "%1u" */),9);
-          RichString_appendnAscii(param_1,uVar4,(*(char (*)[24])(__fp - 0x58)),uVar2);
-          pcVar6 = ((char *)(long)&s___02u_00149072 /* ".%02u" */);
+      iVar6 = (int)(uVar9 / 100);
+      if (uVar9 < 10000) {
+        va0 = (int)(uVar9 % 100);
+        if (uVar9 < 1000) {
+          wVar3 = xSnprintf((*(char (*) [16])(__fp - 0x58)),0x10,((char *)(long)&DAT_00149079 /* "%1u" */),9);
+          RichString_appendnAscii(str,wVar5,(*(char (*) [16])(__fp - 0x58)),wVar3);
+          pcVar7 = ((char *)(long)&s___02u_00149072 /* ".%02u" */);
         }
         else {
-          uVar2 = xSnprintf((*(char (*)[24])(__fp - 0x58)),0x10,((char *)(long)&DAT_00149068 /* "%2u" */),iVar5);
-          RichString_appendnAscii(param_1,uVar4,(*(char (*)[24])(__fp - 0x58)),uVar2);
-          pcVar6 = ((char *)(long)&DAT_00149078 /* ".%1u" */);
-          va0 = (int)((uVar8 % 100) / 10);
+          wVar3 = xSnprintf((*(char (*) [16])(__fp - 0x58)),0x10,((char *)(long)&DAT_00149068 /* "%2u" */),iVar6);
+          RichString_appendnAscii(str,wVar5,(*(char (*) [16])(__fp - 0x58)),wVar3);
+          pcVar7 = ((char *)(long)&DAT_00149078 /* ".%1u" */);
+          va0 = (int)((uVar9 % 100) / 10);
         }
-        uVar2 = xSnprintf((*(char (*)[24])(__fp - 0x58)),0x10,pcVar6,va0);
-        RichString_appendnAscii(param_1,uVar3,(*(char (*)[24])(__fp - 0x58)),uVar2);
-        uVar3 = xSnprintf((*(char (*)[24])(__fp - 0x58)),0x10,((char *)(long)&DAT_00149088 /* "%c " */),(int)(char)(&DAT_0014db98)[lVar7]);
+        wVar3 = xSnprintf((*(char (*) [16])(__fp - 0x58)),0x10,pcVar7,va0);
+        RichString_appendnAscii(str,wVar4,(*(char (*) [16])(__fp - 0x58)),wVar3);
+        wVar4 = xSnprintf((*(char (*) [16])(__fp - 0x58)),0x10,((char *)(long)&DAT_00149088 /* "%c " */),(int)((char *)(long)&unitPrefixes /* "KMGTPEZYRQ" */)[lVar8]);
       }
       else {
-        if (uVar8 < 100000) {
-          cVar1 = (&DAT_0014db98)[lVar7];
-          pcVar6 = ((char *)(long)&s__4u_c_0014907d /* "%4u%c " */);
+        if (uVar9 < 100000) {
+          cVar1 = ((char *)(long)&unitPrefixes /* "KMGTPEZYRQ" */)[lVar8];
+          pcVar7 = ((char *)(long)&s__4u_c_0014907d /* "%4u%c " */);
         }
         else {
-          uVar8 = uVar8 / 100 & 0xffffffff;
-          uVar3 = xSnprintf((*(char (*)[24])(__fp - 0x58)),0x10,((char *)(long)&DAT_00149079 /* "%1u" */),(int)(uVar8 / 1000));
-          RichString_appendnAscii(param_1,uVar2,(*(char (*)[24])(__fp - 0x58)),uVar3);
-          pcVar6 = ((char *)(long)&DAT_00149084 /* "%03u%c " */);
-          cVar1 = (&DAT_0014db98)[lVar7];
-          iVar5 = iVar5 + (int)(uVar8 / 1000) * -1000;
+          uVar9 = uVar9 / 100 & 0xffffffff;
+          wVar4 = xSnprintf((*(char (*) [16])(__fp - 0x58)),0x10,((char *)(long)&DAT_00149079 /* "%1u" */),(int)(uVar9 / 1000));
+          RichString_appendnAscii(str,wVar3,(*(char (*) [16])(__fp - 0x58)),wVar4);
+          pcVar7 = ((char *)(long)&DAT_00149084 /* "%03u%c " */);
+          cVar1 = ((char *)(long)&unitPrefixes /* "KMGTPEZYRQ" */)[lVar8];
+          iVar6 = iVar6 + (int)(uVar9 / 1000) * -1000;
         }
-        uVar3 = xSnprintf((*(char (*)[24])(__fp - 0x58)),0x10,pcVar6,iVar5,(int)cVar1);
+        wVar4 = xSnprintf((*(char (*) [16])(__fp - 0x58)),0x10,pcVar7,iVar6,(int)cVar1);
       }
-      RichString_appendnAscii(param_1,uVar4,(*(char (*)[24])(__fp - 0x58)),uVar3);
+      RichString_appendnAscii(str,wVar5,(*(char (*) [16])(__fp - 0x58)),wVar4);
     }
-    if ((*(long *)(__fp - 0x40)) == *(long *)(in_FS_OFFSET + 0x28)) {
+    if (lVar2 == *(long *)(in_FS_OFFSET + 0x28)) {
       return;
     }
   }
@@ -528,81 +618,92 @@ void Row_printKBytes(int *param_1,ulong param_2,char param_3)
 
 /* Row_printBytes @ 0x130f70 */
 
-void Row_printBytes(int *param_1,ulong param_2,char param_3)
+void Row_printBytes(RichString *str,ulonglong number,_Bool coloring)
 
 {
-  uint uVar1;
+  int attrs;
 
-  if (param_2 != 0xffffffffffffffff) {
-    Row_printKBytes(param_1,param_2 >> 10,param_3);
+  if (number != 0xffffffffffffffff) {
+    Row_printKBytes(str,number >> 10,coloring);
     return;
   }
-  uVar1 = *(uint *)(CRT_colors + 0x74);
-  if (param_3 != '\0') {
-    uVar1 = *(uint *)(CRT_colors + 0x78);
+                    /* Unresolved local var: char[16] buffer@[???]
+                       Unresolved local var: int len@[???]
+                       Unresolved local var: int color@[???]
+                       Unresolved local var: int nextUnitColor@[???]
+                       Unresolved local var: int[4] colors@[???]
+                       Unresolved local var: size_t maxUnitIndex@[???]
+                       Unresolved local var: _Bool canOverflow@[???]
+                       Unresolved local var: size_t i@[???]
+                       Unresolved local var: int prevUnitColor@[???]
+                       Unresolved local var: ulonglong hundredths@[???] */
+  attrs = CRT_colors[0x1d];
+  if (coloring) {
+    attrs = CRT_colors[0x1e];
   }
-  RichString_appendAscii(param_1,uVar1,((char *)(long)&DAT_00149092 /* "  N/A " */));
+  RichString_appendAscii(str,attrs,((char *)(long)&DAT_00149092 /* "  N/A " */));
   return;
 }
 
 
 /* Row_printCount @ 0x130fb0 */
 
-void Row_printCount(int *param_1,ulong param_2,char param_3)
+void Row_printCount(RichString *str,ulonglong number,_Bool coloring)
 
 {
   undefined1 __frame[0xd8] __attribute__((aligned(16)));
   undefined1 *__fp = __frame + 0x98;
-  uint uVar1;
-  uint uVar2;
-  uint uVar3;
-  uint uVar4;
+  int attrs;
+  long lVar1;
+  int attrs_00;
+  int attrs_01;
+  int attrs_02;
   long in_FS_OFFSET = (long)__fake_fs;
 
-  (*(long *)(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
-  uVar1 = *(uint *)(CRT_colors + 0x74);
-  uVar2 = uVar1;
-  uVar3 = uVar1;
-  uVar4 = uVar1;
-  if (param_3 != '\0') {
-    uVar2 = *(uint *)(CRT_colors + 0x30);
-    uVar3 = *(uint *)(CRT_colors + 0x80);
-    uVar4 = *(uint *)(CRT_colors + 0x78);
+  lVar1 = *(long *)(in_FS_OFFSET + 0x28);
+  attrs = CRT_colors[0x1d];
+  attrs_00 = attrs;
+  attrs_01 = attrs;
+  attrs_02 = attrs;
+  if (coloring) {
+    attrs_00 = CRT_colors[0xc];
+    attrs_01 = CRT_colors[0x20];
+    attrs_02 = CRT_colors[0x1e];
   }
-  if (param_2 == 0xffffffffffffffff) {
-    if ((*(long *)(__fp - 0x40)) == *(long *)(in_FS_OFFSET + 0x28)) {
-      RichString_appendAscii(param_1,*(uint *)(CRT_colors + 0x78),((char *)(long)&DAT_0014908c /* "        N/A " */));
+  if (number == 0xffffffffffffffff) {
+    if (lVar1 == *(long *)(in_FS_OFFSET + 0x28)) {
+      RichString_appendAscii(str,CRT_colors[0x1e],((char *)(long)&DAT_0014908c /* "        N/A " */));
       return;
     }
   }
   else {
-    if (param_2 < 100000000000000000) {
-      if (param_2 < 100000000000000) {
-        if (param_2 < 10000000000) {
-          xSnprintf((*(char (*)[2])(__fp - 0x4d)),0xd,((char *)(long)&s__11llu_00149099 /* "%11llu " */),param_2);
-          RichString_appendnAscii(param_1,uVar2,(*(char (*)[2])(__fp - 0x4d)),2);
-          RichString_appendnAscii(param_1,uVar3,(*(char (*)[3])(__fp - 0x4b)),3);
-          RichString_appendnAscii(param_1,uVar1,(*(char (*)[3])(__fp - 0x48)),3);
-          RichString_appendnAscii(param_1,uVar4,(*(char (*)[5])(__fp - 0x45)),4);
+    if (number < 100000000000000000) {
+      if (number < 100000000000000) {
+        if (number < 10000000000) {
+          xSnprintf((*(char (*) [13])(__fp - 0x4d)),0xd,((char *)(long)&s__11llu_00149099 /* "%11llu " */),number);
+          RichString_appendnAscii(str,attrs_00,(*(char (*) [13])(__fp - 0x4d)),2);
+          RichString_appendnAscii(str,attrs_01,(*(char (*) [13])(__fp - 0x4d)) + 2,3);
+          RichString_appendnAscii(str,attrs,(*(char (*) [13])(__fp - 0x4d)) + 5,3);
+          RichString_appendnAscii(str,attrs_02,(*(char (*) [13])(__fp - 0x4d)) + 8,4);
         }
         else {
-          xSnprintf((*(char (*)[2])(__fp - 0x4d)),0xd,((char *)(long)&s__11llu_00149099 /* "%11llu " */),param_2 / 1000);
-          RichString_appendnAscii(param_1,uVar2,(*(char (*)[2])(__fp - 0x4d)),5);
-          RichString_appendnAscii(param_1,uVar3,(*(char (*)[3])(__fp - 0x48)),3);
-          RichString_appendnAscii(param_1,uVar1,(*(char (*)[5])(__fp - 0x45)),4);
+          xSnprintf((*(char (*) [13])(__fp - 0x4d)),0xd,((char *)(long)&s__11llu_00149099 /* "%11llu " */),number / 1000);
+          RichString_appendnAscii(str,attrs_00,(*(char (*) [13])(__fp - 0x4d)),5);
+          RichString_appendnAscii(str,attrs_01,(*(char (*) [13])(__fp - 0x4d)) + 5,3);
+          RichString_appendnAscii(str,attrs,(*(char (*) [13])(__fp - 0x4d)) + 8,4);
         }
       }
       else {
-        xSnprintf((*(char (*)[2])(__fp - 0x4d)),0xd,((char *)(long)&s__11llu_00149099 /* "%11llu " */),param_2 / 1000000);
-        RichString_appendnAscii(param_1,uVar2,(*(char (*)[2])(__fp - 0x4d)),8);
-        RichString_appendnAscii(param_1,uVar3,(*(char (*)[5])(__fp - 0x45)),4);
+        xSnprintf((*(char (*) [13])(__fp - 0x4d)),0xd,((char *)(long)&s__11llu_00149099 /* "%11llu " */),number / 1000000);
+        RichString_appendnAscii(str,attrs_00,(*(char (*) [13])(__fp - 0x4d)),8);
+        RichString_appendnAscii(str,attrs_01,(*(char (*) [13])(__fp - 0x4d)) + 8,4);
       }
     }
     else {
-      xSnprintf((*(char (*)[2])(__fp - 0x4d)),0xd,((char *)(long)&s__11llu_00149099 /* "%11llu " */),param_2 / 1000000000);
-      RichString_appendnAscii(param_1,uVar2,(*(char (*)[2])(__fp - 0x4d)),0xc);
+      xSnprintf((*(char (*) [13])(__fp - 0x4d)),0xd,((char *)(long)&s__11llu_00149099 /* "%11llu " */),number / 1000000000);
+      RichString_appendnAscii(str,attrs_00,(*(char (*) [13])(__fp - 0x4d)),12);
     }
-    if ((*(long *)(__fp - 0x40)) == *(long *)(in_FS_OFFSET + 0x28)) {
+    if (lVar1 == *(long *)(in_FS_OFFSET + 0x28)) {
       return;
     }
   }
@@ -613,89 +714,92 @@ void Row_printCount(int *param_1,ulong param_2,char param_3)
 
 /* Row_printTime @ 0x131250 */
 
-void Row_printTime(int *param_1,ulong param_2,char param_3)
+void Row_printTime(RichString *str,ulonglong totalHundredths,_Bool coloring)
 
 {
   undefined1 __frame[0xd8] __attribute__((aligned(16)));
   undefined1 *__fp = __frame + 0x98;
-  uint uVar1;
-  uint uVar2;
-  int iVar3;
+  long lVar1;
+  int wVar2;
+  int wVar3;
   int iVar4;
-  ulong uVar5;
+  int iVar5;
   ulong uVar6;
+  ulong uVar7;
   int va1;
   int va0;
-  uint uVar7;
-  uint uVar8;
+  int attrs;
+  int attrs_00;
   long in_FS_OFFSET = (long)__fake_fs;
 
-  (*(long *)(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
-  uVar1 = *(uint *)(CRT_colors + 0x74);
-  uVar2 = uVar1;
-  uVar8 = uVar1;
-  uVar7 = uVar1;
-  if (param_3 != '\0') {
-    uVar2 = *(uint *)(CRT_colors + 0x30);
-    uVar8 = *(uint *)(CRT_colors + 0x84);
-    uVar7 = *(uint *)(CRT_colors + 0x80);
+  lVar1 = *(long *)(in_FS_OFFSET + 0x28);
+  wVar2 = CRT_colors[0x1d];
+  wVar3 = wVar2;
+  attrs_00 = wVar2;
+  attrs = wVar2;
+  if (coloring) {
+    wVar3 = CRT_colors[0xc];
+    attrs_00 = CRT_colors[0x21];
+    attrs = CRT_colors[0x20];
   }
-  uVar6 = param_2 / 100;
-  iVar3 = (int)(uVar6 / 0x3c);
-  uVar5 = (uVar6 / 0x3c) / 0x3c;
-  iVar4 = (int)uVar5;
-  va0 = iVar3 + ((int)(uVar5 << 4) - iVar4) * -4;
-  va1 = (int)(uVar6 % 0x3c);
-  if (param_2 < 360000) {
-    uVar2 = xSnprintf((*(char (*)[10])(__fp - 0x4a)),10,((char *)(long)&s__2u__02u__02u_001490a1 /* "%2u:%02u.%02u " */),iVar3,va1,(int)param_2 + (int)uVar6 * -100);
-    RichString_appendnAscii(param_1,uVar1,(*(char (*)[10])(__fp - 0x4a)),uVar2);
+  uVar7 = totalHundredths / 100;
+  iVar4 = (int)(uVar7 / 0x3c);
+  uVar6 = (uVar7 / 0x3c) / 0x3c;
+  iVar5 = (int)uVar6;
+  va0 = iVar4 + ((int)(uVar6 << 4) - iVar5) * -4;
+  va1 = (int)(uVar7 % 0x3c);
+  if (totalHundredths < 360000) {
+                    /* Unresolved local var: uint hundredths@[???] */
+    wVar3 = xSnprintf((*(char (*) [10])(__fp - 0x4a)),10,((char *)(long)&s__2u__02u__02u_001490a1 /* "%2u:%02u.%02u " */),iVar4,va1,(int)totalHundredths + (int)uVar7 * -100)
+    ;
+    RichString_appendnAscii(str,wVar2,(*(char (*) [10])(__fp - 0x4a)),wVar3);
   }
-  else if (param_2 < 0x83d600) {
-    uVar2 = xSnprintf((*(char (*)[10])(__fp - 0x4a)),10,((char *)(long)&DAT_001490b0 /* "%2uh" */),iVar4);
-    RichString_appendnAscii(param_1,uVar7,(*(char (*)[10])(__fp - 0x4a)),uVar2);
-    uVar2 = xSnprintf((*(char (*)[10])(__fp - 0x4a)),10,((char *)(long)&s__02u__02u_001490b5 /* "%02u:%02u " */),va0,va1);
-    RichString_appendnAscii(param_1,uVar1,(*(char (*)[10])(__fp - 0x4a)),uVar2);
+  else if (totalHundredths < 0x83d600) {
+    wVar3 = xSnprintf((*(char (*) [10])(__fp - 0x4a)),10,((char *)(long)&DAT_001490b0 /* "%2uh" */),iVar5);
+    RichString_appendnAscii(str,attrs,(*(char (*) [10])(__fp - 0x4a)),wVar3);
+    wVar3 = xSnprintf((*(char (*) [10])(__fp - 0x4a)),10,((char *)(long)&s__02u__02u_001490b5 /* "%02u:%02u " */),va0,va1);
+    RichString_appendnAscii(str,wVar2,(*(char (*) [10])(__fp - 0x4a)),wVar3);
   }
   else {
-    iVar3 = (int)(uVar5 / 0x18);
-    iVar4 = iVar4 + iVar3 * -0x18;
-    if (param_2 < 86400000) {
-      uVar2 = xSnprintf((*(char (*)[10])(__fp - 0x4a)),10,((char *)(long)&DAT_001490c0 /* "%1ud" */),iVar3);
-      RichString_appendnAscii(param_1,uVar8,(*(char (*)[10])(__fp - 0x4a)),uVar2);
-      uVar2 = xSnprintf((*(char (*)[10])(__fp - 0x4a)),10,((char *)(long)&s__02uh_001490c5 /* "%02uh" */),iVar4);
-      RichString_appendnAscii(param_1,uVar7,(*(char (*)[10])(__fp - 0x4a)),uVar2);
-      uVar2 = xSnprintf((*(char (*)[10])(__fp - 0x4a)),10,((char *)(long)&s__02um_001490cb /* "%02um " */),va0);
-      RichString_appendnAscii(param_1,uVar1,(*(char (*)[10])(__fp - 0x4a)),uVar2);
+    iVar4 = (int)(uVar6 / 0x18);
+    iVar5 = iVar5 + iVar4 * -0x18;
+    if (totalHundredths < 86400000) {
+      wVar3 = xSnprintf((*(char (*) [10])(__fp - 0x4a)),10,((char *)(long)&DAT_001490c0 /* "%1ud" */),iVar4);
+      RichString_appendnAscii(str,attrs_00,(*(char (*) [10])(__fp - 0x4a)),wVar3);
+      wVar3 = xSnprintf((*(char (*) [10])(__fp - 0x4a)),10,((char *)(long)&s__02uh_001490c5 /* "%02uh" */),iVar5);
+      RichString_appendnAscii(str,attrs,(*(char (*) [10])(__fp - 0x4a)),wVar3);
+      wVar3 = xSnprintf((*(char (*) [10])(__fp - 0x4a)),10,((char *)(long)&s__02um_001490cb /* "%02um " */),va0);
+      RichString_appendnAscii(str,wVar2,(*(char (*) [10])(__fp - 0x4a)),wVar3);
     }
-    else if (param_2 < 0xbbf81e00) {
-      uVar1 = xSnprintf((*(char (*)[10])(__fp - 0x4a)),10,((char *)(long)&DAT_001490d2 /* "%4ud" */),iVar3);
-      RichString_appendnAscii(param_1,uVar8,(*(char (*)[10])(__fp - 0x4a)),uVar1);
-      uVar1 = xSnprintf((*(char (*)[10])(__fp - 0x4a)),10,((char *)(long)&s__02uh_001490d7 /* "%02uh " */),iVar4);
-      RichString_appendnAscii(param_1,uVar7,(*(char (*)[10])(__fp - 0x4a)),uVar1);
+    else if (totalHundredths < 0xbbf81e00) {
+      wVar2 = xSnprintf((*(char (*) [10])(__fp - 0x4a)),10,((char *)(long)&DAT_001490d2 /* "%4ud" */),iVar4);
+      RichString_appendnAscii(str,attrs_00,(*(char (*) [10])(__fp - 0x4a)),wVar2);
+      wVar2 = xSnprintf((*(char (*) [10])(__fp - 0x4a)),10,((char *)(long)&s__02uh_001490d7 /* "%02uh " */),iVar5);
+      RichString_appendnAscii(str,attrs,(*(char (*) [10])(__fp - 0x4a)),wVar2);
     }
     else {
-      uVar5 = (uVar5 / 0x18) / 0x16d;
-      if (param_2 < 0x2de41353000) {
-        iVar4 = (int)uVar5;
-        uVar1 = xSnprintf((*(char (*)[10])(__fp - 0x4a)),10,((char *)(long)&DAT_001490de /* "%3uy" */),iVar4);
-        RichString_appendnAscii(param_1,uVar2,(*(char (*)[10])(__fp - 0x4a)),uVar1);
-        uVar1 = xSnprintf((*(char (*)[10])(__fp - 0x4a)),10,((char *)(long)&s__03ud_001490e3 /* "%03ud " */),iVar3 + iVar4 * -0x16d);
-        RichString_appendnAscii(param_1,uVar8,(*(char (*)[10])(__fp - 0x4a)),uVar1);
+      uVar6 = (uVar6 / 0x18) / 0x16d;
+      if (totalHundredths < 0x2de41353000) {
+        iVar5 = (int)uVar6;
+        wVar2 = xSnprintf((*(char (*) [10])(__fp - 0x4a)),10,((char *)(long)&DAT_001490de /* "%3uy" */),iVar5);
+        RichString_appendnAscii(str,wVar3,(*(char (*) [10])(__fp - 0x4a)),wVar2);
+        wVar2 = xSnprintf((*(char (*) [10])(__fp - 0x4a)),10,((char *)(long)&s__03ud_001490e3 /* "%03ud " */),iVar4 + iVar5 * -0x16d);
+        RichString_appendnAscii(str,attrs_00,(*(char (*) [10])(__fp - 0x4a)),wVar2);
       }
       else {
-        if (0x7009d32da2ffff < param_2) {
-          if ((*(long *)(__fp - 0x40)) == *(long *)(in_FS_OFFSET + 0x28)) {
-            RichString_appendAscii(param_1,uVar2,((char *)(long)&s_eternity_001490f1 /* "eternity " */));
+        if (0x7009d32da2ffff < totalHundredths) {
+          if (lVar1 == *(long *)(in_FS_OFFSET + 0x28)) {
+            RichString_appendAscii(str,wVar3,((char *)(long)&s_eternity_001490f1 /* "eternity " */));
             return;
           }
           goto LAB_00131646;
         }
-        uVar1 = xSnprintf((*(char (*)[10])(__fp - 0x4a)),10,((char *)(long)&s__7luy_001490ea /* "%7luy " */),uVar5);
-        RichString_appendnAscii(param_1,uVar2,(*(char (*)[10])(__fp - 0x4a)),uVar1);
+        wVar2 = xSnprintf((*(char (*) [10])(__fp - 0x4a)),10,((char *)(long)&s__7luy_001490ea /* "%7luy " */),uVar6);
+        RichString_appendnAscii(str,wVar3,(*(char (*) [10])(__fp - 0x4a)),wVar2);
       }
     }
   }
-  if ((*(long *)(__fp - 0x40)) == *(long *)(in_FS_OFFSET + 0x28)) {
+  if (lVar1 == *(long *)(in_FS_OFFSET + 0x28)) {
     return;
   }
 LAB_00131646:
@@ -706,150 +810,86 @@ LAB_00131646:
 
 /* Row_printRate @ 0x131650 */
 
-void Row_printRate(double param_1,int *param_2,char param_3)
-
-{
-  undefined1 __frame[0xe8] __attribute__((aligned(16)));
-  undefined1 *__fp = __frame + 0xa8;
-  uint uVar1;
-  uint uVar2;
-  uint uVar3;
-  uint uVar4;
-  char *pcVar5;
-  long in_FS_OFFSET = (long)__fake_fs;
-  double va0;
-
-  (*(long *)(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
-  uVar3 = *(uint *)(CRT_colors + 0x74);
-  uVar4 = *(uint *)(CRT_colors + 0x78);
-  uVar1 = uVar3;
-  if (param_3 != '\0') {
-    uVar1 = *(uint *)(CRT_colors + 0x80);
-  }
-  uVar2 = uVar3;
-  if (param_3 != '\0') {
-    uVar2 = *(uint *)(CRT_colors + 0x30);
-  }
-  if (param_1 < 0.0) {
-    if ((*(long *)(__fp - 0x40)) == *(long *)(in_FS_OFFSET + 0x28)) {
-      RichString_appendAscii(param_2,uVar4,((char *)(long)&DAT_0014908c /* "        N/A " */));
-      return;
-    }
-    goto LAB_001318c8;
-  }
-  if (param_1 < 0.005) {
-    uVar3 = __snprintf_chk((*(char (*)[24])(__fp - 0x58)),0x10,2,0x10,((char *)(long)&s__7_2f_B_s_001490fb /* "%7.2f B/s " */),param_1);
-    RichString_appendnAscii(param_2,uVar4,(*(char (*)[24])(__fp - 0x58)),uVar3);
-  }
-  else {
-    pcVar5 = ((char *)(long)&s__7_2f_B_s_001490fb /* "%7.2f B/s " */);
-    if (1024.0 <= param_1) {
-      if (1048576.0 <= param_1) {
-        if (param_1 < 1073741824.0) {
-          uVar3 = __snprintf_chk((*(char (*)[24])(__fp - 0x58)),0x10,2,0x10,((char *)(long)&s__7_2f_M_s_00149111 /* "%7.2f M/s " */),param_1 * 9.5367431640625e-07);
-          RichString_appendnAscii(param_2,uVar1,(*(char (*)[24])(__fp - 0x58)),uVar3);
-        }
-        else {
-          if (param_1 < 1099511627776.0) {
-            va0 = param_1 * 9.313225746154785e-10;
-            pcVar5 = ((char *)(long)&s__7_2f_G_s_0014911c /* "%7.2f G/s " */);
-          }
-          else if (param_1 < 1125899906842624.0) {
-            va0 = param_1 * 9.094947017729282e-13;
-            pcVar5 = ((char *)(long)&s__7_2f_T_s_00149127 /* "%7.2f T/s " */);
-          }
-          else {
-            va0 = param_1 * 8.881784197001252e-16;
-            pcVar5 = ((char *)(long)&s__7_2f_P_s_00149132 /* "%7.2f P/s " */);
-          }
-          uVar3 = __snprintf_chk((*(char (*)[24])(__fp - 0x58)),0x10,2,0x10,pcVar5,va0);
-          RichString_appendnAscii(param_2,uVar2,(*(char (*)[24])(__fp - 0x58)),uVar3);
-        }
-        goto LAB_0013179f;
-      }
-      param_1 = param_1 * 0.0009765625;
-      pcVar5 = ((char *)(long)&s__7_2f_K_s_00149106 /* "%7.2f K/s " */);
-    }
-    uVar4 = __snprintf_chk((*(char (*)[24])(__fp - 0x58)),0x10,2,0x10,pcVar5,param_1);
-    RichString_appendnAscii(param_2,uVar3,(*(char (*)[24])(__fp - 0x58)),uVar4);
-  }
-LAB_0013179f:
-  if ((*(long *)(__fp - 0x40)) == *(long *)(in_FS_OFFSET + 0x28)) {
-    return;
-  }
-LAB_001318c8:
-                    /* WARNING: Subroutine does not return */
-  __stack_chk_fail();
-}
-
-
-/* FUN_001318d0 @ 0x1318d0 */
-
-void FUN_001318d0(long param_1,int *param_2)
+void Row_printRate(RichString *str,double rate,_Bool coloring)
 
 {
   undefined1 __frame[0xe8] __attribute__((aligned(16)));
   undefined1 *__fp = __frame + 0xa8;
   long lVar1;
-  uint uVar2;
-  uint uVar3;
+  int attrs;
+  int attrs_00;
+  int wVar2;
+  int wVar3;
+  char *pcVar4;
   long in_FS_OFFSET = (long)__fake_fs;
+  double va0;
 
-  (*(long *)(__fp - 0x40)) = *(long *)(in_FS_OFFSET + 0x28);
-  lVar1 = **(long **)(param_1 + 0x10);
-  uVar2 = xSnprintf((*(char (*)[24])(__fp - 0x58)),0x14,((char *)(long)(__sec_rodata + 0x2710) /* "%d" */),(int)*(double *)(*(long *)(param_1 + 0x160) + 0x10));
-  RichString_appendnAscii(param_2,*(uint *)(CRT_colors + 0x3c),(*(char (*)[24])(__fp - 0x58)),uVar2);
-  if (*(char *)(lVar1 + 0x5b) == '\0') {
-    uVar2 = *(uint *)(CRT_colors + 0x38);
+  lVar1 = *(long *)(in_FS_OFFSET + 0x28);
+  wVar2 = CRT_colors[0x1d];
+  wVar3 = CRT_colors[0x1e];
+  attrs = wVar2;
+  if (coloring) {
+    attrs = CRT_colors[0x20];
+  }
+  attrs_00 = wVar2;
+  if (coloring) {
+    attrs_00 = CRT_colors[0xc];
+  }
+  if (rate < 0.0) {
+    if (lVar1 == *(long *)(in_FS_OFFSET + 0x28)) {
+      RichString_appendAscii(str,wVar3,((char *)(long)&DAT_0014908c /* "        N/A " */));
+      return;
+    }
+    goto LAB_001318c8;
+  }
+  if (rate < 0.005) {
+                    /* Unresolved local var: int len@[???] */
+    wVar2 = __snprintf_chk((*(char (*) [16])(__fp - 0x58)),0x10,2,0x10,((char *)(long)&s__7_2f_B_s_001490fb /* "%7.2f B/s " */),rate);
+    RichString_appendnAscii(str,wVar3,(*(char (*) [16])(__fp - 0x58)),wVar2);
   }
   else {
-    uVar2 = *(uint *)(CRT_colors + 0x34);
+    pcVar4 = ((char *)(long)&s__7_2f_B_s_001490fb /* "%7.2f B/s " */);
+    if (1024.0 <= rate) {
+      if (1048576.0 <= rate) {
+        if (rate < 1073741824.0) {
+                    /* Unresolved local var: int len@[???] */
+          wVar2 = __snprintf_chk((*(char (*) [16])(__fp - 0x58)),0x10,2,0x10,((char *)(long)&s__7_2f_M_s_00149111 /* "%7.2f M/s " */),rate * 9.5367431640625e-07);
+          RichString_appendnAscii(str,attrs,(*(char (*) [16])(__fp - 0x58)),wVar2);
+        }
+        else {
+          if (rate < 1099511627776.0) {
+                    /* Unresolved local var: int len@[???] */
+            va0 = rate * 9.313225746154785e-10;
+            pcVar4 = ((char *)(long)&s__7_2f_G_s_0014911c /* "%7.2f G/s " */);
+          }
+          else if (rate < 1125899906842624.0) {
+                    /* Unresolved local var: int len@[???] */
+            va0 = rate * 9.094947017729282e-13;
+            pcVar4 = ((char *)(long)&s__7_2f_T_s_00149127 /* "%7.2f T/s " */);
+          }
+          else {
+                    /* Unresolved local var: int len@[???] */
+            va0 = rate * 8.881784197001252e-16;
+            pcVar4 = ((char *)(long)&s__7_2f_P_s_00149132 /* "%7.2f P/s " */);
+          }
+          wVar2 = __snprintf_chk((*(char (*) [16])(__fp - 0x58)),0x10,2,0x10,pcVar4,va0);
+          RichString_appendnAscii(str,attrs_00,(*(char (*) [16])(__fp - 0x58)),wVar2);
+        }
+        goto LAB_0013179f;
+      }
+                    /* Unresolved local var: int len@[???] */
+      rate = rate * 0.0009765625;
+      pcVar4 = ((char *)(long)&s__7_2f_K_s_00149106 /* "%7.2f K/s " */);
+    }
+                    /* Unresolved local var: int len@[???] */
+    wVar3 = __snprintf_chk((*(char (*) [16])(__fp - 0x58)),0x10,2,0x10,pcVar4,rate);
+    RichString_appendnAscii(str,wVar2,(*(char (*) [16])(__fp - 0x58)),wVar3);
   }
-  RichString_appendAscii(param_2,uVar2,((char *)(long)&DAT_0014903d /* ", " */));
-  uVar2 = xSnprintf((*(char (*)[24])(__fp - 0x58)),0x14,((char *)(long)(__sec_rodata + 0x2710) /* "%d" */),(int)*(double *)(*(long *)(param_1 + 0x160) + 8));
-  if (*(char *)(lVar1 + 0x5b) == '\0') {
-    uVar3 = *(uint *)(CRT_colors + 100);
-  }
-  else {
-    uVar3 = *(uint *)(CRT_colors + 0x34);
-  }
-  RichString_appendnAscii(param_2,uVar3,(*(char (*)[24])(__fp - 0x58)),uVar2);
-  if (*(char *)(lVar1 + 0x5b) == '\0') {
-    uVar2 = *(uint *)(CRT_colors + 0x38);
-  }
-  else {
-    uVar2 = *(uint *)(CRT_colors + 0x34);
-  }
-  RichString_appendAscii(param_2,uVar2,((char *)(long)&DAT_0014913d /* " thr" */));
-  if (*(char *)(lVar1 + 0x59) == '\0') {
-    uVar2 = *(uint *)(CRT_colors + 0x38);
-  }
-  else {
-    uVar2 = *(uint *)(CRT_colors + 0x34);
-  }
-  RichString_appendAscii(param_2,uVar2,((char *)(long)&DAT_0014903d /* ", " */));
-  uVar2 = xSnprintf((*(char (*)[24])(__fp - 0x58)),0x14,((char *)(long)(__sec_rodata + 0x2710) /* "%d" */),(int)**(double **)(param_1 + 0x160));
-  if (*(char *)(lVar1 + 0x59) == '\0') {
-    uVar3 = *(uint *)(CRT_colors + 100);
-  }
-  else {
-    uVar3 = *(uint *)(CRT_colors + 0x34);
-  }
-  RichString_appendnAscii(param_2,uVar3,(*(char (*)[24])(__fp - 0x58)),uVar2);
-  if (*(char *)(lVar1 + 0x59) == '\0') {
-    uVar2 = *(uint *)(CRT_colors + 0x38);
-  }
-  else {
-    uVar2 = *(uint *)(CRT_colors + 0x34);
-  }
-  RichString_appendAscii(param_2,uVar2,((char *)(long)&s_kthr_00149142 /* " kthr" */));
-  RichString_appendAscii(param_2,*(uint *)(CRT_colors + 0x38),((char *)(long)(__sec_rodata + 0x118) /* "; " */));
-  uVar2 = xSnprintf((*(char (*)[24])(__fp - 0x58)),0x14,((char *)(long)(__sec_rodata + 0x2710) /* "%d" */),(int)*(double *)(*(long *)(param_1 + 0x160) + 0x18));
-  RichString_appendnAscii(param_2,*(uint *)(CRT_colors + 100),(*(char (*)[24])(__fp - 0x58)),uVar2);
-  RichString_appendAscii(param_2,*(uint *)(CRT_colors + 0x38),((char *)(long)&s_running_00149148 /* " running" */));
-  if ((*(long *)(__fp - 0x40)) == *(long *)(in_FS_OFFSET + 0x28)) {
+LAB_0013179f:
+  if (lVar1 == *(long *)(in_FS_OFFSET + 0x28)) {
     return;
   }
+LAB_001318c8:
                     /* WARNING: Subroutine does not return */
   __stack_chk_fail();
 }

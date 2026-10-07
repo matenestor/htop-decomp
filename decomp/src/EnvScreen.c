@@ -4,64 +4,113 @@
 
 /* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
 
-void EnvScreen_new(undefined8 param_1)
+EnvScreen * EnvScreen_new(Process_2 *process)
 
 {
-  undefined8 *puVar1;
+  InfoScreen *this;
+  InfoScreen_2 *pIVar1;
 
-  puVar1 = malloc(0x28);
-  if (puVar1 != (undefined8 *)0x0) {
-    *puVar1 = EnvScreen_class;
-    InfoScreen_init((long)puVar1,param_1,(wint_t *)0x0,_LINES + -2,((char *)(long)&DAT_001470dd /* " " */));
-    return;
+                    /* Unresolved local var: void * data@[???] */
+  this = malloc(0x28);
+  if (this != (InfoScreen *)0x0) {
+    (this->super).klass = &EnvScreen_class.super;
+    pIVar1 = InfoScreen_init(this,(Process *)process,(FunctionBar *)0x0,_LINES + -2,((char *)(long)&DAT_001470dd /* " " */));
+    return (EnvScreen *)pIVar1;
   }
                     /* WARNING: Subroutine does not return */
   fail();
 }
 
 
-/* FUN_0011abf0 @ 0x11abf0 */
+/* EnvScreen_draw @ 0x11e380 */
 
-/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* DWARF original prototype: void EnvScreen_draw(InfoScreen * this) */
 
-undefined8
-FUN_0011abf0(undefined8 *param_1,long param_rsi,long param_rdx,long param_rcx,long param_r8,
-            long param_r9)
+void EnvScreen_draw(InfoScreen *this)
 
 {
-  undefined8 *puVar1;
-  long *plVar2;
-  undefined8 uVar3;
-  ulong uVar4;
-  long extraout_RDX;
-  long extraout_RDX_00;
-  long lVar5;
-  undefined *puVar6;
+  Process *pPVar1;
+  char *va1;
 
-  uVar3 = 0;
-  if (*(long *)(*(long *)(*(long *)*param_1 + 0x40) + 8) == 0) {
-    plVar2 = *(long **)(param_1[1] + 0x20);
-    if (0 < (int)plVar2[3]) {
-      lVar5 = *(long *)(*plVar2 + (long)*(int *)(param_1[1] + 0x28) * 8);
-      if (lVar5 != 0) {
-        puVar1 = malloc(0x28);
-        if (puVar1 == (undefined8 *)0x0) {
-                    /* WARNING: Subroutine does not return */
-          fail();
-        }
-        puVar6 = &DAT_001470dd;
-        *puVar1 = EnvScreen_class;
-        uVar4 = (ulong)(_LINES - 2U);
-        plVar2 = (long *)InfoScreen_init((long)puVar1,lVar5,(wint_t *)0x0,_LINES - 2U,((char *)(long)&DAT_001470dd /* " " */));
-        InfoScreen_run(plVar2,lVar5,extraout_RDX,uVar4,(long)puVar6,param_r9);
-        CommandScreen_delete(plVar2,lVar5,extraout_RDX_00,uVar4,(long)puVar6,param_r9);
-        wclear(_stdscr);
-        halfdelay(*PTR_0015c0d0);
-        uVar3 = 0x21;
-      }
-      return uVar3;
-    }
+  pPVar1 = this->process;
+                    /* Unresolved local var: Settings * settings@[???] */
+  if (((pPVar1->isUserlandThread != false) &&
+      (((pPVar1->super).host)->settings->showThreadNames != false)) ||
+     (va1 = (pPVar1->mergedCommand).str, va1 == (char *)0x0)) {
+    va1 = pPVar1->cmdline;
   }
-  return 0;
+  InfoScreen_drawTitled(this,((char *)(long)&s_Environment_of_process__d____s_0014b1c8 /* "Environment of process %d - %s" */),(pPVar1->super).id,va1);
+  return;
+}
+
+
+/* EnvScreen_scan @ 0x11f7f0 */
+
+/* DWARF original prototype: void EnvScreen_scan(InfoScreen * this) */
+
+void EnvScreen_scan(InfoScreen *this)
+
+{
+  int wVar1;
+  char *line;
+  char cVar2;
+  int wVar3;
+  Panel *a0;
+  Process *pPVar4;
+  code *UNRECOVERED_JUMPTABLE;
+  char *__ptr;
+  size_t sVar5;
+  long in_RCX;
+  long in_R8;
+  long in_R9;
+  int wVar6;
+
+  a0 = this->display;
+  wVar6 = a0->selected;
+  if (wVar6 < 0) {
+    wVar6 = 0;
+  }
+  Vector_prune(a0->items);
+  pPVar4 = this->process;
+  a0->needsRedraw = true;
+  a0->selected = 0;
+  a0->oldSelected = 0;
+  a0->scrollV = 0;
+  __ptr = Platform_getProcessEnv((pPVar4->super).id);
+  if (__ptr == (char *)0x0) {
+    InfoScreen_addLine(this,((char *)(long)&s_Could_not_read_process_environme_0014b1e8 /* "Could not read process environment." */));
+  }
+  else {
+                    /* Unresolved local var: char * p@[???] */
+    cVar2 = *__ptr;
+    line = __ptr;
+    while (cVar2 != '\0') {
+      InfoScreen_addLine(this,line);
+      sVar5 = strlen(line);
+      line = line + sVar5 + 1;
+      cVar2 = *line;
+    }
+    free(__ptr);
+  }
+  Vector_insertionSort(this->lines);
+  Vector_insertionSort(a0->items);
+                    /* Unresolved local var: int size@[???] */
+  wVar3 = a0->items->items;
+  wVar1 = wVar3 + -1;
+  if (wVar3 <= wVar6) {
+    wVar6 = wVar1;
+  }
+  if (wVar6 < 0) {
+    wVar6 = 0;
+  }
+  UNRECOVERED_JUMPTABLE = (a0->super).klass[1].extends;
+  a0->selected = wVar6;
+  if (UNRECOVERED_JUMPTABLE != (code *)0x0) {
+                    /* WARNING: Could not recover jumptable at 0x0011f8d8. Too many branches */
+                    /* WARNING: Treating indirect jump as call */
+    (*UNRECOVERED_JUMPTABLE)((long)a0,0xffffffff,(ulong)(uint)wVar1,in_RCX,in_R8,in_R9);
+    return;
+  }
+  return;
 }
 
