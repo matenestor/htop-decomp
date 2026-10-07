@@ -32,8 +32,8 @@ for name in "${!SCREENS[@]}"; do
     sleep 1.5
     for k in $keys; do tmux send-keys -t $s $k; sleep 0.4; done
     sleep 1
-    # CPU rows (bars in stock htop, history heatmap in the rebuilt one) differ by design
-    tmux capture-pane -p -t $s | grep -vE '^ +[0-9]+ *[[▁▂▃▄▅▆▇█.:=+*#@-]|^[ 0-9]+$' > "$TMP/$name.$which"
+    # CPU area differs by design: bars in stock htop, the history line graph in the rebuilt one
+    tmux capture-pane -p -t $s | grep -vE '^ +[0-9]+ *\[|^ +(100| 50|  0)%( |$)|[⠀-⣿]|━[0-9]|^ *$' > "$TMP/$name.$which"
     [ -f $TMP/$name.$which.exit ] && echo "$which $name: htop ended early ($(cat $TMP/$name.$which.exit))"
     tmux kill-session -t $s
   done

@@ -27,7 +27,7 @@ void AllCPUsMeter_updateValues(Meter *this)
   for (int i = 0; i < count; i++) {
     Meter *core = data->meters[i];
     (*(code *)((const MeterClass *)(core->super).klass)->updateValues)(core);
-    CPUHistory_record(data->history,i,this->host->monotonicMs,CPUHistory_meterPercent(core));
+    CPUHistory_record(data->history,core->param - 1,this->host->monotonicMs,CPUHistory_meterPercent(core));
   }
 }
 
@@ -41,17 +41,16 @@ void CPUMeterCommonDraw(Meter *this,int x,int y,int w,int ncol)
 
 {
   CPUHistoryMeterData *data = this->meterData;
-  int count = CPUMeter_coreCount(this,data->cpus);
-  int colwidth = (w - ncol) / ncol + 1;
-  int diff = w - ncol * colwidth;
-  int nrows = (count + ncol - 1) / ncol;
+  char kind = ((const MeterClass *)(this->super).klass)->name[0];
 
-  /* same column layout as the bars had; each core is one heatmap row */
-  for (int i = 0; i < count; i++) {
-    int d = i / nrows;
-    int xpos = x + d * colwidth + (d < diff ? d : diff);
-    int ypos = y + i % nrows;
-    CPUHistory_drawRow(data->history,i,data->meters[i],this->host->monotonicMs,xpos,ypos,colwidth);
+  /* one graph of all cores: a LeftCPUs* meter draws it over the full header width and the
+     RightCPUs* meter next to it stays empty; otherwise the meter draws it in its own column */
+  if (kind == 'L') {
+    int full = COLS - 2 * x;
+    CPUHistory_drawGraph(data->history,this->host,x,y,full > w ? full : w);
+  }
+  else if ((kind != 'R') || (data->history->leftMeters == 0)) {
+    CPUHistory_drawGraph(data->history,this->host,x,y,w);
   }
 }
 
@@ -103,12 +102,7 @@ void OctoColCPUsMeter_draw(Meter *this,int x,int y,int w)
 void SingleColCPUsMeter_draw(Meter *this,int x,int y,int w)
 
 {
-  CPUHistoryMeterData *data = this->meterData;
-  int count = CPUMeter_coreCount(this,data->cpus);
-
-  for (int i = 0; i < count; i++) {
-    CPUHistory_drawRow(data->history,i,data->meters[i],this->host->monotonicMs,x,y + i,w);
-  }
+  CPUMeterCommonDraw(this,x,y,w,1);
 }
 
 
@@ -210,8 +204,8 @@ LAB_001143b9:
     } while (puVar1 != puVar8);
   }
 LAB_00114449:
-  /* heatmap: one row per core per column, whatever mode is selected */
-  this->h = ((*(int (*))(__fp - 0x3c)) + -1 + ncol) / ncol;
+  /* line graph of all cores, whatever mode is selected */
+  this->h = CPUHISTORY_HEIGHT;
   return;
 }
 
@@ -305,7 +299,10 @@ void AllCPUsMeter_done(Meter *this)
     __ptr_00 = *(undefined8 **)(__ptr + 2);
   }
   free(__ptr_00);
-  CPUHistory_delete(((CPUHistoryMeterData *)__ptr)->history);
+  if (cVar2 == 'L') {
+    ((CPUHistoryMeterData *)__ptr)->history->leftMeters--;
+  }
+  CPUHistory_release(((CPUHistoryMeterData *)__ptr)->history);
   free(__ptr);
   return;
 }
@@ -426,7 +423,10 @@ LAB_0011ca3b:
     a3 = calloc((ulong)uVar6,8);
     if (a3 == (long *)0x0) goto LAB_0011ca3b;
     *(long **)(puVar3 + 2) = a3;
-    ((CPUHistoryMeterData *)puVar3)->history = CPUHistory_new(uVar6);
+    ((CPUHistoryMeterData *)puVar3)->history = CPUHistory_acquire(uVar6);
+    if (((const MeterClass *)(this->super).klass)->name[0] == 'L') {
+      ((CPUHistoryMeterData *)puVar3)->history->leftMeters++;
+    }
   }
   else {
     a3 = *(long **)(puVar3 + 2);
@@ -472,8 +472,8 @@ LAB_0011c935:
   else {
     pMVar4 = Meter_modes[this->mode];
   }
-  /* heatmap: one row per core per column, whatever mode is selected */
-  this->h = ((uVar6 - 1) + ncol) / ncol;
+  /* line graph of all cores, whatever mode is selected */
+  this->h = CPUHISTORY_HEIGHT;
   return;
 }
 
